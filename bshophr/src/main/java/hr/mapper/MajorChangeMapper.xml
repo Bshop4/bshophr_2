@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="hr.mapper.MajorChangeMapper">
+	<resultMap type="MajorChange" id="MajorChangeMap" >
+		<result property="MchId"  column="mch_id"/>
+		<result property="FirstKindId"  column="first_kind_id"/>
+		<result property="FirstKindName"  column="first_kind_name"/>
+		<result property="SecondKindId"  column="second_kind_id"/>
+		<result property="SecondKindName"  column="second_kind_name"/>
+		<result property="ThirdKindId"  column="third_kind_id"/>
+		<result property="ThirdKindName"  column="third_kind_name"/>
+		<result property="MajorKindId"  column="major_kind_id"/>
+		<result property="MajorKindName"  column="major_kind_name"/>
+		<result property="MajorId"  column="major_id"/>
+		<result property="MajorName"  column="major_name"/>
+		<result property="NewFirstKindId"  column="new_first_kind_id"/>
+		<result property="NewFirstKindName"  column="new_first_kind_name"/>
+		<result property="NewSecondKindId"  column="new_second_kind_id"/>
+		<result property="NewSecondKindName"  column="new_second_kind_name"/>
+		<result property="NewThirdKindId"  column="new_third_kind_id"/>
+		<result property="NewThirdKindName"  column="new_third_kind_name"/>
+		<result property="NewMajorKindId"  column="new_major_kind_id"/>
+		<result property="NewMajorKindName"  column="new_major_kind_name"/>
+		<result property="NewMajorId"  column="new_major_id"/>
+		<result property="NewMajorName"  column="new_major_name"/>
+		<result property="HumanId"  column="human_id"/>
+		<result property="HumanName"  column="human_name"/>
+		<result property="SalaryStandardId"  column="salary_standard_id"/>
+		<result property="SalaryStandardName"  column="salary_standard_name"/>
+		<result property="SalarySum"  column="salary_sum"/>
+		<result property="NewSalaryStandardId"  column="new_salary_standard_id"/>
+		<result property="NewSalaryStandardName"  column="new_salary_standard_name"/>
+		<result property="NewSalarySum"  column="new_salary_sum"/>
+		<result property="ChangeReason"  column="change_reason"/>
+		<result property="CheckReason"  column="check_reason"/>
+		<result property="CheckStatus"  column="check_status"/>
+		<result property="Register"  column="register"/>
+		<result property="Checker"  column="checker"/>
+		<result property="RegistTime"  column="regist_time"/>
+		<result property="CheckTime"  column="check_time"/>
+	</resultMap>
+
+	
+	<select id="selectMajorChangeAll" resultMap="MajorChangeMap">
+		select * from major_change
+	</select>
+	
+	<select id="selectMajorChangeById" parameterType="_int" resultMap="MajorChangeMap">
+		select * from major_change where mch_id=#{id}
+	</select>
+	
+	<delete id="deleteMajorChangeById" parameterType="_int">
+		delete from major_change where mch_id=#{id}
+	</delete>
+	<insert id="insertMajorChange" parameterType="MajorChange">
+		
+	</insert>
+	
+	<update id="updateMajorChange" parameterType="MajorChange">
+	
+	</update>
+</mapper>

@@ -5,7 +5,7 @@
   
 <configuration>
 	<typeAliases>
-		<package name="pyl/pojo"/>
+		<package name="hr/pojo"/>
 	</typeAliases>
 	<!-- 环境的配置 -->
 	<!-- <environments default="development">告诉框架使用那个环境
