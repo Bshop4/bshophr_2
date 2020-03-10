@@ -1,4 +1,4 @@
-package hr.mapper;
+package hr.pojo;
 
 import java.sql.Timestamp;
 

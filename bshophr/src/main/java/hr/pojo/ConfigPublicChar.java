@@ -1,4 +1,4 @@
-package hr.mapper;
+package hr.pojo;
 
 /**
  * ConfigPublicCharId entity. @author MyEclipse Persistence Tools

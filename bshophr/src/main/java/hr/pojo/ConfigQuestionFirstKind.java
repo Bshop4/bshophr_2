@@ -1,4 +1,4 @@
-package hr.mapper;
+package hr.pojo;
 
 /**
  * ConfigQuestionFirstKindId entity. @author MyEclipse Persistence Tools

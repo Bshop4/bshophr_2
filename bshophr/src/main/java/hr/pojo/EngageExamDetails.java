@@ -1,47 +1,55 @@
-package hr.mapper;
+package hr.pojo;
 
 /**
- * ConfigFileSecondKindId entity. @author MyEclipse Persistence Tools
+ * EngageExamDetailsId entity. @author MyEclipse Persistence Tools
  */
 
-public class ConfigFileSecondKind implements java.io.Serializable {
+public class EngageExamDetails implements java.io.Serializable {
 
 	// Fields
 
-	private Short fskId;
+	private Short exdId;
+	private String examNumber;
 	private String firstKindId;
 	private String firstKindName;
 	private String secondKindId;
 	private String secondKindName;
-	private String secondSalaryId;
-	private String secondSaleId;
+	private Short questionAmount;
 
 	// Constructors
 
 	/** default constructor */
-	public ConfigFileSecondKind() {
+	public EngageExamDetails() {
 	}
 
 	/** full constructor */
-	public ConfigFileSecondKind(Short fskId, String firstKindId, String firstKindName, String secondKindId,
-			String secondKindName, String secondSalaryId, String secondSaleId) {
-		this.fskId = fskId;
+	public EngageExamDetails(Short exdId, String examNumber, String firstKindId, String firstKindName,
+			String secondKindId, String secondKindName, Short questionAmount) {
+		this.exdId = exdId;
+		this.examNumber = examNumber;
 		this.firstKindId = firstKindId;
 		this.firstKindName = firstKindName;
 		this.secondKindId = secondKindId;
 		this.secondKindName = secondKindName;
-		this.secondSalaryId = secondSalaryId;
-		this.secondSaleId = secondSaleId;
+		this.questionAmount = questionAmount;
 	}
 
 	// Property accessors
 
-	public Short getFskId() {
-		return this.fskId;
+	public Short getExdId() {
+		return this.exdId;
 	}
 
-	public void setFskId(Short fskId) {
-		this.fskId = fskId;
+	public void setExdId(Short exdId) {
+		this.exdId = exdId;
+	}
+
+	public String getExamNumber() {
+		return this.examNumber;
+	}
+
+	public void setExamNumber(String examNumber) {
+		this.examNumber = examNumber;
 	}
 
 	public String getFirstKindId() {
@@ -76,20 +84,12 @@ public class ConfigFileSecondKind implements java.io.Serializable {
 		this.secondKindName = secondKindName;
 	}
 
-	public String getSecondSalaryId() {
-		return this.secondSalaryId;
+	public Short getQuestionAmount() {
+		return this.questionAmount;
 	}
 
-	public void setSecondSalaryId(String secondSalaryId) {
-		this.secondSalaryId = secondSalaryId;
-	}
-
-	public String getSecondSaleId() {
-		return this.secondSaleId;
-	}
-
-	public void setSecondSaleId(String secondSaleId) {
-		this.secondSaleId = secondSaleId;
+	public void setQuestionAmount(Short questionAmount) {
+		this.questionAmount = questionAmount;
 	}
 
 	public boolean equals(Object other) {
@@ -97,12 +97,14 @@ public class ConfigFileSecondKind implements java.io.Serializable {
 			return true;
 		if ((other == null))
 			return false;
-		if (!(other instanceof ConfigFileSecondKind))
+		if (!(other instanceof EngageExamDetails))
 			return false;
-		ConfigFileSecondKind castOther = (ConfigFileSecondKind) other;
+		EngageExamDetails castOther = (EngageExamDetails) other;
 
-		return ((this.getFskId() == castOther.getFskId()) || (this.getFskId() != null && castOther.getFskId() != null
-				&& this.getFskId().equals(castOther.getFskId())))
+		return ((this.getExdId() == castOther.getExdId()) || (this.getExdId() != null && castOther.getExdId() != null
+				&& this.getExdId().equals(castOther.getExdId())))
+				&& ((this.getExamNumber() == castOther.getExamNumber()) || (this.getExamNumber() != null
+						&& castOther.getExamNumber() != null && this.getExamNumber().equals(castOther.getExamNumber())))
 				&& ((this.getFirstKindId() == castOther.getFirstKindId())
 						|| (this.getFirstKindId() != null && castOther.getFirstKindId() != null
 								&& this.getFirstKindId().equals(castOther.getFirstKindId())))
@@ -115,24 +117,21 @@ public class ConfigFileSecondKind implements java.io.Serializable {
 				&& ((this.getSecondKindName() == castOther.getSecondKindName())
 						|| (this.getSecondKindName() != null && castOther.getSecondKindName() != null
 								&& this.getSecondKindName().equals(castOther.getSecondKindName())))
-				&& ((this.getSecondSalaryId() == castOther.getSecondSalaryId())
-						|| (this.getSecondSalaryId() != null && castOther.getSecondSalaryId() != null
-								&& this.getSecondSalaryId().equals(castOther.getSecondSalaryId())))
-				&& ((this.getSecondSaleId() == castOther.getSecondSaleId())
-						|| (this.getSecondSaleId() != null && castOther.getSecondSaleId() != null
-								&& this.getSecondSaleId().equals(castOther.getSecondSaleId())));
+				&& ((this.getQuestionAmount() == castOther.getQuestionAmount())
+						|| (this.getQuestionAmount() != null && castOther.getQuestionAmount() != null
+								&& this.getQuestionAmount().equals(castOther.getQuestionAmount())));
 	}
 
 	public int hashCode() {
 		int result = 17;
 
-		result = 37 * result + (getFskId() == null ? 0 : this.getFskId().hashCode());
+		result = 37 * result + (getExdId() == null ? 0 : this.getExdId().hashCode());
+		result = 37 * result + (getExamNumber() == null ? 0 : this.getExamNumber().hashCode());
 		result = 37 * result + (getFirstKindId() == null ? 0 : this.getFirstKindId().hashCode());
 		result = 37 * result + (getFirstKindName() == null ? 0 : this.getFirstKindName().hashCode());
 		result = 37 * result + (getSecondKindId() == null ? 0 : this.getSecondKindId().hashCode());
 		result = 37 * result + (getSecondKindName() == null ? 0 : this.getSecondKindName().hashCode());
-		result = 37 * result + (getSecondSalaryId() == null ? 0 : this.getSecondSalaryId().hashCode());
-		result = 37 * result + (getSecondSaleId() == null ? 0 : this.getSecondSaleId().hashCode());
+		result = 37 * result + (getQuestionAmount() == null ? 0 : this.getQuestionAmount().hashCode());
 		return result;
 	}
 

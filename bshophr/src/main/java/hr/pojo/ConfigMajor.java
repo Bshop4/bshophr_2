@@ -1,4 +1,4 @@
-package hr.mapper;
+package hr.pojo;
 
 /**
  * ConfigMajorId entity. @author MyEclipse Persistence Tools
