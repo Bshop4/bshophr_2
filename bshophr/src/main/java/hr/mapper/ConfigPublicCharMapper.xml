@@ -4,7 +4,7 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hr.mapper.ConfigPublicCharMapper">
 	<resultMap type="ConfigPublicChar" id="configPublicCharMap" >
-		<result property="pbcId"    column="pbc_id"/>
+		<id property="pbcId"    column="pbc_id"/>
 		<result property="attributeKind"    column="attribute_kind"/>
 		<result property="attributeName"    column="attribute_name"/>
 	</resultMap>
