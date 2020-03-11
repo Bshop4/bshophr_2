@@ -15,12 +15,12 @@
 		select * from config_primary_key
 	</select>
 
-	<select id="selectConfigPrimaryKey" parameterType="_int" resultMap="configPrimaryKeyMap">
-		select * from config_primary_key where primary_key_status=#{id}
+	<select id="selectConfigPrimaryKeyById" parameterType="_int" resultMap="configPrimaryKeyMap">
+		select * from config_primary_key where prk_id=#{id}
 	</select>
 
-	<delete id="selectConfigPrimaryKey" parameterType="_int">
-		delete from config_primary_key where primary_key_status=#{id}
+	<delete id="deleteConfigPrimaryKeyById" parameterType="_int">
+		delete from config_primary_key where prk_id=#{id}
 	</delete>
 
 	<update id="updateConfigPrimaryKey" parameterType="ConfigPrimaryKey">

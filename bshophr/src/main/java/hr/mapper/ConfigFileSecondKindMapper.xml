@@ -17,12 +17,12 @@
 		select * from config_file_second_kind
 	</select>
 
-	<select id="selectConfigFileSecondKind" parameterType="_int" resultMap="configFileSecondKindMap">
-		select * from config_file_second_kind where second_sale_id=#{id}
+	<select id="selectConfigFileSecondKindById" parameterType="_int" resultMap="configFileSecondKindMap">
+		select * from config_file_second_kind where fsk_id=#{id}
 	</select>
 
-	<delete id="selectConfigFileSecondKind" parameterType="_int">
-		delete from config_file_second_kind where second_sale_id=#{id}
+	<delete id="deleteConfigFileSecondKindById" parameterType="_int">
+		delete from config_file_second_kind where fsk_id=#{id}
 	</delete>
 
 	<update id="updateConfigFileSecondKind" parameterType="ConfigFileSecondKind">

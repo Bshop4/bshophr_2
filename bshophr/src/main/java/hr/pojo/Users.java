@@ -8,11 +8,11 @@ public class Users implements java.io.Serializable {
 
 	// Fields
 
-	private Short UId;
-	private String UName;
-	private String UTrueName;
-	private String UPassword;
-	private String UMajorName;
+	private Short uId;
+	private String uName;
+	private String uTrueName;
+	private String uPassword;
+	private String uMajorName;
 
 	// Constructors
 
@@ -22,53 +22,53 @@ public class Users implements java.io.Serializable {
 
 	/** full constructor */
 	public Users(Short UId, String UName, String UTrueName, String UPassword, String UMajorName) {
-		this.UId = UId;
-		this.UName = UName;
-		this.UTrueName = UTrueName;
-		this.UPassword = UPassword;
-		this.UMajorName = UMajorName;
+		this.uId = UId;
+		this.uName = UName;
+		this.uTrueName = UTrueName;
+		this.uPassword = UPassword;
+		this.uMajorName = UMajorName;
 	}
 
 	// Property accessors
 
 	public Short getUId() {
-		return this.UId;
+		return this.uId;
 	}
 
 	public void setUId(Short UId) {
-		this.UId = UId;
+		this.uId = UId;
 	}
 
 	public String getUName() {
-		return this.UName;
+		return this.uName;
 	}
 
 	public void setUName(String UName) {
-		this.UName = UName;
+		this.uName = UName;
 	}
 
 	public String getUTrueName() {
-		return this.UTrueName;
+		return this.uTrueName;
 	}
 
 	public void setUTrueName(String UTrueName) {
-		this.UTrueName = UTrueName;
+		this.uTrueName = UTrueName;
 	}
 
 	public String getUPassword() {
-		return this.UPassword;
+		return this.uPassword;
 	}
 
 	public void setUPassword(String UPassword) {
-		this.UPassword = UPassword;
+		this.uPassword = UPassword;
 	}
 
 	public String getUMajorName() {
-		return this.UMajorName;
+		return this.uMajorName;
 	}
 
 	public void setUMajorName(String UMajorName) {
-		this.UMajorName = UMajorName;
+		this.uMajorName = UMajorName;
 	}
 
 	public boolean equals(Object other) {
