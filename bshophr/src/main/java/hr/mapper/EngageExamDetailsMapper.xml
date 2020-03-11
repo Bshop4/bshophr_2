@@ -26,13 +26,13 @@
 	
 
 	
-	<select id="selectEngageExamDetailsAll" resultMap="ead">
+	<select id="selectEngageExamDetailsAll" resultMap="eed">
 		select * from engage_exam_details
 	</select>
 	
 	
 	
-	<select id="selectEngageExamDetailsById" parameterType="_int"  resultMap="ead">
+	<select id="selectEngageExamDetailsById" parameterType="_int"  resultMap="eed">
 		select * from engage_exam_details where exd_id=#{id}
 	</select>
 	
