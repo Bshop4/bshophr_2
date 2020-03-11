@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import hr.pojo.ConfigQuestionSecondKind;
 import hr.pojo.EngageAnswer;
 
 @Repository
@@ -18,7 +19,5 @@ public interface EngageAnswerMapper {
 	public EngageAnswer selectEngageAnswerById(int id);
 	
 	public List<EngageAnswer> selectEngageAnswerAll();
-
-	
 
 }

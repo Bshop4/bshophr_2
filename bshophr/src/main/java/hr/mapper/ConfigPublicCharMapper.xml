@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hr.mapper.ConfigPublicCharMapper">
+	<resultMap type="ConfigPublicChar" id="configPublicCharMap" >
+		<result property="pbcId"    column="pbc_id"/>
+		<result property="attributeKind"    column="attribute_kind"/>
+		<result property="attributeName"    column="attribute_name"/>
+	</resultMap>
+
+	<select id="selectConfigPublicCharAll" resultMap="configPublicCharMap">
+		select * from config_public_char
+	</select>
+
+	<select id="selectConfigPublicChar" parameterType="_int" resultMap="configPublicCharMap">
+		select * from config_public_char where attribute_name=#{id}
+	</select>
+
+	<delete id="selectConfigPublicChar" parameterType="_int">
+		delete from config_public_char where attribute_name=#{id}
+	</delete>
+
+	<update id="updateConfigPublicChar" parameterType="ConfigPublicChar">
+		update ConfigPublicChar set attribute_kind=#{attributeKind},attribute_name=#{attributeName} where pbc_id=#{pbcId}
+	</update>
+	<insert id="insertConfigPublicChar" parameterType="ConfigPublicChar">
+		insert into config_public_char(attribute_kind,attribute_name) 
+		values(#{pbcId},#{attributeKind},#{attributeName}) 
+	</insert>
+</mapper>
