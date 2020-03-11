@@ -8,17 +8,15 @@ import hr.pojo.EngageAnswerDetails;
 
 @Repository
 public interface EngageAnswerDetailsMapper {
-	
-	public boolean insertEngageAnswerDetails(EngageAnswerDetails ead);
-	
-	public boolean deleteEngageAnswerDetailsById(int id);
-	
-	public boolean updateEngageAnswerDetails(EngageAnswerDetails ead);
-	
-	public EngageAnswerDetails selectEngageAnswerDetailsById(int id);
-	
-	public List<EngageAnswerDetails> selectEngageAnswerDetailsAll();
 
-	
+	public boolean insertEngageAnswerDetails(EngageAnswerDetails ead);
+
+	public boolean deleteEngageAnswerDetailsById(int id);
+
+	public boolean updateEngageAnswerDetails(EngageAnswerDetails ead);
+
+	public EngageAnswerDetails selectEngageAnswerDetailsById(int id);
+
+	public List<EngageAnswerDetails> selectEngageAnswerDetailsAll();
 
 }
