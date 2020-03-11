@@ -21,5 +21,6 @@
 	-->
 </head>
 <body>
+	<a href="aaa.do">aaa</a>
 </body>
 </html>
