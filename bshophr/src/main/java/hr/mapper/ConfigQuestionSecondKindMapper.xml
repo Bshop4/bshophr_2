@@ -16,11 +16,11 @@
 	</select>
 
 	<select id="selectConfigQuestionSecondKindById" parameterType="_int" resultMap="configQuestionSecondKindMap">
-		select * from config_question_second_kind where second_kind_name=#{id}
+		select * from config_question_second_kind where qsk_id=#{id}
 	</select>
 
 	<delete id="deleteConfigQuestionSecondKindById" parameterType="_int">
-		delete from config_question_second_kind where second_kind_name=#{id}
+		delete from config_question_second_kind where qsk_id=#{id}
 	</delete>
 
 	<update id="updateConfigQuestionSecondKind" parameterType="ConfigQuestionSecondKind">

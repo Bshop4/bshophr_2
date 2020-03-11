@@ -16,11 +16,11 @@
 	</select>
 
 	<select id="selectConfigFileFirstKindById" parameterType="_int" resultMap="configFileFirstKindMap">
-		select * from config_file_first_kind where first_kind_sale_id=#{id}
+		select * from config_file_first_kind where ffk_id=#{id}
 	</select>
 
 	<delete id="deleteConfigFileFirstKindById" parameterType="_int">
-		delete from config_file_first_kind where first_kind_sale_id=#{id}
+		delete from config_file_first_kind where ffk_id=#{id}
 	</delete>
 
 	<update id="updateConfigFileFirstKind" parameterType="ConfigFileFirstKind">

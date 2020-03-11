@@ -20,11 +20,11 @@
 	</select>
 
 	<select id="selectConfigFileThirdKindById" parameterType="_int" resultMap="configFileThirdKindMap">
-		select * from config_file_third_kind where third_kind_is_retail=#{id}
+		select * from config_file_third_kind where ftk_id=#{id}
 	</select>
 
 	<delete id="deleteConfigFileThirdKindById" parameterType="_int">
-		delete from config_file_third_kind where third_kind_is_retail=#{id}
+		delete from config_file_third_kind where ftk_id=#{id}
 	</delete>
 
 	<update id="updateConfigFileThirdKind" parameterType="ConfigFileThirdKind">
