@@ -27,11 +27,11 @@
 	</select>
 
 	<select id="selectBonusById" parameterType="_int" resultMap="bonusMap">
-		select * from bonus where check_status=#{id}
+		select * from bonus where bon_id=#{id}
 	</select>
 
 	<delete id="deleteBonusById" parameterType="_int">
-		delete from bonus where check_status=#{id}
+		delete from bonus where bon_id=#{id}
 	</delete>
 
 	<update id="updateBonus" parameterType="Bonus">
