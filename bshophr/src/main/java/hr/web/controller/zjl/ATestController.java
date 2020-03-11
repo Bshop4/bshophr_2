@@ -10,8 +10,9 @@ import hr.pojo.ConfigMajorKind;
 import hr.service.ConfigMajorKindService;
 
 @Controller
-@RequestMapping("/zzz")
-public class ZZZController {
+@RequestMapping("/test")
+public class ATestController {
+	
 	@Autowired
 	private ConfigMajorKindService cmks = null;
 	
@@ -21,11 +22,6 @@ public class ZZZController {
 		List<ConfigMajorKind> s = cmks.findConfigMajorKindAll();
 		System.out.println("123");
 		System.out.println(s.size());
-		
-		System.out.println("====");
-		ConfigMajorKind cmk = cmks.findConfigMajorKindById(1);
-		System.out.println(cmk);
-		
 		return null;
 	}
 	
