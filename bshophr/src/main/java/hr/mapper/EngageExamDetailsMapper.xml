@@ -36,19 +36,19 @@
 	</select>
 	
 <resultMap type="EngageExamDetails" id="eed" >
- <id property="ExdId" column="exd_id"/>
+ <id property="exdId" column="exd_id"/>
 
- <result property="ExamNumber" column="exam_number"/>
+ <result property="examNumber" column="exam_number"/>
 
- <result property="FirstKindId" column="first_kind_id"/>
+ <result property="firstKindId" column="first_kind_id"/>
 
- <result property="FirstKindName" column="first_kind_name"/>
+ <result property="firstKindName" column="first_kind_name"/>
 
- <result property="SecondKindId" column="second_kind_id"/>
+ <result property="secondKindId" column="second_kind_id"/>
 
- <result property="SecondKindName" column="second_kind_name"/>
+ <result property="secondKindName" column="second_kind_name"/>
 
- <result property="QuestionAmount" column="question_amount"/>
+ <result property="questionAmount" column="question_amount"/>
 </resultMap>
 
 </mapper>

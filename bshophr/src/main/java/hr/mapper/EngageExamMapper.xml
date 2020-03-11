@@ -37,23 +37,23 @@
 	
 
 <resultMap type="EngageExam" id="ee" >
- <id property="ExaId" column="exa_id"/>
+ <id property="exaId" column="exa_id"/>
 
- <result property="ExamNumber" column="exam_number"/>
+ <result property="examNumber" column="exam_number"/>
 
- <result property="MajorKindId" column="major_kind_id"/>
+ <result property="majorKindId" column="major_kind_id"/>
 
- <result property="MajorKindName" column="major_kind_name"/>
+ <result property="majorKindName" column="major_kind_name"/>
 
- <result property="MajorId" column="major_id"/>
+ <result property="majorId" column="major_id"/>
 
- <result property="MajorName" column="major_name"/>
+ <result property="majorName" column="major_name"/>
 
- <result property="Register" column="register"/>
+ <result property="register" column="register"/>
 
- <result property="RegistTime" column="regist_time"/>
+ <result property="registTime" column="regist_time"/>
 
- <result property=" LimiteTime" column=" limite_time"/>
+ <result property="limiteTime" column="limite_time"/>
 </resultMap>
 
 

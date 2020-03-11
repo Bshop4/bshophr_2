@@ -35,24 +35,24 @@
 		select * from engage_subjects where sub_id=#{id}
 	</select>
 	
-		<resultMap type="EngageSubjects" id="es" >
-		<result property="SubId"    column="sub_id"/>
-		<result property="FirstKindId"    column="first_kind_id"/>
-		<result property="FirstKindName"    column="first_kind_name"/>
-		<result property="SecondKindId"    column="second_kind_id"/>
-		<result property="SecondKindName"    column="second_kind_name"/>
-		<result property="Register"    column="register"/>
-		<result property="RegistTime"    column="regist_time"/>
-		<result property="Derivation"    column="derivation"/>
-		<result property="Content"    column="content"/>
-		<result property="KeyA"    column="key_a"/>
-		<result property="KeyB"    column="key_b"/>
-		<result property="KeyC"    column="key_c"/>
-		<result property="KeyD"    column="key_d"/>
-		<result property="KeyE"    column="key_e"/>
-		<result property="CorrectKey"    column="correct_key"/>
-		<result property="Changer"    column="changer"/>
-		<result property="ChangeTime"    column="change_time"/>
+	<resultMap type="EngageSubjects" id="es" >
+		<id property="subId"    column="sub_id"/>
+		<result property="firstKindId"    column="first_kind_id"/>
+		<result property="firstKindName"    column="first_kind_name"/>
+		<result property="secondKindId"    column="second_kind_id"/>
+		<result property="secondKindName"    column="second_kind_name"/>
+		<result property="register"    column="register"/>
+		<result property="registTime"    column="regist_time"/>
+		<result property="derivation"    column="derivation"/>
+		<result property="content"    column="content"/>
+		<result property="keyA"    column="key_a"/>
+		<result property="keyB"    column="key_b"/>
+		<result property="keyC"    column="key_c"/>
+		<result property="keyD"    column="key_d"/>
+		<result property="keyE"    column="key_e"/>
+		<result property="correctKey"    column="correct_key"/>
+		<result property="changer"    column="changer"/>
+		<result property="changeTime"    column="change_time"/>
 	</resultMap>
 	
 

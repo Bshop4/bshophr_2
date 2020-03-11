@@ -37,13 +37,13 @@
 	
 	
 <resultMap type="EngageAnswerDetails" id="ead" >
- <id property="AndId" column="and_id"/>
+ <id property="andId" column="and_id"/>
 
- <result property="AnswerNumber" column="answer_number"/>
+ <result property="answerNumber" column="answer_number"/>
 
- <result property="SubjectId" column="subject_id"/>
+ <result property="subjectId" column="subject_id"/>
 
- <result property="Answer" column="answer"/>
+ <result property="answer" column="answer"/>
 </resultMap>
 
 </mapper>

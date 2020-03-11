@@ -40,33 +40,33 @@
 	
 		
 <resultMap type="EngageAnswer" id="ea" >
- <id property="AnsId" column="ans_id"/>
+ <id property="ansId" column="ans_id"/>
 
- <result property="AnswerNumber" column="answer_number"/>
+ <result property="answerNumber" column="answer_number"/>
 
- <result property="ExamNumber" column="exam_number"/>
+ <result property="examNumber" column="exam_number"/>
 
- <result property="ResumeId" column="resume_id"/>
+ <result property="resumeId" column="resume_id"/>
 
- <result property="InterviewId" column="interview_id"/>
+ <result property="interviewId" column="interview_id"/>
 
- <result property="HumanName" column="human_name"/>
+ <result property="humanName" column="human_name"/>
 
- <result property="HumanIdcard" column="human_idcard"/>
+ <result property="humanIdcard" column="human_idcard"/>
 
- <result property="MajorKindId" column="major_kind_id"/>
+ <result property="majorKindId" column="major_kind_id"/>
 
- <result property="MajorKindName" column="major_kind_name"/>
+ <result property="majorKindName" column="major_kind_name"/>
 
- <result property="MajorId" column="major_id"/>
+ <result property="majorId" column="major_id"/>
 
- <result property="MajorName" column="major_name"/>
+ <result property="majorName" column="major_name"/>
 
- <result property="TestTime" column="test_time"/>
+ <result property="testTime" column="test_time"/>
 
- <result property="UseTime" column="use_time"/>
+ <result property="useTime" column="use_time"/>
 
- <result property="TotalPoint" column="total_point"/>
+ <result property="totalPoint" column="total_point"/>
 </resultMap>
 	
 	

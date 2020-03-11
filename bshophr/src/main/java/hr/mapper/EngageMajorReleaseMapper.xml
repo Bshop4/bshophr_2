@@ -37,26 +37,26 @@
 	
 	
 	<resultMap type="EngageMajorRelease" id="emr" >
-		<id property="MreId"    column="mre_id"/>
-		<result property="FirstKindId"    column="first_kind_id"/>
-		<result property="FirstKindName"    column="first_kind_name"/>
-		<result property="SecondKindId"    column="second_kind_id"/>
-		<result property="SecondKindName"    column="second_kind_name"/>
-		<result property="ThirdKindId"    column="third_kind_id"/>
-		<result property="ThirdKindName"    column="third_kind_name"/>
-		<result property="MajorKindId"    column="major_kind_id"/>
-		<result property="MajorKindName"    column="major_kind_name"/>
-		<result property="MajorId"    column="major_id"/>
-		<result property="MajorName"    column="major_name"/>
-		<result property="HumanAmount"    column="human_amount"/>
-		<result property="EngageType"    column="engage_type"/>
-		<result property="Deadline"    column="deadline"/>
-		<result property="Register"    column="register"/>
-		<result property="Changer"    column="changer"/>
-		<result property="RegistTime"    column="regist_time"/>
-		<result property="ChangeTime"    column="change_time"/>
-		<result property="MajorDescribe"    column="major_describe"/>
-		<result property="EngageRequired"    column="engage_required"/>
+		<id property="mreId"    column="mre_id"/>
+		<result property="firstKindId"    column="first_kind_id"/>
+		<result property="firstKindName"    column="first_kind_name"/>
+		<result property="secondKindId"    column="second_kind_id"/>
+		<result property="secondKindName"    column="second_kind_name"/>
+		<result property="thirdKindId"    column="third_kind_id"/>
+		<result property="thirdKindName"    column="third_kind_name"/>
+		<result property="majorKindId"    column="major_kind_id"/>
+		<result property="majorKindName"    column="major_kind_name"/>
+		<result property="majorId"    column="major_id"/>
+		<result property="majorName"    column="major_name"/>
+		<result property="humanAmount"    column="human_amount"/>
+		<result property="engageType"    column="engage_type"/>
+		<result property="deadline"    column="deadline"/>
+		<result property="register"    column="register"/>
+		<result property="changer"    column="changer"/>
+		<result property="registTime"    column="regist_time"/>
+		<result property="changeTime"    column="change_time"/>
+		<result property="majorDescribe"    column="major_describe"/>
+		<result property="engageRequired"    column="engage_required"/>
 	</resultMap>
 	
 	
