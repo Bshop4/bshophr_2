@@ -61,7 +61,7 @@
 				<td class="TD_STYLE2">Better软件公司</td>
 				<td class="TD_STYLE2">外包组</td>
 				<td class="TD_STYLE2">经理</td>
-				<td class="TD_STYLE2"><a href="human_check.html">复核</a></td>
+				<td class="TD_STYLE2"><a href="human_check.jsp">复核</a></td>
 			</tr>
 
 		</table>

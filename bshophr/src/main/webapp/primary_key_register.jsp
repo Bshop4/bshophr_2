@@ -41,7 +41,7 @@
  	function doRegister()
  	{
  		//document.forms[0].action = document.forms[0].action + "?operate=doRegister";
-		document.forms[0].action = "register_success.html";
+		document.forms[0].action = "register_success.jsp";
 		document.forms[0].submit();
  	}
 </script>

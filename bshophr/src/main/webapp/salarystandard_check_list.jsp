@@ -61,7 +61,7 @@
 				<td></td>
 				<td>2010-05-29 00:00:00.0</td>
 				<td>0.0</td>
-				<td><a href="salarystandard_check.html">复核</a></td>
+				<td><a href="salarystandard_check.jsp">复核</a></td>
 			</tr>
 
 			<tr class="TD_STYLE2">
@@ -70,7 +70,7 @@
 				<td></td>
 				<td>2010-05-29 00:00:00.0</td>
 				<td>0.0</td>
-				<td><a href="salarystandard_check.html">复核</a></td>
+				<td><a href="salarystandard_check.jsp">复核</a></td>
 			</tr>
 
 			<tr class="TD_STYLE2">

@@ -101,13 +101,13 @@ BR {
 	function login() {
 		if (infchk()) {
 			//document.forms[0].action = document.forms[0].action + "?operate=doLogin";
-			document.forms[0].action = "index.html";
+			document.forms[0].action = "index.jsp";
 			document.forms[0].submit();
 		}
 	}
 	function toEditPwd() {
 		//document.forms[0].action = document.forms[0].action + "?operate=toEditPwd";
-		document.forms[0].action = "change_password.html";
+		document.forms[0].action = "change_password.jsp";
 		document.forms[0].submit();
 	}
 	function infchk() {
@@ -224,7 +224,7 @@ BR {
 									<input type="button" value="登录" class="BUTTON_STYLE1"
 										onclick="javascript:login();"> <input type="button"
 										class="BUTTON_STYLE1" value="注册"
-										onClick="window.location.href='register.html'"> <input
+										onClick="window.location.href='register.jsp'"> <input
 										type="button" class="BUTTON_STYLE1" value="修改密码"
 										onClick="javascript:toEditPwd();">
 							</td>

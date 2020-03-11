@@ -55,7 +55,7 @@
 			</tr>
 
 			<tr class="TD_STYLE2">
-				<td><a href="salarystandard_query.html">1000001</a></td>
+				<td><a href="salarystandard_query.jsp">1000001</a></td>
 				<td></td>
 				<td></td>
 				<td>2010-05-29 00:00:00.0</td>

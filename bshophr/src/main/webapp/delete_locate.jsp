@@ -45,12 +45,12 @@
 
 	function list() {
 		//document.forms[0].action = document.forms[0].action + "?operate=list&method=delete&delete_status=1";
-		document.forms[0].action = "query_list.html";
+		document.forms[0].action = "query_list.jsp";
 		document.forms[0].submit();
 	}
 	function search() {
 		//document.forms[0].action = document.forms[0].action + "?operate=toSearch&method=delete";
-		document.forms[0].action = "query_keywords.html";
+		document.forms[0].action = "query_keywords.jsp";
 		document.forms[0].submit();
 	}
 </script>

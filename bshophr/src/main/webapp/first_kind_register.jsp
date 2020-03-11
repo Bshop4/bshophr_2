@@ -33,7 +33,7 @@
 			<tr>
 				<td align="right"><input type="button" value="提交"
 					class="BUTTON_STYLE1"
-					onclick="window.location.href='first_kind_register_success.html'">
+					onclick="window.location.href='first_kind_register_success.jsp'">
 					<input type="button" value="返回" class="BUTTON_STYLE1"
 					onclick="history.back();"></td>
 			</tr>

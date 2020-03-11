@@ -27,7 +27,7 @@
 <script type="text/javascript">
 	function list() {
 		//document.forms[0].action = document.forms[0].action + "?operate=list&status=1&method=query";
-		document.forms[0].action = "salarystandard_query_list.html";
+		document.forms[0].action = "salarystandard_query_list.jsp";
 		document.forms[0].submit();
 	}
 </script>

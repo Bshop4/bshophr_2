@@ -62,7 +62,7 @@
 				<td></td>
 				<td>2010-05-29 00:00:00.0</td>
 				<td>0.0</td>
-				<td><a href="salarystandard_change.html">变更</a></td>
+				<td><a href="salarystandard_change.jsp">变更</a></td>
 			</tr>
 
 		</table>
