@@ -4,7 +4,7 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hr.mapper.ConfigMajorKindMapper">
 	<resultMap type="ConfigMajorKind" id="configMajorKindMap" >
-		<result property="mfkId"    column="mfk_id"/>
+		<id property="mfkId"    column="mfk_id"/>
 		<result property="majorKindId"    column="major_kind_id"/>
 		<result property="majorKindName"    column="major_kind_name"/>
 	</resultMap>
