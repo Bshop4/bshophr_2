@@ -12,4 +12,5 @@ public interface BonusMapper {
 	public Bonus selectBonusById(int id);
 	public boolean deleteBonusById(int id);
 	public boolean insertBonus(Bonus bonus);
+	public boolean updateBonus(Bonus bonus);
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hr.mapper.ConfigMajorKindMapper">
+	<resultMap type="ConfigMajorKind" id="configMajorKindMap" >
+		<result property="mfkId"    column="mfk_id"/>
+		<result property="majorKindId"    column="major_kind_id"/>
+		<result property="majorKindName"    column="major_kind_name"/>
+	</resultMap>
+
+	<select id="selectConfigMajorKindAll" resultMap="configMajorKindMap">
+		select * from config_major_kind
+	</select>
+
+	<select id="selectConfigMajorKind" parameterType="_int" resultMap="configMajorKindMap">
+		select * from config_major_kind where major_kind_name=#{id}
+	</select>
+
+	<delete id="selectConfigMajorKind" parameterType="_int">
+		delete from config_major_kind where major_kind_name=#{id}
+	</delete>
+
+	<update id="updateConfigMajorKind" parameterType="ConfigMajorKind">
+		update ConfigMajorKind set major_kind_id=#{majorKindId},major_kind_name=#{majorKindName} where mfk_id=#{mfkId}
+	</update>
+	<insert id="insertConfigMajorKind" parameterType="ConfigMajorKind">
+		insert into config_major_kind(major_kind_id,major_kind_name) 
+		values(#{mfkId},#{majorKindId},#{majorKindName}) 
+	</insert>
+</mapper>

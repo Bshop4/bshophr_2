@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hr.mapper.ConfigMajorMapper">
+	<resultMap type="ConfigMajor" id="configMajorMap" >
+		<result property="makId"    column="mak_id"/>
+		<result property="majorKindId"    column="major_kind_id"/>
+		<result property="majorKindName"    column="major_kind_name"/>
+		<result property="majorId"    column="major_id"/>
+		<result property="majorName"    column="major_name"/>
+		<result property="testAmount"    column="test_amount"/>
+	</resultMap>
+
+	<select id="selectConfigMajorAll" resultMap="configMajorMap">
+		select * from config_major
+	</select>
+
+	<select id="selectConfigMajor" parameterType="_int" resultMap="configMajorMap">
+		select * from config_major where test_amount=#{id}
+	</select>
+
+	<delete id="selectConfigMajor" parameterType="_int">
+		delete from config_major where test_amount=#{id}
+	</delete>
+
+	<update id="updateConfigMajor" parameterType="ConfigMajor">
+		update ConfigMajor set major_kind_id=#{majorKindId},major_kind_name=#{majorKindName},major_id=#{majorId},major_name=#{majorName},test_amount=#{testAmount} where mak_id=#{makId}
+	</update>
+	<insert id="insertConfigMajor" parameterType="ConfigMajor">
+		insert into config_major(major_kind_id,major_kind_name,major_id,major_name,test_amount) 
+		values(#{makId},#{majorKindId},#{majorKindName},#{majorId},#{majorName},#{testAmount}) 
+	</insert>
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hr.mapper.ConfigPrimaryKeyMapper">
+	<resultMap type="ConfigPrimaryKey" id="configPrimaryKeyMap" >
+		<result property="prkId"    column="prk_id"/>
+		<result property="primaryKeyTable"    column="primary_key_table"/>
+		<result property="primaryKey"    column="primary_key"/>
+		<result property="keyName"    column="key_name"/>
+		<result property="primaryKeyStatus"    column="primary_key_status"/>
+	</resultMap>
+
+	<select id="selectConfigPrimaryKeyAll" resultMap="configPrimaryKeyMap">
+		select * from config_primary_key
+	</select>
+
+	<select id="selectConfigPrimaryKey" parameterType="_int" resultMap="configPrimaryKeyMap">
+		select * from config_primary_key where primary_key_status=#{id}
+	</select>
+
+	<delete id="selectConfigPrimaryKey" parameterType="_int">
+		delete from config_primary_key where primary_key_status=#{id}
+	</delete>
+
+	<update id="updateConfigPrimaryKey" parameterType="ConfigPrimaryKey">
+		update ConfigPrimaryKey set primary_key_table=#{primaryKeyTable},primary_key=#{primaryKey},key_name=#{keyName},primary_key_status=#{primaryKeyStatus} where prk_id=#{prkId}
+	</update>
+	<insert id="insertConfigPrimaryKey" parameterType="ConfigPrimaryKey">
+		insert into config_primary_key(primary_key_table,primary_key,key_name,primary_key_status) 
+		values(#{prkId},#{primaryKeyTable},#{primaryKey},#{keyName},#{primaryKeyStatus}) 
+	</insert>
+</mapper>
