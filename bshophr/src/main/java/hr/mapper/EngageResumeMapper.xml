@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zjl.mapper.EngageResumeMapper">
+	
+	<insert id="insertEngageResume" parameterType="EngageResume">
+
+	</insert>
+	
+	
+	<delete id="deleteEngageResumeById" parameterType="_int">
+		delete from engage_resume where res_id=#{id}
+	</delete>
+	
+	
+	
+	<update id="updateEngageResume" parameterType="EngageResume">
+		
+	</update>
+	
+	
+	
+	
+
+	
+	<select id="selectEngageResumeAll" resultMap="er">
+		select * from engage_resume
+	</select>
+	
+	
+	
+	<select id="selectEngageResumeById" parameterType="_int"  resultMap="er">
+		select * from engage_resume where res_id=#{id}
+	</select>
+	
+	
+		<resultMap type="EngageResume" id="er" >
+		<id property="ResId"    column="res_id"/>
+		<result property="HumanName"    column="human_name"/>
+		<result property="EngageType"    column="engage_type"/>
+		<result property="HumanAddress"    column="human_address"/>
+		<result property="HumanPostcode"    column="human_postcode"/>
+		<result property="HumanMajorKindId"    column="human_major_kind_id"/>
+		<result property="HumanMajorKindName"    column="human_major_kind_name"/>
+		<result property="HumanMajorId"    column="human_major_id"/>
+		<result property="HumanMajorName"    column="human_major_name"/>
+		<result property="HumanTelephone"    column="human_telephone"/>
+		<result property="HumanHomephone"    column="human_homephone"/>
+		<result property="HumanMobilephone"    column="human_mobilephone"/>
+		<result property="HumanEmail"    column="human_email"/>
+		<result property="HumanHobby"    column="human_hobby"/>
+		<result property="HumanSpecility"    column="human_specility"/>
+		<result property="HumanSex"    column="human_sex"/>
+		<result property="HumanReligion"    column="human_religion"/>
+		<result property="HumanParty"    column="human_party"/>
+		<result property="HumanNationality"    column="human_nationality"/>
+		<result property="HumanRace"    column="human_race"/>
+		<result property="HumanBirthday"    column="human_birthday"/>
+		<result property="HumanAge"    column="human_age"/>
+		<result property="HumanEducatedDegree"    column="human_educated_degree"/>
+		<result property="HumanEducatedYears"    column="human_educated_years"/>
+		<result property="HumanEducatedMajor"    column="human_educated_major"/>
+		<result property="HumanCollege"    column="human_college"/>
+		<result property="HumanIdcard"    column="human_idcard"/>
+		<result property="HumanBirthplace"    column="human_birthplace"/>
+		<result property="DemandSalaryStandard"    column="demand_salary_standard"/>
+		<result property="HumanHistoryRecords"    column="human_history_records"/>
+		<result property="Remark"    column="remark"/>
+		<result property="Recomandation"    column="recomandation"/>
+		<result property="HumanPicture"    column="human_picture"/>
+		<result property="AttachmentName"    column="attachment_name"/>
+		<result property="CheckStatus"    column="check_status"/>
+		<result property="Register"    column="register"/>
+		<result property="RegistTime"    column="regist_time"/>
+		<result property="Checker"    column="checker"/>
+		<result property="CheckTime"    column="check_time"/>
+		<result property="InterviewStatus"    column="interview_status"/>
+		<result property="TotalPoints"    column="total_points"/>
+		<result property="TestAmount"    column="test_amount"/>
+		<result property="TestChecker"    column="test_checker"/>
+		<result property="TestCheckTime"    column="test_check_time"/>
+		<result property="PassRegister"    column="pass_register"/>
+		<result property="PassRegistTime"    column="pass_regist_time"/>
+		<result property="PassChecker"    column="pass_checker"/>
+		<result property="PassCheckTime"    column="pass_check_time"/>
+		<result property="PassCheckStatus"    column="pass_check_status"/>
+		<result property="PassCheckComment"    column="pass_checkComment"/>
+		<result property="PassPassComment"    column="pass_passComment"/>
+	</resultMap>
+	
+	
+	
+	
+	
+	
+
+</mapper>
+
+

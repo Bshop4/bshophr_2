@@ -24,9 +24,23 @@
 	
 	
 	
+
+
 	
+	<select id="selectEngageAnswerAll" resultMap="ea">
+		select * from engage_answer
+	</select>
+	
+	
+	
+	<select id="selectEngageAnswerById" parameterType="_int"  resultMap="ea">
+		select * from engage_answer where ans_id=#{id}
+	</select>
+	
+	
+		
 <resultMap type="EngageAnswer" id="ea" >
- <result property="AnsId" column="ans_id"/>
+ <id property="AnsId" column="ans_id"/>
 
  <result property="AnswerNumber" column="answer_number"/>
 
@@ -54,17 +68,8 @@
 
  <result property="TotalPoint" column="total_point"/>
 </resultMap>
-
-	
-	<select id="selectEngageAnswerAll" resultMap="ea">
-		select * from engage_answer
-	</select>
 	
 	
-	
-	<select id="selectEngageAnswerById" parameterType="_int"  resultMap="ea">
-		select * from engage_answer where ans_id=#{id}
-	</select>
 	
 	
 

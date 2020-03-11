@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zjl.mapper.EngageAnswerDetailsMapper">
+	
+	<insert id="insertEngageAnswerDetails" parameterType="EngageAnswerDetails">
+
+	</insert>
+	
+	
+	<delete id="deleteEngageAnswerDetailsById" parameterType="_int">
+		delete from engage_answer_details where and_id=#{id}
+	</delete>
+	
+	
+	
+	<update id="updateEngageAnswerDetails" parameterType="EngageAnswerDetails">
+		
+	</update>
+	
+	
+	
+	
+
+	
+	<select id="selectEngageAnswerDetailsAll" resultMap="ead">
+		select * from engage_answer_details
+	</select>
+	
+	
+	
+	<select id="selectEngageAnswerById" parameterType="_int"  resultMap="ead">
+		select * from engage_answer_details where and_id=#{id}
+	</select>
+	
+	
+<resultMap type="EngageAnswerDetails" id="ead" >
+ <id property="AndId" column="and_id"/>
+
+ <result property="AnswerNumber" column="answer_number"/>
+
+ <result property="SubjectId" column="subject_id"/>
+
+ <result property="Answer" column="answer"/>
+</resultMap>
+
+</mapper>
+
+

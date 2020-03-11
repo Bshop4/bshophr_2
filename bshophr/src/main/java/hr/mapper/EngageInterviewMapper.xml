@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zjl.mapper.EngageInterviewMapper">
+	
+	<insert id="insertEngageInterview" parameterType="EngageInterview">
+
+	</insert>
+	
+	
+	<delete id="deleteEngageInterviewById" parameterType="_int">
+		delete from engage_interview where ein_id=#{id}
+	</delete>
+	
+	
+	
+	<update id="updateEngageInterview" parameterType="EngageInterview">
+		
+	</update>
+	
+	
+	
+	
+
+	
+	<select id="selectEngageInterviewAll" resultMap="ei">
+		select * from engage_interview
+	</select>
+	
+	
+	
+	<select id="selectEngageInterviewById" parameterType="_int"  resultMap="ei">
+		select * from engage_interview where ein_id=#{id}
+	</select>
+	
+	<resultMap type="EngageInterview" id="ei" >
+		<id property="EinId"    column="ein_id"/>
+		<result property="HumanName"    column="human_name"/>
+		<result property="InterviewAmount"    column="interview_amount"/>
+		<result property="HumanMajorKindId"    column="human_major_kind_id"/>
+		<result property="HumanMajorKindName"    column="human_major_kind_name"/>
+		<result property="HumanMajorId"    column="human_major_id"/>
+		<result property="HumanMajorName"    column="human_major_name"/>
+		<result property="ImageDegree"    column="image_degree"/>
+		<result property="NativeLanguageDegree"    column="native_language_degree"/>
+		<result property="ForeignLanguageDegree"    column="foreign_language_degree"/>
+		<result property="ResponseSpeedDegree"    column="response_speed_degree"/>
+		<result property="EQDegree"    column="EQ_degree"/>
+		<result property="IQDegree"    column="IQ_degree"/>
+		<result property="MultiQualityDegree"    column="multi_quality_degree"/>
+		<result property="Register"    column="register"/>
+		<result property="Checker"    column="checker"/>
+		<result property="RegisteTime"    column="registe_time"/>
+		<result property="CheckTime"    column="check_time"/>
+		<result property="ResumeId"    column="resume_id"/>
+		<result property="Result"    column="result"/>
+		<result property="InterviewComment"    column="interview_comment"/>
+		<result property="CheckComment"    column="check_comment"/>
+		<result property="InterviewStatus"    column="interview_status"/>
+		<result property="CheckStatus"    column="check_status"/>
+	</resultMap>
+	
+
+
+</mapper>
+
+
