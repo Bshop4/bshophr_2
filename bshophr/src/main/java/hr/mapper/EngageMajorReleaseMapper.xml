@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zjl.mapper.EngageMajorReleaseMapper">
+<mapper namespace="hr.mapper.EngageMajorReleaseMapper">
 	
 	<insert id="insertEngageMajorRelease" parameterType="EngageMajorRelease">
 		insert into engage_major_release(first_kind_id,first_kind_name,second_kind_id,second_kind_name,third_kind_id,third_kind_name,major_kind_id,major_kind_name,major_id,major_name,human_amount,engage_type,deadline,register,changer,regist_time,change_time,major_describe,engage_required) 
