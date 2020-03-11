@@ -9,6 +9,10 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+
+  
+    
+  <!-- spring -->
   <context-param>
   	<param-name>contextConfigLocation</param-name>
   	<param-value>classpath:applicationContext.xml</param-value>
@@ -26,8 +30,11 @@
   	</init-param>
   	<load-on-startup>1</load-on-startup>
   </servlet>
+  
   <servlet-mapping>
   	<servlet-name>springmvc</servlet-name>
   	<url-pattern>*.do</url-pattern>
+  
   </servlet-mapping>
+  
 </web-app>
