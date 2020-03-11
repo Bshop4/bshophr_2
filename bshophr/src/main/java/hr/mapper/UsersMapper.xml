@@ -15,7 +15,7 @@
 
 	
 	<select id="selectUsersAll" resultMap="UsersMap">
-		select * from users
+		select u_id,u_name,u_password,u_major_name from users
 	</select>
 	
 	<select id="selectUsersById" parameterType="_int" resultMap="UsersMap">
