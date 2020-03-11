@@ -9,7 +9,7 @@ public interface MajorChangeMapper {
 	public List<MajorChange> selectMajorChangeAll();
 	public MajorChange selectMajorChangeById(int id);
 	public boolean deleteMajorChangeById(int id);
-	public boolean insertMajorChange(MajorChange hf);
-	public boolean updateMajorChange(MajorChange hf);
+	public boolean insertMajorChange(MajorChange mc);
+	public boolean updateMajorChange(MajorChange mc);
 	
 }

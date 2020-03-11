@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="hr.mapper.SalaryStandardMapper">
+
+	<resultMap type="SalaryStandard" id="SalaryStandardMap" >
+		<id property="ssdId"    column="ssd_id"/>
+		<result property="standardId"    column="standard_id"/>
+		<result property="standardName"    column="standard_name"/>
+		<result property="designer"    column="designer"/>
+		<result property="register"    column="register"/>
+		<result property="checker"    column="checker"/>
+		<result property="changer"    column="changer"/>
+		<result property="registTime"    column="regist_time"/>
+		<result property="checkTime"    column="check_time"/>
+		<result property="changeTime"    column="change_time"/>
+		<result property="salarySum"    column="salary_sum"/>
+		<result property="checkStatus"    column="check_status"/>
+		<result property="changeStatus"    column="change_status"/>
+		<result property="checkComment"    column="check_comment"/>
+		<result property="remark"    column="remark"/>
+	</resultMap>
+
+	
+	<select id="selectSalaryStandardAll" resultMap="SalaryStandardMap">
+		select * from salary_standard
+	</select>
+	
+	<select id="selectSalaryStandardById" parameterType="_int" resultMap="SalaryStandardMap">
+		select * from salary_standard where ssd_id=#{id}
+	</select>
+	
+	<delete id="deleteSalaryStandardById" parameterType="_int">
+		delete from salary_standard where ssd_id=#{id}
+	</delete>
+	<insert id="insertSalaryStandard" parameterType="SalaryStandard">
+		insert into salary_standard(standard_id,standard_name,designer,register,checker,changer,regist_time,check_time,change_time,salary_sum,check_status,change_status,check_comment,remark) 
+		values(#{standardId},#{standardName},#{designer},#{register},#{checker},#{changer},#{registTime},#{checkTime},#{changeTime},#{salarySum},#{checkStatus},#{changeStatus},#{checkComment},#{remark})
+	</insert>
+	
+	<update id="updateSalaryStandard" parameterType="SalaryStandard">
+		update salary_standard set standard_id=#{standardId},standard_name=#{standardName},designer=#{designer},register=#{register},checker=#{checker},changer=#{changer},regist_time=#{registTime},check_time=#{checkTime},change_time=#{changeTime},salary_sum=#{salarySum},check_status=#{checkStatus},change_status=#{changeStatus},check_comment=#{checkComment},remark=#{remark} where ssd_id=#{ssdId}
+	</update>
+</mapper>
