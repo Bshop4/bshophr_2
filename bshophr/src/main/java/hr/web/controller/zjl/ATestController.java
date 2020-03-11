@@ -11,7 +11,7 @@ import hr.service.ConfigMajorKindService;
 
 @Controller
 @RequestMapping("/test")
-public class TestController {
+public class ATestController {
 	
 	@Autowired
 	private ConfigMajorKindService cmks = null;
