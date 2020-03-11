@@ -9,6 +9,7 @@ import hr.pojo.SalaryStandard;
 import hr.service.SalaryStandardService;
 
 @Controller
+@RequestMapping("/SalaryStandard")
 public class Salary_standard {
 	@Autowired
 	private SalaryStandardService service = null;
