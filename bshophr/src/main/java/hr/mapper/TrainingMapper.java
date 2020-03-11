@@ -2,8 +2,10 @@ package hr.mapper;
 
 import java.util.List;
 
-import hr.pojo.Training;
+import org.springframework.stereotype.Repository;
 
+import hr.pojo.Training;
+@Repository
 public interface TrainingMapper {
 	public List<Training> selectTrainingAll();
 	public Training selectTrainingById(int id);

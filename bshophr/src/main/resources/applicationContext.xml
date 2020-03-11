@@ -52,7 +52,8 @@
 		<tx:attributes>
 			<tx:method name="find*" read-only="true" propagation="REQUIRED"/>
 			<tx:method name="romeve*" propagation="REQUIRED"/>
-			<tx:method name="add*" propagation="REQUIRED"/>
+			<tx:method name="save*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
 		</tx:attributes>
 	</tx:advice>
 	

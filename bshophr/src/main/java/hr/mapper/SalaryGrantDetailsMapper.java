@@ -2,8 +2,10 @@ package hr.mapper;
 
 import java.util.List;
 
-import hr.pojo.SalaryGrantDetails;
+import org.springframework.stereotype.Repository;
 
+import hr.pojo.SalaryGrantDetails;
+@Repository
 public interface SalaryGrantDetailsMapper {
 	public List<SalaryGrantDetails> selectSalaryGrantDetailsAll();
 	public SalaryGrantDetails selectSalaryGrantDetailsById(int id);

@@ -2,8 +2,10 @@ package hr.mapper;
 
 import java.util.List;
 
-import hr.pojo.HumanFile;
+import org.springframework.stereotype.Repository;
 
+import hr.pojo.HumanFile;
+@Repository
 public interface HumanFileMapper {
 	public List<HumanFile> selectHumanFileAll();
 	public HumanFile selectHumanFileById(int id);
