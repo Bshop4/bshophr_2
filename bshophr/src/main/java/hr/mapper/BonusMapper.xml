@@ -30,7 +30,7 @@
 		select * from bonus where check_status=#{id}
 	</select>
 
-	<delete id="selectBonus" parameterType="_int">
+	<delete id="deleteBonusById" parameterType="_int">
 		delete from bonus where check_status=#{id}
 	</delete>
 
