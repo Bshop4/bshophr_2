@@ -6,7 +6,8 @@
 <mapper namespace="zjl.mapper.EngageAnswerDetailsMapper">
 	
 	<insert id="insertEngageAnswerDetails" parameterType="EngageAnswerDetails">
-
+		insert into engage_answer_details(answer_number,subject_id,answer) 
+		values(#{answerNumber},#{subjectId},#{answer}) 
 	</insert>
 	
 	
@@ -17,7 +18,7 @@
 	
 	
 	<update id="updateEngageAnswerDetails" parameterType="EngageAnswerDetails">
-		
+		update engage_answer_details set answer_number=#{answerNumber},subject_id=#{subjectId},answer=#{answer} where and_id=#{andId}
 	</update>
 	
 	

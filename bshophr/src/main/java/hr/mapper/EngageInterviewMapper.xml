@@ -6,7 +6,8 @@
 <mapper namespace="zjl.mapper.EngageInterviewMapper">
 	
 	<insert id="insertEngageInterview" parameterType="EngageInterview">
-
+		insert into engage_interview(human_name,interview_amount,human_major_kind_id,human_major_kind_name,human_major_id,human_major_name,image_degree,native_language_degree,foreign_language_degree,response_speed_degree,EQ_degree,IQ_degree,multi_quality_degree,register,checker,registe_time,check_time,resume_id,result,interview_comment,check_comment,interview_status,check_status) 
+		values(#{humanName},#{interviewAmount},#{humanMajorKindId},#{humanMajorKindName},#{humanMajorId},#{humanMajorName},#{imageDegree},#{nativeLanguageDegree},#{foreignLanguageDegree},#{responseSpeedDegree},#{EQDegree},#{IQDegree},#{multiQualityDegree},#{register},#{checker},#{registeTime},#{checkTime},#{resumeId},#{result},#{interviewComment},#{checkComment},#{interviewStatus},#{checkStatus}) 
 	</insert>
 	
 	
@@ -17,7 +18,7 @@
 	
 	
 	<update id="updateEngageInterview" parameterType="EngageInterview">
-		
+		update engage_interview set human_name=#{humanName},interview_amount=#{interviewAmount},human_major_kind_id=#{humanMajorKindId},human_major_kind_name=#{humanMajorKindName},human_major_id=#{humanMajorId},human_major_name=#{humanMajorName},image_degree=#{imageDegree},native_language_degree=#{nativeLanguageDegree},foreign_language_degree=#{foreignLanguageDegree},response_speed_degree=#{responseSpeedDegree},EQ_degree=#{EQDegree},IQ_degree=#{IQDegree},multi_quality_degree=#{multiQualityDegree},register=#{register},checker=#{checker},registe_time=#{registeTime},check_time=#{checkTime},resume_id=#{resumeId},result=#{result},interview_comment=#{interviewComment},check_comment=#{checkComment},interview_status=#{interviewStatus},check_status=#{checkStatus} where ein_id=#{einId}
 	</update>
 	
 	

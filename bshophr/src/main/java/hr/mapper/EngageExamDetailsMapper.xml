@@ -6,7 +6,8 @@
 <mapper namespace="hr.mapper.EngageExamDetailsMapper">
 	
 	<insert id="insertEngageExamDetails" parameterType="EngageExamDetails">
-
+		insert into engage_exam_details(exam_number,first_kind_id,first_kind_name,second_kind_id,second_kind_name,question_amount) 
+		values(#{examNumber},#{firstKindId},#{firstKindName},#{secondKindId},#{secondKindName},#{questionAmount}) 
 	</insert>
 	
 	
@@ -17,7 +18,7 @@
 	
 	
 	<update id="updateEngageExamDetails" parameterType="EngageExamDetails">
-		
+		update engage_exam_details set exam_number=#{examNumber},first_kind_id=#{firstKindId},first_kind_name=#{firstKindName},second_kind_id=#{secondKindId},second_kind_name=#{secondKindName},question_amount=#{questionAmount} where exd_id=#{exdId}
 	</update>
 	
 	

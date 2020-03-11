@@ -6,7 +6,8 @@
 <mapper namespace="zjl.mapper.EngageExamMapper">
 	
 	<insert id="insertEngageExam" parameterType="EngageExam">
-
+		insert into engage_exam(exam_number,major_kind_id,major_kind_name,major_id,major_name,register,regist_time,limite_time) 
+		values(#{examNumber},#{majorKindId},#{majorKindName},#{majorId},#{majorName},#{register},#{registTime},#{limiteTime}) 
 	</insert>
 	
 	
@@ -17,7 +18,7 @@
 	
 	
 	<update id="updateEngageExam" parameterType="EngageExam">
-		
+		update engage_exam set exam_number=#{examNumber},major_kind_id=#{majorKindId},major_kind_name=#{majorKindName},major_id=#{majorId},major_name=#{majorName},register=#{register},regist_time=#{registTime},limite_time=#{limiteTime} where exa_id=#{exaId}
 	</update>
 	
 	
