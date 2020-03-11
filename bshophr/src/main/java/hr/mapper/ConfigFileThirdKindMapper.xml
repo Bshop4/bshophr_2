@@ -19,11 +19,11 @@
 		select * from config_file_third_kind
 	</select>
 
-	<select id="selectConfigFileThirdKind" parameterType="_int" resultMap="configFileThirdKindMap">
+	<select id="selectConfigFileThirdKindById" parameterType="_int" resultMap="configFileThirdKindMap">
 		select * from config_file_third_kind where third_kind_is_retail=#{id}
 	</select>
 
-	<delete id="selectConfigFileThirdKind" parameterType="_int">
+	<delete id="deleteConfigFileThirdKindById" parameterType="_int">
 		delete from config_file_third_kind where third_kind_is_retail=#{id}
 	</delete>
 

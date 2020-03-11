@@ -13,11 +13,11 @@
 		select * from config_major_kind
 	</select>
 
-	<select id="selectConfigMajorKind" parameterType="_int" resultMap="configMajorKindMap">
+	<select id="selectConfigMajorKindById" parameterType="_int" resultMap="configMajorKindMap">
 		select * from config_major_kind where major_kind_name=#{id}
 	</select>
 
-	<delete id="selectConfigMajorKind" parameterType="_int">
+	<delete id="deleteConfigMajorKindById" parameterType="_int">
 		delete from config_major_kind where major_kind_name=#{id}
 	</delete>
 

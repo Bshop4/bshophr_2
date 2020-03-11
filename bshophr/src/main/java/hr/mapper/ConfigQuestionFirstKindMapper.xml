@@ -13,11 +13,11 @@
 		select * from config_question_first_kind
 	</select>
 
-	<select id="selectConfigQuestionFirstKind" parameterType="_int" resultMap="configQuestionFirstKindMap">
+	<select id="selectConfigQuestionFirstKindById" parameterType="_int" resultMap="configQuestionFirstKindMap">
 		select * from config_question_first_kind where first_kind_name=#{id}
 	</select>
 
-	<delete id="selectConfigQuestionFirstKind" parameterType="_int">
+	<delete id="deleteConfigQuestionFirstKindById" parameterType="_int">
 		delete from config_question_first_kind where first_kind_name=#{id}
 	</delete>
 

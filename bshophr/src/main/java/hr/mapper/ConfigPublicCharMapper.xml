@@ -13,11 +13,11 @@
 		select * from config_public_char
 	</select>
 
-	<select id="selectConfigPublicChar" parameterType="_int" resultMap="configPublicCharMap">
+	<select id="selectConfigPublicCharById" parameterType="_int" resultMap="configPublicCharMap">
 		select * from config_public_char where attribute_name=#{id}
 	</select>
 
-	<delete id="selectConfigPublicChar" parameterType="_int">
+	<delete id="deleteConfigPublicCharById" parameterType="_int">
 		delete from config_public_char where attribute_name=#{id}
 	</delete>
 

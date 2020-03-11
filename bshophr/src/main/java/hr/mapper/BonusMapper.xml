@@ -26,7 +26,7 @@
 		select * from bonus
 	</select>
 
-	<select id="selectBonus" parameterType="_int" resultMap="bonusMap">
+	<select id="selectBonusById" parameterType="_int" resultMap="bonusMap">
 		select * from bonus where check_status=#{id}
 	</select>
 
