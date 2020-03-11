@@ -6,8 +6,8 @@
 <mapper namespace="zjl.mapper.EngageAnswerMapper">
 	
 	<insert id="insertEngageAnswer" parameterType="EngageAnswer">
-		insert into engage_answer(ans_id,answer_number,exam_number,resume_id,interview_id,human_name,human_idcard,major_kind_id,major_kind_name,major_id,major_name,test_time,use_time,total_point)
-		values(#{AnsId},#{AnswerNumber},#{ExamNumber},#{ResumeId},#{InterviewId},#{HumanName},#{HumanIdcard},#{MajorKindId},#{MajorKindName},#{MajorId},#{MajorName},#{TestTime},#{UseTime},#{TotalPoint})
+		insert into engage_answer(answer_number,exam_number,resume_id,interview_id,human_name,human_idcard,major_kind_id,major_kind_name,major_id,major_name,test_time,use_time,total_point) 
+		values(#{answerNumber},#{examNumber},#{resumeId},#{interviewId},#{humanName},#{humanIdcard},#{majorKindId},#{majorKindName},#{majorId},#{majorName},#{testTime},#{useTime},#{totalPoint}) 
 	</insert>
 	
 	
@@ -18,42 +18,13 @@
 	
 	
 	<update id="updateEngageAnswer" parameterType="EngageAnswer">
-		
+		update engage_answer set answer_number=#{answerNumber},exam_number=#{examNumber},resume_id=#{resumeId},interview_id=#{interviewId},human_name=#{humanName},human_idcard=#{humanIdcard},major_kind_id=#{majorKindId},major_kind_name=#{majorKindName},major_id=#{majorId},major_name=#{majorName},test_time=#{testTime},use_time=#{useTime},total_point=#{totalPoint} where ans_id=#{ansId}
 	</update>
 	
 	
 	
 	
-	
-<resultMap type="EngageAnswer" id="ea" >
- <result property="AnsId" column="ans_id"/>
 
- <result property="AnswerNumber" column="answer_number"/>
-
- <result property="ExamNumber" column="exam_number"/>
-
- <result property="ResumeId" column="resume_id"/>
-
- <result property="InterviewId" column="interview_id"/>
-
- <result property="HumanName" column="human_name"/>
-
- <result property="HumanIdcard" column="human_idcard"/>
-
- <result property="MajorKindId" column="major_kind_id"/>
-
- <result property="MajorKindName" column="major_kind_name"/>
-
- <result property="MajorId" column="major_id"/>
-
- <result property="MajorName" column="major_name"/>
-
- <result property="TestTime" column="test_time"/>
-
- <result property="UseTime" column="use_time"/>
-
- <result property="TotalPoint" column="total_point"/>
-</resultMap>
 
 	
 	<select id="selectEngageAnswerAll" resultMap="ea">
@@ -65,6 +36,40 @@
 	<select id="selectEngageAnswerById" parameterType="_int"  resultMap="ea">
 		select * from engage_answer where ans_id=#{id}
 	</select>
+	
+	
+		
+<resultMap type="EngageAnswer" id="ea" >
+ <id property="ansId" column="ans_id"/>
+
+ <result property="answerNumber" column="answer_number"/>
+
+ <result property="examNumber" column="exam_number"/>
+
+ <result property="resumeId" column="resume_id"/>
+
+ <result property="interviewId" column="interview_id"/>
+
+ <result property="humanName" column="human_name"/>
+
+ <result property="humanIdcard" column="human_idcard"/>
+
+ <result property="majorKindId" column="major_kind_id"/>
+
+ <result property="majorKindName" column="major_kind_name"/>
+
+ <result property="majorId" column="major_id"/>
+
+ <result property="majorName" column="major_name"/>
+
+ <result property="testTime" column="test_time"/>
+
+ <result property="useTime" column="use_time"/>
+
+ <result property="totalPoint" column="total_point"/>
+</resultMap>
+	
+	
 	
 	
 
