@@ -1,6 +1,7 @@
 package hr.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +15,8 @@ public interface ConfigFileSecondKindMapper {
 	public boolean deleteConfigFileSecondKindById(int id);
 	public boolean insertConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind);
 	public boolean updateConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind);
+	
+	//分页查询
+	public List<ConfigFileSecondKind> selectConfigFileSecondKindPage(Map<String, Object> map);
+	
 }

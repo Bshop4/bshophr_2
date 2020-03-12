@@ -1,6 +1,7 @@
 package hr.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,11 @@ public class ConfigFileSecondKindServiceImpl implements ConfigFileSecondKindServ
 	public boolean updateConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind) {
 		// TODO Auto-generated method stub
 		return configFileSecondKindMapper.updateConfigFileSecondKind(configFileSecondKind);
+	}
+
+	@Override
+	public List<ConfigFileSecondKind> findConfigFileSecondKindPage(Map<String,Object> map) {
+		// TODO Auto-generated method stub
+		return configFileSecondKindMapper.selectConfigFileSecondKindPage(map);
 	}
 }
