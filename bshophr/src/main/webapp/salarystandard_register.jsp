@@ -83,73 +83,73 @@
 
 			<tr class="TD_STYLE2">
 				<td align="center">1 <input type="hidden" name="list[0].itemId"
-					value="1" id="td11">
+					value="1">
 				</td>
 				<td colspan="3">出差补助 <input type="hidden"
-					name="list[0].itemName" value="出差补助" id="td12">
+					name="list[0].itemName" value="出差补助">
 				</td>
 				<td><input type="text" name="list[0].salary" value=""
-					class="INPUT_STYLE2"  id="td13"></td>
+					class="INPUT_STYLE2"  id="td1"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
 			<tr class="TD_STYLE2">
 				<td align="center">2 <input type="hidden" name="list[1].itemId"
-					value="2" id="td21">
+					value="2">
 				</td>
 				<td colspan="3">交通补贴 <input type="hidden"
-					name="list[1].itemName" value="交通补贴" id="td22">
+					name="list[1].itemName" value="交通补贴">
 				</td>
 				<td><input type="text" name="list[1].salary" value=""
-					class="INPUT_STYLE2"  id="td23"></td>
+					class="INPUT_STYLE2"  id="td2"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
 			<tr class="TD_STYLE2">
 				<td align="center">3 <input type="hidden" name="list[2].itemId"
-					value="3" id="td31">
+					value="3">
 				</td>
 				<td colspan="3">住房补贴 <input type="hidden"
-					name="list[2].itemName" value="住房补贴" id="td32">
+					name="list[2].itemName" value="住房补贴">
 				</td>
 				<td><input type="text" name="list[2].salary" value=""
-					class="INPUT_STYLE2"  id="td33"></td>
+					class="INPUT_STYLE2" id="td3"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
 			<tr class="TD_STYLE2">
 				<td align="center">4 <input type="hidden" name="list[3].itemId"
-					value="4" id="td41">
+					value="4">
 				</td>
 				<td colspan="3">基本工资 <input type="hidden"
-					name="list[3].itemName" value="基本工资" id="td42">
+					name="list[3].itemName" value="基本工资">
 				</td>
 				<td><input type="text" name="list[3].salary" value=""
-					class="INPUT_STYLE2" id="td43"></td>
+					class="INPUT_STYLE2" id="td4"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
 			<tr class="TD_STYLE2">
 				<td align="center">5 <input type="hidden" name="list[4].itemId"
-					value="5" id="td51">
+					value="5">
 				</td>
 				<td colspan="3">年终奖 <input type="hidden"
-					name="list[4].itemName" value="年终奖" id="td52">
+					name="list[4].itemName" value="年终奖">
 				</td>
 				<td><input type="text" name="list[4].salary" value=""
-					class="INPUT_STYLE2" id="td53"></td>
+					class="INPUT_STYLE2" id="td5"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
 			<tr class="TD_STYLE2">
 				<td align="center">6 <input type="hidden" name="list[5].itemId"
-					value="6" id="td61">
+					value="6">
 				</td>
 				<td colspan="3">误餐补助 <input type="hidden"
-					name="list[5].itemName" value="误餐补助" id="td62">
+					name="list[5].itemName" value="误餐补助">
 				</td>
 				<td><input type="text" name="list[5].salary" value=""
-					class="INPUT_STYLE2" id="td63"></td>
+					class="INPUT_STYLE2" id="td6"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
@@ -161,21 +161,19 @@
 <script type="text/javascript" src="javascript/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	function getdata() {
-		var str11 = $("#td11").val();var str12 = $("#td12").val();var str13 = $("#td13").val();
-/* 		var str21 = $("#td21").val();var str22 = $("#td22").val();var str23 = $("#td23").val();
- */		/* var str5 = $("#td5").val();var str6 = $("#td6").val();
-		var str7 = $("#td7").val();var str8 = $("#td8").val();
-		var str9 = $("#td9").val();var str10 = $("#td10").val();
-		var str11 = $("#td11").val();var str12 = $("#td12").val();
+		var str1 = $("#td1").val();
+		var str2 = $("#td2").val();
+		var str3 = $("#td3").val();
+		var str4 = $("#td4").val();
+		var str5 = $("#td5").val();
+		var str6 = $("#td6").val();
+		var obj = '{"str1":+'str1',"str2":"str2","str3":"str3","str4":"str4","str5":"str5","str6":"str6"}';
 		$.ajax({
 			type:"POST",
 			url:"hr/salarystandard.do",
-			dataType:"json",
-			contentType:"application/json;charset=utf-8",
-			data:'{"itemId":"str1","itemName":str2}',
-			success:function(result){
-				alert("ajaxJson==="+JSON.stringify(result));
-			}
-		}); */
+			/* dataType:"json", */
+			contentType:"application/json; charset=utf-8",
+			data:obj,
+		}); 
 	}
 </script>
