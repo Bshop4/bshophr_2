@@ -27,7 +27,7 @@ public class Salarystandard {
 	@RequestMapping("/salarystandard.do")
 	public String saveSalaryStandard(@ModelAttribute SalaryStandard sspojo) {// SalaryStandard对象
 		service1.saveSalaryStandard(sspojo);
-		// SalaryStandardDetails对象
+		// SalaryStandardDetails对
 		SalaryStandardDetails ssdpojo = new SalaryStandardDetails();
 		List<ConfigPublicChar> list = service3.findConfigPublicCharByAk("薪酬设置");
 		short i = 0;
