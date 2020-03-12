@@ -34,7 +34,7 @@
 			</tr>
 			<tr>
 				<td align="right"><input type="submit" value="提交"
-					onclick="window.location.href='salarystandard_register_success.jsp'"
+					onclick="getdata()"
 					class="BUTTON_STYLE1"> <input type="reset" value="清除"
 					class="BUTTON_STYLE1"></td>
 			</tr>
@@ -44,11 +44,11 @@
 			<tr>
 				<td width="74" class="TD_STYLE1">薪酬标准编号</td>
 				<td width="168" class="TD_STYLE2"><input type="text"
-					name="item.standardId" value="1000001" readonly="readonly"
+					name="standardId" value="1000001" readonly="readonly"
 					class="INPUT_STYLE2"></td>
 				<td width="83" class="TD_STYLE1">薪酬标准名称</td>
 				<td width="171" class="TD_STYLE2"><input type="text"
-					name="item.standardName" value="" class="INPUT_STYLE2"></td>
+					name="standardName" value="" class="INPUT_STYLE2"></td>
 				<td width="170" class="TD_STYLE1">薪酬总额</td>
 				<td width="138" class="TD_STYLE2">&nbsp;</td>
 				<td width="103" class="TD_STYLE1">&nbsp;</td>
@@ -56,10 +56,10 @@
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">制定人</td>
-				<td class="TD_STYLE2"><input type="text" name="item.designer"
+				<td class="TD_STYLE2"><input type="text" name="designer"
 					value="" class="INPUT_STYLE2"></td>
 				<td class="TD_STYLE1">登记人</td>
-				<td class="TD_STYLE2"><input type="text" name="item.register"
+				<td class="TD_STYLE2"><input type="text" name="register"
 					value="better_wanghao" readonly="readonly" class="INPUT_STYLE2">
 				</td>
 				<td class="TD_STYLE1">登记时间</td>
@@ -71,7 +71,7 @@
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">备注</td>
-				<td colspan="7" class="TD_STYLE2"><textarea name="item.remark"
+				<td colspan="7" class="TD_STYLE2"><textarea name="remark"
 						rows="4" class="TEXTAREA_STYLE1"></textarea></td>
 			</tr>
 			<tr class="TD_STYLE1">
@@ -83,73 +83,73 @@
 
 			<tr class="TD_STYLE2">
 				<td align="center">1 <input type="hidden" name="list[0].itemId"
-					value="1">
+					value="1" id="td11">
 				</td>
 				<td colspan="3">出差补助 <input type="hidden"
-					name="list[0].itemName" value="出差补助">
+					name="list[0].itemName" value="出差补助" id="td12">
 				</td>
 				<td><input type="text" name="list[0].salary" value=""
-					class="INPUT_STYLE2"></td>
+					class="INPUT_STYLE2"  id="td13"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
 			<tr class="TD_STYLE2">
 				<td align="center">2 <input type="hidden" name="list[1].itemId"
-					value="2">
+					value="2" id="td21">
 				</td>
 				<td colspan="3">交通补贴 <input type="hidden"
-					name="list[1].itemName" value="交通补贴">
+					name="list[1].itemName" value="交通补贴" id="td22">
 				</td>
 				<td><input type="text" name="list[1].salary" value=""
-					class="INPUT_STYLE2"></td>
+					class="INPUT_STYLE2"  id="td23"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
 			<tr class="TD_STYLE2">
 				<td align="center">3 <input type="hidden" name="list[2].itemId"
-					value="3">
+					value="3" id="td31">
 				</td>
 				<td colspan="3">住房补贴 <input type="hidden"
-					name="list[2].itemName" value="住房补贴">
+					name="list[2].itemName" value="住房补贴" id="td32">
 				</td>
 				<td><input type="text" name="list[2].salary" value=""
-					class="INPUT_STYLE2"></td>
+					class="INPUT_STYLE2"  id="td33"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
 			<tr class="TD_STYLE2">
 				<td align="center">4 <input type="hidden" name="list[3].itemId"
-					value="4">
+					value="4" id="td41">
 				</td>
 				<td colspan="3">基本工资 <input type="hidden"
-					name="list[3].itemName" value="基本工资">
+					name="list[3].itemName" value="基本工资" id="td42">
 				</td>
 				<td><input type="text" name="list[3].salary" value=""
-					class="INPUT_STYLE2"></td>
+					class="INPUT_STYLE2" id="td43"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
 			<tr class="TD_STYLE2">
 				<td align="center">5 <input type="hidden" name="list[4].itemId"
-					value="5">
+					value="5" id="td51">
 				</td>
 				<td colspan="3">年终奖 <input type="hidden"
-					name="list[4].itemName" value="年终奖">
+					name="list[4].itemName" value="年终奖" id="td52">
 				</td>
 				<td><input type="text" name="list[4].salary" value=""
-					class="INPUT_STYLE2"></td>
+					class="INPUT_STYLE2" id="td53"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
 			<tr class="TD_STYLE2">
 				<td align="center">6 <input type="hidden" name="list[5].itemId"
-					value="6">
+					value="6" id="td61">
 				</td>
 				<td colspan="3">误餐补助 <input type="hidden"
-					name="list[5].itemName" value="误餐补助">
+					name="list[5].itemName" value="误餐补助" id="td62">
 				</td>
 				<td><input type="text" name="list[5].salary" value=""
-					class="INPUT_STYLE2"></td>
+					class="INPUT_STYLE2" id="td63"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
@@ -158,4 +158,24 @@
 	</form>
 </body>
 </html>
-
+<script type="text/javascript" src="javascript/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	function getdata() {
+		var str11 = $("#td11").val();var str12 = $("#td12").val();var str13 = $("#td13").val();
+/* 		var str21 = $("#td21").val();var str22 = $("#td22").val();var str23 = $("#td23").val();
+ */		/* var str5 = $("#td5").val();var str6 = $("#td6").val();
+		var str7 = $("#td7").val();var str8 = $("#td8").val();
+		var str9 = $("#td9").val();var str10 = $("#td10").val();
+		var str11 = $("#td11").val();var str12 = $("#td12").val();
+		$.ajax({
+			type:"POST",
+			url:"hr/salarystandard.do",
+			dataType:"json",
+			contentType:"application/json;charset=utf-8",
+			data:'{"itemId":"str1","itemName":str2}',
+			success:function(result){
+				alert("ajaxJson==="+JSON.stringify(result));
+			}
+		}); */
+	}
+</script>
