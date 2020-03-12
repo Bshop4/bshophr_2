@@ -11,11 +11,11 @@
 <base href="<%=basePath%>">
 
 <title>My JSP 'index.jsp' starting page</title>
-<meta http-equiv="pragma" content="no-cache">
+<!-- <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
+<meta http-equiv="description" content="This is my page"> -->
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -45,10 +45,10 @@
 				<td width="74" class="TD_STYLE1">薪酬标准编号</td>
 				<td width="168" class="TD_STYLE2"><input type="text"
 					name="standardId" value="1000001" readonly="readonly"
-					class="INPUT_STYLE2"></td>
+					class="INPUT_STYLE2" id="my1"></td>
 				<td width="83" class="TD_STYLE1">薪酬标准名称</td>
 				<td width="171" class="TD_STYLE2"><input type="text"
-					name="standardName" value="" class="INPUT_STYLE2"></td>
+					name="standardName" value="" class="INPUT_STYLE2" id="my2"></td>
 				<td width="170" class="TD_STYLE1">薪酬总额</td>
 				<td width="138" class="TD_STYLE2">&nbsp;</td>
 				<td width="103" class="TD_STYLE1">&nbsp;</td>
@@ -57,10 +57,10 @@
 			<tr>
 				<td class="TD_STYLE1">制定人</td>
 				<td class="TD_STYLE2"><input type="text" name="designer"
-					value="" class="INPUT_STYLE2"></td>
+					value="" class="INPUT_STYLE2" id="my3"></td>
 				<td class="TD_STYLE1">登记人</td>
 				<td class="TD_STYLE2"><input type="text" name="register"
-					value="better_wanghao" readonly="readonly" class="INPUT_STYLE2">
+					value="better_wanghao" readonly="readonly" class="INPUT_STYLE2" id="my4">
 				</td>
 				<td class="TD_STYLE1">登记时间</td>
 				<td class="TD_STYLE2"><input type="text"
@@ -72,7 +72,7 @@
 			<tr>
 				<td class="TD_STYLE1">备注</td>
 				<td colspan="7" class="TD_STYLE2"><textarea name="remark"
-						rows="4" class="TEXTAREA_STYLE1"></textarea></td>
+						rows="4" class="TEXTAREA_STYLE1" id="my5"></textarea></td>
 			</tr>
 			<tr class="TD_STYLE1">
 				<td align="center">序号</td>
@@ -161,19 +161,24 @@
 <script type="text/javascript" src="javascript/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	function getdata() {
+		var my1 = $("#my1").val();
+		var my2 = $("#my2").val();
+		var my3 = $("#my3").val();
+		var my4 = $("#my4").val();
+		var my5 = $("#my5").val();
 		var str1 = $("#td1").val();
 		var str2 = $("#td2").val();
 		var str3 = $("#td3").val();
 		var str4 = $("#td4").val();
 		var str5 = $("#td5").val();
 		var str6 = $("#td6").val();
-		var obj = '{"str1":+'str1',"str2":"str2","str3":"str3","str4":"str4","str5":"str5","str6":"str6"}';
+		var obj = my1+","+my2+","+my3+","+my4+","+my5+","+str1+","+str2+","+str3+","+str4+","+str5+","+str6;
 		$.ajax({
 			type:"POST",
-			url:"hr/salarystandard.do",
+			url:"hr/salarystandard.do?str="+obj,
 			/* dataType:"json", */
 			contentType:"application/json; charset=utf-8",
 			data:obj,
-		}); 
+		});
 	}
 </script>
