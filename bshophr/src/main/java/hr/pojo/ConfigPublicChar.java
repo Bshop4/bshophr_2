@@ -14,6 +14,11 @@ public class ConfigPublicChar implements java.io.Serializable {
 
 	// Constructors
 
+	@Override
+	public String toString() {
+		return "ConfigPublicChar [attributeName=" + attributeName + "]";
+	}
+
 	/** default constructor */
 	public ConfigPublicChar() {
 	}
