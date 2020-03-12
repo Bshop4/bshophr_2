@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,21 +22,42 @@ public class ConfigfilesecondkindController {
 	private ConfigFileSecondKindService  cfsks=null;
 	
 	@RequestMapping("/configfilesecondkind.do")
-	public String selectSecondKind(@RequestParam String operate,Model model){
+	public String selectSecondKind(@RequestParam String operate,HttpServletRequest request,Model model){
+		
 		switch(operate){
-			case "list":List<ConfigFileSecondKind>secondlist=cfsks.findConfigFileSecondKindAll();
+			case "list":
 				int maxPage =0;
+				int sumNumber =cfsks.findConfigFileSecondKindMaxNum();//总个数
 				int pageSize =1;
 				int pageNo =1;
+				//最大页数
+				maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
+				
+				String page=request.getParameter("page");
+				if(page!=null && !"".equals(page)){
+					try{
+						pageNo=Integer.parseInt(page);
+					}catch(NumberFormatException e){
+						pageNo=1;
+					}
+					if(pageNo>maxPage){
+						pageNo=maxPage;
+					}else if(pageNo<1){
+						pageNo=1;
+					}
+				}
+				
+				int currentPage=(pageNo-1)*pageSize;
 				Map<String, Object> map=new HashMap<String, Object>();
 				map.put("pageSize", pageSize);
-				map.put("pageNo", pageNo);
-				if(!secondlist.isEmpty()){
-					maxPage=secondlist.size()%pageSize!=0?secondlist.size()/pageSize+1:secondlist.size()/pageSize;
-				}
-				secondlist=cfsks.findConfigFileSecondKindPage(map);
+				map.put("currentPage", currentPage);
+				//分页查询
+				List<ConfigFileSecondKind> secondlist = 
+						cfsks.findConfigFileSecondKindAll(map);
+				
 				model.addAttribute("list", secondlist);
 				model.addAttribute("maxPage", maxPage);
+				model.addAttribute("sumNumber", sumNumber);
 				model.addAttribute("pageSize", pageSize);
 				model.addAttribute("pageNo", pageNo);
 				break;

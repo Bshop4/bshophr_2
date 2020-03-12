@@ -13,8 +13,11 @@
 		<result property="secondSaleId"    column="second_sale_id"/>
 	</resultMap>
 
-	<select id="selectConfigFileSecondKindAll" resultMap="configFileSecondKindMap">
+	<select id="selectConfigFileSecondKindAll" resultMap="configFileSecondKindMap" parameterType="hashmap">
 		select * from config_file_second_kind
+		<if test="currentPage!=null and pageSize!=null">
+			limit #{currentPage},#{pageSize}
+		</if>
 	</select>
 
 	<select id="selectConfigFileSecondKindById" parameterType="_int" resultMap="configFileSecondKindMap">
@@ -34,7 +37,14 @@
 	</insert>
 	
 	<!-- 分页查询 -->
-	<select id="selectConfigFileSecondKindPage" parameterType="map" resultMap="configFileSecondKindMap">
-        select * from config_file_second_kind  limit (#{pageNo}-1)*#{pageSize},#{pageSize}
+	<!-- <select id="selectConfigFileSecondKindPage" parameterType="map" resultMap="configFileSecondKindMap">
+        select * from config_file_second_kind  limit #{currentPage},#{pageSize}
+	</select> -->
+	
+	<!-- 查询最大总数-->
+	<select id="selectConfigFileSecondKindMaxNum"  resultType="_int">
+        select count(*) from config_file_second_kind
 	</select>
+	
+	
 </mapper>

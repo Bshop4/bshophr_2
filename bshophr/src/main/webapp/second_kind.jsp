@@ -23,10 +23,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 		<link rel="stylesheet" href="table.css" type="text/css" />
 		<script type="text/javascript" src="javascript/comm/comm.js"></script>
+		<script type="text/javascript" src="javascript/jquery-3.4.1.min.js"></script>
   </head>
 
 	<body>
-		<form method="post" action="configfilefirstkind.do">
+		<form method="post" action="pyl/configfilesecondkind.do?operate=list">
 			<table width="100%">
 				<tr>
 					<td>
@@ -103,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</c:forEach>
 				</c:if>
 			</table>
-			<p>&nbsp;&nbsp;总数：${fn:length(list)}例 &nbsp;&nbsp;&nbsp;当前第 ${pageNo } 页  &nbsp;&nbsp;&nbsp;共 ${maxPage } 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0>
+			<p>&nbsp;&nbsp;总数：${sumNumber}例 &nbsp;&nbsp;&nbsp;当前第 ${pageNo } 页  &nbsp;&nbsp;&nbsp;共 ${maxPage } 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1 /> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0 />
 		</form>
 	</body>
 </html>

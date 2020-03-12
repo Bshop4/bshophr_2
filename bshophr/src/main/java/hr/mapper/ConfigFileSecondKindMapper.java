@@ -10,13 +10,14 @@ import hr.pojo.ConfigFileSecondKind;
 
 @Repository
 public interface ConfigFileSecondKindMapper {
-	public List<ConfigFileSecondKind> selectConfigFileSecondKindAll();
+//	public List<ConfigFileSecondKind> selectConfigFileSecondKindAll();
+	public List<ConfigFileSecondKind> selectConfigFileSecondKindAll(Map<String,Object> map);
 	public ConfigFileSecondKind selectConfigFileSecondKindById(int id);
 	public boolean deleteConfigFileSecondKindById(int id);
 	public boolean insertConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind);
 	public boolean updateConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind);
 	
-	//分页查询
-	public List<ConfigFileSecondKind> selectConfigFileSecondKindPage(Map<String, Object> map);
+	//查询最大总数
+	public int selectConfigFileSecondKindMaxNum();
 	
 }
