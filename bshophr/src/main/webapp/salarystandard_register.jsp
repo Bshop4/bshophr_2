@@ -26,14 +26,14 @@
 
 <body>
 	<form name="salarystandardForm" method="post"
-		action="/hr/salarystandard.do">
+		action="hr/salarystandard.do">
 		<table width="100%">
 			<tr>
 				<td><font color="#0000CC">您正在做的业务是：人力资源--薪酬标准管理--薪酬标准登记
 				</font></td>
 			</tr>
 			<tr>
-				<td align="right"><input type="button" value="提交"
+				<td align="right"><input type="submit" value="提交"
 					onclick="window.location.href='salarystandard_register_success.jsp'"
 					class="BUTTON_STYLE1"> <input type="reset" value="清除"
 					class="BUTTON_STYLE1"></td>
