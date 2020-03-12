@@ -50,7 +50,7 @@
   <filter-mapping>
   	<filter-name>character</filter-name>
   	<url-pattern>/*</url-pattern>
-  过滤方式
+	<!--过滤方式 -->
   	<dispatcher>REQUEST</dispatcher>
   	<dispatcher>FORWARD</dispatcher>
   	<dispatcher>INCLUDE</dispatcher>
