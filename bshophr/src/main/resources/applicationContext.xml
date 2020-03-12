@@ -26,7 +26,7 @@
 
 		<property name="url" value="jdbc:mysql://localhost:3306/hr?characterEncoding=utf8&amp;useUnicode=true"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="djt1226"></property>
+		<property name="password" value="root"></property>
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 
 	</bean> 

@@ -1,6 +1,7 @@
 package hr.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,9 @@ public class ConfigFileSecondKindServiceImpl implements ConfigFileSecondKindServ
 	private ConfigFileSecondKindMapper configFileSecondKindMapper=null;
 
 	@Override
-	public List<ConfigFileSecondKind> findConfigFileSecondKindAll() {
+	public List<ConfigFileSecondKind> findConfigFileSecondKindAll(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return configFileSecondKindMapper.selectConfigFileSecondKindAll();
+		return configFileSecondKindMapper.selectConfigFileSecondKindAll(map);
 	}
 
 	@Override
@@ -43,4 +44,13 @@ public class ConfigFileSecondKindServiceImpl implements ConfigFileSecondKindServ
 		// TODO Auto-generated method stub
 		return configFileSecondKindMapper.updateConfigFileSecondKind(configFileSecondKind);
 	}
+
+	
+	//查询的数据总数
+	@Override
+	public int findConfigFileSecondKindMaxNum() {
+		// TODO Auto-generated method stub
+		return configFileSecondKindMapper.selectConfigFileSecondKindMaxNum();
+	}
+
 }
