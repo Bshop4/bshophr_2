@@ -16,6 +16,11 @@
 	<select id="selectConfigPublicCharById" parameterType="_int" resultMap="configPublicCharMap">
 		select * from config_public_char where pbc_id=#{id}
 	</select>
+	
+	<!-- 向思宇加的 -->
+	<select id="selectConfigPublicCharByAk"  resultMap="configPublicCharMap">
+		select attribute_name from config_public_char where attribute_kind=#{ak}
+	</select>
 
 	<delete id="deleteConfigPublicCharById" parameterType="_int">
 		delete from config_public_char where pbc_id=#{id}
