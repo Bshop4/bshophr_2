@@ -17,8 +17,10 @@ import hr.service.ConfigFileFirstKindService;
 import hr.service.ConfigFileThirdKindService;
 import hr.service.ConfigMajorService;
 import hr.service.EngageResumeService;
+import net.sf.json.JSONObject;
 
 @Controller
+@RequestMapping("/humanRegister")
 public class DjtHumanRegister {
 	@Autowired
 	private ConfigFileThirdKindService configFileThirdKindService=null;
@@ -29,9 +31,9 @@ public class DjtHumanRegister {
 	@Autowired
 	private EngageResumeService engageResumeService=null;
 	
-	//获取3级选择框的值
-	@RequestMapping("/humanRegister.do")
-	public String selectOptions(Model model){
+	//页面跳转
+	@RequestMapping("/jump.do")
+	public String pageJump(Model model){
 		Map<String, Object> myselect=new HashMap<String, Object>();
 		List<ConfigFileThirdKind> listCftk=configFileThirdKindService.findConfigFileThirdKindAll();
 		myselect.put("listCftk", listCftk);
@@ -41,5 +43,21 @@ public class DjtHumanRegister {
 		model.addAttribute("map", myselect);
 		
 		return "forward:/human_register.jsp";
+	}
+	
+	//获取3级选择框的值
+	@ResponseBody
+	@RequestMapping("/thereJump.do")
+	public String selectOptions(){
+		Map<String, Object> myselect=new HashMap<String, Object>();
+		List<ConfigFileThirdKind> listCftk=configFileThirdKindService.findConfigFileThirdKindAll();
+		myselect.put("listCftk", listCftk);
+		
+		List<ConfigMajor> listCm=configMajorService.findConfigMajorAll();
+		myselect.put("listCm", listCm);
+		
+		JSONObject json=JSONObject.fromObject(myselect);
+		
+		return json.toString();
 	}
 }

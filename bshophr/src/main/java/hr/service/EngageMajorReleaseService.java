@@ -1,6 +1,8 @@
 package hr.service;
 
 import java.util.List;
+import java.util.Map;
+
 import hr.pojo.EngageMajorRelease;
 
 public interface EngageMajorReleaseService {
@@ -15,6 +17,8 @@ public interface EngageMajorReleaseService {
 	
 	public List<EngageMajorRelease> findEngageMajorReleaseAll();
 
+	public int findCnt();
 	
+	public List<EngageMajorRelease> findSplit(Map<String,Object> map);
 
 }
