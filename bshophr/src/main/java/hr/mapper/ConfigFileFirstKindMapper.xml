@@ -11,8 +11,12 @@
 		<result property="firstKindSaleId"    column="first_kind_sale_id"/>
 	</resultMap>
 
-	<select id="selectConfigFileFirstKindAll" resultMap="configFileFirstKindMap">
+	<select id="selectConfigFileFirstKindAll"  parameterType="hashmap" resultMap="configFileFirstKindMap">
 		select * from config_file_first_kind
+		<if test="currentPage!=null and pageSize!=null">
+			limit #{currentPage},#{pageSize}
+		</if>
+		
 	</select>
 
 	<select id="selectConfigFileFirstKindById" parameterType="_int" resultMap="configFileFirstKindMap">
@@ -28,6 +32,6 @@
 	</update>
 	<insert id="insertConfigFileFirstKind" parameterType="ConfigFileFirstKind">
 		insert into config_file_first_kind(first_kind_id,first_kind_name,first_kind_salary_id,first_kind_sale_id) 
-		values(#{ffkId},#{firstKindId},#{firstKindName},#{firstKindSalaryId},#{firstKindSaleId}) 
+		values(#{firstKindId},#{firstKindName},#{firstKindSalaryId},#{firstKindSaleId}) 
 	</insert>
 </mapper>

@@ -35,7 +35,7 @@ public class ConfigfilesecondkindController {
 				return "redirect:/pyl/configfilesecondkind.do?operate=list";
 			case "toAdd":
 				//查询所有的I级机构给II添加的时候提供选择，如果没有则跳到I机构添加
-				List<ConfigFileFirstKind> list =cffks.findConfigFileFirstKindAll();
+				List<ConfigFileFirstKind> list =cffks.findConfigFileFirstKindAll(new HashMap<String, Object>());
 				if(list.isEmpty()){
 					return "redirect:/first_kind.jsp";
 				}
@@ -88,20 +88,13 @@ public class ConfigfilesecondkindController {
 				return "forward:/second_kind_change.jsp";
 				
 			case "update"://修改
-/*update student
- * <set> //这个标签可以取消最后的逗号
-		<if test="sname!=null">
-			sname=#{sname},
-		<!if>
-
-		<if test="sex!=null">
-			sex=#{sex},
-		<!if>
-	</set>
-	where sid=#{sid}
- */
-//				cfsks.updateConfigFileSecondKind(configFileSecondKind);
-				return "";
+				Map<String, Object> map1=new HashMap<String, Object>();
+				map1.put("fskId", Integer.parseInt(request.getParameter("id")));
+				map1.put("secondSalaryId", request.getParameter("secondKindSalaryId"));
+				map1.put("secondSaleId", request.getParameter("secondKindSaleId"));
+				
+				cfsks.updateConfigFileSecondKind(map1);
+				return "redirect:/second_kind_change_success.jsp";
 			default:
 				break;
 		}
