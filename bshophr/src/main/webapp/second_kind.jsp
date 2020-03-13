@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td align="right">
 						<input type="button" value="添加" class="BUTTON_STYLE1"
-							onclick="window.location.href='second_kind_register.jsp'" />
+							onclick="window.location.href='pyl/configfilefirstkind/alltosecond.do'" />
 					</td>
 				</tr>
 			</table>

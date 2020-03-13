@@ -21,14 +21,23 @@
 	<context:component-scan base-package="hr"/>
 	<mvc:annotation-driven/> 
 	<!-- 加载外部数据库连接信息文件 -->
-	<context:property-placeholder location="classpath:db.properties"/>
+	<!-- <context:property-placeholder location="classpath:db.properties"/> -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+<<<<<<< HEAD
 
 		<property name="url" value="jdbc:mysql://localhost:3306/azjl?characterEncoding=utf8&amp;useUnicode=true"></property>
+=======
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/hr?characterEncoding=utf8&amp;useUnicode=true"></property>
+>>>>>>> branch 'master' of https://github.com/Bshop4/bshophr_2.git
 		<property name="username" value="root"></property>
+<<<<<<< HEAD
 		<property name="password" value="1234"></property>
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 
+=======
+		<property name="password" value="root"></property>
+>>>>>>> branch 'master' of https://github.com/Bshop4/bshophr_2.git
 	</bean> 
 	 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
