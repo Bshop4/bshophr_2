@@ -301,12 +301,12 @@ a {
 					<table width="100%" border="0">
 						<tr>
 							<td width="2%"><img src="images/jt0.gif"></td>
-							<td width="98%"><a href="salarystandard_register.jsp"
+							<td width="98%"><a href="ssregister.do"
 								target="mainFrame">薪酬标准登记</a></td>
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td><a href="salarystandard_check_list.jsp"
+							<td><a href="toqueryfh.do"
 								target="mainFrame">薪酬标准登记复核</a></td>
 						</tr>
 						<tr>

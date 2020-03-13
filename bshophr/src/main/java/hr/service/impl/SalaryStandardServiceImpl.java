@@ -51,4 +51,10 @@ public class SalaryStandardServiceImpl implements SalaryStandardService {
 		return flag;
 	}
 
+	@Override
+	public boolean updateSalaryStandardByfh(SalaryStandard ss) {
+		boolean flag = salaryStandardMapper.updateSalaryStandardByfh(ss);
+		return flag;
+	}
+
 }

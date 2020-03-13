@@ -20,7 +20,7 @@
 	</select>
 	
 	<select id="selectSalaryStandardDetailsById" parameterType="_int" resultMap="SalaryStandardDetailsMap">
-		select * from salary_standard_details where sdt_id=#{id}
+		select * from salary_standard_details where standard_id=#{id}
 	</select>
 	
 	<delete id="deleteSalaryStandardDetailsById" parameterType="_int">
