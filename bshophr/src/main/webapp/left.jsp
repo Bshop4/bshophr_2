@@ -112,7 +112,7 @@ a {
 										</tr>
 										<tr>
 											<td><img src="images/jt0.gif"></td>
-											<td><a href="configfilesecondkind.do?operate=list"
+											<td><a href="pyl/configfilesecondkind.do?operate=list"
 												target="mainFrame">II级机构设置</a></td>
 										</tr>
 										<tr>

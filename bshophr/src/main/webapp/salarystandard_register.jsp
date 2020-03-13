@@ -11,11 +11,11 @@
 <base href="<%=basePath%>">
 
 <title>My JSP 'index.jsp' starting page</title>
-<meta http-equiv="pragma" content="no-cache">
+<!-- <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
+<meta http-equiv="description" content="This is my page"> -->
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -34,7 +34,7 @@
 			</tr>
 			<tr>
 				<td align="right"><input type="submit" value="提交"
-					onclick="window.location.href='salarystandard_register_success.jsp'"
+					onclick="getdata()"
 					class="BUTTON_STYLE1"> <input type="reset" value="清除"
 					class="BUTTON_STYLE1"></td>
 			</tr>
@@ -44,11 +44,11 @@
 			<tr>
 				<td width="74" class="TD_STYLE1">薪酬标准编号</td>
 				<td width="168" class="TD_STYLE2"><input type="text"
-					name="item.standardId" value="1000001" readonly="readonly"
-					class="INPUT_STYLE2"></td>
+					name="standardId" value="1000001" readonly="readonly"
+					class="INPUT_STYLE2" id="my1"></td>
 				<td width="83" class="TD_STYLE1">薪酬标准名称</td>
 				<td width="171" class="TD_STYLE2"><input type="text"
-					name="item.standardName" value="" class="INPUT_STYLE2"></td>
+					name="standardName" value="" class="INPUT_STYLE2" id="my2"></td>
 				<td width="170" class="TD_STYLE1">薪酬总额</td>
 				<td width="138" class="TD_STYLE2">&nbsp;</td>
 				<td width="103" class="TD_STYLE1">&nbsp;</td>
@@ -56,11 +56,11 @@
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">制定人</td>
-				<td class="TD_STYLE2"><input type="text" name="item.designer"
-					value="" class="INPUT_STYLE2"></td>
+				<td class="TD_STYLE2"><input type="text" name="designer"
+					value="" class="INPUT_STYLE2" id="my3"></td>
 				<td class="TD_STYLE1">登记人</td>
-				<td class="TD_STYLE2"><input type="text" name="item.register"
-					value="better_wanghao" readonly="readonly" class="INPUT_STYLE2">
+				<td class="TD_STYLE2"><input type="text" name="register"
+					value="better_wanghao" readonly="readonly" class="INPUT_STYLE2" id="my4">
 				</td>
 				<td class="TD_STYLE1">登记时间</td>
 				<td class="TD_STYLE2"><input type="text"
@@ -71,8 +71,8 @@
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">备注</td>
-				<td colspan="7" class="TD_STYLE2"><textarea name="item.remark"
-						rows="4" class="TEXTAREA_STYLE1"></textarea></td>
+				<td colspan="7" class="TD_STYLE2"><textarea name="remark"
+						rows="4" class="TEXTAREA_STYLE1" id="my5"></textarea></td>
 			</tr>
 			<tr class="TD_STYLE1">
 				<td align="center">序号</td>
@@ -89,7 +89,7 @@
 					name="list[0].itemName" value="出差补助">
 				</td>
 				<td><input type="text" name="list[0].salary" value=""
-					class="INPUT_STYLE2"></td>
+					class="INPUT_STYLE2"  id="td1"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
@@ -101,7 +101,7 @@
 					name="list[1].itemName" value="交通补贴">
 				</td>
 				<td><input type="text" name="list[1].salary" value=""
-					class="INPUT_STYLE2"></td>
+					class="INPUT_STYLE2"  id="td2"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
@@ -113,7 +113,7 @@
 					name="list[2].itemName" value="住房补贴">
 				</td>
 				<td><input type="text" name="list[2].salary" value=""
-					class="INPUT_STYLE2"></td>
+					class="INPUT_STYLE2" id="td3"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
@@ -125,7 +125,7 @@
 					name="list[3].itemName" value="基本工资">
 				</td>
 				<td><input type="text" name="list[3].salary" value=""
-					class="INPUT_STYLE2"></td>
+					class="INPUT_STYLE2" id="td4"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
@@ -137,7 +137,7 @@
 					name="list[4].itemName" value="年终奖">
 				</td>
 				<td><input type="text" name="list[4].salary" value=""
-					class="INPUT_STYLE2"></td>
+					class="INPUT_STYLE2" id="td5"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
@@ -149,7 +149,7 @@
 					name="list[5].itemName" value="误餐补助">
 				</td>
 				<td><input type="text" name="list[5].salary" value=""
-					class="INPUT_STYLE2"></td>
+					class="INPUT_STYLE2" id="td6"></td>
 				<td colspan="3">&nbsp;</td>
 			</tr>
 
@@ -158,4 +158,27 @@
 	</form>
 </body>
 </html>
-
+<script type="text/javascript" src="javascript/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	function getdata() {
+		var my1 = $("#my1").val();
+		var my2 = $("#my2").val();
+		var my3 = $("#my3").val();
+		var my4 = $("#my4").val();
+		var my5 = $("#my5").val();
+		var str1 = $("#td1").val();
+		var str2 = $("#td2").val();
+		var str3 = $("#td3").val();
+		var str4 = $("#td4").val();
+		var str5 = $("#td5").val();
+		var str6 = $("#td6").val();
+		var obj = my1+","+my2+","+my3+","+my4+","+my5+","+str1+","+str2+","+str3+","+str4+","+str5+","+str6;
+		$.ajax({
+			type:"POST",
+			url:"hr/salarystandard.do?str="+obj,
+			/* dataType:"json", */
+			contentType:"application/json; charset=utf-8",
+			data:obj,
+		});
+	}
+</script>

@@ -10,9 +10,9 @@ import hr.pojo.ConfigPublicChar;
 import hr.service.ConfigPublicCharService;
 
 @Service
-public class ConfigPublicCharServiceImpl implements ConfigPublicCharService{
+public class ConfigPublicCharServiceImpl implements ConfigPublicCharService {
 	@Autowired
-	private ConfigPublicCharMapper configPublicCharMapper=null;
+	private ConfigPublicCharMapper configPublicCharMapper = null;
 
 	@Override
 	public List<ConfigPublicChar> findConfigPublicCharAll() {
@@ -42,5 +42,11 @@ public class ConfigPublicCharServiceImpl implements ConfigPublicCharService{
 	public boolean updateConfigPublicChar(ConfigPublicChar configPublicChar) {
 		// TODO Auto-generated method stub
 		return configPublicCharMapper.updateConfigPublicChar(configPublicChar);
+	}
+
+	// 向思宇+
+	@Override
+	public List<ConfigPublicChar> findConfigPublicCharByAk(String ak) {
+		return configPublicCharMapper.selectConfigPublicCharByAk(ak);
 	}
 }
