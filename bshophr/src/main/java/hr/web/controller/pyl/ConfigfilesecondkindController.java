@@ -22,8 +22,7 @@ public class ConfigfilesecondkindController {
 	private ConfigFileSecondKindService  cfsks=null;
 	
 	@RequestMapping("/configfilesecondkind.do")
-	public String selectSecondKind(@RequestParam String operate,HttpServletRequest request,Model model){
-		
+	public String findSecondKindPage(@RequestParam String operate,HttpServletRequest request,Model model){
 		switch(operate){
 			case "list":
 				int maxPage =0;
@@ -61,11 +60,41 @@ public class ConfigfilesecondkindController {
 				model.addAttribute("pageSize", pageSize);
 				model.addAttribute("pageNo", pageNo);
 				break;
+				
 			default:
 				break;
 		}
 		
 		return "forward:/second_kind.jsp";
 	}
+	
+	
+	@RequestMapping("/configfilesecondkind/save.do")
+	public String saveSecondKind(@RequestParam String firstKindNameAndId,@RequestParam String secondKindName,@RequestParam String secondKindSalaryId,@RequestParam String secondKindSaleId){
+		//I级的名称 和 id
+		String[] sp=firstKindNameAndId.split(",");
+		
+		ConfigFileSecondKind cfsk = new ConfigFileSecondKind();
+		cfsk.setFirstKindName(sp[0]);
+		cfsk.setFirstKindId(sp[1]);
+		cfsk.setSecondKindName(secondKindName);
+		cfsk.setSecondSalaryId(secondKindSalaryId);
+		cfsk.setSecondSaleId(secondKindSaleId);
+		//查询I级   下的  II级的MAX(second_kind_id) 
+		String secondmax=cfsks.findConfigFileSecondKindIdMax(sp[1]);
+		if(secondmax!=null && !"".equals(secondmax)){
+			cfsk.setSecondKindId("0"+String.valueOf(Integer.parseInt(secondmax)+1));
+		}else{
+			return "redirect:pyl/configfilesecondkind.do?operate=list";
+		}
+		if(secondKindSalaryId!=null && !"".equals(secondKindSalaryId)&&secondKindSaleId!=null && !"".equals(secondKindSaleId)){
+			cfsks.saveConfigFileSecondKind(cfsk);
+		}else{
+			return "redirect:pyl/configfilesecondkind.do?operate=list";
+		}
+		
+		return "redirect:/second_kind_register_success.jsp";
+	}
+	
 	
 }

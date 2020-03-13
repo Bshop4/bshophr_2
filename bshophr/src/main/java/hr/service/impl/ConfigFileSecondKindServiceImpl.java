@@ -53,4 +53,12 @@ public class ConfigFileSecondKindServiceImpl implements ConfigFileSecondKindServ
 		return configFileSecondKindMapper.selectConfigFileSecondKindMaxNum();
 	}
 
+	//查询I级   下的  II级的MAX(second_kind_id) 
+	@Override
+	public String findConfigFileSecondKindIdMax(String i) {
+		// TODO Auto-generated method stub
+		String t=configFileSecondKindMapper.selectConfigFileSecondKindIdMax(i);
+		return t;
+	}
+
 }
