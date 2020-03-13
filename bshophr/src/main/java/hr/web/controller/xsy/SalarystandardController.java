@@ -117,7 +117,7 @@ public class SalarystandardController {
 //	@RequestMapping("/salarystandard.do")
 //	public String saveSalaryStandard(@ModelAttribute SalaryStandard sspojo) {// SalaryStandard对象
 //		service1.saveSalaryStandard(sspojo);
-//		// SalaryStandardDetails对
+//		// SalaryStandardDetails对像
 //		SalaryStandardDetails ssdpojo = new SalaryStandardDetails();
 //		List<ConfigPublicChar> list = cfservice.findConfigPublicCharByAk("薪酬设置");
 //		short i = 0;
