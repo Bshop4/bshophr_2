@@ -13,6 +13,12 @@ public interface ConfigFileFirstKindService {
 	public ConfigFileFirstKind findConfigFileFirstKindById(int id);
 	public boolean removeConfigFileFirstKindById(int id);
 	public boolean saveConfigFileFirstKind(ConfigFileFirstKind configFileFirstKind);
-	public boolean updateConfigFileFirstKind(ConfigFileFirstKind configFileFirstKind);
-//	public boolean updateConfigFileFirstKind(Map<String, Object> map);
+//	public boolean updateConfigFileFirstKind(ConfigFileFirstKind configFileFirstKind);
+	public boolean updateConfigFileFirstKind(Map<String, Object> map);
+	
+	//查询最大总数
+	public int findConfigFileFirstKindMaxNum();
+	
+	//查询I级 的MAX(first_kind_id) 
+	public String findConfigFileFirstKindIdMax();
 }

@@ -16,5 +16,12 @@ public interface ConfigFileFirstKindMapper {
 	public ConfigFileFirstKind selectConfigFileFirstKindById(int id);
 	public boolean deleteConfigFileFirstKindById(int id);
 	public boolean insertConfigFileFirstKind(ConfigFileFirstKind configFileFirstKind);
-	public boolean updateConfigFileFirstKind(ConfigFileFirstKind configFileFirstKind);
+//	public boolean updateConfigFileFirstKind(ConfigFileFirstKind configFileFirstKind);
+	public boolean updateConfigFileFirstKind(Map<String, Object> map);
+	
+	//查询最大总数
+	public int selectConfigFileFirstKindMaxNum();
+	
+	//查询I级 的MAX(first_kind_id) 
+	public String selectConfigFileFirstKindIdMax();
 }

@@ -40,8 +40,20 @@ public class ConfigFileFirstKindServiceImpl implements ConfigFileFirstKindServic
 	}
 
 	@Override
-	public boolean updateConfigFileFirstKind(ConfigFileFirstKind configFileFirstKind) {
+	public boolean updateConfigFileFirstKind(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return configFileFirstKindMapper.updateConfigFileFirstKind(configFileFirstKind);
+		return configFileFirstKindMapper.updateConfigFileFirstKind(map);
+	}
+
+	@Override
+	public int findConfigFileFirstKindMaxNum() {
+		// TODO Auto-generated method stub
+		return configFileFirstKindMapper.selectConfigFileFirstKindMaxNum();
+	}
+
+	@Override
+	public String findConfigFileFirstKindIdMax() {
+		// TODO Auto-generated method stub
+		return configFileFirstKindMapper.selectConfigFileFirstKindIdMax();
 	}
 }

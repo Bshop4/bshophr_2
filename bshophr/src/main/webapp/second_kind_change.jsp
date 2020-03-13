@@ -68,7 +68,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </html>
 <script type="text/javascript">
 	function updateSecondKind(id){
-		alert('sadfasf');
 		var text=$(".TEXTAREA_STYLE1");
 		var jsid=id;
 		window.location.href='pyl/configfilesecondkind.do?operate=update&secondKindSalaryId='+$(text[0]).val()+'&secondKindSaleId='+$(text[1]).val()+'&id='+jsid;
