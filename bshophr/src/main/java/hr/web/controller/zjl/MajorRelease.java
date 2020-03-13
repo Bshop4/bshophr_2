@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import hr.pojo.ConfigFileSecondKind;
 import hr.pojo.ConfigMajor;
 import hr.pojo.EngageMajorRelease;
 import hr.service.ConfigFileThirdKindService;
@@ -50,14 +53,52 @@ public class MajorRelease {
 	}
 	
 	@RequestMapping("/queryAll.do")
-	public String queryAll(Model model){
+	public String queryAll(Model model,HttpServletRequest request){
 		
-		List<EngageMajorRelease> list = emrs.findEngageMajorReleaseAll();
+//		List<EngageMajorRelease> list = emrs.findEngageMajorReleaseAll();
+//		if(list.size() == 0){
+//			
+//			model.addAttribute("list", "0");
+//		}else{
+//			model.addAttribute("list", list);
+//		}
+		
+		int maxPage =0;
+		int sumNumber =emrs.findCnt();//总个数
+		int pageSize =1;
+		int pageNo =1;
+		//最大页数
+		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
+		
+		String page=request.getParameter("page");
+		if(page!=null && !"".equals(page)){
+			try{
+				pageNo=Integer.parseInt(page);
+			}catch(NumberFormatException e){
+				pageNo=1;
+			}
+			if(pageNo>maxPage){
+				pageNo=maxPage;
+			}else if(pageNo<1){
+				pageNo=1;
+			}
+		}
+		
+		int currentPage=(pageNo-1)*pageSize;
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("pageSize", pageSize);
+		map.put("currentPage", currentPage);
+		//分页查询
+		List<EngageMajorRelease> list = emrs.findSplit(map);
+		
 		if(list.size() == 0){
-			
 			model.addAttribute("list", "0");
 		}else{
 			model.addAttribute("list", list);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("sumNumber", sumNumber);
+			model.addAttribute("pageSize", pageSize);
+			model.addAttribute("pageNo", pageNo);
 		}
 		
 		return "forward:/major_list.jsp";
@@ -116,14 +157,51 @@ public class MajorRelease {
 	
 	
 	@RequestMapping("/queryAllSub.do")
-	public String queryAllSub(Model model){
+	public String queryAllSub(Model model,HttpServletRequest request){
 		
-		List<EngageMajorRelease> list = emrs.findEngageMajorReleaseAll();
+//		List<EngageMajorRelease> list = emrs.findEngageMajorReleaseAll();
+//		if(list.size() == 0){
+//			
+//			model.addAttribute("list", "0");
+//		}else{
+//			model.addAttribute("list", list);
+//		}
+		int maxPage =0;
+		int sumNumber =emrs.findCnt();//总个数
+		int pageSize =1;
+		int pageNo =1;
+		//最大页数
+		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
+		
+		String page=request.getParameter("page");
+		if(page!=null && !"".equals(page)){
+			try{
+				pageNo=Integer.parseInt(page);
+			}catch(NumberFormatException e){
+				pageNo=1;
+			}
+			if(pageNo>maxPage){
+				pageNo=maxPage;
+			}else if(pageNo<1){
+				pageNo=1;
+			}
+		}
+		
+		int currentPage=(pageNo-1)*pageSize;
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("pageSize", pageSize);
+		map.put("currentPage", currentPage);
+		//分页查询
+		List<EngageMajorRelease> list = emrs.findSplit(map);
+		
 		if(list.size() == 0){
-			
 			model.addAttribute("list", "0");
 		}else{
 			model.addAttribute("list", list);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("sumNumber", sumNumber);
+			model.addAttribute("pageSize", pageSize);
+			model.addAttribute("pageNo", pageNo);
 		}
 		
 		return "forward:/major_release_query.jsp";

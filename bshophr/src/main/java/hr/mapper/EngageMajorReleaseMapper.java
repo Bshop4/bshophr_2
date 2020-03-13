@@ -1,6 +1,7 @@
 package hr.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +20,9 @@ public interface EngageMajorReleaseMapper {
 	
 	public List<EngageMajorRelease> selectEngageMajorReleaseAll();
 
+	public int selectCnt();
+	
+	public List<EngageMajorRelease> selectSplit(Map<String,Object> map);
 	
 
 }

@@ -61,7 +61,17 @@
 	</resultMap>
 	
 	
+	<!-- 查询最大总数-->
+	<select id="selectCnt"  resultType="_int">
+        select count(*) from engage_major_release
+	</select>
 	
+	<select id="selectSplit" resultMap="emr" parameterType="hashmap">
+		select * from engage_major_release
+		<if test="currentPage!=null and pageSize!=null">
+			limit #{currentPage},#{pageSize}
+		</if>
+	</select>
 	
 
 </mapper>
