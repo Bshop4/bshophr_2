@@ -1,5 +1,6 @@
 package hr.web.controller.djt;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class DjtController {
 	
 	@RequestMapping("/djttest.do")
 	public String testDjt(){
-		List<ConfigFileFirstKind> list=configFileFirstKindService.findConfigFileFirstKindAll();
+		List<ConfigFileFirstKind> list=configFileFirstKindService.findConfigFileFirstKindAll(new HashMap<String, Object>());
 		for (ConfigFileFirstKind c : list) {
 			System.out.println(c);
 		}

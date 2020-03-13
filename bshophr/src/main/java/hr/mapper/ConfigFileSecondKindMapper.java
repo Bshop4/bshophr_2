@@ -15,7 +15,7 @@ public interface ConfigFileSecondKindMapper {
 	public ConfigFileSecondKind selectConfigFileSecondKindById(int id);
 	public boolean deleteConfigFileSecondKindById(int id);
 	public boolean insertConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind);
-	public boolean updateConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind);
+	public boolean updateConfigFileSecondKind(Map<String, Object> map);
 	
 	//查询最大总数
 	public int selectConfigFileSecondKindMaxNum();

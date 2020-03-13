@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td align="right">
 						<input type="button" value="添加" class="BUTTON_STYLE1"
-							onclick="window.location.href='pyl/configfilefirstkind/alltosecond.do'" />
+							onclick="window.location.href='pyl/configfilesecondkind.do?operate=toAdd'" />
 					</td>
 				</tr>
 			</table>
@@ -95,10 +95,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							${sk.secondSaleId}
 						</td>
 						<td class="TD_STYLE2">
-							<a href="second_kind_change.jsp">变更</a>
+							<a href="pyl/configfilesecondkind.do?operate=one&id=${sk.fskId }">变更</a>
 						</td>
 						<td class="TD_STYLE2">
-							<a href="second_kind_delete.jsp">删除</a>
+							<a href="second_kind_delete.jsp?id=${sk.fskId }&message=${sk.firstKindId}/${sk.firstKindName}/${sk.secondKindId}/${sk.secondKindName}">删除</a>
 						</td>
 					</tr>
 				</c:forEach>

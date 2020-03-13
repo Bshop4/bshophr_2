@@ -107,7 +107,7 @@ a {
 									<table width="100%" border="0">
 										<tr>
 											<td width="2%"><img src="images/jt0.gif"></td>
-											<td width="98%"><a href="first_kind.jsp"
+											<td width="98%"><a href="pyl/configfilefirstkind.do?operate=list"
 												target="mainFrame">I级机构设置</a></td>
 										</tr>
 										<tr>
@@ -234,7 +234,7 @@ a {
 					<table width="100%" border="0">
 						<tr>
 							<td width="2%"><img src="images/jt0.gif"></td>
-							<td width="98%"><a href="human_register.jsp"
+							<td width="98%"><a href="humanRegister/jump.do"
 								target="mainFrame">人力资源档案登记</a></td>
 						</tr>
 						<tr>
@@ -471,7 +471,7 @@ a {
 										</tr>
 										<tr>
 											<td><img src="images/jt0.gif"></td>
-											<td><a href="engagemajorrelease.do?operate=list"
+											<td><a href="zjlMajorRelease/queryAllSub.do"
 												target="mainFrame">职位发布查询</a></td>
 										</tr>
 									</table>

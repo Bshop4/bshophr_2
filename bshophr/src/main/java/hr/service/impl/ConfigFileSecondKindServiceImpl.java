@@ -40,9 +40,9 @@ public class ConfigFileSecondKindServiceImpl implements ConfigFileSecondKindServ
 	}
 
 	@Override
-	public boolean updateConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind) {
+	public boolean updateConfigFileSecondKind(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return configFileSecondKindMapper.updateConfigFileSecondKind(configFileSecondKind);
+		return configFileSecondKindMapper.updateConfigFileSecondKind(map);
 	}
 
 	

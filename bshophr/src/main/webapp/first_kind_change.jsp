@@ -21,6 +21,7 @@
 	-->
 <link rel="stylesheet" href="table.css" type="text/css">
 <script type="text/javascript" src="javascript/comm/comm.js"></script>
+<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 </head>
 <body>
 	<form name="configfilefirstkindForm" method="post"
@@ -33,7 +34,7 @@
 			<tr>
 				<td align="right"><input type="button" value="提交"
 					class="BUTTON_STYLE1"
-					onclick="window.location.href='first_kind_change_success.jsp'">
+					onclick="updateSecondKind('${obj.ffkId}')">
 					<input type="button" value="返回" class="BUTTON_STYLE1"
 					onclick="history.back();"></td>
 			</tr>
@@ -44,27 +45,33 @@
 			<tr>
 				<td width="19%" class="TD_STYLE1">I级机构编号</td>
 				<td width="81%" class="TD_STYLE2"><input type="text"
-					name="item.firstKindId" value="01" readonly="readonly"
+					name="item.firstKindId" value="${obj.firstKindId}" readonly="readonly"
 					class="INPUT_STYLE1"></td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">I级机构名称</td>
 				<td class="TD_STYLE2"><input type="text"
-					name="item.firstKindName" value="集团" readonly="readonly"
+					name="item.firstKindName" value="${obj.firstKindName}" readonly="readonly"
 					class="INPUT_STYLE1"></td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">薪酬发放责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）</td>
 				<td class="TD_STYLE2"><textarea name="item.firstKindSalaryId"
-						rows="4" class="TEXTAREA_STYLE1">1</textarea></td>
+						rows="4" class="TEXTAREA_STYLE1">${obj.firstKindSalaryId}</textarea></td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）</td>
 				<td class="TD_STYLE2"><textarea name="item.firstKindSaleId"
-						rows="4" class="TEXTAREA_STYLE1">1</textarea></td>
+						rows="4" class="TEXTAREA_STYLE1">${obj.firstKindSaleId}</textarea></td>
 			</tr>
 		</table>
 	</form>
 </body>
 </html>
-
+<script type="text/javascript">
+	function updateSecondKind(id){
+		var text=$(".TEXTAREA_STYLE1");
+		var jsid=id;
+		window.location.href='pyl/configfilefirstkind.do?operate=update&firstKindSalaryId='+$(text[0]).val()+'&firstKindSaleId='+$(text[1]).val()+'&id='+jsid;
+	}
+</script>
