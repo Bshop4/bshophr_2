@@ -56,15 +56,18 @@ function finish3()
 	document.forms[0].submit();
 }
 function toAdd()
-{
-		document.forms[0].action = document.forms[0].action + "?operate=toAdd";
+{		
+		document.forms[0].action =  + "?operate=toAdd";
+//		document.forms[0].action = document.forms[0].action + "?operate=toAdd";
 		document.forms[0].submit();
 }
 
 function doAdd()
 {
 		document.forms[0].action = document.forms[0].action + "?operate=doAdd";
+		
 		document.forms[0].submit();
+		
 }
 		
 function toEdit(id)
