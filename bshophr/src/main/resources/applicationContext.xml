@@ -21,14 +21,12 @@
 	<context:component-scan base-package="hr"/>
 	<mvc:annotation-driven/> 
 	<!-- 加载外部数据库连接信息文件 -->
-	<context:property-placeholder location="classpath:db.properties"/>
+	<!-- <context:property-placeholder location="classpath:db.properties"/> -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/hr?characterEncoding=utf8&amp;useUnicode=true"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="root"></property>
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-
 	</bean> 
 	 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
