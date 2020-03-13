@@ -64,7 +64,7 @@ public class SalarystandardController {
 ////			ssdpojo.setSalary(Double.parseDouble(salary[i]));
 //			ssdpojo.setItemId(++i);
 //			ssdpojo.setItemName(c.getAttributeName());
-//			// 保存a
+//			// 保存
 //			service2.saveSalaryStandardDetails(ssdpojo);
 //		}
 //		return "forward:/WEB-INF/jsp/salarystandard_register_success.jsp";
