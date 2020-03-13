@@ -80,6 +80,28 @@ public class ConfigfilesecondkindController {
 				model.addAttribute("pageSize", pageSize);
 				model.addAttribute("pageNo", pageNo);
 				return "forward:/second_kind.jsp";
+				
+				
+			case "one":
+				ConfigFileSecondKind cfsk=cfsks.findConfigFileSecondKindById(Integer.parseInt(request.getParameter("id")));
+				model.addAttribute("obj", cfsk);
+				return "forward:/second_kind_change.jsp";
+				
+			case "update"://修改
+/*update student
+ * <set> //这个标签可以取消最后的逗号
+		<if test="sname!=null">
+			sname=#{sname},
+		<!if>
+
+		<if test="sex!=null">
+			sex=#{sex},
+		<!if>
+	</set>
+	where sid=#{sid}
+ */
+//				cfsks.updateConfigFileSecondKind(configFileSecondKind);
+				return "";
 			default:
 				break;
 		}
@@ -113,11 +135,5 @@ public class ConfigfilesecondkindController {
 		
 		return "redirect:/second_kind_register_success.jsp";
 	}
-	
-	
-	
-	
-	
-	
 	
 }
