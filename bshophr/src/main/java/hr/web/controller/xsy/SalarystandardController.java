@@ -15,7 +15,7 @@ import hr.service.SalaryStandardDetailsService;
 import hr.service.SalaryStandardService;
 
 @Controller
-public class Salarystandard {
+public class SalarystandardController {
 	@Autowired
 	private SalaryStandardService service1 = null;
 	@Autowired
@@ -48,6 +48,7 @@ public class Salarystandard {
 			service2.saveSalaryStandardDetails(ssdpojo);
 		}
 		return "forward:/WEB-INF/jsp/salarystandard_register_success.jsp";
+//		return "forward:salarystandard_register_success.jsp";
 	}
 
 //	@RequestMapping("/salarystandard.do")
