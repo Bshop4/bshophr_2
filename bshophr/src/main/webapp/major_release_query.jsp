@@ -23,17 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
     <link rel="stylesheet" href="table.css" type="text/css">
     <script type="text/javascript" src="javascript/comm/comm.js"></script>
-    <script type="text/javascript">
-    	function todelete(id){
-    		
-    		if(confirm("是否删除")){
-    			
-    			location.href="zjlMajorRelease/"+ id +"/delete.do";
-    			
-    		}
-    		
-    	}
-    </script>
 </head>
 
 <body>
@@ -46,6 +35,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
         </tr>
     </table>
+    <c:if test="${list ne '0'}">
+	    <label>当前职位发布总数：${fn:length(list)}</label>
+    </c:if>
+    <c:if test="${list eq '0'}">
+	    <label>当前职位发布总数：0</label>
+    </c:if>
+    
     <table width="100%" border="1" cellpadding=0 cellspacing=1
            bordercolorlight=#848284 bordercolordark=#eeeeee
            class="TABLE_STYLE1">
@@ -66,10 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 截止时间
             </td>
             <td width="10%" class="TD_STYLE1">
-                修改
-            </td>
-            <td width="10%" class="TD_STYLE1">
-                删除
+                申请职位
             </td>
         </tr>
 
@@ -93,11 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 ${major.registTime }
              </td>
              <td class="TD_STYLE2">
-                <a href="zjlMajorRelease/${major.mreId}/queryOne.do" target="mainFrame">修改</a>
-             </td>
-             <td class="TD_STYLE2">
-                <a href="javascript:todelete(${major.mreId })">删除</a>
-<%--                 <a href="zjlMajorRelease/${major.mreId}/delete.do">删除</a> --%>
+                <a href="zjlMajorRelease/${major.mreId}/queryOne.do" target="mainFrame">申请该职位</a>
              </td>
         </tr>
 		</c:forEach>

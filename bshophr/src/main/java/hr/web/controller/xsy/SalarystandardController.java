@@ -15,7 +15,7 @@ import hr.service.SalaryStandardDetailsService;
 import hr.service.SalaryStandardService;
 
 @Controller
-public class Salarystandard {
+public class SalarystandardController {
 	@Autowired
 	private SalaryStandardService service1 = null;
 	@Autowired
@@ -44,10 +44,11 @@ public class Salarystandard {
 			ssdpojo.setItemId(++i);
 			ssdpojo.setItemName(c.getAttributeName());
 			ssdpojo.setSalary(Double.parseDouble(ss[i + 4]));
-			// 保存a?
+			// 保
 			service2.saveSalaryStandardDetails(ssdpojo);
 		}
 		return "forward:/WEB-INF/jsp/salarystandard_register_success.jsp";
+//		return "forward:salarystandard_register_success.jsp";
 	}
 
 //	@RequestMapping("/salarystandard.do")
@@ -63,7 +64,7 @@ public class Salarystandard {
 ////			ssdpojo.setSalary(Double.parseDouble(salary[i]));
 //			ssdpojo.setItemId(++i);
 //			ssdpojo.setItemName(c.getAttributeName());
-//			// 保存
+//			// 保存??
 //			service2.saveSalaryStandardDetails(ssdpojo);
 //		}
 //		return "forward:/WEB-INF/jsp/salarystandard_register_success.jsp";

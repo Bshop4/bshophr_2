@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/Bshop4/bshophr_2.git
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
@@ -348,6 +351,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
     </table>
 </form>
+<<<<<<< HEAD
+</body>
+=======
 </body>
 =======
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
@@ -696,5 +702,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </table>
 </form>
 </body>
+>>>>>>> branch 'master' of https://github.com/Bshop4/bshophr_2.git
 >>>>>>> branch 'master' of https://github.com/Bshop4/bshophr_2.git
 </html>
