@@ -165,4 +165,13 @@ public class ConfigFileThirdKind implements java.io.Serializable {
 		return result;
 	}
 
+	@Override
+	public String toString() {
+		return "ConfigFileThirdKind [ftkId=" + ftkId + ", firstKindId=" + firstKindId + ", firstKindName="
+				+ firstKindName + ", secondKindId=" + secondKindId + ", secondKindName=" + secondKindName
+				+ ", thirdKindId=" + thirdKindId + ", thirdKindName=" + thirdKindName + ", thirdKindSaleId="
+				+ thirdKindSaleId + ", thirdKindIsRetail=" + thirdKindIsRetail + "]";
+	}
+	
+
 }

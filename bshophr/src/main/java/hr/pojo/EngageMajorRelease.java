@@ -321,4 +321,17 @@ public class EngageMajorRelease implements java.io.Serializable {
 		return result;
 	}
 
+	@Override
+	public String toString() {
+		return "EngageMajorRelease [mreId=" + mreId + ", firstKindId=" + firstKindId + ", firstKindName="
+				+ firstKindName + ", secondKindId=" + secondKindId + ", secondKindName=" + secondKindName
+				+ ", thirdKindId=" + thirdKindId + ", thirdKindName=" + thirdKindName + ", majorKindId=" + majorKindId
+				+ ", majorKindName=" + majorKindName + ", majorId=" + majorId + ", majorName=" + majorName
+				+ ", humanAmount=" + humanAmount + ", engageType=" + engageType + ", deadline=" + deadline
+				+ ", register=" + register + ", changer=" + changer + ", registTime=" + registTime + ", changeTime="
+				+ changeTime + ", majorDescribe=" + majorDescribe + ", engageRequired=" + engageRequired + "]";
+	}
+	
+	
+
 }

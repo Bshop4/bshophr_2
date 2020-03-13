@@ -466,7 +466,7 @@ a {
 										</tr>
 										<tr>
 											<td><img src="images/jt0.gif"></td>
-											<td><a href="engagemajorrelease.do?operate=toEdit"
+											<td><a href="zjlMajorRelease/queryAll.do"
 												target="mainFrame">职位发布变更</a></td>
 										</tr>
 										<tr>
