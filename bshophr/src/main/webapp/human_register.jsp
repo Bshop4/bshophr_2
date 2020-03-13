@@ -28,22 +28,23 @@
 <script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 <script type="text/javascript">
 //获取想要的数据
-/*(function(){
+(function(){
 	$.ajax({
 	    type:"POST",
-		url:"humanRegister.do",
+		url:"humanRegister/thereJump.do",
 		dataType:"json",
 		success:function(result){
 			console.log("msg");
-			console.log(JSON.stringify(result));
+			console.log(result);
 		}
 	});
 })();
-*/
-	function load(){
-		
+
+	/*function load(){
+		var myselect=$(".djt_SelectN").val();
+		console.log(myselect);
 	}
-	
+	*/
 	var subcat = new Array(2);
 	subcat[0] = [ "1", "01/软件公司", "01/集团", "01/集团/01/软件公司" ];
 	subcat[1] = [ "2", "02/生物科技有限公司", "01/集团", "01/集团/02/生物科技有限公司" ];
@@ -65,7 +66,7 @@
 <body onload="load()">
 	<form name="humanfileForm" method="post" action="/hr/humanfile.do">
 		//隐藏域
-		<input type="hidden" name="djt_SelectN" value="${map}"/>
+		<input type="hidden" class="djt_SelectN" value="${map}"/>
 		<table width="100%">
 			<tr>
 				<td><font color="#0000CC">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案登记

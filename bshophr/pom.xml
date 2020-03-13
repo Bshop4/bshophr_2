@@ -11,6 +11,14 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
+  	<!-- json请求 -->
+  	<dependency>
+		<groupId>net.sf.json-lib</groupId>
+		<artifactId>json-lib</artifactId>
+		<version>2.4</version>
+		<classifier>jdk15</classifier>
+	</dependency>
+  
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
