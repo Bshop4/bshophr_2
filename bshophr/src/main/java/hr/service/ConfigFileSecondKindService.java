@@ -14,5 +14,8 @@ public interface ConfigFileSecondKindService {
 	public boolean updateConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind);
 	
 	//查询最大总条数
-	public int findConfigFileSecondKindMaxNum();	
+	public int findConfigFileSecondKindMaxNum();
+	
+	//查询I级   下的  II级的MAX(second_kind_id) 
+	public String findConfigFileSecondKindIdMax(String i);
 }
