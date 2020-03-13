@@ -202,10 +202,55 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
 
     </style>
+    
+   <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+    	
+    	function update(obj){
+    		
+    		var myselect = document.getElementById("selectType");
+    		var index=myselect.selectedIndex;
+    		var Typeval = myselect.options[index].value;//招聘类型
+    		
+    		var cnt = document.getElementById("cnt").value;//人数
+    		
+    		var overTime = document.getElementById("overTime").value;//结束时间
+    		
+    		var describe = document.getElementById("describe").value;//描述
+    		
+    		var require = document.getElementById("require").value;//要求
+    		
+    		var changer = document.getElementById("changer").value;//更改人
+    		
+    		var changeTime = document.getElementById("changeTime").value;//改变时间
+    		
+    		
+    		
+    		$.ajax({
+    			
+    			type:"post",
+    			url : "zjlMajorRelease/"+obj+"/update.do",
+    			data : {"engageType" : Typeval, "humanAmount" : cnt, "registTime" : overTime, "majorDescribe" : describe, "engageRequired" : require, "changer" : changer, "changeTime" : changeTime},
+    			dataType:"json",
+    			success : function(re){
+    				
+    				alert(re)
+    				
+    			}		
+    		})
+    		
+    	}
+    	
+    	function toMajorChange(){
+    		location.href = "zjlMajorRelease/queryAll.do";
+    	}
+    	
+    </script>
+    
 </head>
 <body>
 
-<form name="humanfileForm" method="post" action="">
+<form name="humanfileForm">
     <table width="100%">
         <tr>
             <td>
@@ -214,9 +259,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
             <td align="right">
-                <input type="button" value="提交" class="BUTTON_STYLE1"
-                       onclick="window.location.href='register_choose_picture.html'">
-                <input type="reset" value="返回" class="BUTTON_STYLE1">
+                <input type="button" onclick="update(${obj.mreId})" value="重新提交" id="updateBtn" class="BUTTON_STYLE1" data_id="${obj.mreId }">
+                <input type="reset" onclick="toMajorChange()" value="返回" class="BUTTON_STYLE1">
             </td>
         </tr>
     </table>
@@ -228,39 +272,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 I级机构
             </td>
             <td width="14%" class="TD_STYLE2">
-                <select name="item.firstKindName" class="SELECT_STYLE1">
-                	<option value="">&nbsp;</option>
-
-                    <option value="01/集团">01/集团</option>
-
-                    <option value="03/02">03/02</option></select>
+                ${obj. firstKindName}
             </td>
             <td width="11%" class="TD_STYLE1">
                 II级机构
             </td>
             <td width="14%" class="TD_STYLE2">
-                <select class="SELECT_STYLE1">
-                	<option value="">&nbsp;</option>
-                 	<option value="123">123</option>
-                </select>
+                ${obj.secondKindName }
             </td>
             <td width="11%" class="TD_STYLE1">
                 III级机构
             </td>
             <td class="TD_STYLE2" colspan="2">
-                <select class="SELECT_STYLE1">
-                	<option value="">&nbsp;</option>
-                 	<option value="123">123</option>
-                </select>
+               ${obj.thirdKindName }
             </td>
             <td width="11%" class="TD_STYLE1">
                 招聘类型
             </td>
             <td class="TD_STYLE2" colspan="2">
-                <select name="selectType" class="SELECT_STYLE1">
-                	<option value="">&nbsp;</option>
-                    <option value="123">123</option>
-                    <option value="123555">123555</option>
+                <select id="selectType" name="selectType" class="SELECT_STYLE1">
+                	<c:if test="${obj.engageType eq '社会招聘' }">
+                		<option value="社会招聘" selected="selected">社会招聘</option>
+                		<option value="校园招聘">校园招聘</option>
+                	</c:if>
+                	<c:if test="${obj.engageType eq '校园招聘' }">
+                		<option value="社会招聘" >社会招聘</option>
+                		<option value="校园招聘" selected="selected">校园招聘</option>
+                	</c:if>
                 </select>
             </td>
         </tr>
@@ -269,51 +307,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 职位分类
             </td>
             <td class="TD_STYLE2">
-                <select name="item.humanMajorKindName" onchange="changelocation2(document.forms[0].elements['item.hunmaMajorName'],document.forms[0].elements['item.humanMajorKindName'].options[document.forms[0].elements['item.humanMajorKindName'].selectedIndex].value)" class="SELECT_STYLE1">
-                	<option value="">&nbsp;</option>
-
-                    <option value="01/销售">01/销售</option>
-
-                    <option value="02/软件开发">02/软件开发</option>
-
-                    <option value="03/人力资源">03/人力资源</option>
-
-                    <option value="04/生产部">04/生产部</option></select>
+                	${obj.majorKindName }
             </td>
             <td class="TD_STYLE1">
                 职位名称
             </td>
             <td class="TD_STYLE2">
-                <select name="item.hunmaMajorName" class="SELECT_STYLE1">
-                	<option value="">&nbsp;</option>
-                	<option value="123">1234</option>
-                </select>
+                ${obj.majorName}
             </td>
             <td class="TD_STYLE1">
                 招聘人数
             </td>
             <td colspan="2" class="TD_STYLE2">
-                <input type="text" name="personNum"/>
+                <input type="text" name="personNum" id="cnt" value="${obj.humanAmount }"/>
             </td>
             <td class="TD_STYLE1">
                 截止日期
             </td>
             <td colspan="2" class="TD_STYLE2">
-                <input type="text" name="overTime"/>
+                <input type="text" name="overTime" id="overTime" value="${obj.deadline }"/>
             </td>
         </tr>
         <tr>
             <td class="TD_STYLE1">
-                登记人
+                变更人
             </td>
             <td class="TD_STYLE2">
-                <input type="text" name="item.humanName" value="" class="INPUT_STYLE2">
+                <input type="text" name="item.humanName" id="changer" value="${obj.changer }" class="INPUT_STYLE2">
             </td>
             <td class="TD_STYLE1">
-                登记时间
+                变更时间
             </td>
             <td class="TD_STYLE2">
-                <input type="text" name="loginTime" readonly value="hhhhhh"/>
+                <input type="text" name="loginTime" id="changeTime" readonly value="${obj.changeTime }"/>
             </td>
             <td class="TD_STYLE1">
 
@@ -334,7 +360,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 职位描述
             </td>
             <td colspan="8" class="TD_STYLE2">
-                <textarea name="item.humanHistroyRecords" rows="4" class="TEXTAREA_STYLE1"></textarea>
+                <textarea name="item.humanHistroyRecords" id="describe" rows="4" class="TEXTAREA_STYLE1">${obj.majorDescribe }</textarea>
             </td>
         </tr>
         <tr>
@@ -342,7 +368,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 招聘信息
             </td>
             <td colspan="8" class="TD_STYLE2">
-                <textarea name="item.humanFamilyMembership" rows="4" class="TEXTAREA_STYLE1"></textarea>
+                <textarea name="item.humanFamilyMembership" id="require" rows="4" class="TEXTAREA_STYLE1">${obj.engageRequired }</textarea>
             </td>
         </tr>
     </table>

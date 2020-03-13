@@ -471,7 +471,7 @@ a {
 										</tr>
 										<tr>
 											<td><img src="images/jt0.gif"></td>
-											<td><a href="engagemajorrelease.do?operate=list"
+											<td><a href="zjlMajorRelease/queryAllSub.do"
 												target="mainFrame">职位发布查询</a></td>
 										</tr>
 									</table>
