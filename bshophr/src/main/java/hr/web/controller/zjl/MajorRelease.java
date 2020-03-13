@@ -42,10 +42,6 @@ public class MajorRelease {
 		
 		List<ConfigMajor> listConfigMajor = cms.findConfigMajorAll();
 		
-		for (ConfigMajor configMajor : listConfigMajor) {
-			System.out.println(configMajor);
-		}
-		
 		return "forward:/major_release.jsp";
 	}
 	
