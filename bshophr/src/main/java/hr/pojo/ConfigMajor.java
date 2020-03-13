@@ -120,4 +120,11 @@ public class ConfigMajor implements java.io.Serializable {
 		return result;
 	}
 
+	@Override
+	public String toString() {
+		return "ConfigMajor [makId=" + makId + ", majorKindId=" + majorKindId + ", majorKindName=" + majorKindName
+				+ ", majorId=" + majorId + ", majorName=" + majorName + ", testAmount=" + testAmount + "]";
+	}
+	
+
 }

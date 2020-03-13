@@ -228,7 +228,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 I级机构
             </td>
             <td width="14%" class="TD_STYLE2">
-                <select name="item.firstKindName" onchange="changelocation(document.forms[0].elements['item.secondKindName'],document.forms[0].elements['item.firstKindName'].options[document.forms[0].elements['item.firstKindName'].selectedIndex].value)" class="SELECT_STYLE1"><option value="">&nbsp;</option>
+                <select name="item.firstKindName" class="SELECT_STYLE1">
+                	<option value="">&nbsp;</option>
 
                     <option value="01/集团">01/集团</option>
 
@@ -238,17 +239,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 II级机构
             </td>
             <td width="14%" class="TD_STYLE2">
-                <select name="item.secondKindName" onchange="changelocation1(document.forms[0].elements['item.thirdKindName'],document.forms[0].elements['item.secondKindName'].options[document.forms[0].elements['item.secondKindName'].selectedIndex].value)" class="SELECT_STYLE1"><script language="javascript">
-                    changelocation(document.forms[0].elements["item.secondKindName"],document.forms[0].elements["item.firstKindName"].value)
-                </script></select>
+                <select class="SELECT_STYLE1">
+                	<option value="">&nbsp;</option>
+                 	<option value="123">123</option>
+                </select>
             </td>
             <td width="11%" class="TD_STYLE1">
                 III级机构
             </td>
             <td class="TD_STYLE2" colspan="2">
-                <select name="item.thirdKindName" class="SELECT_STYLE1"><script language="javascript">
-                    changelocation1(document.forms[0].elements["item.thirdKindName"],document.forms[0].elements["item.secondKindName"].value)
-                </script></select>
+                <select class="SELECT_STYLE1">
+                	<option value="">&nbsp;</option>
+                 	<option value="123">123</option>
+                </select>
             </td>
             <td width="11%" class="TD_STYLE1">
                 招聘类型
@@ -281,9 +284,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 职位名称
             </td>
             <td class="TD_STYLE2">
-                <select name="item.hunmaMajorName" class="SELECT_STYLE1"><script language="javascript">
-                    changelocation2(document.forms[0].elements["item.hunmaMajorName"],document.forms[0].elements["item.humanMajorKindName"].value)
-                </script></select>
+                <select name="item.hunmaMajorName" class="SELECT_STYLE1">
+                	<option value="">&nbsp;</option>
+                	<option value="123">1234</option>
+                </select>
             </td>
             <td class="TD_STYLE1">
                 招聘人数
