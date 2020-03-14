@@ -60,7 +60,7 @@
 </script>
 </head>
 
-<body>
+<body onload="load()">
 	<form name="humanfileForm" method="post" action="/hr/humanfile.do">
 		<table width="100%">
 			<tr>

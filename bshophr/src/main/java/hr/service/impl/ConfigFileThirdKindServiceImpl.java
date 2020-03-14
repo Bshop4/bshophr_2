@@ -1,6 +1,7 @@
 package hr.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,9 @@ public class ConfigFileThirdKindServiceImpl implements ConfigFileThirdKindServic
 	private ConfigFileThirdKindMapper configFileThirdKindMapper=null;
 
 	@Override
-	public List<ConfigFileThirdKind> findConfigFileThirdKindAll() {
+	public List<ConfigFileThirdKind> findConfigFileThirdKindAll(Map<String,Object> map) {
 		// TODO Auto-generated method stub
-		return configFileThirdKindMapper.selectConfigFileThirdKindAll();
+		return configFileThirdKindMapper.selectConfigFileThirdKindAll(map);
 	}
 
 	@Override
@@ -56,6 +57,24 @@ public class ConfigFileThirdKindServiceImpl implements ConfigFileThirdKindServic
 	public List<ConfigFileThirdKind> findConfigFileThirdKindAllBySecondKindName(String name) {
 		// TODO Auto-generated method stub
 		return configFileThirdKindMapper.selectConfigFileThirdKindAllBySecondKindName(name);
+	}
+
+	@Override
+	public boolean updateConfigFileThirdKindPlus(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return configFileThirdKindMapper.updateConfigFileThirdKindPlus(map);
+	}
+
+	@Override
+	public int findConfigFileThirdKindMaxNum() {
+		// TODO Auto-generated method stub
+		return configFileThirdKindMapper.selectConfigFileThirdKindMaxNum();
+	}
+
+	@Override
+	public String findConfigFileThirdKindIdMax(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return configFileThirdKindMapper.selectConfigFileThirdKindIdMax(map);
 	}
 
 	

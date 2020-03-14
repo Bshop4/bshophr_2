@@ -48,7 +48,7 @@ public class MajorRelease {
 	@RequestMapping("/query.do")
 	public String query(Model model){
 		
-		List<ConfigFileThirdKind> list = cftks.findConfigFileThirdKindAll();
+		List<ConfigFileThirdKind> list = cftks.findConfigFileThirdKindAll(new HashMap<String, Object>());
 		Set<String> set = new HashSet<String>();
 		for (ConfigFileThirdKind c : list) {
 			set.add(c.getFirstKindName());
