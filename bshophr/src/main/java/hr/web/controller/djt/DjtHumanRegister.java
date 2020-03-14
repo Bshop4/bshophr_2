@@ -35,7 +35,7 @@ public class DjtHumanRegister {
 	@RequestMapping("/jump.do")
 	public String pageJump(Model model){
 		Map<String, Object> myselect=new HashMap<String, Object>();
-		List<ConfigFileThirdKind> listCftk=configFileThirdKindService.findConfigFileThirdKindAll();
+		List<ConfigFileThirdKind> listCftk=configFileThirdKindService.findConfigFileThirdKindAll(new HashMap<String, Object>());
 		myselect.put("listCftk", listCftk);
 		
 		List<ConfigMajor> listCm=configMajorService.findConfigMajorAll();
@@ -50,7 +50,7 @@ public class DjtHumanRegister {
 	@RequestMapping("/thereJump.do")
 	public String selectOptions(){
 		Map<String, Object> myselect=new HashMap<String, Object>();
-		List<ConfigFileThirdKind> listCftk=configFileThirdKindService.findConfigFileThirdKindAll();
+		List<ConfigFileThirdKind> listCftk=configFileThirdKindService.findConfigFileThirdKindAll(new HashMap<String, Object>());
 		myselect.put("listCftk", listCftk);
 		
 		List<ConfigMajor> listCm=configMajorService.findConfigMajorAll();
