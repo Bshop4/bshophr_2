@@ -21,6 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css" />
 	-->
 	<link rel="stylesheet" href="table.css" type="text/css" />
+	<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 	<script type="text/javascript" src="javascript/comm/comm.js"></script>
 </head>
 	<body>
@@ -31,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--II级机构设置 </font></td>
 	  </tr>
 	  <tr>
-	    <td align="right"><input type="button" value="提交" class="BUTTON_STYLE1" onclick="window.location.href='second_kind_change_success.jsp'">
+	    <td align="right"><input type="button" value="提交" class="BUTTON_STYLE1" onclick="updateSecondKind('${obj.fskId}')">
 	      <input type="button" value="返回" class="BUTTON_STYLE1" onclick="history.back();"></td>
 	  </tr>
 	  </table>
@@ -39,29 +40,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<table width="100%"  border="1" cellpadding=0 cellspacing=1 bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
 	  <tr>
 	    <td width="19%" class="TD_STYLE1">I级机构编号</td>
-	    <td width="81%" class="TD_STYLE2"><input type="text" name="item.firstKindId" value="01" readonly="readonly" class="INPUT_STYLE1"></td>
+	    <td width="81%" class="TD_STYLE2"><input type="text" name="item.firstKindId" value="${obj.firstKindId}" readonly="readonly" class="INPUT_STYLE1"></td>
 	  </tr>
 	  <tr>
 	    <td class="TD_STYLE1">I级机构名称</td>
-	    <td class="TD_STYLE2"><input type="text" name="item.firstKindName" value="集团" readonly="readonly" class="INPUT_STYLE1"></td>
+	    <td class="TD_STYLE2"><input type="text" name="item.firstKindName" value="${obj.firstKindName}" readonly="readonly" class="INPUT_STYLE1"></td>
 	  </tr>	
 	  <tr>
 	    <td width="19%" class="TD_STYLE1">II级机构编号</td>
-	    <td width="81%" class="TD_STYLE2"><input type="text" name="item.secondKindId" value="01" readonly="readonly" class="INPUT_STYLE1"></td>
+	    <td width="81%" class="TD_STYLE2"><input type="text" name="item.secondKindId" value="${obj.secondKindId}" readonly="readonly" class="INPUT_STYLE1"></td>
 	  </tr>
 	  <tr>
 	    <td class="TD_STYLE1">II级机构名称</td>
-	    <td class="TD_STYLE2"><input type="text" name="item.secondKindName" value="软件工程" readonly="readonly" class="INPUT_STYLE1"></td>
+	    <td class="TD_STYLE2"><input type="text" name="item.secondKindName" value="${obj.secondKindName}" readonly="readonly" class="INPUT_STYLE1"></td>
 	  </tr>
 	  <tr>
 	    <td class="TD_STYLE1">薪酬发放责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）</td>
-	    <td class="TD_STYLE2"><textarea name="item.secondKindSalaryId" rows="4" class="TEXTAREA_STYLE1">1</textarea></td>
+	    <td class="TD_STYLE2"><textarea name="item.secondKindSalaryId" rows="4" class="TEXTAREA_STYLE1">${obj.secondSalaryId}</textarea></td>
 	  </tr>
 	  <tr>
 	    <td class="TD_STYLE1">销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）</td>
-	    <td class="TD_STYLE2"><textarea name="item.secondKindSaleId" rows="4" class="TEXTAREA_STYLE1">1</textarea></td>
+	    <td class="TD_STYLE2"><textarea name="item.secondKindSaleId" rows="4" class="TEXTAREA_STYLE1">${obj.secondSaleId}</textarea></td>
 	  </tr>
 	</table>
 	</form>
 </body>
 </html>
+<script type="text/javascript">
+	function updateSecondKind(id){
+		var text=$(".TEXTAREA_STYLE1");
+		var jsid=id;
+		window.location.href='pyl/configfilesecondkind.do?operate=update&secondKindSalaryId='+$(text[0]).val()+'&secondKindSaleId='+$(text[1]).val()+'&id='+jsid;
+	}
+</script>
+

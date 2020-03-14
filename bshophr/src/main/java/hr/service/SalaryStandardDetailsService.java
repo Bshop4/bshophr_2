@@ -6,8 +6,13 @@ import hr.pojo.SalaryStandardDetails;
 
 public interface SalaryStandardDetailsService {
 	public List<SalaryStandardDetails> findSalaryStandardDetailsAll();
-	public SalaryStandardDetails findSalaryStandardDetailsById(int id);
+
+	// 向思宇改的
+	public List<SalaryStandardDetails> findSalaryStandardDetailsById(int id);
+
 	public boolean removeSalaryStandardDetailsById(int id);
+
 	public boolean saveSalaryStandardDetails(SalaryStandardDetails salaryStandardDetails);
+
 	public boolean updateSalaryStandardDetails(SalaryStandardDetails salaryStandardDetails);
 }

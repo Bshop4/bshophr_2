@@ -1,6 +1,7 @@
 package hr.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,18 @@ public class EngageMajorReleaseServiceImpl implements EngageMajorReleaseService{
 	public List<EngageMajorRelease> findEngageMajorReleaseAll() {
 		// TODO Auto-generated method stub
 		return emm.selectEngageMajorReleaseAll();
+	}
+
+	@Override
+	public int findCnt() {
+		// TODO Auto-generated method stub
+		return emm.selectCnt();
+	}
+
+	@Override
+	public List<EngageMajorRelease> findSplit(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return emm.selectSplit(map);
 	}
 	
 	

@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -25,7 +26,7 @@
 </head>
 
 <body>
-	<form method="post" action="configfilefirstkind.do">
+	<form method="post" action="pyl/configfilefirstkind.do?operate=list">
 		<table width="100%">
 			<tr>
 				<td><font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--I级机构设置
@@ -49,20 +50,35 @@
 			</tr>
 
 			<tr>
-				<td class="TD_STYLE2">01</td>
-				<td class="TD_STYLE2">集团</td>
-				<td class="TD_STYLE2">1</td>
-				<td class="TD_STYLE2">1</td>
-				<td class="TD_STYLE2"><a href="first_kind_change.jsp">变更</a></td>
-				<td class="TD_STYLE2"><a href="first_kind_delete.jsp">删除</a></td>
+				<c:if test="${!empty list}">
+				<c:forEach items="${list}" var="sk">
+					<tr>
+						<td class="TD_STYLE2">
+							${sk.firstKindId}
+						</td>
+						<td class="TD_STYLE2">
+							${sk.firstKindName}
+						</td>
+						<td class="TD_STYLE2">
+							${sk.firstKindSalaryId}
+						</td>
+						<td class="TD_STYLE2">
+							${sk.firstKindSaleId}
+						</td>
+						<td class="TD_STYLE2">
+							<a href="pyl/configfilefirstkind.do?operate=one&id=${sk.ffkId }">变更</a>
+						</td>
+						<td class="TD_STYLE2">
+							<a href="first_kind_delete.jsp?id=${sk.ffkId }&message=${sk.firstKindId}/${sk.firstKindName}">删除</a>
+						</td>
+					</tr>
+				</c:forEach>
+				</c:if>
 			</tr>
 
 		</table>
 		<p>
-			&nbsp;&nbsp;总数：1例 &nbsp;&nbsp;&nbsp;当前第 1 页 &nbsp;&nbsp;&nbsp;共 1 页
-			&nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1>
-			页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18
-				border=0>
+			<p>&nbsp;&nbsp;总数：${sumNumber}例 &nbsp;&nbsp;&nbsp;当前第 ${pageNo } 页  &nbsp;&nbsp;&nbsp;共 ${maxPage } 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1 /> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0 />
 	</form>
 </body>
 </html>

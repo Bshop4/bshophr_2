@@ -23,16 +23,16 @@
 <script type="text/javascript" src="javascript/comm/comm.js"></script>
 </head>
 <body>
-	<form method="post" action="configfilefirstkind.do">
+	<form method="post" action="pyl/configfilefirstkind.do">
 		<table width="100%">
 			<tr>
 				<td colspan="2"><font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--I级机构设置
 				</font></td>
 			</tr>
 			<tr>
-				<td width="49%">您确认删除 01 / 集团 这条记录吗?</td>
+				<td width="49%">您确认删除 ${param.message} 这条记录吗?</td>
 				<td width="51%" align="right"><input type="button" value="删除"
-					class="BUTTON_STYLE1" onclick="javascript:doDel('2')"> <input
+					class="BUTTON_STYLE1" onclick="javascript:doDel('${param.id }')"> <input
 					type="button" value="返回" class="BUTTON_STYLE1"
 					onclick="history.back();"></td>
 			</tr>

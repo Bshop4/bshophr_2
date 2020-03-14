@@ -18,11 +18,11 @@ public class SalaryStandard implements java.io.Serializable {
 	private String checker;
 	private String changer;
 	private Timestamp registTime;
-	private Timestamp checkTime;
-	private Timestamp changeTime;
+	private String checkTime;
+	private String changeTime;
 	private Double salarySum;
-	private Short checkStatus;
-	private Short changeStatus;
+	private String checkStatus;
+	private String changeStatus;
 	private String checkComment;
 	private String remark;
 
@@ -33,7 +33,7 @@ public class SalaryStandard implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public SalaryStandard(Timestamp registTime, Timestamp checkTime, Timestamp changeTime) {
+	public SalaryStandard(Timestamp registTime, String checkTime, String changeTime) {
 		this.registTime = registTime;
 		this.checkTime = checkTime;
 		this.changeTime = changeTime;
@@ -41,8 +41,8 @@ public class SalaryStandard implements java.io.Serializable {
 
 	/** full constructor */
 	public SalaryStandard(Short ssdId, String standardId, String standardName, String designer, String register,
-			String checker, String changer, Timestamp registTime, Timestamp checkTime, Timestamp changeTime,
-			Double salarySum, Short checkStatus, Short changeStatus, String checkComment, String remark) {
+			String checker, String changer, Timestamp registTime, String checkTime, String changeTime, Double salarySum,
+			String checkStatus, String changeStatus, String checkComment, String remark) {
 		this.ssdId = ssdId;
 		this.standardId = standardId;
 		this.standardName = standardName;
@@ -126,19 +126,19 @@ public class SalaryStandard implements java.io.Serializable {
 		this.registTime = registTime;
 	}
 
-	public Timestamp getCheckTime() {
+	public String getCheckTime() {
 		return this.checkTime;
 	}
 
-	public void setCheckTime(Timestamp checkTime) {
+	public void setCheckTime(String checkTime) {
 		this.checkTime = checkTime;
 	}
 
-	public Timestamp getChangeTime() {
+	public String getChangeTime() {
 		return this.changeTime;
 	}
 
-	public void setChangeTime(Timestamp changeTime) {
+	public void setChangeTime(String changeTime) {
 		this.changeTime = changeTime;
 	}
 
@@ -150,19 +150,19 @@ public class SalaryStandard implements java.io.Serializable {
 		this.salarySum = salarySum;
 	}
 
-	public Short getCheckStatus() {
+	public String getCheckStatus() {
 		return this.checkStatus;
 	}
 
-	public void setCheckStatus(Short checkStatus) {
+	public void setCheckStatus(String checkStatus) {
 		this.checkStatus = checkStatus;
 	}
 
-	public Short getChangeStatus() {
+	public String getChangeStatus() {
 		return this.changeStatus;
 	}
 
-	public void setChangeStatus(Short changeStatus) {
+	public void setChangeStatus(String changeStatus) {
 		this.changeStatus = changeStatus;
 	}
 

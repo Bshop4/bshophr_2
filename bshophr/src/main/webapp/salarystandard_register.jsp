@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -44,8 +46,7 @@
 			<tr>
 				<td width="74" class="TD_STYLE1">薪酬标准编号</td>
 				<td width="168" class="TD_STYLE2"><input type="text"
-					name="standardId" value="1000001" readonly="readonly"
-					class="INPUT_STYLE2" id="my1"></td>
+					name="standardId" value="" class="INPUT_STYLE2" id="my1"></td>
 				<td width="83" class="TD_STYLE1">薪酬标准名称</td>
 				<td width="171" class="TD_STYLE2"><input type="text"
 					name="standardName" value="" class="INPUT_STYLE2" id="my2"></td>
@@ -60,11 +61,11 @@
 					value="" class="INPUT_STYLE2" id="my3"></td>
 				<td class="TD_STYLE1">登记人</td>
 				<td class="TD_STYLE2"><input type="text" name="register"
-					value="better_wanghao" readonly="readonly" class="INPUT_STYLE2" id="my4">
+					value="" class="INPUT_STYLE2" id="my4">
 				</td>
 				<td class="TD_STYLE1">登记时间</td>
 				<td class="TD_STYLE2"><input type="text"
-					name="item.str_registeTime" value="2010-05-29 03:13:27"
+					name="item.str_registeTime" value="${cdate } "
 					readonly="readonly" class="INPUT_STYLE2"></td>
 				<td class="TD_STYLE1">&nbsp;</td>
 				<td class="TD_STYLE2">&nbsp;</td>
@@ -162,17 +163,18 @@
 <script type="text/javascript">
 	function getdata() {
 		var my1 = ($("#my1").val()==""?"null":$("#my1").val());
-		var my2 = ($("#my2").val()==""?"null":$("#my1").val());
-		var my3 = ($("#my3").val()==""?"null":$("#my1").val());
-		var my4 = ($("#my4").val()==""?"null":$("#my1").val());
-		var my5 = ($("#my5").val()==""?"null":$("#my1").val());
+		var my2 = ($("#my2").val()==""?"null":$("#my2").val());
+		var my3 = ($("#my3").val()==""?"null":$("#my3").val());
+		var my4 = ($("#my4").val()==""?"null":$("#my4").val());
+		var my5 = ($("#my5").val()==""?"null":$("#my5").val());
 		var str1 = ($("#td1").val()==""?"0.00":$("#td1").val());
 		var str2 = ($("#td2").val()==""?"0.00":$("#td2").val());
 		var str3 = ($("#td3").val()==""?"0.00":$("#td3").val());
 		var str4 = ($("#td4").val()==""?"0.00":$("#td4").val());
 		var str5 = ($("#td5").val()==""?"0.00":$("#td5").val());
 		var str6 = ($("#td6").val()==""?"0.00":$("#td6").val());
-		var obj = my1+","+my2+","+my3+","+my4+","+my5+","+str1+","+str2+","+str3+","+str4+","+str5+","+str6;
+		var salary_sum = Number(str1)+Number(str2)+Number(str3)+Number(str4)+Number(str5)+Number(str6);
+		var obj = my1+","+my2+","+my3+","+my4+","+my5+","+str1+","+str2+","+str3+","+str4+","+str5+","+str6+","+salary_sum;
 		$.ajax({
 			type:"POST",
 			url:"hr/salarystandard.do?str="+obj,
