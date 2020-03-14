@@ -244,7 +244,7 @@ a {
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td><a href="query_locate.jsp" target="mainFrame">人力资源档案查询</a>
+							<td><a href="queryLocate/jumpPage.do" target="mainFrame">人力资源档案查询</a>
 							</td>
 						</tr>
 						<tr>
