@@ -202,6 +202,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
 
     </style>
+    
+    
+    
 </head>
 <body>
 
@@ -228,27 +231,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 I级机构
             </td>
             <td width="14%" class="TD_STYLE2">
-                <select name="item.firstKindName" onchange="changelocation(document.forms[0].elements['item.secondKindName'],document.forms[0].elements['item.firstKindName'].options[document.forms[0].elements['item.firstKindName'].selectedIndex].value)" class="SELECT_STYLE1"><option value="">&nbsp;</option>
-
-                    <option value="01/集团">01/集团</option>
-
-                    <option value="03/02">03/02</option></select>
+                <select name="item.firstKindName" class="SELECT_STYLE1" id="zjlFirstKind">
+                	<option value="">&nbsp;</option>
+					<c:if test="${!empty firstList}">
+						<c:forEach items="${firstList }" var="fl">
+							<option value="${fl}">${fl }</option> 
+						</c:forEach>
+					</c:if>
+                </select>
             </td>
             <td width="11%" class="TD_STYLE1">
                 II级机构
             </td>
             <td width="14%" class="TD_STYLE2">
-                <select name="item.secondKindName" onchange="changelocation1(document.forms[0].elements['item.thirdKindName'],document.forms[0].elements['item.secondKindName'].options[document.forms[0].elements['item.secondKindName'].selectedIndex].value)" class="SELECT_STYLE1"><script language="javascript">
-                    changelocation(document.forms[0].elements["item.secondKindName"],document.forms[0].elements["item.firstKindName"].value)
-                </script></select>
+                <select name="item.secondKindName" class="SELECT_STYLE1" id="zjlSecondKind">
+                	<option value="">&nbsp;</option>
+                </select>
             </td>
             <td width="11%" class="TD_STYLE1">
                 III级机构
             </td>
             <td class="TD_STYLE2" colspan="2">
-                <select name="item.thirdKindName" class="SELECT_STYLE1"><script language="javascript">
-                    changelocation1(document.forms[0].elements["item.thirdKindName"],document.forms[0].elements["item.secondKindName"].value)
-                </script></select>
+                <select name="item.thirdKindName" class="SELECT_STYLE1" id="zjlThirdKind">
+                	<option value="">&nbsp;</option>
+                </select>
             </td>
             <td width="11%" class="TD_STYLE1">
                 招聘类型
@@ -256,8 +262,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="TD_STYLE2" colspan="2">
                 <select name="selectType" class="SELECT_STYLE1">
                 	<option value="">&nbsp;</option>
-                    <option value="123">123</option>
-                    <option value="123555">123555</option>
+                    <option value="社会招聘">社会招聘</option>
+                    <option value="校园招聘">校园招聘</option>
                 </select>
             </td>
         </tr>
@@ -266,24 +272,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 职位分类
             </td>
             <td class="TD_STYLE2">
-                <select name="item.humanMajorKindName" onchange="changelocation2(document.forms[0].elements['item.hunmaMajorName'],document.forms[0].elements['item.humanMajorKindName'].options[document.forms[0].elements['item.humanMajorKindName'].selectedIndex].value)" class="SELECT_STYLE1">
+                <select name="item.humanMajorKindName" class="SELECT_STYLE1" id="zjlMajorKindName">
                 	<option value="">&nbsp;</option>
-
-                    <option value="01/销售">01/销售</option>
-
-                    <option value="02/软件开发">02/软件开发</option>
-
-                    <option value="03/人力资源">03/人力资源</option>
-
-                    <option value="04/生产部">04/生产部</option></select>
+					<c:if test="${!empty majorKindNameList}">
+						<c:forEach items="${majorKindNameList }" var="mknl">
+							<option value="${mknl}">${mknl }</option> 
+						</c:forEach>
+					</c:if>
+                </select>
             </td>
             <td class="TD_STYLE1">
                 职位名称
             </td>
             <td class="TD_STYLE2">
-                <select name="item.hunmaMajorName" class="SELECT_STYLE1"><script language="javascript">
-                    changelocation2(document.forms[0].elements["item.hunmaMajorName"],document.forms[0].elements["item.humanMajorKindName"].value)
-                </script></select>
+                <select name="item.hunmaMajorName" class="SELECT_STYLE1" id="zjlMajorName">
+                </select>
             </td>
             <td class="TD_STYLE1">
                 招聘人数
@@ -345,3 +348,116 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </form>
 </body>
 </html>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+	
+	$("#zjlFirstKind").change(function(){
+		
+		var val = $('#zjlFirstKind option:selected').val();
+		
+		/* 一级不为空 找二级 */
+		if(val != ""){
+			$("#zjlSecondKind").empty();
+			$.ajax({
+				type : "post",
+				url : "zjlMajorRelease/querySecondKindName.do",
+				data : {"firstKindName" : val},
+				success : function(re){
+					var str = "<option></option>";
+					for(var i = 0; i < re.length; i++){
+						str += "<option value='"+re[i]+"'>"+re[i]+"</option>";
+					}
+					$("#zjlSecondKind").append(str);
+				}
+			})
+		}
+		
+		/* 如果一级为空  全部清空 */
+		if(val == ""){
+			$("#zjlSecondKind").empty();
+			$("#zjlThirdKind").empty();
+			
+			var str = `
+				<option>&nbsp;</option>
+			`;
+			$("#zjlSecondKind").append(str);
+			
+			var str1 = `
+				<option>&nbsp;</option>
+			`;
+			$("#zjlThirdKind").append(str1);
+			
+		}
+		
+	 });
+	
+	
+	$("#zjlSecondKind").change(function(){
+		
+		var val = $('#zjlSecondKind option:selected').val();
+		
+		/* 二级不为空 找三级 */
+		 if(val != ""){
+			$("#zjlThirdKind").empty();
+			$.ajax({
+				type : "post",
+				url : "zjlMajorRelease/queryThirdKindName.do",
+				data : {"secondKindName" : val},
+				success : function(re){
+					
+					var str = "<option></option>";
+					for(var i = 0; i < re.length; i++){
+						str += "<option value='"+re[i]+"'>"+re[i]+"</option>";
+					}
+					$("#zjlThirdKind").append(str);
+				}
+			})
+		} 
+		
+		/* 如果二级为空  三级清空 */
+		if(val == ""){
+			$("#zjlThirdKind").empty();
+			var str1 = `
+				<option>&nbsp;</option>
+			`;
+			$("#zjlThirdKind").append(str1);
+		}
+	 });
+	 
+	 
+	/* 职位分类 */
+	$("#zjlMajorKindName").change(function(){
+		
+		var val = $('#zjlMajorKindName option:selected').val();
+		alert(val)
+		/* 职位类型不为空 找职位名称 */
+		if(val != ""){
+			$("#zjlMajorName").empty();
+			$.ajax({
+				type : "post",
+				url : "zjlMajorRelease/queryMajorKindName.do",
+				data : {"majorName" : val},
+				success : function(re){
+					
+					var str = "<option></option>";
+					for(var i = 0; i < re.length; i++){
+						str += "<option value='"+re[i]+"'>"+re[i]+"</option>";
+					}
+					$("#zjlMajorName").append(str);
+				}
+			})
+		} 
+		
+		/* 如果职位类型为空  职位名称清空 */
+		if(val == ""){
+			$("#zjlMajorName").empty();
+			var str1 = `
+				<option>&nbsp;</option>
+			`;
+			$("#zjlMajorName").append(str1);
+		} 
+	 });
+
+
+</script>
+

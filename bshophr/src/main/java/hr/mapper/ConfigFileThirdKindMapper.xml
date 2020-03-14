@@ -14,9 +14,20 @@
 		<result property="thirdKindSaleId"    column="third_kind_sale_id"/>
 		<result property="thirdKindIsRetail"    column="third_kind_is_retail"/>
 	</resultMap>
+	
+	<select id="selectConfigFileThirdKindAllByFirstKindName" parameterType="string" resultMap="configFileThirdKindMap">
+		select * from config_file_third_kind where first_kind_name=#{name}
+	</select>
+	
+	<select id="selectConfigFileThirdKindAllBySecondKindName" parameterType="string" resultMap="configFileThirdKindMap">
+		select * from config_file_third_kind where second_kind_name=#{name}
+	</select>
 
-	<select id="selectConfigFileThirdKindAll" resultMap="configFileThirdKindMap">
+	<select id="selectConfigFileThirdKindAll" resultMap="configFileThirdKindMap" parameterType="hashmap">
 		select * from config_file_third_kind
+		<if test="currentPage!=null and pageSize!=null">
+			limit #{currentPage},#{pageSize}
+		</if>
 	</select>
 
 	<select id="selectConfigFileThirdKindById" parameterType="_int" resultMap="configFileThirdKindMap">
@@ -28,10 +39,73 @@
 	</delete>
 
 	<update id="updateConfigFileThirdKind" parameterType="ConfigFileThirdKind">
-		update ConfigFileThirdKind set first_kind_id=#{firstKindId},first_kind_name=#{firstKindName},second_kind_id=#{secondKindId},second_kind_name=#{secondKindName},third_kind_id=#{thirdKindId},third_kind_name=#{thirdKindName},third_kind_sale_id=#{thirdKindSaleId},third_kind_is_retail=#{thirdKindIsRetail} where ftk_id=#{ftkId}
+		update config_file_third_kind set first_kind_id=#{firstKindId},
+		first_kind_name=#{firstKindName},second_kind_id=#{secondKindId},
+		second_kind_name=#{secondKindName},third_kind_id=#{thirdKindId},third_kind_name=#{thirdKindName},third_kind_sale_id=#{thirdKindSaleId},third_kind_is_retail=#{thirdKindIsRetail}
+		 where ftk_id=#{ftkId}
+	</update>
+	<update id="updateConfigFileThirdKindPlus" parameterType="hashmap">
+		update config_file_third_kind
+		<!-- set first_kind_id=#{firstKindId},
+		first_kind_name=#{firstKindName},
+		second_kind_id=#{secondKindId},
+		second_kind_name=#{secondKindName},
+		third_kind_id=#{thirdKindId},
+		third_kind_name=#{thirdKindName},
+		third_kind_sale_id=#{thirdKindSaleId},
+		third_kind_is_retail=#{thirdKindIsRetail} -->
+		<set> 
+			<if test="firstKindId!=null">
+				first_kind_id=#{firstKindId},
+			</if>
+
+			<if test="firstKindName!=null">
+				first_kind_name=#{firstKindName},
+			</if>
+			<if test="secondKindId!=null">
+				second_kind_id=#{secondKindId},
+			</if>
+
+			<if test="secondKindName!=null">
+				second_kind_name=#{secondKindName},
+			</if>
+			<if test="thirdKindId!=null">
+				third_kind_id=#{thirdKindId},
+			</if>
+
+			<if test="thirdKindName!=null">
+				third_kind_name=#{thirdKindName},
+			</if>
+			<if test="thirdKindSaleId!=null">
+				third_kind_sale_id=#{thirdKindSaleId},
+			</if>
+			<if test="thirdKindIsRetail!=null">
+				third_kind_is_retail=#{thirdKindIsRetail}
+			</if>
+		</set>
+		 where ftk_id=#{ftkId}
 	</update>
 	<insert id="insertConfigFileThirdKind" parameterType="ConfigFileThirdKind">
 		insert into config_file_third_kind(first_kind_id,first_kind_name,second_kind_id,second_kind_name,third_kind_id,third_kind_name,third_kind_sale_id,third_kind_is_retail) 
 		values(#{ftkId},#{firstKindId},#{firstKindName},#{secondKindId},#{secondKindName},#{thirdKindId},#{thirdKindName},#{thirdKindSaleId},#{thirdKindIsRetail}) 
 	</insert>
+	
+		<!-- 查询最大总数-->
+	<select id="selectConfigFileThirdKindMaxNum"  resultType="_int">
+        select count(*) from config_file_third_kind
+	</select>
+	
+	<!-- 查询MAX(second_kind_id)-->
+	<select id="selectConfigFileThirdKindIdMax" parameterType="hashmap"  resultType="string">
+        select MAX(third_kind_id) from config_file_third_kind 
+       <!--  where first_kind_id=#{id}   -->
+        <where>
+        	<if test="secondKindId!=null ">
+        		second_kind_id=#{secondKindId},
+        	</if>
+        	<if test="firstKindId!=null">
+				first_kind_id=#{firstKindId},
+			</if>
+        </where>
+	</select>
 </mapper>
