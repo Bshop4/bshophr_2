@@ -55,7 +55,17 @@ public class MajorRelease {
 		}
 		List<String> firstList = new ArrayList<String>(set);
 		
+		
+		List<ConfigMajor> listCm = cms.findConfigMajorAll();
+		Set<String> set1 = new HashSet<String>();
+		for (ConfigMajor c : listCm) {
+			set1.add(c.getMajorKindName());
+		}
+		List<String> majorKindNameList = new ArrayList<String>(set1);
+		
+		
 		model.addAttribute("firstList", firstList);
+		model.addAttribute("majorKindNameList", majorKindNameList);
 		
 		return "forward:/major_release.jsp";
 	}
@@ -89,6 +99,13 @@ public class MajorRelease {
 		return thirdList;
 	}
 	
+	@RequestMapping("/queryMajorKindName.do")
+	@ResponseBody
+	public List<String> queryMajorKindName(String majorName){
+		
+		
+		return null;
+	}
 	
 	
 	

@@ -262,8 +262,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="TD_STYLE2" colspan="2">
                 <select name="selectType" class="SELECT_STYLE1">
                 	<option value="">&nbsp;</option>
-                    <option value="123">123</option>
-                    <option value="123555">123555</option>
+                    <option value="社会招聘">社会招聘</option>
+                    <option value="校园招聘">校园招聘</option>
                 </select>
             </td>
         </tr>
@@ -272,22 +272,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 职位分类
             </td>
             <td class="TD_STYLE2">
-                <select name="item.humanMajorKindName" class="SELECT_STYLE1">
+                <select name="item.humanMajorKindName" class="SELECT_STYLE1" id="zjlMajorKindName">
                 	<option value="">&nbsp;</option>
-
-                    <option value="01/销售">01/销售</option>
-
-                    <option value="02/软件开发">02/软件开发</option>
-
-                    <option value="03/人力资源">03/人力资源</option>
-
-                    <option value="04/生产部">04/生产部</option></select>
+					<c:if test="${!empty majorKindNameList}">
+						<c:forEach items="${majorKindNameList }" var="mknl">
+							<option value="${mknl}">${mknl }</option> 
+						</c:forEach>
+					</c:if>
+                </select>
             </td>
             <td class="TD_STYLE1">
                 职位名称
             </td>
             <td class="TD_STYLE2">
-                <select name="item.hunmaMajorName" class="SELECT_STYLE1">
+                <select name="item.hunmaMajorName" class="SELECT_STYLE1" id="zjlMajorName">
                 </select>
             </td>
             <td class="TD_STYLE1">
@@ -425,7 +423,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#zjlThirdKind").append(str1);
 		}
 	 });
-	
+	 
+	 
+	/* 职位分类 */
+	$("#zjlMajorKindName").change(function(){
+		
+		var val = $('#zjlMajorKindName option:selected').val();
+		alert(val)
+		/* 职位类型不为空 找职位名称 */
+		if(val != ""){
+			$("#zjlMajorName").empty();
+			$.ajax({
+				type : "post",
+				url : "zjlMajorRelease/queryMajorKindName.do",
+				data : {"majorName" : val},
+				success : function(re){
+					
+					var str = "<option></option>";
+					for(var i = 0; i < re.length; i++){
+						str += "<option value='"+re[i]+"'>"+re[i]+"</option>";
+					}
+					$("#zjlMajorName").append(str);
+				}
+			})
+		} 
+		
+		/* 如果职位类型为空  职位名称清空 */
+		if(val == ""){
+			$("#zjlMajorName").empty();
+			var str1 = `
+				<option>&nbsp;</option>
+			`;
+			$("#zjlMajorName").append(str1);
+		} 
+	 });
 
 
 </script>
