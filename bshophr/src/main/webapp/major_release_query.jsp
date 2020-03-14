@@ -82,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 ${major.registTime }
              </td>
              <td class="TD_STYLE2">
-                <a href="zjlMajorRelease/${major.mreId}/queryOne.do" target="mainFrame">申请该职位</a>
+                <a href="zjlEngageResume/${major.mreId}/gotoEngageResume.do" target="mainFrame">申请该职位</a>
              </td>
         </tr>
 		</c:forEach>
