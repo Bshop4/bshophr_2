@@ -25,7 +25,12 @@
 <script type="text/javascript" src="javascript/calendar/cal.js"></script>
 <script type="text/javascript" src="javascript/comm/comm.js"></script>
 <script type="text/javascript" src="javascript/comm/list.js"></script>
+<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 <script type="text/javascript">
+	function load(){
+		var mymap=$(".djt_SelectN").val();
+		console.log(mymap);
+	}
 	var subcat = new Array(2);
 	subcat[0] = [ "1", "集团/软件公司", "集团", "集团/软件公司" ];
 	subcat[1] = [ "2", "集团/生物科技有限公司", "集团", "集团/生物科技有限公司" ];
@@ -62,6 +67,8 @@
 
 <body onload="load()">
 	<form name="humanfileForm" method="post" action="/hr/humanfile.do">
+		//隐藏域
+		<input type="hidden" class="djt_SelectN" value="${myselectmap}"/>
 		<table width="100%">
 			<tr>
 				<td><font color="#0000CC">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案查询
