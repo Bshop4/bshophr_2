@@ -29,7 +29,7 @@
 </head>
 
 <body>
-	<form method="post">
+	<form method="post" action="queryBySalary.do">
 		<table width="100%">
 			<tr>
 				<td><font color="#0000CC">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准查询</font>
@@ -92,13 +92,13 @@
 			alert("薪酬标准编号不可以为空！！！");
 			return;
 		}
-		$.ajax({
+		/* $.ajax({
 			type:"POST",
 			url:"queryBySalary.do?str="+bh,
 			dataType:"json",
 			contentType:"application/json; charset=utf-8",
 			data:bh,
-		});
+		}); */
 	}
 </script>
 

@@ -56,7 +56,7 @@
 				<td class="TD_STYLE1" width="15%">薪酬总额</td>
 			</tr>
 
-			<c:forEach items="${sslist}" var="s">
+			<c:forEach items="${sslist}" var="s" varStatus="ss">
 				<tr class="TD_STYLE2">
 					<td><a href="qyertbzto?sstid=${s.standardId}">${s.standardId }</a></td>
 					<td>${s.standardName }</td>

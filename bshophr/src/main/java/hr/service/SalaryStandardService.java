@@ -9,8 +9,11 @@ public interface SalaryStandardService {
 
 	public SalaryStandard findSalaryStandardById(int id);
 
-	// 向思宇+的（模糊查询）
+	// 向思宇加的ID模糊查询
 	public List<SalaryStandard> findSalaryStandardByIdDim(int id);
+
+	// 向思宇加的name模糊查询
+	public List<SalaryStandard> findSalaryStandardByCondition(SalaryStandard s);
 
 	public boolean removeSalaryStandardById(int id);
 

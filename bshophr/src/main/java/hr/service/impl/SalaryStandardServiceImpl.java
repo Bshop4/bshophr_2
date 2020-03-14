@@ -63,4 +63,10 @@ public class SalaryStandardServiceImpl implements SalaryStandardService {
 		return list;
 	}
 
+	@Override
+	public List<SalaryStandard> findSalaryStandardByCondition(SalaryStandard s) {
+		List<SalaryStandard> list = salaryStandardMapper.selectSalaryStandardByCondition(s);
+		return list;
+	}
+
 }
