@@ -189,7 +189,7 @@ public class MajorRelease {
 		
 		int maxPage =0;
 		int sumNumber =emrs.findCnt();//总个数
-		int pageSize =1;
+		int pageSize =2;
 		int pageNo =1;
 		//最大页数
 		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
@@ -292,7 +292,7 @@ public class MajorRelease {
 //		}
 		int maxPage =0;
 		int sumNumber =emrs.findCnt();//总个数
-		int pageSize =1;
+		int pageSize =2;
 		int pageNo =1;
 		//最大页数
 		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
