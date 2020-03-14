@@ -117,7 +117,7 @@ a {
 										</tr>
 										<tr>
 											<td><img src="images/jt0.gif"></td>
-											<td><a href="configfilethirdkind.do?operate=list"
+											<td><a href="pyl/configfilethirdkind.do?operate=list"
 												target="mainFrame">III级机构设置</a></td>
 										</tr>
 										<tr>

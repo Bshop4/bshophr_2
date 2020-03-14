@@ -79,7 +79,7 @@
 	</update>
 	<insert id="insertConfigFileThirdKind" parameterType="ConfigFileThirdKind">
 		insert into config_file_third_kind(first_kind_id,first_kind_name,second_kind_id,second_kind_name,third_kind_id,third_kind_name,third_kind_sale_id,third_kind_is_retail) 
-		values(#{ftkId},#{firstKindId},#{firstKindName},#{secondKindId},#{secondKindName},#{thirdKindId},#{thirdKindName},#{thirdKindSaleId},#{thirdKindIsRetail}) 
+		values(#{firstKindId},#{firstKindName},#{secondKindId},#{secondKindName},#{thirdKindId},#{thirdKindName},#{thirdKindSaleId},#{thirdKindIsRetail}) 
 	</insert>
 	
 		<!-- 查询最大总数-->
@@ -93,11 +93,14 @@
        <!--  where first_kind_id=#{id}   -->
         <where>
         	<if test="secondKindId!=null ">
-        		second_kind_id=#{secondKindId},
+        		and second_kind_id=#{secondKindId}
         	</if>
         	<if test="firstKindId!=null">
-				first_kind_id=#{firstKindId},
+				and first_kind_id=#{firstKindId}
 			</if>
         </where>
 	</select>
+	
+
+	
 </mapper>

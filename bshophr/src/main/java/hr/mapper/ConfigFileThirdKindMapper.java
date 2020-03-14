@@ -25,4 +25,7 @@ public interface ConfigFileThirdKindMapper {
 	//查询I级    II级下的    IIIMAX(Third_kind_id) 
 	public String selectConfigFileThirdKindIdMax(Map<String,Object> map);
 	
+	
+	
+	
 }
