@@ -2,6 +2,8 @@ package hr.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import hr.pojo.ConfigMajor;
 
 public interface ConfigMajorService {
@@ -10,4 +12,8 @@ public interface ConfigMajorService {
 	public boolean removeConfigMajorById(int id);
 	public boolean saveConfigMajor(ConfigMajor configMajor);
 	public boolean updateConfigMajor(ConfigMajor configMajor);
+	
+	public List<ConfigMajor> findConfigMajorAllByMajorKindName(String name);
+	
+	public ConfigMajor findConfigMajorByMajorKindNameAndMajorName(String majorKindName,String majorName);
 }

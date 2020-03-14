@@ -208,7 +208,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 
-<form name="humanfileForm" method="post" action="">
+<form name="humanfileForm">
     <table width="100%">
         <tr>
             <td>
@@ -217,8 +217,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
             <td align="right">
-                <input type="button" value="提交" class="BUTTON_STYLE1"
-                       onclick="window.location.href='register_choose_picture.html'">
+                <input type="button" value="提交" class="BUTTON_STYLE1" id="submit">
                 <input type="reset" value="返回" class="BUTTON_STYLE1">
             </td>
         </tr>
@@ -260,7 +259,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 招聘类型
             </td>
             <td class="TD_STYLE2" colspan="2">
-                <select name="selectType" class="SELECT_STYLE1">
+                <select name="selectType" class="SELECT_STYLE1" id="getType">
                 	<option value="">&nbsp;</option>
                     <option value="社会招聘">社会招聘</option>
                     <option value="校园招聘">校园招聘</option>
@@ -286,19 +285,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
             <td class="TD_STYLE2">
                 <select name="item.hunmaMajorName" class="SELECT_STYLE1" id="zjlMajorName">
+                	<option value="">&nbsp;</option>
                 </select>
             </td>
             <td class="TD_STYLE1">
                 招聘人数
             </td>
             <td colspan="2" class="TD_STYLE2">
-                <input type="text" name="personNum"/>
+                <input type="text" name="personNum" id="personNum" class="INPUT_STYLE2"/>
             </td>
             <td class="TD_STYLE1">
                 截止日期
             </td>
             <td colspan="2" class="TD_STYLE2">
-                <input type="text" name="overTime"/>
+                <input type="text" name="overTime" id="overTime" class="INPUT_STYLE2"/>
             </td>
         </tr>
         <tr>
@@ -306,13 +306,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 登记人
             </td>
             <td class="TD_STYLE2">
-                <input type="text" name="item.humanName" value="" class="INPUT_STYLE2">
+                <input type="text" class="INPUT_STYLE2" id="loger">
             </td>
             <td class="TD_STYLE1">
                 登记时间
             </td>
             <td class="TD_STYLE2">
-                <input type="text" name="loginTime" readonly value="hhhhhh"/>
+                <input type="text" name="loginTime" class="INPUT_STYLE2" readonly value="${now }" id="loginTime"/>
             </td>
             <td class="TD_STYLE1">
 
@@ -333,7 +333,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 职位描述
             </td>
             <td colspan="8" class="TD_STYLE2">
-                <textarea name="item.humanHistroyRecords" rows="4" class="TEXTAREA_STYLE1"></textarea>
+                <textarea name="item.humanHistroyRecords" rows="4" id="descri" class="TEXTAREA_STYLE1"></textarea>
             </td>
         </tr>
         <tr>
@@ -341,7 +341,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 招聘信息
             </td>
             <td colspan="8" class="TD_STYLE2">
-                <textarea name="item.humanFamilyMembership" rows="4" class="TEXTAREA_STYLE1"></textarea>
+                <textarea name="item.humanFamilyMembership" rows="4" id="info" class="TEXTAREA_STYLE1"></textarea>
             </td>
         </tr>
     </table>
@@ -427,9 +427,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 
 	/* 职位分类 */
 	$("#zjlMajorKindName").change(function(){
-		
 		var val = $('#zjlMajorKindName option:selected').val();
-		alert(val)
 		/* 职位类型不为空 找职位名称 */
 		if(val != ""){
 			$("#zjlMajorName").empty();
@@ -458,6 +456,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		} 
 	 });
 
+	
+	//提交
+	$("#submit").click(function(){
+		
+		var firstKind = $('#zjlFirstKind option:selected').val();//一级
+		var secondKind = $('#zjlSecondKind option:selected').val();//二级
+		var thirdKind = $('#zjlThirdKind option:selected').val();//三级
+		var getType = $('#getType option:selected').val();//招聘类型
+		var majorKindName = $('#zjlMajorKindName option:selected').val();//职位分类
+		var majorName = $("#zjlMajorName option:selected").val();//职位名称
+		var personNum = $("#personNum").val();//人数
+		var overTime = $("#overTime").val();//结束时间
+		var loger = $("#loger").val();//等记人
+		var loginTime = $("#loginTime").val();//登记时间
+		var descri = $("#descri").val();//职位描述
+		var info = $("#info").val();//职位信息
+		
+		if(firstKind=="" || secondKind=="" || thirdKind=="" || getType=="" || majorKindName=="" ||
+			majorName=="" || personNum=="" || overTime=="" || loger=="" || descri=="" || info==""){
+				alert("请填写完整职位发布信息！")
+				return;
+			}
+		overTime += " 00:00:00";
+		$.ajax({
+			type : "post",
+			url : "zjlMajorRelease/saveMajorRelease.do",
+			data : {"firstKindName":firstKind,"secondKindName":secondKind,"thirdKindName":thirdKind,
+			"engageType":getType,"majorKindName":majorKindName,"majorName":majorName,
+			"humanAmount":personNum,"registTime":overTime,"register":loger,
+			"deadline":loginTime,"majorDescribe":descri,"engageRequired":info},
+			success : function(re){
+				alert(re)
+			}
+		})
+		
+		
+		
+	});
+		
+	
 
 </script>
 

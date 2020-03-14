@@ -11,9 +11,17 @@
 		<result property="majorName"    column="major_name"/>
 		<result property="testAmount"    column="test_amount"/>
 	</resultMap>
+	
+	<select id="selectConfigMajorByMajorKindNameAndMajorName" parameterType="string" resultMap="configMajorMap">
+		select * from config_major where major_kind_name=#{majorKindName} and major_name=#{majorName}
+	</select>
 
 	<select id="selectConfigMajorAll" resultMap="configMajorMap">
 		select * from config_major
+	</select>
+	
+	<select id="selectConfigMajorAllByMajorKindName" resultMap="configMajorMap" parameterType="string">
+		select * from config_major where major_kind_name=#{name}
 	</select>
 
 	<select id="selectConfigMajorById" parameterType="_int" resultMap="configMajorMap">

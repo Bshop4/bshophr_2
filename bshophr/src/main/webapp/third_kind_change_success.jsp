@@ -23,8 +23,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="table.css" type="text/css"/>
 	<script type="text/javascript" src="javascript/comm/comm.js"></script>
 </head>
-<body>
-<form name="form1" method="post" action="">
+<body> 
+<form name="form1" method="post" action="pyl/configfilethirdkind.do">
 <table width="100%" >
   <tr>
     <td colspan="2"> 

@@ -2,6 +2,7 @@ package hr.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import hr.pojo.ConfigFileSecondKind;
@@ -20,6 +21,8 @@ public interface ConfigFileThirdKindMapper {
 
 	public List<ConfigFileThirdKind> selectConfigFileThirdKindAllByFirstKindName(String name);
 	public List<ConfigFileThirdKind> selectConfigFileThirdKindAllBySecondKindName(String name);
+	
+	public ConfigFileThirdKind selectConfigFileThirdKindByFirstSecondThirdKindName(@Param("firstKindName") String firstKindName,@Param("secondKindName") String secondKindName,@Param("thirdKindName") String thirdKindName);
 
 	public boolean updateConfigFileThirdKindPlus(Map<String,Object> map);
 	
@@ -29,5 +32,4 @@ public interface ConfigFileThirdKindMapper {
 	//查询I级    II级下的    IIIMAX(Third_kind_id) 
 	public String selectConfigFileThirdKindIdMax(Map<String,Object> map);
 	
-
 }
