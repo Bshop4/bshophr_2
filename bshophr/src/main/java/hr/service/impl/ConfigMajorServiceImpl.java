@@ -45,4 +45,16 @@ public class ConfigMajorServiceImpl implements ConfigMajorService{
 		// TODO Auto-generated method stub
 		return configMajorMapper.updateConfigMajor(configMajor);
 	}
+
+	@Override
+	public List<ConfigMajor> findConfigMajorAllByMajorKindName(String name) {
+		// TODO Auto-generated method stub
+		return configMajorMapper.selectConfigMajorAllByMajorKindName(name);
+	}
+
+	@Override
+	public ConfigMajor findConfigMajorByMajorKindNameAndMajorName(String majorKindName, String majorName) {
+		// TODO Auto-generated method stub
+		return configMajorMapper.selectConfigMajorByMajorKindNameAndMajorName(majorKindName, majorName);
+	}
 }

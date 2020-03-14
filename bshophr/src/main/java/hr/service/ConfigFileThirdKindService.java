@@ -18,6 +18,7 @@ public interface ConfigFileThirdKindService {
 	
 	public List<ConfigFileThirdKind> findConfigFileThirdKindAllBySecondKindName(String name);
 
+	public ConfigFileThirdKind findConfigFileThirdKindByFirstSecondThirdKindName(String firstKindName,String secondKindName,String thirdKindName);
 	
 	public boolean updateConfigFileThirdKindPlus(Map<String,Object> map);
 	

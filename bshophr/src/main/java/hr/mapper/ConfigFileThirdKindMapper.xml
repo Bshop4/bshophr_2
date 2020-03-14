@@ -15,6 +15,13 @@
 		<result property="thirdKindIsRetail"    column="third_kind_is_retail"/>
 	</resultMap>
 	
+	<select id="selectConfigFileThirdKindByFirstSecondThirdKindName" parameterType="string" resultMap="configFileThirdKindMap">
+		select * from config_file_third_kind where first_kind_name=#{firstKindName} 
+		and second_kind_name=#{secondKindName}
+		and third_kind_name=#{thirdKindName}
+	</select>
+	
+	
 	<select id="selectConfigFileThirdKindAllByFirstKindName" parameterType="string" resultMap="configFileThirdKindMap">
 		select * from config_file_third_kind where first_kind_name=#{name}
 	</select>

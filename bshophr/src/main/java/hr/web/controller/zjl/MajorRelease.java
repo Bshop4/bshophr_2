@@ -64,6 +64,9 @@ public class MajorRelease {
 		List<String> majorKindNameList = new ArrayList<String>(set1);
 		
 		
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		
+		model.addAttribute("now", t);
 		model.addAttribute("firstList", firstList);
 		model.addAttribute("majorKindNameList", majorKindNameList);
 		
@@ -103,8 +106,71 @@ public class MajorRelease {
 	@ResponseBody
 	public List<String> queryMajorKindName(String majorName){
 		
+		List<ConfigMajor> list = cms.findConfigMajorAllByMajorKindName(majorName);
+		Set<String> set = new HashSet<String>();
+		for (ConfigMajor c : list) {
+			set.add(c.getMajorName());
+		}
+		List<String> majorNameList = new ArrayList<String>(set);
 		
-		return null;
+		return majorNameList;
+	}
+	
+	
+	
+	@RequestMapping("/saveMajorRelease.do")
+	@ResponseBody
+	public List<String> saveMajorRelease(String firstKindName,
+										 String secondKindName,
+										 String thirdKindName,
+										 String engageType,
+										 String majorKindName,
+										 String majorName,
+										 short humanAmount,
+										 Timestamp registTime,
+										 String register,
+										 Timestamp deadline,
+										 String majorDescribe,
+										 String engageRequired){
+		
+		ConfigFileThirdKind c = cftks.findConfigFileThirdKindByFirstSecondThirdKindName(firstKindName, secondKindName, thirdKindName);
+		String firstKindId = c.getFirstKindId();
+		System.out.println("f" + firstKindId);
+		String secondKindId = c.getSecondKindId();
+		String thirdKindId = c.getThirdKindId();
+		
+		ConfigMajor cm = cms.findConfigMajorByMajorKindNameAndMajorName(majorKindName, majorName);
+		String majorKindId = cm.getMajorKindId();
+		String majorId = cm.getMajorId();
+		
+		EngageMajorRelease e = new EngageMajorRelease();
+		e.setFirstKindId(firstKindId);
+		e.setFirstKindName(firstKindName);
+		e.setSecondKindId(secondKindId);
+		e.setSecondKindName(secondKindName);
+		e.setThirdKindId(thirdKindId);
+		e.setThirdKindName(thirdKindName);
+		e.setMajorKindId(majorKindId);
+		e.setMajorKindName(majorKindName);
+		e.setMajorId(majorId);
+		e.setMajorName(majorName);
+		e.setHumanAmount(humanAmount);
+		e.setEngageType(engageType);
+		e.setDeadline(deadline);
+		e.setRegister(register);
+		e.setChanger(register);
+		e.setRegistTime(registTime);
+		e.setChangeTime(registTime);
+		e.setMajorDescribe(majorDescribe);
+		e.setEngageRequired(engageRequired);
+		
+		boolean f = emrs.saveEngageMajorRelease(e);
+		List<String> list = new ArrayList<String>();
+		if(f){
+			list.add("发布职位成功！");
+		}
+		
+		return list;
 	}
 	
 	
