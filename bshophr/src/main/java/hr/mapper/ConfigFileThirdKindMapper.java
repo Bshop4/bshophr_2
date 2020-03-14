@@ -17,6 +17,10 @@ public interface ConfigFileThirdKindMapper {
 	public boolean insertConfigFileThirdKind(ConfigFileThirdKind configFileThirdKind);
 	public boolean updateConfigFileThirdKind(ConfigFileThirdKind configFileThirdKind);
 	
+
+	public List<ConfigFileThirdKind> selectConfigFileThirdKindAllByFirstKindName(String name);
+	public List<ConfigFileThirdKind> selectConfigFileThirdKindAllBySecondKindName(String name);
+
 	public boolean updateConfigFileThirdKindPlus(Map<String,Object> map);
 	
 	//查询最大总数
@@ -25,4 +29,5 @@ public interface ConfigFileThirdKindMapper {
 	//查询I级    II级下的    IIIMAX(Third_kind_id) 
 	public String selectConfigFileThirdKindIdMax(Map<String,Object> map);
 	
+
 }
