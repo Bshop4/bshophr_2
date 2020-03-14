@@ -40,11 +40,6 @@
 	});
 })();
 
-	/*function load(){
-		var myselect=$(".djt_SelectN").val();
-		console.log(myselect);
-	}
-	*/
 	var subcat = new Array(2);
 	subcat[0] = [ "1", "01/软件公司", "01/集团", "01/集团/01/软件公司" ];
 	subcat[1] = [ "2", "02/生物科技有限公司", "01/集团", "01/集团/02/生物科技有限公司" ];

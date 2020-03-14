@@ -29,7 +29,7 @@
 	</select>
 	
 	<select id="selectSalaryStandardById" parameterType="_int" resultMap="SalaryStandardMap">
-		select * from salary_standard where ssd_id=#{id}
+		select * from salary_standard where standard_id=#{id}
 	</select>
 	
 	<delete id="deleteSalaryStandardById" parameterType="_int">
@@ -42,5 +42,10 @@
 	
 	<update id="updateSalaryStandard" parameterType="SalaryStandard">
 		update salary_standard set standard_id=#{standardId},standard_name=#{standardName},designer=#{designer},register=#{register},checker=#{checker},changer=#{changer},regist_time=#{registTime},check_time=#{checkTime},change_time=#{changeTime},salary_sum=#{salarySum},check_status=#{checkStatus},change_status=#{changeStatus},check_comment=#{checkComment},remark=#{remark} where ssd_id=#{ssdId}
+	</update>
+	
+	<!-- 向思宇加的修改语句 -->
+	<update id="updateSalaryStandardByfh" parameterType="SalaryStandard">
+		update salary_standard set checker=#{checker},check_time=#{checkTime},check_status=#{checkStatus},check_comment=#{checkComment} where standard_id=#{standard_id}
 	</update>
 </mapper>

@@ -10,44 +10,42 @@ import hr.pojo.SalaryStandardDetails;
 import hr.service.SalaryStandardDetailsService;
 
 @Service
-public class SalaryStandardDetailsServiceImpl implements SalaryStandardDetailsService{
-	
+public class SalaryStandardDetailsServiceImpl implements SalaryStandardDetailsService {
+
 	@Autowired
-	private SalaryStandardDetailsMapper salaryStandardDetailsMapper=null;
-	
+	private SalaryStandardDetailsMapper salaryStandardDetailsMapper = null;
+
 	@Override
 	public List<SalaryStandardDetails> findSalaryStandardDetailsAll() {
 		// TODO Auto-generated method stub
-		List<SalaryStandardDetails> list=salaryStandardDetailsMapper.selectSalaryStandardDetailsAll();
+		List<SalaryStandardDetails> list = salaryStandardDetailsMapper.selectSalaryStandardDetailsAll();
 		return list;
 	}
 
 	@Override
-	public SalaryStandardDetails findSalaryStandardDetailsById(int id) {
-		// TODO Auto-generated method stub
-		SalaryStandardDetails SalaryStandardDetails=salaryStandardDetailsMapper.selectSalaryStandardDetailsById(id);
-		return SalaryStandardDetails;
+	public List<SalaryStandardDetails> findSalaryStandardDetailsById(int id) {
+		List<SalaryStandardDetails> list = salaryStandardDetailsMapper.selectSalaryStandardDetailsById(id);
+		return list;
 	}
 
 	@Override
 	public boolean removeSalaryStandardDetailsById(int id) {
 		// TODO Auto-generated method stub
-		boolean flag=salaryStandardDetailsMapper.deleteSalaryStandardDetailsById(id);
-		
+		boolean flag = salaryStandardDetailsMapper.deleteSalaryStandardDetailsById(id);
 		return flag;
 	}
 
 	@Override
 	public boolean saveSalaryStandardDetails(SalaryStandardDetails salaryStandardDetails) {
 		// TODO Auto-generated method stub
-		boolean flag=salaryStandardDetailsMapper.insertSalaryStandardDetails(salaryStandardDetails);
+		boolean flag = salaryStandardDetailsMapper.insertSalaryStandardDetails(salaryStandardDetails);
 		return flag;
 	}
 
 	@Override
 	public boolean updateSalaryStandardDetails(SalaryStandardDetails salaryStandardDetails) {
 		// TODO Auto-generated method stub
-		boolean flag=salaryStandardDetailsMapper.updateSalaryStandardDetails(salaryStandardDetails);
+		boolean flag = salaryStandardDetailsMapper.updateSalaryStandardDetails(salaryStandardDetails);
 		return flag;
 	}
 

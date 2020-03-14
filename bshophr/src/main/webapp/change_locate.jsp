@@ -26,6 +26,9 @@
 <script type="text/javascript" src="javascript/comm/comm.js"></script>
 <script type="text/javascript" src="javascript/comm/list.js"></script>
 <script type="text/javascript">
+
+	
+
 	var subcat = new Array(2);
 	subcat[0] = [ "1", "集团/软件公司", "集团", "集团/软件公司" ];
 	subcat[1] = [ "2", "集团/生物科技有限公司", "集团", "集团/生物科技有限公司" ];
