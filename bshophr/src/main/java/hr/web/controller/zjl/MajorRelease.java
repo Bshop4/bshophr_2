@@ -4,9 +4,12 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,11 +23,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.pojo.ConfigFileSecondKind;
+import hr.pojo.ConfigFileThirdKind;
 import hr.pojo.ConfigMajor;
 import hr.pojo.EngageMajorRelease;
 import hr.service.ConfigFileThirdKindService;
 import hr.service.ConfigMajorService;
 import hr.service.EngageMajorReleaseService;
+import hr.util.PatternUtil;
 import net.sf.json.JSONObject;
 
 @Repository
@@ -43,14 +48,133 @@ public class MajorRelease {
 	@RequestMapping("/query.do")
 	public String query(Model model){
 		
-		List<ConfigMajor> listConfigMajor = cms.findConfigMajorAll();
-		
-		for (ConfigMajor configMajor : listConfigMajor) {
-			System.out.println(configMajor);
+		List<ConfigFileThirdKind> list = cftks.findConfigFileThirdKindAll(new HashMap<String, Object>());
+		Set<String> set = new HashSet<String>();
+		for (ConfigFileThirdKind c : list) {
+			set.add(c.getFirstKindName());
 		}
+		List<String> firstList = new ArrayList<String>(set);
+		
+		
+		List<ConfigMajor> listCm = cms.findConfigMajorAll();
+		Set<String> set1 = new HashSet<String>();
+		for (ConfigMajor c : listCm) {
+			set1.add(c.getMajorKindName());
+		}
+		List<String> majorKindNameList = new ArrayList<String>(set1);
+		
+		
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		
+		model.addAttribute("now", t);
+		model.addAttribute("firstList", firstList);
+		model.addAttribute("majorKindNameList", majorKindNameList);
 		
 		return "forward:/major_release.jsp";
 	}
+	
+	@RequestMapping("/querySecondKindName.do")
+	@ResponseBody
+	public List<String> querySecondKindName(String firstKindName){
+		
+		List<ConfigFileThirdKind> list = cftks.findConfigFileThirdKindAllByFirstKindName(firstKindName);
+		
+		Set<String> set = new HashSet<String>();
+		for (ConfigFileThirdKind c : list) {
+			set.add(c.getSecondKindName());
+		}
+		List<String> secondList = new ArrayList<String>(set);
+		return secondList;
+	}
+	
+	
+	@RequestMapping("/queryThirdKindName.do")
+	@ResponseBody
+	public List<String> queryThirdKindName(String secondKindName){
+		
+		List<ConfigFileThirdKind> list = cftks.findConfigFileThirdKindAllBySecondKindName(secondKindName);
+		
+		Set<String> set = new HashSet<String>();
+		for (ConfigFileThirdKind c : list) {
+			set.add(c.getThirdKindName());
+		}
+		List<String> thirdList = new ArrayList<String>(set);
+		return thirdList;
+	}
+	
+	@RequestMapping("/queryMajorKindName.do")
+	@ResponseBody
+	public List<String> queryMajorKindName(String majorName){
+		
+		List<ConfigMajor> list = cms.findConfigMajorAllByMajorKindName(majorName);
+		Set<String> set = new HashSet<String>();
+		for (ConfigMajor c : list) {
+			set.add(c.getMajorName());
+		}
+		List<String> majorNameList = new ArrayList<String>(set);
+		
+		return majorNameList;
+	}
+	
+	
+	
+	@RequestMapping("/saveMajorRelease.do")
+	@ResponseBody
+	public List<String> saveMajorRelease(String firstKindName,
+										 String secondKindName,
+										 String thirdKindName,
+										 String engageType,
+										 String majorKindName,
+										 String majorName,
+										 short humanAmount,
+										 Timestamp registTime,
+										 String register,
+										 Timestamp deadline,
+										 String majorDescribe,
+										 String engageRequired){
+		
+		ConfigFileThirdKind c = cftks.findConfigFileThirdKindByFirstSecondThirdKindName(firstKindName, secondKindName, thirdKindName);
+		String firstKindId = c.getFirstKindId();
+		System.out.println("f" + firstKindId);
+		String secondKindId = c.getSecondKindId();
+		String thirdKindId = c.getThirdKindId();
+		
+		ConfigMajor cm = cms.findConfigMajorByMajorKindNameAndMajorName(majorKindName, majorName);
+		String majorKindId = cm.getMajorKindId();
+		String majorId = cm.getMajorId();
+		
+		EngageMajorRelease e = new EngageMajorRelease();
+		e.setFirstKindId(firstKindId);
+		e.setFirstKindName(firstKindName);
+		e.setSecondKindId(secondKindId);
+		e.setSecondKindName(secondKindName);
+		e.setThirdKindId(thirdKindId);
+		e.setThirdKindName(thirdKindName);
+		e.setMajorKindId(majorKindId);
+		e.setMajorKindName(majorKindName);
+		e.setMajorId(majorId);
+		e.setMajorName(majorName);
+		e.setHumanAmount(humanAmount);
+		e.setEngageType(engageType);
+		e.setDeadline(deadline);
+		e.setRegister(register);
+		e.setChanger(register);
+		e.setRegistTime(registTime);
+		e.setChangeTime(registTime);
+		e.setMajorDescribe(majorDescribe);
+		e.setEngageRequired(engageRequired);
+		
+		boolean f = emrs.saveEngageMajorRelease(e);
+		List<String> list = new ArrayList<String>();
+		if(f){
+			list.add("发布职位成功！");
+		}
+		
+		return list;
+	}
+	
+	
+	
 	
 	@RequestMapping("/queryAll.do")
 	public String queryAll(Model model,HttpServletRequest request){

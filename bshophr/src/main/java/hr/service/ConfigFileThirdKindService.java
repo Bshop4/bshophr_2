@@ -13,6 +13,12 @@ public interface ConfigFileThirdKindService {
 	public boolean saveConfigFileThirdKind(ConfigFileThirdKind configFileThirdKind);
 	public boolean updateConfigFileThirdKind(ConfigFileThirdKind configFileThirdKind);
 	
+
+	public List<ConfigFileThirdKind> findConfigFileThirdKindAllByFirstKindName(String name);
+	
+	public List<ConfigFileThirdKind> findConfigFileThirdKindAllBySecondKindName(String name);
+
+	public ConfigFileThirdKind findConfigFileThirdKindByFirstSecondThirdKindName(String firstKindName,String secondKindName,String thirdKindName);
 	
 	public boolean updateConfigFileThirdKindPlus(Map<String,Object> map);
 	
@@ -21,4 +27,5 @@ public interface ConfigFileThirdKindService {
 		
 	//查询I级    II级下的    IIIMAX(Third_kind_id) 
 	public String findConfigFileThirdKindIdMax(Map<String,Object> map);
+
 }

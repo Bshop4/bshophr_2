@@ -33,7 +33,7 @@ public class DjtQueryLocateController {
 	@Autowired
 	private HumanFileService humanFileService=null;
 	
-	@RequestMapping("/pageJump.do")
+	@RequestMapping("/jumpPage.do")
 	public String queryPageLocate(Model model){
 		Map<String, Object> myselect=new HashMap<String, Object>();
 		List<ConfigFileThirdKind> listCftk=configFileThirdKindService.findConfigFileThirdKindAll(new HashMap<String, Object>());

@@ -47,6 +47,17 @@ public class ConfigFileThirdKindServiceImpl implements ConfigFileThirdKindServic
 		return configFileThirdKindMapper.updateConfigFileThirdKind(configFileThirdKind);
 	}
 
+	@Override
+	public List<ConfigFileThirdKind> findConfigFileThirdKindAllByFirstKindName(String name) {
+		// TODO Auto-generated method stub
+		return configFileThirdKindMapper.selectConfigFileThirdKindAllByFirstKindName(name);
+	}
+
+	@Override
+	public List<ConfigFileThirdKind> findConfigFileThirdKindAllBySecondKindName(String name) {
+		// TODO Auto-generated method stub
+		return configFileThirdKindMapper.selectConfigFileThirdKindAllBySecondKindName(name);
+	}
 
 	@Override
 	public boolean updateConfigFileThirdKindPlus(Map<String, Object> map) {
@@ -64,6 +75,13 @@ public class ConfigFileThirdKindServiceImpl implements ConfigFileThirdKindServic
 	public String findConfigFileThirdKindIdMax(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return configFileThirdKindMapper.selectConfigFileThirdKindIdMax(map);
+	}
+
+	@Override
+	public ConfigFileThirdKind findConfigFileThirdKindByFirstSecondThirdKindName(String firstKindName,
+			String secondKindName, String thirdKindName) {
+		// TODO Auto-generated method stub
+		return configFileThirdKindMapper.selectConfigFileThirdKindByFirstSecondThirdKindName(firstKindName, secondKindName, thirdKindName);
 	}
 
 	
