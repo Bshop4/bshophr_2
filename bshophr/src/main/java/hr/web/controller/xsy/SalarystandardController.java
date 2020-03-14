@@ -16,6 +16,7 @@ import hr.pojo.SalaryStandardDetails;
 import hr.service.ConfigPublicCharService;
 import hr.service.SalaryStandardDetailsService;
 import hr.service.SalaryStandardService;
+import net.sf.json.JSONArray;
 
 @Controller
 public class SalarystandardController {
@@ -61,8 +62,8 @@ public class SalarystandardController {
 			// 保
 			ssdservice.saveSalaryStandardDetails(ssdpojo);
 		}
-//		return "forward:/WEB-INF/jsp/salarystandard_register_success.jsp";
-		return "redirect:salarystandard_register_success";
+		JSONArray json = JSONArray.fromObject(list);
+		return json.toString();
 	}
 
 	// 薪酬标准复核登记
@@ -106,30 +107,34 @@ public class SalarystandardController {
 		System.out.println(s);
 		String[] ss = s.split(",");
 		SalaryStandard sspojo = new SalaryStandard();
-		sspojo.setChecker(ss[0]);
-		sspojo.setCheckTime(ss[1]);
-		sspojo.setCheckStatus("1");
-		sspojo.setCheckComment(ss[2]);
-		sspojo.setStandardId(ss[3]);
-		ssservice.updateSalaryStandardByfh(sspojo);
+		SalaryStandard usspojo = ssservice.findSalaryStandardById(Integer.parseInt(ss[3]));
+		System.out.println(usspojo);
+//		usspojo.setChecker(ss[0]);
+//		usspojo.setCheckTime(ss[1]);
+//		usspojo.setCheckStatus("1");
+//		usspojo.setCheckComment(ss[2]);
+////		usspojo.setStandardId(ss[3]);// 这是where standard_id=#{standard_id}
+//		ssservice.updateSalaryStandardfh(usspojo);
 		return "forward:/salarystandard_check_success.jsp";
 	}
-//	@RequestMapping("/salarystandard.do")
-//	public String saveSalaryStandard(@ModelAttribute SalaryStandard sspojo) {// SalaryStandard对象
-//		service1.saveSalaryStandard(sspojo);
-//		// SalaryStandardDetails对像
-//		SalaryStandardDetails ssdpojo = new SalaryStandardDetails();
-//		List<ConfigPublicChar> list = cfservice.findConfigPublicCharByAk("薪酬设置");
-//		short i = 0;
-//		for (ConfigPublicChar c : list) {
-//			ssdpojo.setStandardId(sspojo.getStandardId());
-//			ssdpojo.setStandardName(sspojo.getStandardName());
-////			ssdpojo.setSalary(Double.parseDouble(salary[i]));
-//			ssdpojo.setItemId(++i);
-//			ssdpojo.setItemName(c.getAttributeName());
-//			// 保存??
-//			ssdservice.saveSalaryStandardDetails(ssdpojo);
-//		}
-//		return "forward:/WEB-INF/jsp/salarystandard_register_success.jsp";
-//	}
+
+	@RequestMapping("/queryBySalaryto.do")
+	public String queryBySalaryto() {
+		return "forward:/salarystandard_query_locate.jsp";// 这个可以跳转
+	}
+
+	@RequestMapping("/queryBySalary.do")
+	public String queryBySalary(@RequestParam("str") String s) {
+		System.out.println(s);
+		List<SalaryStandard> sslist = ssservice.findSalaryStandardByIdDim(Integer.parseInt(s));
+		for (SalaryStandard sd : sslist) {
+			System.out.println(sd.getStandardId());
+			System.out.println(sd.getStandardName());
+		}
+//		map.put("sslist", sslist);
+//		map.put("count", sslist.size());
+
+		return "forward:/salarystandard_query_list.jsp";
+
+	}
 }

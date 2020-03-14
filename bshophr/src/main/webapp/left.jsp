@@ -311,7 +311,7 @@ a {
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td><a href="salarystandard_query_locate.jsp"
+							<td><a href="queryBySalaryto.do"
 								target="mainFrame">薪酬标准查询</a></td>
 						</tr>
 						<tr>

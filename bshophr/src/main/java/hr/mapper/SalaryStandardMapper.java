@@ -2,7 +2,6 @@ package hr.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import hr.pojo.SalaryStandard;
@@ -13,6 +12,9 @@ public interface SalaryStandardMapper {
 
 	public SalaryStandard selectSalaryStandardById(int id);
 
+	// 向思宇+的(模糊查询)
+	public List<SalaryStandard> selectSalaryStandardByIdDim(int id);
+
 	public boolean deleteSalaryStandardById(int id);
 
 	public boolean insertSalaryStandard(SalaryStandard ss);
@@ -20,6 +22,6 @@ public interface SalaryStandardMapper {
 	public boolean updateSalaryStandard(SalaryStandard ss);
 
 	// 向思宇+的
-	public boolean updateSalaryStandardByfh(@Param("SalaryStandard") SalaryStandard ss);
+	public boolean updateSalaryStandardfh(SalaryStandard ss);
 
 }

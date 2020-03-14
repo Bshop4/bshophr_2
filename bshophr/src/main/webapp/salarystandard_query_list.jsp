@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -41,7 +43,7 @@
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td>符合条件的薪酬标准总数: 1 例</td>
+				<td>符合条件的薪酬标准总数: ${count } 例</td>
 			</tr>
 		</table>
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
@@ -54,13 +56,15 @@
 				<td class="TD_STYLE1" width="15%">薪酬总额</td>
 			</tr>
 
-			<tr class="TD_STYLE2">
-				<td><a href="salarystandard_query.jsp">1000001</a></td>
-				<td></td>
-				<td></td>
-				<td>2010-05-29 00:00:00.0</td>
-				<td>0.0</td>
-			</tr>
+			<c:forEach items="${sslist}" var="s">
+				<tr class="TD_STYLE2">
+					<td><a href="qyertbzto?sstid=${s.standardId}">${s.standardId }</a></td>
+					<td>${s.standardName }</td>
+					<td>${s.designer }</td>
+					<td>${s.registTime }</td>
+					<td>&nbsp;${s.salarySum}</td>
+				</tr>
+			</c:forEach>
 
 		</table>
 		<p>

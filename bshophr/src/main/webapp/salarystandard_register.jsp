@@ -181,6 +181,9 @@
 			/* dataType:"json", */
 			contentType:"application/json; charset=utf-8",
 			data:obj,
+			success:function(result){
+				console.log(1);
+			},
 		});
 	}
 </script>

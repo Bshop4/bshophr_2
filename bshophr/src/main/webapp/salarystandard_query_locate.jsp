@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -24,17 +26,10 @@
 	href="javascript/calendar/calendar-win2k-cold-1.css">
 <script type="text/javascript" src="javascript/calendar/cal.js"></script>
 <title>无标题文档</title>
-<script type="text/javascript">
-	function list() {
-		//document.forms[0].action = document.forms[0].action + "?operate=list&status=1&method=query";
-		document.forms[0].action = "salarystandard_query_list.jsp";
-		document.forms[0].submit();
-	}
-</script>
 </head>
 
 <body>
-	<form method="post" action="salarystandard.do">
+	<form method="post">
 		<table width="100%">
 			<tr>
 				<td><font color="#0000CC">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准查询</font>
@@ -43,8 +38,7 @@
 			<tr>
 				<td>
 					<div align="right">
-						<input type="button" value="查询" class="BUTTON_STYLE1"
-							onclick="list();">
+						<input type="submit" value="查询" class="BUTTON_STYLE1" onclick="query()">
 					</div>
 				</td>
 			</tr>
@@ -54,7 +48,7 @@
 			<tr>
 				<td width="20%" class="TD_STYLE1">请输入薪酬标准编号</td>
 				<td class="TD_STYLE2"><input type="text" name="item.standardId"
-					value="" class="INPUT_STYLE1"></td>
+					value="" class="INPUT_STYLE1" id="bh"></td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">请输入关键字</td>
@@ -72,6 +66,8 @@
 		</table>
 	</form>
 </body>
+</html>
+<script type="text/javascript" src="javascript/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	Calendar.setup({
 		inputField : "date_start",
@@ -89,6 +85,20 @@
 		singleClick : true,
 		step : 1
 	});
+	
+	function query() {
+		var bh = $("#bh").val();
+		if (bh.length<=0) {
+			alert("薪酬标准编号不可以为空！！！");
+			return;
+		}
+		$.ajax({
+			type:"POST",
+			url:"queryBySalary.do?str="+bh,
+			dataType:"json",
+			contentType:"application/json; charset=utf-8",
+			data:bh,
+		});
+	}
 </script>
-</html>
 

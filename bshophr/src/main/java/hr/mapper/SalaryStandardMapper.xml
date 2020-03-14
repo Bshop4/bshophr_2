@@ -32,6 +32,11 @@
 		select * from salary_standard where standard_id=#{id}
 	</select>
 	
+	<!-- 向思宇的模糊查询 -->
+	<select id="selectSalaryStandardByIdDim" resultMap="SalaryStandardMap">
+		select * from salary_standard where standard_id like '%${_parameter}%'
+	</select>
+	
 	<delete id="deleteSalaryStandardById" parameterType="_int">
 		delete from salary_standard where ssd_id=#{id}
 	</delete>
@@ -45,7 +50,7 @@
 	</update>
 	
 	<!-- 向思宇加的修改语句 -->
-	<update id="updateSalaryStandardByfh" parameterType="SalaryStandard">
+	<update id="updateSalaryStandardfh" parameterType="SalaryStandard">
 		update salary_standard set checker=#{checker},check_time=#{checkTime},check_status=#{checkStatus},check_comment=#{checkComment} where standard_id=#{standard_id}
 	</update>
 </mapper>
