@@ -4,9 +4,12 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,11 +23,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.pojo.ConfigFileSecondKind;
+import hr.pojo.ConfigFileThirdKind;
 import hr.pojo.ConfigMajor;
 import hr.pojo.EngageMajorRelease;
 import hr.service.ConfigFileThirdKindService;
 import hr.service.ConfigMajorService;
 import hr.service.EngageMajorReleaseService;
+import hr.util.PatternUtil;
 import net.sf.json.JSONObject;
 
 @Repository
@@ -43,14 +48,50 @@ public class MajorRelease {
 	@RequestMapping("/query.do")
 	public String query(Model model){
 		
-		List<ConfigMajor> listConfigMajor = cms.findConfigMajorAll();
-		
-		for (ConfigMajor configMajor : listConfigMajor) {
-			System.out.println(configMajor);
+		List<ConfigFileThirdKind> list = cftks.findConfigFileThirdKindAll();
+		Set<String> set = new HashSet<String>();
+		for (ConfigFileThirdKind c : list) {
+			set.add(c.getFirstKindName());
 		}
+		List<String> firstList = new ArrayList<String>(set);
+		
+		model.addAttribute("firstList", firstList);
 		
 		return "forward:/major_release.jsp";
 	}
+	
+	@RequestMapping("/querySecondKindName.do")
+	@ResponseBody
+	public List<String> querySecondKindName(String firstKindName){
+		
+		List<ConfigFileThirdKind> list = cftks.findConfigFileThirdKindAllByFirstKindName(firstKindName);
+		
+		Set<String> set = new HashSet<String>();
+		for (ConfigFileThirdKind c : list) {
+			set.add(c.getSecondKindName());
+		}
+		List<String> secondList = new ArrayList<String>(set);
+		return secondList;
+	}
+	
+	
+	@RequestMapping("/queryThirdKindName.do")
+	@ResponseBody
+	public List<String> queryThirdKindName(String secondKindName){
+		
+		List<ConfigFileThirdKind> list = cftks.findConfigFileThirdKindAllBySecondKindName(secondKindName);
+		
+		Set<String> set = new HashSet<String>();
+		for (ConfigFileThirdKind c : list) {
+			set.add(c.getThirdKindName());
+		}
+		List<String> thirdList = new ArrayList<String>(set);
+		return thirdList;
+	}
+	
+	
+	
+	
 	
 	@RequestMapping("/queryAll.do")
 	public String queryAll(Model model,HttpServletRequest request){

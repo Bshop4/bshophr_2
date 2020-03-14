@@ -13,4 +13,7 @@ public interface ConfigFileThirdKindMapper {
 	public boolean deleteConfigFileThirdKindById(int id);
 	public boolean insertConfigFileThirdKind(ConfigFileThirdKind configFileThirdKind);
 	public boolean updateConfigFileThirdKind(ConfigFileThirdKind configFileThirdKind);
+	
+	public List<ConfigFileThirdKind> selectConfigFileThirdKindAllByFirstKindName(String name);
+	public List<ConfigFileThirdKind> selectConfigFileThirdKindAllBySecondKindName(String name);
 }

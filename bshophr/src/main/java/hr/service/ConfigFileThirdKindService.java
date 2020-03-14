@@ -10,4 +10,8 @@ public interface ConfigFileThirdKindService {
 	public boolean removeConfigFileThirdKindById(int id);
 	public boolean saveConfigFileThirdKind(ConfigFileThirdKind configFileThirdKind);
 	public boolean updateConfigFileThirdKind(ConfigFileThirdKind configFileThirdKind);
+	
+	public List<ConfigFileThirdKind> findConfigFileThirdKindAllByFirstKindName(String name);
+	
+	public List<ConfigFileThirdKind> findConfigFileThirdKindAllBySecondKindName(String name);
 }
