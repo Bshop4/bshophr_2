@@ -524,7 +524,7 @@ a {
 										<tr>
 											<td width="2%"><img src="images/jt0.gif"></td>
 											<td width="98%"><a
-												href="engageresume.do?operate=locate&method=interview"
+												href="zjlEngageResume/queryNeed.do"
 												target="mainFrame">面试结果登记</a></td>
 										</tr>
 										<tr>
