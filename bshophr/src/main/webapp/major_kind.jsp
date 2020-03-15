@@ -47,7 +47,7 @@
 				<tr>
 					<td class="TD_STYLE2">${mk.majorKindId }</td>
 					<td class="TD_STYLE2">${mk.majorKindName }</td>
-					<td class="TD_STYLE2"><a href="major_kind_delete.jsp?id=${mk.mfkId }&message=${mk.majorKindId }/${mk.majorKindName }">删除</a></td>
+					<td class="TD_STYLE2"><a href="major_kind_delete.jsp?id=${mk.mfkId }&message=${mk.majorKindId }/${mk.majorKindName }&pageNo=${pageNo}">删除</a></td>
 				</tr>
 			</c:forEach>
 		</table>

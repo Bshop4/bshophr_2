@@ -51,7 +51,7 @@
 					<td class="TD_STYLE2">${m.majorKindName }</td>
 					<td class="TD_STYLE2">${m.majorId }</td>
 					<td class="TD_STYLE2">${m.majorName}</td>
-					<td class="TD_STYLE2"><a href="major_delete.jsp?id=${m.makId }&message=${mk.majorKindId }/${mk.majorKindName }/${m.majorId }/${m.majorName }">删除</a>
+					<td class="TD_STYLE2"><a href="major_delete.jsp?id=${m.makId }&message=${mk.majorKindId }/${mk.majorKindName }/${m.majorId }/${m.majorName }&pageNo=${pageNo}">删除</a>
 					</td>
 				</tr>
 			</c:forEach>

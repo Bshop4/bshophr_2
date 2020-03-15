@@ -30,7 +30,8 @@ public class ConfigprofessiondesignController {
 				return "forward:/profession_design_register.jsp";
 			case "doDelete":
 				cpds.removeConfigProfessionDesignById(Integer.parseInt(request.getParameter("id")));
-				return "redirect:/pyl/configprofessiondesign.do?operate=list";
+				String dpage=request.getParameter("pageNo");
+				return "redirect:/pyl/configprofessiondesign.do?operate=list&page="+dpage;
 			case "list":
 				selectPage(request, model, cpds);
 				return "forward:/profession_design.jsp";

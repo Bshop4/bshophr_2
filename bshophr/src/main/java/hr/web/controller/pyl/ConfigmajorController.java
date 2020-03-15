@@ -37,7 +37,8 @@ public class ConfigmajorController {
 				
 			case "doDelete":
 				cms.removeConfigMajorById(Integer.parseInt(request.getParameter("id")));
-				return "redirect:/pyl/configmajor.do?operate=list";
+				String dpage=request.getParameter("pageNo");
+				return "redirect:/pyl/configmajor.do?operate=list&page="+dpage;
 				
 			case "list":
 				selectPage(request, model, cms);
