@@ -122,12 +122,12 @@ a {
 										</tr>
 										<tr>
 											<td><img src="images/jt0.gif"></td><!-- profession_design.jsp -->
-											<td><a href="" target="mainFrame">职称设置</a>
+											<td><a href="pyl/configprofessiondesign.do?operate=list" target="mainFrame">职称设置</a>
 											</td>
 										</tr>
 										<tr>
 											<td><img src="images/jt0.gif"></td>
-											<td><a href="major_kind.jsp" target="mainFrame">职位分类设置</a>
+											<td><a href="pyl/configmajorkind.do?operate=list" target="mainFrame">职位分类设置</a>
 											</td>
 										</tr>
 										<tr>
