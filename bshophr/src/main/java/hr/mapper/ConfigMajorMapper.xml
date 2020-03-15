@@ -15,6 +15,18 @@
 	<select id="selectConfigMajorAll" resultMap="configMajorMap">
 		select * from config_major
 	</select>
+	
+	<select id="selectConfigMajorSelect" resultMap="configMajorMap" parameterType="hashmap">
+		select * from config_major
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="majorKindId!=null">
+				and major_kind_id=#{majorKindId}
+			</if>
+		</trim>
+		<if test="currentPage!=null and pageSize!=null">
+			limit #{currentPage},#{pageSize}
+		</if>
+	</select>
 
 	<select id="selectConfigMajorById" parameterType="_int" resultMap="configMajorMap">
 		select * from config_major where mak_id=#{id}

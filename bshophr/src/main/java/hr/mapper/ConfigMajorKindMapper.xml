@@ -12,6 +12,8 @@
 	<select id="selectConfigMajorKindAll" resultMap="configMajorKindMap">
 		select * from config_major_kind
 	</select>
+	
+	
 
 	<select id="selectConfigMajorKindById" parameterType="_int" resultMap="configMajorKindMap">
 		select * from config_major_kind where mfk_id=#{id}

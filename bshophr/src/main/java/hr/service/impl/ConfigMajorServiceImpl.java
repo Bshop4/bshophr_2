@@ -1,6 +1,7 @@
 package hr.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,11 @@ public class ConfigMajorServiceImpl implements ConfigMajorService{
 	public boolean updateConfigMajor(ConfigMajor configMajor) {
 		// TODO Auto-generated method stub
 		return configMajorMapper.updateConfigMajor(configMajor);
+	}
+
+	@Override
+	public List<ConfigMajor> findConfigMajorSelect(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return configMajorMapper.selectConfigMajorSelect(map);
 	}
 }

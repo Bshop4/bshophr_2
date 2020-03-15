@@ -25,6 +25,11 @@
 
 	<select id="selectConfigFileThirdKindAll" resultMap="configFileThirdKindMap" parameterType="hashmap">
 		select * from config_file_third_kind
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="secondKindId!=null">
+				and second_kind_id=#{secondKindId}
+			</if>
+		</trim>
 		<if test="currentPage!=null and pageSize!=null">
 			limit #{currentPage},#{pageSize}
 		</if>
