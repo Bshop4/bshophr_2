@@ -161,26 +161,43 @@
 </html>
 <script type="text/javascript" src="javascript/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-	function getdata() {
-		var my1 = ($("#my1").val()==""?"null":$("#my1").val());
-		var my2 = ($("#my2").val()==""?"null":$("#my2").val());
-		var my3 = ($("#my3").val()==""?"null":$("#my3").val());
-		var my4 = ($("#my4").val()==""?"null":$("#my4").val());
-		var my5 = ($("#my5").val()==""?"null":$("#my5").val());
-		var str1 = ($("#td1").val()==""?"0.00":$("#td1").val());
-		var str2 = ($("#td2").val()==""?"0.00":$("#td2").val());
-		var str3 = ($("#td3").val()==""?"0.00":$("#td3").val());
-		var str4 = ($("#td4").val()==""?"0.00":$("#td4").val());
-		var str5 = ($("#td5").val()==""?"0.00":$("#td5").val());
-		var str6 = ($("#td6").val()==""?"0.00":$("#td6").val());
-		var salary_sum = Number(str1)+Number(str2)+Number(str3)+Number(str4)+Number(str5)+Number(str6);
+	 function getdata() {
+		var my1 = $("#my1").val();
+		var my2 = $("#my2").val();
+		var my3 = $("#my3").val();
+		var my4 = $("#my4").val();
+		var my5 = $("#my5").val();
+		var str1 = $("#td1").val();
+		var str2 = $("#td2").val();
+		var str3 = $("#td3").val();
+		var str4 = $("#td4").val();
+		var str5 = $("#td5").val();
+		var str6 = $("#td6").val();
+		if (my1.length<=0||my2.length<=0||my3.length<=0||my4.length<=0||my5.length<=0||str1.length<=0||str2.length<=0||str3.length<=0||str4.length<=0||str5.length<=0||str6.length<=0) {
+			alert("数据不能为空！");
+			return;
+		}
+		/*var salary_sum = Number(str1)+Number(str2)+Number(str3)+Number(str4)+Number(str5)+Number(str6);
 		var obj = my1+","+my2+","+my3+","+my4+","+my5+","+str1+","+str2+","+str3+","+str4+","+str5+","+str6+","+salary_sum;
-		$.ajax({
+		 $.ajax({
 			type:"POST",
 			url:"hr/salarystandard.do?str="+obj,
-			/* dataType:"json", */
-			contentType:"application/json; charset=utf-8",
 			data:obj,
-		});
-	}
+			contentType:"application/json; charset=utf-8", 
+			 async : true,
+            cache : false,
+            contentType : false,
+            processData : false,
+			enctype:'multipart/form-data',
+			 dataType:"json", 
+			success:function(data){
+				console.log(data.result);
+				window.location.href="salarystandard_register_success.jsp";
+			},
+			error:function(){
+				console.log(2);
+				window.location.href="salarystandard_register_success.jsp";
+			}
+		});*/
+	} 
 </script>

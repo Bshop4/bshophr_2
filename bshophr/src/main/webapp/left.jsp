@@ -117,12 +117,12 @@ a {
 										</tr>
 										<tr>
 											<td><img src="images/jt0.gif"></td>
-											<td><a href="configfilethirdkind.do?operate=list"
+											<td><a href="pyl/configfilethirdkind.do?operate=list"
 												target="mainFrame">III级机构设置</a></td>
 										</tr>
 										<tr>
-											<td><img src="images/jt0.gif"></td>
-											<td><a href="profession_design.jsp" target="mainFrame">职称设置</a>
+											<td><img src="images/jt0.gif"></td><!-- profession_design.jsp -->
+											<td><a href="" target="mainFrame">职称设置</a>
 											</td>
 										</tr>
 										<tr>
@@ -311,7 +311,7 @@ a {
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td><a href="salarystandard_query_locate.jsp"
+							<td><a href="queryBySalaryto.do"
 								target="mainFrame">薪酬标准查询</a></td>
 						</tr>
 						<tr>
@@ -524,7 +524,7 @@ a {
 										<tr>
 											<td width="2%"><img src="images/jt0.gif"></td>
 											<td width="98%"><a
-												href="engageresume.do?operate=locate&method=interview"
+												href="zjlEngageResume/queryNeed.do"
 												target="mainFrame">面试结果登记</a></td>
 										</tr>
 										<tr>

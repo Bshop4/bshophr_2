@@ -77,5 +77,12 @@ public class ConfigFileThirdKindServiceImpl implements ConfigFileThirdKindServic
 		return configFileThirdKindMapper.selectConfigFileThirdKindIdMax(map);
 	}
 
+	@Override
+	public ConfigFileThirdKind findConfigFileThirdKindByFirstSecondThirdKindName(String firstKindName,
+			String secondKindName, String thirdKindName) {
+		// TODO Auto-generated method stub
+		return configFileThirdKindMapper.selectConfigFileThirdKindByFirstSecondThirdKindName(firstKindName, secondKindName, thirdKindName);
+	}
+
 	
 }

@@ -55,7 +55,20 @@ public class MajorRelease {
 		}
 		List<String> firstList = new ArrayList<String>(set);
 		
+		
+		List<ConfigMajor> listCm = cms.findConfigMajorAll();
+		Set<String> set1 = new HashSet<String>();
+		for (ConfigMajor c : listCm) {
+			set1.add(c.getMajorKindName());
+		}
+		List<String> majorKindNameList = new ArrayList<String>(set1);
+		
+		
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		
+		model.addAttribute("now", t);
 		model.addAttribute("firstList", firstList);
+		model.addAttribute("majorKindNameList", majorKindNameList);
 		
 		return "forward:/major_release.jsp";
 	}
@@ -89,6 +102,76 @@ public class MajorRelease {
 		return thirdList;
 	}
 	
+	@RequestMapping("/queryMajorKindName.do")
+	@ResponseBody
+	public List<String> queryMajorKindName(String majorName){
+		
+		List<ConfigMajor> list = cms.findConfigMajorAllByMajorKindName(majorName);
+		Set<String> set = new HashSet<String>();
+		for (ConfigMajor c : list) {
+			set.add(c.getMajorName());
+		}
+		List<String> majorNameList = new ArrayList<String>(set);
+		
+		return majorNameList;
+	}
+	
+	
+	
+	@RequestMapping("/saveMajorRelease.do")
+	@ResponseBody
+	public List<String> saveMajorRelease(String firstKindName,
+										 String secondKindName,
+										 String thirdKindName,
+										 String engageType,
+										 String majorKindName,
+										 String majorName,
+										 short humanAmount,
+										 Timestamp registTime,
+										 String register,
+										 Timestamp deadline,
+										 String majorDescribe,
+										 String engageRequired){
+		
+		ConfigFileThirdKind c = cftks.findConfigFileThirdKindByFirstSecondThirdKindName(firstKindName, secondKindName, thirdKindName);
+		String firstKindId = c.getFirstKindId();
+		System.out.println("f" + firstKindId);
+		String secondKindId = c.getSecondKindId();
+		String thirdKindId = c.getThirdKindId();
+		
+		ConfigMajor cm = cms.findConfigMajorByMajorKindNameAndMajorName(majorKindName, majorName);
+		String majorKindId = cm.getMajorKindId();
+		String majorId = cm.getMajorId();
+		
+		EngageMajorRelease e = new EngageMajorRelease();
+		e.setFirstKindId(firstKindId);
+		e.setFirstKindName(firstKindName);
+		e.setSecondKindId(secondKindId);
+		e.setSecondKindName(secondKindName);
+		e.setThirdKindId(thirdKindId);
+		e.setThirdKindName(thirdKindName);
+		e.setMajorKindId(majorKindId);
+		e.setMajorKindName(majorKindName);
+		e.setMajorId(majorId);
+		e.setMajorName(majorName);
+		e.setHumanAmount(humanAmount);
+		e.setEngageType(engageType);
+		e.setDeadline(deadline);
+		e.setRegister(register);
+		e.setChanger(register);
+		e.setRegistTime(registTime);
+		e.setChangeTime(registTime);
+		e.setMajorDescribe(majorDescribe);
+		e.setEngageRequired(engageRequired);
+		
+		boolean f = emrs.saveEngageMajorRelease(e);
+		List<String> list = new ArrayList<String>();
+		if(f){
+			list.add("发布职位成功！");
+		}
+		
+		return list;
+	}
 	
 	
 	
@@ -106,7 +189,7 @@ public class MajorRelease {
 		
 		int maxPage =0;
 		int sumNumber =emrs.findCnt();//总个数
-		int pageSize =1;
+		int pageSize =2;
 		int pageNo =1;
 		//最大页数
 		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
@@ -209,7 +292,7 @@ public class MajorRelease {
 //		}
 		int maxPage =0;
 		int sumNumber =emrs.findCnt();//总个数
-		int pageSize =1;
+		int pageSize =2;
 		int pageNo =1;
 		//最大页数
 		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;

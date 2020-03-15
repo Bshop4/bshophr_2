@@ -9,6 +9,12 @@ public interface SalaryStandardService {
 
 	public SalaryStandard findSalaryStandardById(int id);
 
+	// 向思宇加的ID模糊查询
+	public List<SalaryStandard> findSalaryStandardByIdDim(int id);
+
+	// 向思宇加的name模糊查询
+	public List<SalaryStandard> findSalaryStandardByCondition(SalaryStandard s);
+
 	public boolean removeSalaryStandardById(int id);
 
 	public boolean saveSalaryStandard(SalaryStandard salaryStandard);
@@ -16,5 +22,5 @@ public interface SalaryStandardService {
 	public boolean updateSalaryStandard(SalaryStandard salaryStandard);
 
 	// 向思宇加的
-	public boolean updateSalaryStandardByfh(SalaryStandard ss);
+	public boolean updateSalaryStandardfh(SalaryStandard ss);
 }

@@ -26,7 +26,7 @@
 </head>
 
 <body>
-	<form method="post">
+	<form method="post" action="recheckout.do">
 		<table width="100%">
 			<tr>
 				<td><font color="#0000CC">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记复核</font>
@@ -35,8 +35,8 @@
 			<tr>
 				<td>
 					<div align="right">
-						<input type="button" value="复核通过" class="BUTTON_STYLE1"
-							onclick="check();;"> <input type="button" value="返回"
+						<input type="submit" value="复核通过" class="BUTTON_STYLE1"
+							onclick="check();"> <input type="button" value="返回"
 							onclick="history.back();" class="BUTTON_STYLE1">
 					</div>
 				</td>
@@ -79,7 +79,7 @@
 			<tr>
 				<td class="TD_STYLE1">复核意见</td>
 				<td colspan="7" class="TD_STYLE2">
-					<textarea name="sfgcomment" rows="4" class="INPUT_STYLE2" id="comment"></textarea>
+					<textarea name="sfgcomment" rows="4" class="INPUT_STYLE2" id="fhyj"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -113,11 +113,12 @@
 <script type="text/javascript">
 	function check() {
 		var recheck = $("#recheck").val();
-		if (recheck.length<=0) {
-			alert("复核人不可以为空！！！");
+		var fhyj = $("#fhyj").val();
+		if (recheck.length<=0||fhyj.length<=0) {
+			alert("复核人或者复核意见不可以为空！！！");
 			return;
 		}
-		var s1 = $("#recheck").val();//复核人
+		/* var s1 = $("#recheck").val();//复核人
 		var s2 = $("#Tdate").val();//复核时间
 		var s3 = ($("#comment").val()==""?"null":$("#comment").val());//复核意见
 		var s4 = $("#xcbh").val();//薪酬编号
@@ -129,9 +130,10 @@
 			dataType:"json",
 			contentType:"application/json; charset=utf-8",
 			data:obj,
-		});
-	}
-	function countMoney(obj,o) {
+		});*/
+	} 
+	
+	/* function countMoney(obj,o) {
 		if (isNaN(document.getElementById(o).value) || document.getElementById(o).value < 0) {
 			$.messager.show("消息提示","金额填写错误!",2000);
 			document.getElementById(o).value="0.00";
@@ -146,7 +148,7 @@
 	 		sum=Number(sum)+Number(salary);
 	 	}
 	 	document.getElementById("sumSalary").value=sum;
-	}
+	} */
 	
 	function time(){
 		var tdate=document.getElementById("Tdate");					 

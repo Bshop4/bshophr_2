@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="javascript/comm/comm.js"></script>
 </head>
 <body>
-	<form name="configfilesecondkindForm" method="post" action="pyl/configfilesecondkind/save.do?">
+	<form name="configfilesecondkindForm" method="post" action="pyl/configfilesecondkind/save.do">
 	<table width="100%" >
 	  <tr>
 		<td> 
@@ -68,4 +68,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</form>
 </body>
 </html>
-<script type="text/javascript" src="javascript/jquery-3.4.1.min.js"></script>
+
