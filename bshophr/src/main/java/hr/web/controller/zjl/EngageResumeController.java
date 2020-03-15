@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.pojo.ConfigPublicChar;
 import hr.pojo.EngageMajorRelease;
+import hr.pojo.EngageResume;
 import hr.service.ConfigMajorService;
 import hr.service.ConfigPublicCharService;
 import hr.service.EngageInterviewService;
@@ -35,7 +36,7 @@ public class EngageResumeController {
 	private ConfigPublicCharService cpcs = null;//公共字段
 	
 	@Autowired
-	private EngageResumeService ers = null; //面试等级表
+	private EngageResumeService ers = null; //面试登记表
 	
 	@Autowired
 	private EngageInterviewService eis = null; //面试记录表
@@ -168,6 +169,28 @@ public class EngageResumeController {
 		return etList;
 	}
 	
+	
+	@RequestMapping("/saveEngageResume.do")
+	@ResponseBody
+	public List<String> saveEngageResume(EngageResume er){
+
+		String engageType = er.getEngageType();
+		String majorKindName = er.getHumanMajorKindName();
+		String majorName = er.getHumanMajorName();
+		
+		EngageMajorRelease emr = emrs.findEngageMajorReleaseAllByMajorKindNameAndMajorNameAndEngageType(majorKindName, majorName, engageType);
+		
+		er.setHumanMajorKindId(emr.getMajorKindId());
+		er.setHumanMajorId(emr.getMajorId());
+		
+		boolean f = ers.saveEngageResume(er);
+		List<String> list = new ArrayList<String>();
+		if(f){
+			list.add("简历提交成功！");
+		}
+		
+		return list;
+	}
 	
 	
 	
