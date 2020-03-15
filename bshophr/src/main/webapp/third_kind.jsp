@@ -107,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<a href="pyl/configfilethirdkind.do?operate=one&id=${sk.ftkId }">变更</a>
 						</td>
 						<td class="TD_STYLE2">
-							<a href="third_kind_delete.jsp?id=${sk.ftkId }&message=${sk.firstKindId}/${sk.firstKindName}/${sk.secondKindId}/${sk.thirdKindId}/${sk.secondKindName}/${sk.thirdKindName}&pageNO=${pageNO}">删除</a>
+							<a href="third_kind_delete.jsp?id=${sk.ftkId }&message=${sk.firstKindId}/${sk.firstKindName}/${sk.secondKindId}/${sk.thirdKindId}/${sk.secondKindName}/${sk.thirdKindName}&pageNo=${pageNo}">删除</a>
 						</td>
 					</tr>
 				</c:forEach>

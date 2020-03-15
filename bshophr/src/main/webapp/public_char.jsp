@@ -48,8 +48,10 @@
 				<tr>
 					<td class="TD_STYLE2">${pc.attributeKind }</td>
 					<td class="TD_STYLE2">${pc.attributeName }</td>
-					<td class="TD_STYLE2" align="center"><a
-						href="public_char_delete.jsp?id=${pc.pbcId }&message=${pc.attributeKind }/${pc.attributeName }&pageNo='${pageNo }'">删除</a></td>
+					<td class="TD_STYLE2" align="center">
+						 <a href="public_char_delete.jsp?id=${pc.pbcId }&message=${pc.attributeKind }/${pc.attributeName }&pageNo=${pageNo }">删除</a>
+						
+					</td>
 				</tr>
 			</c:forEach>
 
