@@ -42,7 +42,7 @@
 			</tr>
 			<tr>
 				<td align="right"><input type="button" value="开始"
-					class="BUTTON_STYLE1" onclick="list();"></td>
+					class="BUTTON_STYLE1" onclick="list()"></td>
 			</tr>
 		</table>
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
