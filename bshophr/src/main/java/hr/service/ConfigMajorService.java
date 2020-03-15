@@ -1,6 +1,7 @@
 package hr.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -13,7 +14,11 @@ public interface ConfigMajorService {
 	public boolean saveConfigMajor(ConfigMajor configMajor);
 	public boolean updateConfigMajor(ConfigMajor configMajor);
 	
+
+	public List<ConfigMajor> findConfigMajorSelect(Map<String, Object> map);
+
 	public List<ConfigMajor> findConfigMajorAllByMajorKindName(String name);
 	
 	public ConfigMajor findConfigMajorByMajorKindNameAndMajorName(String majorKindName,String majorName);
+
 }
