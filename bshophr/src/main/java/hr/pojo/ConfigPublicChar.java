@@ -83,5 +83,7 @@ public class ConfigPublicChar implements java.io.Serializable {
 		result = 37 * result + (getAttributeName() == null ? 0 : this.getAttributeName().hashCode());
 		return result;
 	}
+	
+	
 
 }

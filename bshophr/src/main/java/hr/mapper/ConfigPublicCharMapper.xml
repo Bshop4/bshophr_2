@@ -8,6 +8,10 @@
 		<result property="attributeKind"    column="attribute_kind"/>
 		<result property="attributeName"    column="attribute_name"/>
 	</resultMap>
+	
+	<select id="selectConfigPublicCharAllByCondition" parameterType="string" resultMap="configPublicCharMap">
+		select * from config_public_char where attribute_kind=#{attributeKind}
+	</select>
 
 	<select id="selectConfigPublicCharAll" resultMap="configPublicCharMap">
 		select * from config_public_char

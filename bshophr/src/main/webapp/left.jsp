@@ -491,7 +491,7 @@ a {
 									<table width="100%" border="0">
 										<tr>
 											<td width="2%"><img src="images/jt0.gif"></td>
-											<td width="98%"><a href="engageresume.do?operate=toAdd"
+											<td width="98%"><a href="zjlEngageResume/querySomething.do"
 												target="mainFrame">简历登记</a></td>
 										</tr>
 										<tr>

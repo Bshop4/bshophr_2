@@ -9,8 +9,12 @@ import hr.pojo.ConfigPublicChar;
 @Repository
 public interface ConfigPublicCharMapper {
 	public List<ConfigPublicChar> selectConfigPublicCharAll();
+	
+	public List<ConfigPublicChar> selectConfigPublicCharAllByCondition(String attributeKind);
 
 	public ConfigPublicChar selectConfigPublicCharById(int id);
+	
+	
 
 	// 向思宇写的
 	public List<ConfigPublicChar> selectConfigPublicCharByAk(String ak);

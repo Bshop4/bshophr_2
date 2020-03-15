@@ -20,5 +20,9 @@ public interface EngageMajorReleaseService {
 	public int findCnt();
 	
 	public List<EngageMajorRelease> findSplit(Map<String,Object> map);
+	
+	public List<EngageMajorRelease> findEngageMajorReleaseAllByMajorKindName(String majorKindName);
+	
+	public List<EngageMajorRelease> findEngageMajorReleaseAllByMajorKindNameAndMajorName(String majorKindName,String majorName);
 
 }

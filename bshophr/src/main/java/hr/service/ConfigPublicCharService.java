@@ -6,6 +6,8 @@ import hr.pojo.ConfigPublicChar;
 
 public interface ConfigPublicCharService {
 	public List<ConfigPublicChar> findConfigPublicCharAll();
+	
+	public List<ConfigPublicChar> findConfigPublicCharAllByCondition(String attributeKind);
 
 	public ConfigPublicChar findConfigPublicCharById(int id);
 

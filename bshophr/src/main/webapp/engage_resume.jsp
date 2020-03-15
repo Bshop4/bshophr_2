@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -49,24 +50,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						职位分类
 					</td>
 					<td class="TD_STYLE2">  
-					<select name="humanmajorkindname" class="SELECT_STYLE1" id="humanMajorKind">
-					<option>123</option>
+					<select name="humanmajorkindname" class="SELECT_STYLE1" id="humanMajorKindName">
+						<option value="">&nbsp;</option>
+						<c:if test="${!empty emrList }">
+							<c:forEach items="${emrList }" var="i">
+								<option value="${i }">${i }</option>
+							</c:forEach>
+						</c:if>
 					</select>		
 					</td>
 					<td class="TD_STYLE1">
 						职位名称
 					</td>
 					<td class="TD_STYLE2" width="20%"> 
-					<select name="humanmajorname" class="SELECT_STYLE1" id="humanMajorId" onchange="getMajorName()">
-						<option>123123</option>
+					<select name="humanmajorname" class="SELECT_STYLE1" id="humanMajorName">
+						<option value="">&nbsp;</option>
 					</select>
 					</td>
 					<td width="11%" class="TD_STYLE1">
 						招聘类型
 					</td>
 					<td class="TD_STYLE2" colspan="2"> 
-					<select name="engagetype" class="SELECT_STYLE1">
-						<option value="123123">123123</option>
+					<select name="engagetype" class="SELECT_STYLE1" id="engageType">
+						<option value="">&nbsp;</option>
 					</select>
 					</td>
 					<td rowspan="6" >
@@ -136,11 +142,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE2">
 					 <select name="humannationality"   class="SELECT_STYLE1">
-					 	<option value="123123">123123</option>
-							<%-- <option value="">--请选择--</option> 
-							<c:forEach items="${glist}" var="g">
-			                    <option>${g.attributename}</option>
-			                 </c:forEach> --%>
+					 	<option value="">&nbsp;</option>
+						<c:if test="${!empty guoList }">
+							<c:forEach items="${guoList }" var="i">
+								<option value="${i }">${i }</option>
+							</c:forEach>
+						</c:if>
 					 </select> 
 					</td>
 					<td class="TD_STYLE1">
@@ -153,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						生日
 					</td>
 					<td width="13%" colspan="2" class="TD_STYLE2">
-						<input type="text" name="humanbirthday" id="birthday" class="INPUT_STYLE2" disabled="disabled">
+						<input type="text" name="humanbirthday" id="birthday" class="INPUT_STYLE2">
 					</td>
 					
 				</tr>
@@ -163,10 +170,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE2" width="14%">
 				 	 <select name="humanrace"   class="SELECT_STYLE1">
-							<%-- <option value="">--请选择--</option> 
-							<c:forEach items="${mlist}" var="m1">
-			 				<option>${m1.attributename}</option>
-								</c:forEach> --%>
+							<option value="">&nbsp;</option>
+							<c:if test="${!empty minList }">
+								<c:forEach items="${minList }" var="i">
+									<option value="${i }">${i }</option>
+								</c:forEach>
+							</c:if>
 					 </select>  
 					</td>
 					<td class="TD_STYLE1">
@@ -174,9 +183,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE2">
 					   <select name="humanreligion"   class="SELECT_STYLE1"> 
-							<%-- <c:forEach items="${zlist}" var="z1">
-							<option>${z1.attributename}</option>
-							</c:forEach> --%>
+							<option value="">&nbsp;</option>
+							<c:if test="${!empty zongList }">
+								<c:forEach items="${zongList }" var="i">
+									<option value="${i }">${i }</option>
+								</c:forEach>
+							</c:if>
 					 </select>  
 					</td>
 					<td class="TD_STYLE1">
@@ -184,14 +196,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE2" colspan="2">
 					   <select name="humanparty"   class="SELECT_STYLE1">
-							<%-- <option value="">--请选择--</option> 
-							<c:forEach items="${zzlist}" var="z">
-							<option>${z.attributename}</option>
-								</c:forEach> --%>
+							<option value="">&nbsp;</option>
+							<c:if test="${!empty zhengList }">
+								<c:forEach items="${zhengList }" var="i">
+									<option value="${i }">${i }</option>
+								</c:forEach>
+							</c:if>
 					 </select>  	  
 					</td>
-					
-					 
 				</tr>
 				<tr>
 				<td class="TD_STYLE1">
@@ -218,10 +230,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE2">
 					  <select name="humaneducateddegree"   class="SELECT_STYLE1">
-							<%-- <option value="">--请选择--</option> 
-							<c:forEach items="${xlist}" var="x">
-							<option>${x.attributename}</option>
-							</c:forEach> --%>
+							<option value="">&nbsp;</option>
+							<c:if test="${!empty xueList }">
+								<c:forEach items="${xueList }" var="i">
+									<option value="${i }">${i }</option>
+								</c:forEach>
+							</c:if>
 					 </select> 
 					</td>
 					
@@ -232,10 +246,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE2">
 					   <select name="humaneducatedyears"   class="SELECT_STYLE1">
-							<%-- <option value="">--请选择--</option> 
-						<c:forEach items="${jlist}" var="j">
-							<option>${j.attributename}</option>
-							</c:forEach> --%>
+							<option value="">&nbsp;</option>
+							<c:if test="${!empty jiaoList }">
+								<c:forEach items="${jiaoList }" var="i">
+									<option value="${i }">${i }</option>
+								</c:forEach>
+							</c:if>
 					 </select> 
 					</td>
 					<td class="TD_STYLE1">
@@ -243,10 +259,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE2">
 					   <select name="humaneducatedmajor"   class="SELECT_STYLE1">
-							<%-- <option value="">--请选择--</option> 
-							<c:forEach items="${xlzylist}" var="x1">
-							<option>${x1.attributename}</option>
-							</c:forEach> --%>
+							<option value="">&nbsp;</option>
+							<c:if test="${!empty zhuanList }">
+								<c:forEach items="${zhuanList }" var="i">
+									<option value="${i }">${i }</option>
+								</c:forEach>
+							</c:if>
 					 </select>  
 					</td>
 					
@@ -261,7 +279,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE2">
 						 <input type="text" name="registtime"
-							  id="nowTime" disabled="disabled"
+							  id="nowTime" readonly="readonly" value="${t}"
 							class="INPUT_STYLE2">
 					</td>
 					
@@ -273,10 +291,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE2">
 					   <select name="humanspecility"   class="SELECT_STYLE1">
-							<%-- <option value="">--请选择--</option> 
-							<c:forEach items="${tlist}" var="t">
-							<option>${t.attributename}</option>
-							</c:forEach> --%>
+							<option value="">&nbsp;</option>
+							<c:if test="${!empty teList }">
+								<c:forEach items="${teList }" var="i">
+									<option value="${i }">${i }</option>
+								</c:forEach>
+							</c:if>
 					 </select> 
 						 
 					</td>
@@ -285,10 +305,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE2">
 				     <select name="humanhobby"   class="SELECT_STYLE1">
-							<%-- <option value="">--请选择--</option> 
-							<c:forEach items="${alist}" var="a">
-							<option>${a.attributename}</option>
-							</c:forEach> --%>
+							<option value="">&nbsp;</option>
+							<c:if test="${!empty aiList }">
+								<c:forEach items="${aiList }" var="i">
+									<option value="${i }">${i }</option>
+								</c:forEach>
+							</c:if>
 					 </select> 
 						  
 					</td>
@@ -324,10 +346,89 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 			</table>
 		 </form>
-
-
-
-
 	</body>
- 
 </html>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script>
+
+	$("#humanMajorKindName").change(function(){
+			$("#engageType").empty();
+			
+			var str1 = `
+				<option>&nbsp;</option>
+			`;
+			$("#engageType").append(str1);
+	});
+
+	$("#humanMajorKindName").change(function(){
+		
+		var val = $('#humanMajorKindName option:selected').val();
+		/* 职位种类不为空 找职位名称 */
+		if(val != ""){
+			$("#humanMajorName").empty();
+			$.ajax({
+				type : "post",
+				url : "zjlEngageResume/queryHumanMajorName.do",
+				data : {"humanMajorKindName" : val},
+				success : function(re){
+					var str = "<option></option>";
+					for(var i = 0; i < re.length; i++){
+						str += "<option value='"+re[i]+"'>"+re[i]+"</option>";
+					}
+					$("#humanMajorName").append(str);
+				}
+			})
+		} 
+		
+		/* 如果职位为空  全部清空 */
+		if(val == ""){
+			$("#humanMajorName").empty();
+			$("#engageType").empty();
+			
+			var str = `
+				<option>&nbsp;</option>
+			`;
+			$("#humanMajorName").append(str);
+			
+			var str1 = `
+				<option>&nbsp;</option>
+			`;
+			$("#engageType").append(str1);
+		}
+	 });
+	 
+	 
+	 
+	 $("#humanMajorName").change(function(){
+		
+		var val = $('#humanMajorName option:selected').val();
+		var val1 = $('#humanMajorKindName option:selected').val();
+		/* 职位不为空   根据职位名称和职位种类找招聘类型 */
+		 if(val != ""){
+			$("#engageType").empty();
+			$.ajax({
+				type : "post",
+				url : "zjlEngageResume/queryEngageType.do",
+				data : {"humanMajorKindName" : val1,"humanMajorName" : val},
+				success : function(re){
+					var str = "<option></option>";
+					for(var i = 0; i < re.length; i++){
+						str += "<option value='"+re[i]+"'>"+re[i]+"</option>";
+					}
+					$("#engageType").append(str);
+				}
+			})
+		}  
+		
+		/* 如果职位名称为空  全部清空 */
+		if(val == ""){
+			$("#engageType").empty();
+			var str1 = `
+				<option>&nbsp;</option>
+			`;
+			$("#engageType").append(str1);
+		}
+	 });
+	 
+	 
+</script>

@@ -22,8 +22,13 @@
 	</update>
 	
 	
+	<select id="selectEngageMajorReleaseAllByMajorKindName" parameterType="string" resultMap="emr">
+		select * from engage_major_release where major_kind_name=#{majorKindName}
+	</select>
 	
-	
+	<select id="selectEngageMajorReleaseAllByMajorKindNameAndMajorName" parameterType="string" resultMap="emr">
+		select * from engage_major_release where major_kind_name=#{majorKindName} and major_name=#{majorName}
+	</select>
 
 	
 	<select id="selectEngageMajorReleaseAll" resultMap="emr">

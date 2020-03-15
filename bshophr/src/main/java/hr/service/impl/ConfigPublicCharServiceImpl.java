@@ -49,4 +49,10 @@ public class ConfigPublicCharServiceImpl implements ConfigPublicCharService {
 	public List<ConfigPublicChar> findConfigPublicCharByAk(String ak) {
 		return configPublicCharMapper.selectConfigPublicCharByAk(ak);
 	}
+
+	@Override
+	public List<ConfigPublicChar> findConfigPublicCharAllByCondition(String attributeKind) {
+		// TODO Auto-generated method stub
+		return configPublicCharMapper.selectConfigPublicCharAllByCondition(attributeKind);
+	}
 }
