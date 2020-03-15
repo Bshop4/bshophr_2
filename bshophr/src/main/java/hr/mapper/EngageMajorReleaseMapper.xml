@@ -30,6 +30,9 @@
 		select * from engage_major_release where major_kind_name=#{majorKindName} and major_name=#{majorName}
 	</select>
 
+	<select id="selectEngageMajorReleaseAllByMajorKindNameAndMajorNameAndEngageType" parameterType="string" resultMap="emr">
+		select * from engage_major_release where major_kind_name=#{majorKindName} and major_name=#{majorName} and engage_type=#{engageType}
+	</select>
 	
 	<select id="selectEngageMajorReleaseAll" resultMap="emr">
 		select * from engage_major_release

@@ -31,6 +31,8 @@ public interface EngageMajorReleaseMapper {
 	public List<EngageMajorRelease> selectEngageMajorReleaseAllByMajorKindNameAndMajorName(@Param("majorKindName")String majorKindName,
 																						   @Param("majorName") String majorName);
 	
+	public EngageMajorRelease selectEngageMajorReleaseAllByMajorKindNameAndMajorNameAndEngageType(@Param("majorKindName")String majorKindName,
+			@Param("majorName") String majorName,@Param("engageType") String engageType);
 	
 
 }

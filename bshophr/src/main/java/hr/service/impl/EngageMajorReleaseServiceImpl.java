@@ -72,6 +72,12 @@ public class EngageMajorReleaseServiceImpl implements EngageMajorReleaseService{
 		return emm.selectEngageMajorReleaseAllByMajorKindNameAndMajorName(majorKindName, majorName);
 	}
 	
+	@Override
+	public EngageMajorRelease findEngageMajorReleaseAllByMajorKindNameAndMajorNameAndEngageType(
+			String majorKindName, String majorName, String engageType) {
+		// TODO Auto-generated method stub
+		return emm.selectEngageMajorReleaseAllByMajorKindNameAndMajorNameAndEngageType(majorKindName, majorName, engageType);
+	}
 	
 	
 }
