@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 
 @Repository
 @RequestMapping("/zjlMajorRelease")
-public class MajorRelease {
+public class MajorReleaseController {
 	
 	@Autowired
 	private ConfigMajorService cms = null;//职位类型和职位

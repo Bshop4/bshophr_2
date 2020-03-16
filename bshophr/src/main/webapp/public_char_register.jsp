@@ -11,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'index.jsp' starting page</title>
+<title>page</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
@@ -23,42 +23,37 @@
 <link rel="stylesheet" href="table.css" type="text/css">
 <script type="text/javascript" src="javascript/comm/comm.js"></script>
 </head>
-
 <body>
-	<form method="post" action="pyl/configpublicchar.do?operate=list">
+	<form name="configfilefirstkindForm" method="post"
+		action="pyl/configpublicchar/save.do?">
 		<table width="100%">
 			<tr>
 				<td><font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--公共属性设置
 				</font></td>
 			</tr>
 			<tr>
-				<td align="right"><input type="button" value="添加"
-					class="BUTTON_STYLE1" onclick="window.location.href='pyl/configpublicchar.do?operate=toAdd'"></td>
+				<td align="right"><input type="button" value="提交"
+					class="BUTTON_STYLE1"
+					onclick="submit()">
+					<input type="button" value="返回" class="BUTTON_STYLE1"
+					onclick="history.back();"></td>
 			</tr>
 		</table>
+
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
 			bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
 			<tr>
-				<td width="49%" class="TD_STYLE1">属性种类</td>
-				<td width="44%" class="TD_STYLE1">属性名称</td>
-				<td width="7%" class="TD_STYLE1" align="center">删除</td>
+				<td class="TD_STYLE1">属性种类</td>
+				<td class="TD_STYLE2"><input type="text"
+					name="attributeKind" value="" class="INPUT_STYLE1"></td>
 			</tr>
 			
-			<c:forEach  items="${list }" var="pc">
-				<tr>
-					<td class="TD_STYLE2">${pc.attributeKind }</td>
-					<td class="TD_STYLE2">${pc.attributeName }</td>
-					<td class="TD_STYLE2" align="center">
-						 <a href="public_char_delete.jsp?id=${pc.pbcId }&message=${pc.attributeKind }/${pc.attributeName }&pageNo=${pageNo }">删除</a>
-						
-					</td>
-				</tr>
-			</c:forEach>
-
+			<tr>
+				<td class="TD_STYLE1">属性名称</td>
+				<td class="TD_STYLE2"><input type="text"
+					name="attributeName" value="" class="INPUT_STYLE1"></td>
+			</tr>
 		</table>
-		<p>
-			&nbsp;&nbsp;总数：${sumNumber}例 &nbsp;&nbsp;&nbsp;当前第 ${pageNo }页  &nbsp;&nbsp;&nbsp;共 ${maxPage } 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1 /> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0 />
-			</p>
 	</form>
 </body>
 </html>

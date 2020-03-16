@@ -6,7 +6,6 @@
     <!-- 字段映射 -->
     <resultMap id="configProfessionDesignMap" type="ConfigProfessionDesign">
         <id column="PD_ID" property="pdId" jdbcType="VARCHAR" />
-        <result column="PROFESSION_DESIGN_ID" property="professionDesignId" jdbcType="VARCHAR" />
         <result column="PROFESSION_DESIGN_NAME" property="professionDesignName" jdbcType="VARCHAR" />
     </resultMap>
     
@@ -14,7 +13,7 @@
    
     <!-- 表所有字段 -->
     <sql id="allColumns">
-        PD_ID, PROFESSION_DESIGN_ID, PROFESSION_DESIGN_NAME
+        PD_ID, PROFESSION_DESIGN_NAME
     </sql>
     
     
@@ -30,9 +29,7 @@
         SELECT
         <include refid="allColumns" />
         FROM CONFIG_PROFESSION_DESIGN WHERE 1 = 1
-        <if test="professionDesignId != null and professionDesignId != ''">
-            AND PROFESSION_DESIGN_ID LIKE CONCAT('%', #{professionDesignId}, '%')
-        </if>
+        
         <if test="professionDesignName != null and professionDesignName != ''">
             AND PROFESSION_DESIGN_NAME LIKE CONCAT('%', #{professionDesignName}, '%')
         </if>
@@ -61,9 +58,9 @@
     <!-- 插入数据 -->
     <insert id="insertConfigProfessionDesign" parameterType="ConfigProfessionDesign">
         INSERT INTO CONFIG_PROFESSION_DESIGN (
-           PROFESSION_DESIGN_ID, PROFESSION_DESIGN_NAME
+           PROFESSION_DESIGN_NAME
         ) VALUES (
-            #{professionDesignId},
+           
             #{professionDesignName}
         )
     </insert>
@@ -72,9 +69,6 @@
     <update id="updateConfigProfessionDesign" parameterType="map">
         UPDATE CONFIG_PROFESSION_DESIGN
         <set>
-            <if test="professionDesignId != null">
-                PROFESSION_DESIGN_ID = #{professionDesignId},
-            </if>
             <if test="professionDesignName != null">
                 PROFESSION_DESIGN_NAME = #{professionDesignName}
             </if>
@@ -87,4 +81,9 @@
         DELETE FROM CONFIG_PROFESSION_DESIGN WHERE PD_ID = #{id}
     </delete>
     
+    <!--查询总数据值 -->
+  	<select id="selectConfigProfessionDesignMaxNum" resultType="_int">
+  		select count(*) from CONFIG_PROFESSION_DESIGN
+  	</select>
+  
 </mapper>

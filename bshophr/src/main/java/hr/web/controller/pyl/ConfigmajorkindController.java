@@ -12,60 +12,69 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import hr.pojo.ConfigFileFirstKind;
-import hr.pojo.ConfigFileSecondKind;
+import hr.pojo.ConfigMajorKind;
 import hr.pojo.ConfigProfessionDesign;
+import hr.service.ConfigMajorKindService;
 import hr.service.ConfigProfessionDesignService;
 
 @Controller
 @RequestMapping("/pyl")
-public class ConfigprofessiondesignController {
+public class ConfigmajorkindController {
 	@Autowired
-	private ConfigProfessionDesignService cpds=null;
+	private ConfigMajorKindService cmks=null;
 	
-	@RequestMapping("/configprofessiondesign.do")
-	public String professionDesigncontroller(@RequestParam String operate,HttpServletRequest request,Model model){
+	@RequestMapping("/configmajorkind.do")
+	public String configmajorkindController(@RequestParam String operate,HttpServletRequest request,Model model){
 		switch(operate){
 			case "toAdd":
-				return "forward:/profession_design_register.jsp";
+				return "forward:/major_kind_register.jsp";
 			case "doDelete":
-				cpds.removeConfigProfessionDesignById(Integer.parseInt(request.getParameter("id")));
+				cmks.removeConfigMajorKindById(Integer.parseInt(request.getParameter("id")));
 				String dpage=request.getParameter("pageNo");
-				return "redirect:/pyl/configprofessiondesign.do?operate=list&page="+dpage;
+				return "redirect:/pyl/configmajorkind.do?operate=list&page="+dpage;
 			case "list":
-				selectPage(request, model, cpds);
-				return "forward:/profession_design.jsp";
-			
+				selectPage(request, model, cmks);
+				return "forward:/major_kind.jsp";
+		
 			default:
 				break;
 		}
-		
-		return "redirect:/pyl/configprofessiondesign.do?operate=list";
+	
+		return "redirect:/pyl/configmajorkind.do?operate=list";
 	}
-	
-	
-	@RequestMapping("/configprofessiondesign/save.do")
-	public String saveSecondKind(@RequestParam String professionDesignName){
-		ConfigProfessionDesign cpd = new ConfigProfessionDesign();
-		if(professionDesignName!=null && !"".equals(professionDesignName)){
-			cpd.setProfessionDesignName(professionDesignName);
-			cpds.saveConfigProfessionDesign(cpd);
+
+
+	@RequestMapping("/configmajorkind/save.do")
+	public String saveSecondKind(@RequestParam String majorKindName){
+		ConfigMajorKind cmk=new ConfigMajorKind();
+		if(majorKindName!=null && !"".equals(majorKindName)){
+			cmk.setMajorKindName(majorKindName);
+			
+			//查询最大id
+			String kindmax=cmks.findConfigMajorKindIdMax();
+			if(kindmax!=null && !"".equals(kindmax)){
+				cmk.setMajorKindId("0"+String.valueOf(Integer.parseInt(kindmax)+1));
+			}else{
+				cmk.setMajorKindId("01");
+			}
+			cmks.saveConfigMajorKind(cmk);
+			
 		}else{
-			return "redirect:/pyl/configprofessiondesign.do?operate=list";
+			return "redirect:/pyl/configmajorkind.do?operate=list";
 		}
 		
-		return "redirect:/profession_design_register_success.jsp";
+		return "redirect:/major_kind_register_success.jsp";
 	}
-	
-	
-	
-	
-	
-	
-	
-	private void selectPage(HttpServletRequest request,Model model,ConfigProfessionDesignService service){
+
+
+
+
+
+
+
+	private void selectPage(HttpServletRequest request,Model model,ConfigMajorKindService service){
 		int maxPage =0;
-		int sumNumber =service.findConfigProfessionDesignMaxNum();//总个数
+		int sumNumber =service.findConfigMajorKindMaxNum();//总个数
 		int pageSize =5;
 		int pageNo =1;
 		//最大页数
@@ -90,8 +99,8 @@ public class ConfigprofessiondesignController {
 		map.put("pageSize", pageSize);
 		map.put("currentPage", currentPage);
 		//分页查询
-		List<ConfigProfessionDesign> list = 
-				service.findConfigProfessionDesignByCondition(map);
+		List<ConfigMajorKind> list = 
+				service.findConfigMajorKindByCondition(map);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("maxPage", maxPage);

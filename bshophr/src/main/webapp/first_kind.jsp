@@ -69,7 +69,7 @@
 							<a href="pyl/configfilefirstkind.do?operate=one&id=${sk.ffkId }">变更</a>
 						</td>
 						<td class="TD_STYLE2">
-							<a href="first_kind_delete.jsp?id=${sk.ffkId }&message=${sk.firstKindId}/${sk.firstKindName}">删除</a>
+							<a href="first_kind_delete.jsp?id=${sk.ffkId }&message=${sk.firstKindId}/${sk.firstKindName}&pageNo=${pageNo }">删除</a>
 						</td>
 					</tr>
 				</c:forEach>

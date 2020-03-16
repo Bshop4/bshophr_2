@@ -20,5 +20,11 @@ public interface ConfigMajorService {
 	public List<ConfigMajor> findConfigMajorAllByMajorKindName(String name);
 	
 	public ConfigMajor findConfigMajorByMajorKindNameAndMajorName(String majorKindName,String majorName);
+	
+	//查询总数据个数
+	public int findConfigMajorMaxNum();
+	
+	//查询major_kind_id 下的级 major_id最大值的MAX(major_id) 
+	public String findConfigMajorIdMax(String mkid);
 
 }

@@ -122,21 +122,21 @@ a {
 										</tr>
 										<tr>
 											<td><img src="images/jt0.gif"></td><!-- profession_design.jsp -->
-											<td><a href="" target="mainFrame">职称设置</a>
+											<td><a href="pyl/configprofessiondesign.do?operate=list" target="mainFrame">职称设置</a>
 											</td>
 										</tr>
 										<tr>
 											<td><img src="images/jt0.gif"></td>
-											<td><a href="major_kind.jsp" target="mainFrame">职位分类设置</a>
+											<td><a href="pyl/configmajorkind.do?operate=list" target="mainFrame">职位分类设置</a>
 											</td>
 										</tr>
 										<tr>
-											<td><img src="images/jt0.gif"></td>
-											<td><a href="major.jsp" target="mainFrame">职位设置</a></td>
+											<td><img src="images/jt0.gif"></td><!-- major.jsp -->
+											<td><a href="pyl/configmajor.do?operate=list" target="mainFrame">职位设置</a></td>
 										</tr>
 										<tr>
 											<td><img src="images/jt0.gif"></td>
-											<td><a href="public_char.jsp" target="mainFrame">公共属性设置</a>
+											<td><a href="pyl/configpublicchar.do?operate=list" target="mainFrame">公共属性设置</a>
 											</td>
 										</tr>
 									</table>
@@ -491,7 +491,7 @@ a {
 									<table width="100%" border="0">
 										<tr>
 											<td width="2%"><img src="images/jt0.gif"></td>
-											<td width="98%"><a href="engageresume.do?operate=toAdd"
+											<td width="98%"><a href="zjlEngageResume/querySomething.do"
 												target="mainFrame">简历登记</a></td>
 										</tr>
 										<tr>

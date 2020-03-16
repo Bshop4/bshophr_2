@@ -3,6 +3,8 @@ package hr.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import hr.pojo.EngageMajorRelease;
 
 public interface EngageMajorReleaseService {
@@ -20,5 +22,10 @@ public interface EngageMajorReleaseService {
 	public int findCnt();
 	
 	public List<EngageMajorRelease> findSplit(Map<String,Object> map);
+	
+	public List<EngageMajorRelease> findEngageMajorReleaseAllByMajorKindName(String majorKindName);
+	
+	public List<EngageMajorRelease> findEngageMajorReleaseAllByMajorKindNameAndMajorName(String majorKindName,String majorName);
 
+	public EngageMajorRelease findEngageMajorReleaseAllByMajorKindNameAndMajorNameAndEngageType(String majorKindName,String majorName,String engageType);
 }

@@ -63,4 +63,16 @@ public class ConfigMajorServiceImpl implements ConfigMajorService{
 		// TODO Auto-generated method stub
 		return configMajorMapper.selectConfigMajorByMajorKindNameAndMajorName(majorKindName, majorName);
 	}
+
+	@Override
+	public int findConfigMajorMaxNum() {
+		// TODO Auto-generated method stub
+		return configMajorMapper.selectConfigMajorMaxNum();
+	}
+
+	@Override
+	public String findConfigMajorIdMax(String mkid) {
+		// TODO Auto-generated method stub
+		return configMajorMapper.selectConfigMajorIdMax(mkid);
+	}
 }
