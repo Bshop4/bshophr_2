@@ -2,15 +2,19 @@ package hr.web.controller.zjl;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -182,6 +186,7 @@ public class EngageResumeController {
 		
 		er.setHumanMajorKindId(emr.getMajorKindId());
 		er.setHumanMajorId(emr.getMajorId());
+		er.setCheckStatus(0);
 		
 		boolean f = ers.saveEngageResume(er);
 		List<String> list = new ArrayList<String>();
@@ -196,12 +201,197 @@ public class EngageResumeController {
 	@RequestMapping("/queryMajorKindNameToChoose.do")
 	public String queryMajorKindNameToChoose(Model model){
 		
-		System.out.println("laile");
+		List<EngageMajorRelease> emr = emrs.findEngageMajorReleaseAll();
+		Set<String> set = new HashSet<String>();
+		for (EngageMajorRelease e : emr) {
+			set.add(e.getMajorKindName());
+		}
+		List<String> list = new ArrayList<String>(set);
+		model.addAttribute("list", list);
 		
 		return "forward:/engage_resume_choose.jsp";
 	}
 	
 	
+	
+	@RequestMapping("/{hiddenMajorKindName}/{humanMajorName}/{keyWord}/{startdate}/{enddate}/queryChoose.do")
+	public String queryChoose(@PathVariable("hiddenMajorKindName") String majorKindName,
+			@PathVariable("humanMajorName") String majorName,
+			@PathVariable("keyWord") String keyWord,
+			@PathVariable("startdate") Timestamp sd,
+			@PathVariable("enddate") Timestamp ed,
+			Model model,
+			HttpServletRequest request){
+		
+		Timestamp start = null;
+		Timestamp end = null;
+		
+		String strsd = sd+"";
+		String stred = ed+"";
+		
+		if(strsd.compareTo(stred) > 0){
+			start = ed;
+			end = sd;
+		}else{
+			start = sd;
+			end = ed;
+		}
+		
+		List<EngageResume> list = ers.findAllByCondition(majorKindName, majorName, keyWord);
+		
+		List<EngageResume> erList = new ArrayList<EngageResume>();
+		if(list.size()>0){
+			for (EngageResume e : list) {
+				String time = e.getRegistTime()+"";
+				String strStart = start+"";
+				String strEnd = end + "";
+				
+				if(strStart.compareTo(time) < 0 && strEnd.compareTo(time) > 0){
+					erList.add(e);
+				}
+				model.addAttribute("erList", erList);
+			}
+		}else {
+			model.addAttribute("erList", "0");
+		}
+		
+		
+		
+	/*	int maxPage =0;
+		int sumNumber =erList.size();//总个数
+		int pageSize =1;
+		int pageNo =1;
+		//最大页数
+		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
+		
+		String page=request.getParameter("page");
+		if(page!=null && !"".equals(page)){
+			try{
+				pageNo=Integer.parseInt(page);
+			}catch(NumberFormatException e){
+				pageNo=1;
+			}
+			if(pageNo>maxPage){
+				pageNo=maxPage;
+			}else if(pageNo<1){
+				pageNo=1;
+			}
+		}
+		
+		int currentPage=(pageNo-1)*pageSize;
+		
+		List<EngageResume> list1 = new ArrayList<EngageResume>();
+		if(erList.size() >0){
+			for (int i = currentPage; i < currentPage+pageSize; i++) {
+				list1.add(erList.get(i));
+			}
+			model.addAttribute("list1", list1);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("sumNumber", sumNumber);
+			model.addAttribute("pageSize", pageSize);
+			model.addAttribute("pageNo", pageNo);
+			
+			
+			model.addAttribute("hiddenMajorKindName", majorKindName);
+			model.addAttribute("humanMajorName", majorName);
+			model.addAttribute("keyWord", keyWord);
+			model.addAttribute("startdate", sd);
+			model.addAttribute("enddate", ed);
+				
+		}else {
+			model.addAttribute("list1", "0");
+		}*/
+		
+		return "forward:/engage_resume_list.jsp";
+	}
+	
+/*	@RequestMapping("/queryChooseSplit.do")
+	public String queryChooseSplit(@Param("hiddenMajorKindName") String majorKindName,
+			@Param("humanMajorName") String majorName,
+			@Param("keyWord") String keyWord,
+			@Param("startdate") Timestamp sd,
+			@Param("enddate") Timestamp ed,
+			Model model,
+			HttpServletRequest request){
+		
+		Timestamp start = null;
+		Timestamp end = null;
+		
+		String strsd = sd+"";
+		String stred = ed+"";
+		
+		if(strsd.compareTo(stred) > 0){
+			start = ed;
+			end = sd;
+		}else{
+			start = sd;
+			end = ed;
+		}
+		
+		List<EngageResume> list = ers.findAllByCondition(majorKindName, majorName, keyWord);
+		
+		List<EngageResume> erList = new ArrayList<EngageResume>();
+		if(list.size()>0){
+			for (EngageResume e : list) {
+				String time = e.getRegistTime()+"";
+				String strStart = start+"";
+				String strEnd = end + "";
+				
+				if(strStart.compareTo(time) < 0 && strEnd.compareTo(time) > 0){
+					erList.add(e);
+				}
+			}
+		}
+		
+		
+		
+		int maxPage =0;
+		int sumNumber =erList.size();//总个数
+		int pageSize =1;
+		int pageNo =1;
+		//最大页数
+		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
+		
+		String page=request.getParameter("page");
+		if(page!=null && !"".equals(page)){
+			try{
+				pageNo=Integer.parseInt(page);
+			}catch(NumberFormatException e){
+				pageNo=1;
+			}
+			if(pageNo>maxPage){
+				pageNo=maxPage;
+			}else if(pageNo<1){
+				pageNo=1;
+			}
+		}
+		
+		int currentPage=(pageNo-1)*pageSize;
+		
+		List<EngageResume> list1 = new ArrayList<EngageResume>();
+		if(erList.size() >0){
+			for (int i = currentPage; i < currentPage+pageSize; i++) {
+				list1.add(erList.get(i));
+			}
+			model.addAttribute("list1", list1);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("sumNumber", sumNumber);
+			model.addAttribute("pageSize", pageSize);
+			model.addAttribute("pageNo", pageNo);
+			
+			
+			model.addAttribute("hiddenMajorKindName", majorKindName);
+			model.addAttribute("humanMajorName", majorName);
+			model.addAttribute("keyWord", keyWord);
+			model.addAttribute("startdate", sd);
+			model.addAttribute("enddate", ed);
+			
+		}else {
+			model.addAttribute("list1", "0");
+		}
+		
+		return "forward:/engage_resume_list.jsp";
+	}*/
 	
 	
 }
