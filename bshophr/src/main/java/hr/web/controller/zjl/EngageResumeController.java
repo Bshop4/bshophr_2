@@ -237,6 +237,22 @@ public class EngageResumeController {
 			end = ed;
 		}
 		
+		/*Map<String, Object> map = new HashMap<String, Object>();
+		map.put("majorKindName", majorKindName);
+		map.put("majorName", majorName);
+		map.put("keyWord", keyWord);
+		map.put("start", start);
+		map.put("end", end);
+		
+		List<EngageResume> list = ers.findAllByCondition(map);
+		
+		for (EngageResume e : list) {
+			System.out.println(e);
+		}
+		
+		return null;*/
+		
+		
 		List<EngageResume> list = ers.findAllByCondition(majorKindName, majorName, keyWord);
 		
 		List<EngageResume> erList = new ArrayList<EngageResume>();
@@ -249,7 +265,6 @@ public class EngageResumeController {
 				if(strStart.compareTo(time) < 0 && strEnd.compareTo(time) > 0){
 					erList.add(e);
 				}
-				
 				model.addAttribute("erList", erList);
 			}
 		}else {

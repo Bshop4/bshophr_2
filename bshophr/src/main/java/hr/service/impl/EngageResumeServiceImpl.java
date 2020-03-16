@@ -1,5 +1,7 @@
 package hr.service.impl;
 
+import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -47,11 +49,7 @@ public class EngageResumeServiceImpl implements EngageResumeService{
 		return erm.selectEngageResumeAll();
 	}
 
-	@Override
-	public List<EngageResume> findAllByCondition(String humanMajorKindName, String humanMajorName, String keyWord) {
-		// TODO Auto-generated method stub
-		return erm.selectAllByCondition(humanMajorKindName, humanMajorName, keyWord);
-	}
+	
 
 	@Override
 	public int findCnt(Map<String,Object> map) {
@@ -63,6 +61,12 @@ public class EngageResumeServiceImpl implements EngageResumeService{
 	public List<EngageMajorRelease> findSplit(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return erm.selectSplit(map);
+	}
+
+	@Override
+	public List<EngageResume> findAllByCondition(String humanMajorKindName, String humanMajorName, String keyWord) {
+		// TODO Auto-generated method stub
+		return erm.selectAllByCondition(humanMajorKindName, humanMajorName, keyWord);
 	}
 	
 	
