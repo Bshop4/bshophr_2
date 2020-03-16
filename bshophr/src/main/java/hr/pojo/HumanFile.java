@@ -39,7 +39,7 @@ public class HumanFile implements java.io.Serializable {
 	private String humanParty;
 	private String humanNationality;
 	private String humanRace;
-	private Timestamp humanBirthday;
+	private String humanBirthday;
 	private String humanBirthplace;
 	private Short humanAge;
 	private String humanEducatedDegree;
@@ -80,7 +80,7 @@ public class HumanFile implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public HumanFile(Timestamp humanBirthday, Timestamp registTime, Timestamp checkTime, Timestamp changeTime,
+	public HumanFile(String humanBirthday, Timestamp registTime, Timestamp checkTime, Timestamp changeTime,
 			Timestamp lastlyChangeTime, Timestamp deleteTime, Timestamp recoveryTime) {
 		this.humanBirthday = humanBirthday;
 		this.registTime = registTime;
@@ -98,7 +98,7 @@ public class HumanFile implements java.io.Serializable {
 			String humanMajorId, String hunmaMajorName, String humanTelephone, String humanMobilephone,
 			String humanBank, String humanAccount, String humanQq, String humanEmail, String humanHobby,
 			String humanSpeciality, String humanSex, String humanReligion, String humanParty, String humanNationality,
-			String humanRace, Timestamp humanBirthday, String humanBirthplace, Short humanAge,
+			String humanRace, String humanBirthday, String humanBirthplace, Short humanAge,
 			String humanEducatedDegree, Short humanEducatedYears, String humanEducatedMajor,
 			String humanSocietySecurityId, String humanIdCard, String remark, String salaryStandardId,
 			String salaryStandardName, Double salarySum, Double demandSalaraySum, Double paidSalarySum,
@@ -405,11 +405,11 @@ public class HumanFile implements java.io.Serializable {
 		this.humanRace = humanRace;
 	}
 
-	public Timestamp getHumanBirthday() {
+	public String getHumanBirthday() {
 		return this.humanBirthday;
 	}
 
-	public void setHumanBirthday(Timestamp humanBirthday) {
+	public void setHumanBirthday(String humanBirthday) {
 		this.humanBirthday = humanBirthday;
 	}
 
