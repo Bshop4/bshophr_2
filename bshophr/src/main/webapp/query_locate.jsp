@@ -31,11 +31,6 @@
 <script type="text/javascript">
 	
 
-	function list() {
-		//document.forms[0].action = document.forms[0].action + "?operate=list&method=query&delete_status=1";
-		document.forms[0].action = "query_list.jsp";
-		document.forms[0].submit();
-	}
 	function search() {
 		//document.forms[0].action = document.forms[0].action + "?operate=toSearch&method=query";
 		document.forms[0].action = "query_keywords.jsp";
@@ -60,8 +55,8 @@
 			<tr>
 				<td align="right"><input type="button" value="EXCEL列表"
 					class="BUTTON_STYLE1" onclick="javascript:doExport('excel');">
-					<input type="button" value="查询" class="BUTTON_STYLE1"
-					onclick="javascript:list();"> <input type="button"
+					<input type="button" value="查询" class="BUTTON_STYLE1" id="djtQlSearch"> 
+					<input type="button"
 					value="搜索" class="BUTTON_STYLE1" onclick="search();"></td>
 			</tr>
 		</table>
@@ -96,27 +91,27 @@
 			<tr>
 				<td class="TD_STYLE1">请选择职位分类</td>
 				<td width="84%" class="TD_STYLE2"><select
-					name="item.humanMajorKindName" size="5"
+					 size="5"
 					class="SELECT_STYLE2" id="djtJobClassSelect">
-					<option value="">&nbsp;</option>
 					</select>
 					</td>
 			</tr>
 			<tr class="TR_STYLE1">
 				<td width="16%" class="TD_STYLE1">请选择职位名称</td>
 				<td width="84%" class="TD_STYLE2"><select
-					name="item.hunmaMajorName" size="5" class="SELECT_STYLE2" id="djtJobSelect">
+					 size="5" class="SELECT_STYLE2" id="djtJobSelect">
 					
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">请输入建档时间</td>
-				<td width="84%" class="TD_STYLE2"><input type="text"
-					name="item.str_startTime" value="" style="width: 14%"
-					class="INPUT_STYLE2" id="date_start">至<input type="text"
-					name="item.str_endTime" value="" style="width: 14%"
-					class="INPUT_STYLE2" id="date_end"> （YYYY-MM-DD）</td>
+				<td width="84%" class="TD_STYLE2">
+				<input type="text"
+					 value="" style="width: 14%"
+					 id="dateStart">至<input type="text"
+					value="" style="width: 14%"
+					 id="dateEnd"> （YYYY-MM-DD）</td>
 			</tr>
 		</table>
 	</form>
@@ -226,6 +221,7 @@
 	})()
 	
 	$("#djtJobClassSelect").change(function(){
+		$("#djtJobSelect").empty();
 		var djtJobClassSelect=$("#djtJobClassSelect option:selected").val();
 		/* 一级不为空 找二级 */
 		if(djtJobClassSelect != ""){
@@ -235,7 +231,6 @@
 				data:{"majorKindId":djtJobClassSelect},
 				dataType:"json",
 				success:function(result){
-				var str = "<option></option>";
 				for(var i = 0; i < result.length; i++) {
 					str+="<option value='"+result[i].majorId+"'>"+result[i].majorName+"</option>";
 				}
@@ -254,6 +249,35 @@
 			`;
 			$("#djtJobSelect").append(str1);
 	
+	})
+	
+	
+	/*查询*/
+	$("#djtQlSearch").click(function(){
+		var firstSelect=$("#djtFirstSelect option:selected").val();
+		var secondSelect=$("#djtSecondSelect option:selected").val();
+		var thirdSelect=$("#djtThirdSelect option:selected").val();
+		var djtJobClassSelect=$("#djtJobClassSelect option:selected").val();
+		var djtJobSelect=$("#djtJobSelect option:selected").val();
+		var dateStart=$("#dateStart").val();
+		var dateEnd=$("#dateEnd").val();
+		
+		$.ajax({
+	    		type:"POST",
+				url:"djtQueryPage/djtSearch.do",
+				data:{
+					"djtJobClassSelect":djtJobClassSelect,
+					"firstSelect":firstSelect,
+					"secondSelect":secondSelect,
+					"thirdSelect":thirdSelect,
+					"djtJobSelect":djtJobSelect,
+					"dateStart":dateStart,
+					"dateEnd":dateEnd
+				},
+				dataType:"json",
+				success:function(result){
+			}
+		});
 	})
 	
 </script>
