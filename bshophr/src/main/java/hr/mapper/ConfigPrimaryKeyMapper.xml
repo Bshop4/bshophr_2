@@ -24,10 +24,35 @@
 	</delete>
 
 	<update id="updateConfigPrimaryKey" parameterType="ConfigPrimaryKey">
-		update ConfigPrimaryKey set primary_key_table=#{primaryKeyTable},primary_key=#{primaryKey},key_name=#{keyName},primary_key_status=#{primaryKeyStatus} where prk_id=#{prkId}
+		update config_primary_key set primary_key_table=#{primaryKeyTable},primary_key=#{primaryKey},key_name=#{keyName},primary_key_status=#{primaryKeyStatus} where prk_id=#{prkId}
 	</update>
 	<insert id="insertConfigPrimaryKey" parameterType="ConfigPrimaryKey">
 		insert into config_primary_key(primary_key_table,primary_key,key_name,primary_key_status) 
-		values(#{prkId},#{primaryKeyTable},#{primaryKey},#{keyName},#{primaryKeyStatus}) 
+		values(#{primaryKeyTable},#{primaryKey},#{keyName},#{primaryKeyStatus}) 
 	</insert>
+	
+<!-- 	<select id="selectConfigPrimaryKeyOfTable" resultMap="hr.dto.PrimaryKeyTable">
+		select DISTINCT primary_key_table as primaryKeyTable from  config_primary_key 
+	</select> -->
+	
+	<update id="updateConfigPrimaryKeyStatus" parameterType="list">
+		UPDATE config_primary_key SET primary_key_status = 1 WHERE 
+		prk_id  in
+		<foreach collection="list" index="index" item="Id" open="(" separator="," close=")">
+            #{Id}
+		</foreach>;
+		UPDATE config_primary_key SET primary_key_status = 0 WHERE 
+		prk_id not in 
+		<foreach collection="list" index="index" item="Id" open="(" separator="," close=")">
+            #{Id}
+		</foreach>;
+	</update>
+	
+	<select id="selectConfigPrimaryKeyAllPlus" parameterType="hashmap" resultMap="configPrimaryKeyMap">
+		select * from config_primary_key where 1=1
+		<if test="primaryKeyTable != null and primaryKeyTable !=''">
+			and primary_key_table=#{primaryKeyTable}
+		</if>
+	</select>
+	
 </mapper>
