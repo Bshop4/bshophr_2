@@ -170,10 +170,10 @@ public class SalarystandardController {
 	// 薪酬标准查询
 	@RequestMapping("/queryBySalaryto.do")
 	public String queryBySalaryto() {
-		return "forward:/salarystandard_query_locate.jsp";// 这个可以跳转
+		return "forward:/salarystandard_query_locate.jsp";// 跳转
 	}
 
-	// 查询
+	// 查询（没有实现多字段匹配）
 	@RequestMapping("/queryBySalary.do")
 	public String queryBySalary(@RequestParam("item.standardId") String sid, @RequestParam("textfield3") String keyword,
 			Map map) {

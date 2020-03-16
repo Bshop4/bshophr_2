@@ -336,7 +336,9 @@ a {
 					<table width="100%" border="0">
 						<tr>
 							<td width="2%"><img src="images/jt0.gif"></td>
-							<td width="98%">薪酬发放登记</td>
+							<td width="98%">
+								<a href="togrant.do" target="mainFrame" style="color:black;">薪酬发放登记</a>
+							</td>
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
