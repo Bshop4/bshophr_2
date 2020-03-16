@@ -25,4 +25,7 @@ public interface ConfigProfessionDesignMapper {
 	
 	// <!-- 根据主键删除数据 -->
 	public void deleteConfigProfessionDesignById(int id);
+	
+	//查询总数据
+	public int selectConfigProfessionDesignMaxNum();
 }

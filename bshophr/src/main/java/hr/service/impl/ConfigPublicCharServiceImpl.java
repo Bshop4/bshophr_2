@@ -1,6 +1,7 @@
 package hr.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,5 +49,23 @@ public class ConfigPublicCharServiceImpl implements ConfigPublicCharService {
 	@Override
 	public List<ConfigPublicChar> findConfigPublicCharByAk(String ak) {
 		return configPublicCharMapper.selectConfigPublicCharByAk(ak);
+	}
+
+	@Override
+	public List<ConfigPublicChar> findConfigPublicCharAllByCondition(String attributeKind) {
+		// TODO Auto-generated method stub
+		return configPublicCharMapper.selectConfigPublicCharAllByCondition(attributeKind);
+	}
+
+	@Override
+	public int findConfigPublicCharMaxNum() {
+		// TODO Auto-generated method stub
+		return configPublicCharMapper.selectConfigPublicCharMaxNum();
+	}
+
+	@Override
+	public List<ConfigPublicChar> findConfigPublicCharByConditionPlus(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return configPublicCharMapper.selectConfigPublicCharByConditionPlus(map);
 	}
 }

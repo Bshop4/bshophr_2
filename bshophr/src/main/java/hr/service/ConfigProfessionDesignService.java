@@ -24,4 +24,7 @@ public interface ConfigProfessionDesignService {
 		
 		// <!-- 根据主键删除数据 -->
 		public void removeConfigProfessionDesignById(int id);
+		
+		//查询总数据个数
+		public int findConfigProfessionDesignMaxNum();
 }

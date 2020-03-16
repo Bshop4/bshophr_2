@@ -58,7 +58,26 @@ public class EngageMajorReleaseServiceImpl implements EngageMajorReleaseService{
 		// TODO Auto-generated method stub
 		return emm.selectSplit(map);
 	}
+
+	@Override
+	public List<EngageMajorRelease> findEngageMajorReleaseAllByMajorKindName(String majorKindName) {
+		// TODO Auto-generated method stub
+		return emm.selectEngageMajorReleaseAllByMajorKindName(majorKindName);
+	}
+
+	@Override
+	public List<EngageMajorRelease> findEngageMajorReleaseAllByMajorKindNameAndMajorName(String majorKindName,
+			String majorName) {
+		// TODO Auto-generated method stub
+		return emm.selectEngageMajorReleaseAllByMajorKindNameAndMajorName(majorKindName, majorName);
+	}
 	
+	@Override
+	public EngageMajorRelease findEngageMajorReleaseAllByMajorKindNameAndMajorNameAndEngageType(
+			String majorKindName, String majorName, String engageType) {
+		// TODO Auto-generated method stub
+		return emm.selectEngageMajorReleaseAllByMajorKindNameAndMajorNameAndEngageType(majorKindName, majorName, engageType);
+	}
 	
 	
 }

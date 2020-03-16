@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -24,7 +25,7 @@
 </head>
 
 <body>
-	<form method="post" action="configprofessiondesign.do">
+	<form method="post" action="pyl/configprofessiondesign.do?operate=list">
 		<table width="100%">
 			<tr>
 				<td><font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--职称设置
@@ -32,7 +33,7 @@
 			</tr>
 			<tr>
 				<td align="right"><input type="button" value="添加"
-					class="BUTTON_STYLE1" onclick="toAdd();"></td>
+					class="BUTTON_STYLE1" onclick="window.location.href='pyl/configprofessiondesign.do?operate=toAdd'"></td>
 			</tr>
 		</table>
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
@@ -41,49 +42,27 @@
 				<td width="80%" class="TD_STYLE1">职称名称</td>
 				<td width="20%" class="TD_STYLE1" align="center">删除</td>
 			</tr>
+			
+			<c:forEach  items="${list }" var="pd">
+				<tr>
+					<td class="TD_STYLE2">${pd.professionDesignName}</td>
+					<td class="TD_STYLE2" align="center"><a
+					href="profession_design_delete.jsp?id=${pd.pdId }&message=${pd.professionDesignName}&pageNo=${pageNo}">删除</a></td>
+				</tr>
+			</c:forEach>
+			
 
-			<tr>
-				<td class="TD_STYLE2">工程师</td>
-				<td class="TD_STYLE2" align="center"><a
-					href="javascript:toDel('27')">删除</a></td>
-			</tr>
-
-			<tr>
+			<!-- <tr>
 				<td class="TD_STYLE2">经理</td>
 				<td class="TD_STYLE2" align="center"><a
 					href="javascript:toDel('28')">删除</a></td>
 			</tr>
 
-			<tr>
-				<td class="TD_STYLE2">助理</td>
-				<td class="TD_STYLE2" align="center"><a
-					href="javascript:toDel('29')">删除</a></td>
-			</tr>
-
-			<tr>
-				<td class="TD_STYLE2">教授</td>
-				<td class="TD_STYLE2" align="center"><a
-					href="javascript:toDel('30')">删除</a></td>
-			</tr>
-
-			<tr>
-				<td class="TD_STYLE2">讲师</td>
-				<td class="TD_STYLE2" align="center"><a
-					href="javascript:toDel('31')">删除</a></td>
-			</tr>
-
-			<tr>
-				<td class="TD_STYLE2">技术支持</td>
-				<td class="TD_STYLE2" align="center"><a
-					href="javascript:toDel('32')">删除</a></td>
-			</tr>
+			 -->
 
 		</table>
 		<p>
-			&nbsp;&nbsp;总数：6例 &nbsp;&nbsp;&nbsp;当前第 1 页 &nbsp;&nbsp;&nbsp;共 1 页
-			&nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1>
-			页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18
-				border=0>
+			&nbsp;&nbsp;总数：${sumNumber}例 &nbsp;&nbsp;&nbsp;当前第 ${pageNo } 页  &nbsp;&nbsp;&nbsp;共 ${maxPage } 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1 /> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0 />
 	</form>
 </body>
 </html>

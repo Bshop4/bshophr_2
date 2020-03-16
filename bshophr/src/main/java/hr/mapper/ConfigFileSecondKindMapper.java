@@ -22,5 +22,5 @@ public interface ConfigFileSecondKindMapper {
 	
 	//查询I级   下的  II级的MAX(second_kind_id) 
 	public String selectConfigFileSecondKindIdMax(String i);
-	
+	 
 }

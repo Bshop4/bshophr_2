@@ -12,6 +12,8 @@
 	<select id="selectConfigMajorKindAll" resultMap="configMajorKindMap">
 		select * from config_major_kind
 	</select>
+	
+	
 
 	<select id="selectConfigMajorKindById" parameterType="_int" resultMap="configMajorKindMap">
 		select * from config_major_kind where mfk_id=#{id}
@@ -26,6 +28,37 @@
 	</update>
 	<insert id="insertConfigMajorKind" parameterType="ConfigMajorKind">
 		insert into config_major_kind(major_kind_id,major_kind_name) 
-		values(#{mfkId},#{majorKindId},#{majorKindName}) 
+		values(#{majorKindId},#{majorKindName}) 
 	</insert>
+	
+
+  	
+  	<!-- 根据条件参数查询数据列表 -->
+    <select id="selectConfigMajorKindByCondition" resultMap="configMajorKindMap" parameterType="hashmap">
+        SELECT
+       	 *
+        FROM config_major_kind WHERE 1 = 1
+        
+        <if test="majorKindId != null and majorKindId != ''">
+            AND major_kind_id LIKE CONCAT('%', #{majorKindId}, '%')
+        </if>
+        <if test="majorKindName != null and majorKindName != ''">
+            AND major_kind_name LIKE CONCAT('%', #{majorKindName}, '%')
+        </if>
+        <if test="currentPage!=null and pageSize!=null">
+			limit #{currentPage},#{pageSize}
+		</if>
+    </select>
+    
+     <!--查询总数据值 -->
+  	<select id="selectConfigMajorKindMaxNum" resultType="_int">
+  		select count(*) from config_major_kind
+  	</select>
+    
+    
+    <!-- 查询MAX(major_kind_id)-->
+	<select id="selectConfigMajorKindIdMax"  resultType="string">
+        select MAX(major_kind_id) from config_major_kind
+	</select>
+	
 </mapper>

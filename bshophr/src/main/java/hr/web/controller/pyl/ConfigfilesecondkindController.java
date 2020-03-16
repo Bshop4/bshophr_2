@@ -32,7 +32,8 @@ public class ConfigfilesecondkindController {
 		switch(operate){
 			case "doDelete":
 				cfsks.removeConfigFileSecondKindById(Integer.parseInt(request.getParameter("id")));
-				return "redirect:/pyl/configfilesecondkind.do?operate=list";
+				String dpage=request.getParameter("pageNo");
+				return "redirect:/pyl/configfilesecondkind.do?operate=list&page="+dpage;
 			case "toAdd":
 				//查询所有的I级机构给II添加的时候提供选择，如果没有则跳到I机构添加
 				List<ConfigFileFirstKind> list =cffks.findConfigFileFirstKindAll(new HashMap<String, Object>());

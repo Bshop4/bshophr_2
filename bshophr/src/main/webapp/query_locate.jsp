@@ -1,9 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -27,31 +29,8 @@
 <script type="text/javascript" src="javascript/comm/list.js"></script>
 <script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 <script type="text/javascript">
-	function load(){
-		var mymap=$(".djt_SelectN").val();
-		console.log(mymap);
-	}
-	var subcat = new Array(2);
-	subcat[0] = [ "1", "集团/软件公司", "集团", "集团/软件公司" ];
-	subcat[1] = [ "2", "集团/生物科技有限公司", "集团", "集团/生物科技有限公司" ];
-	var subcat1 = new Array(2);
-	subcat1[0] = [ "1", "外包组", "集团/软件公司/外包组", "集团/软件公司" ];
-	subcat1[1] = [ "2", "药店", "集团/生物科技有限公司/药店", "集团/生物科技有限公司" ];
-	var subcat2 = new Array(8);
-	subcat2[0] = [ "1", "区域经理", "销售/区域经理", "销售" ];
-	subcat2[1] = [ "2", "总经理", "销售/总经理", "销售" ];
-	subcat2[2] = [ "3", "项目经理", "软件开发/项目经理", "软件开发" ];
-	subcat2[3] = [ "4", "程序员", "软件开发/程序员", "软件开发" ];
-	subcat2[4] = [ "5", "人事经理", "人力资源/人事经理", "人力资源" ];
-	subcat2[5] = [ "6", "专员", "人力资源/专员", "人力资源" ];
-	subcat2[6] = [ "7", "主任", "生产部/主任", "生产部" ];
-	subcat2[7] = [ "8", "技术工人", "生产部/技术工人", "生产部" ];
+	
 
-	function list() {
-		//document.forms[0].action = document.forms[0].action + "?operate=list&method=query&delete_status=1";
-		document.forms[0].action = "query_list.jsp";
-		document.forms[0].submit();
-	}
 	function search() {
 		//document.forms[0].action = document.forms[0].action + "?operate=toSearch&method=query";
 		document.forms[0].action = "query_keywords.jsp";
@@ -65,9 +44,8 @@
 </script>
 </head>
 
-<body onload="load()">
+<body>
 	<form name="humanfileForm" method="post" action="/hr/humanfile.do">
-		//隐藏域
 		<input type="hidden" class="djt_SelectN" value="${myselectmap}"/>
 		<table width="100%">
 			<tr>
@@ -77,8 +55,8 @@
 			<tr>
 				<td align="right"><input type="button" value="EXCEL列表"
 					class="BUTTON_STYLE1" onclick="javascript:doExport('excel');">
-					<input type="button" value="查询" class="BUTTON_STYLE1"
-					onclick="javascript:list();"> <input type="button"
+					<input type="button" value="查询" class="BUTTON_STYLE1" id="djtQlSearch"> 
+					<input type="button"
 					value="搜索" class="BUTTON_STYLE1" onclick="search();"></td>
 			</tr>
 		</table>
@@ -86,62 +64,54 @@
 			bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
 			<tr class="TR_STYLE1">
 				<td width="16%" class="TD_STYLE1">请选择员工所在I级机构</td>
-				<td width="84%" class="TD_STYLE2"><select
-					name="item.firstKindName" size="5"
-					onchange="changelocation(document.forms[0].elements['item.secondKindName'],document.forms[0].elements['item.firstKindName'].options[document.forms[0].elements['item.firstKindName'].selectedIndex].value)"
-					class="SELECT_STYLE2"><option value="">&nbsp;</option>
-
-						<option value="集团">集团</option>
-
-						<option value="02">02</option></select></td>
+				<td width="84%" class="TD_STYLE2">
+				<select name="item.firstKindName" size="5"
+					class="SELECT_STYLE2" id="djtFirstSelect">
+						<option value="">&nbsp;</option>
+						<c:if test="${!empty firstSelect}">
+						<c:forEach items="${firstSelect }" var="fs">
+							<option value="${fs.firstKindId}">${fs.firstKindName }</option> 
+						</c:forEach>
+					</c:if>
+				</select>
+						</td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">请选择员工所在II级机构</td>
 				<td width="84%" class="TD_STYLE2"><select
 					name="item.secondKindName" size="5"
-					onchange="changelocation1(document.forms[0].elements['item.thirdKindName'],document.forms[0].elements['item.secondKindName'].options[document.forms[0].elements['item.secondKindName'].selectedIndex].value)"
-					class="SELECT_STYLE2"><script language="javascript">
-						changelocation(document.forms[0].elements["item.secondKindName"], document.forms[0].elements["item.firstKindName"].value)
-					</script></select></td>
+					class="SELECT_STYLE2" id="djtSecondSelect"></select></td>
 			</tr>
 			<tr class="TR_STYLE1">
 				<td width="16%" class="TD_STYLE1">请选择员工所在III级机构</td>
 				<td width="84%" class="TD_STYLE2"><select
-					name="item.thirdKindName" size="5" class="SELECT_STYLE2"><script
-							language="javascript">
-						changelocation1(document.forms[0].elements["item.thirdKindName"], document.forms[0].elements["item.secondKindName"].value)
-					</script></select></td>
+					name="item.thirdKindName" size="5" class="SELECT_STYLE2" id="djtThirdSelect">
+					</select></td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">请选择职位分类</td>
 				<td width="84%" class="TD_STYLE2"><select
-					name="item.humanMajorKindName" size="5"
-					onchange="changelocation2(document.forms[0].elements['item.hunmaMajorName'],document.forms[0].elements['item.humanMajorKindName'].options[document.forms[0].elements['item.humanMajorKindName'].selectedIndex].value)"
-					class="SELECT_STYLE2"><option value="">&nbsp;</option>
-
-						<option value="销售">销售</option>
-
-						<option value="软件开发">软件开发</option>
-
-						<option value="人力资源">人力资源</option>
-
-						<option value="生产部">生产部</option></select></td>
+					 size="5" name="item.humanMajorKindName"
+					class="SELECT_STYLE2" id="djtJobClassSelect">
+					</select>
+					</td>
 			</tr>
 			<tr class="TR_STYLE1">
 				<td width="16%" class="TD_STYLE1">请选择职位名称</td>
 				<td width="84%" class="TD_STYLE2"><select
-					name="item.hunmaMajorName" size="5" class="SELECT_STYLE2"><script
-							language="javascript">
-						changelocation2(document.forms[0].elements["item.hunmaMajorName"], document.forms[0].elements["item.humanMajorKindName"].value)
-					</script></select></td>
+					 size="5" class="SELECT_STYLE2" name="item.humanMajorName" id="djtJobSelect">
+					
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">请输入建档时间</td>
-				<td width="84%" class="TD_STYLE2"><input type="text"
-					name="item.str_startTime" value="" style="width: 14%"
-					class="INPUT_STYLE2" id="date_start">至<input type="text"
-					name="item.str_endTime" value="" style="width: 14%"
-					class="INPUT_STYLE2" id="date_end"> （YYYY-MM-DD）</td>
+				<td width="84%" class="TD_STYLE2">
+				<input type="text"
+					 value="" style="width: 14%"
+					 id="dateStart">至<input type="text"
+					value="" style="width: 14%"
+					 id="dateEnd"> （YYYY-MM-DD）</td>
 			</tr>
 		</table>
 	</form>
@@ -163,6 +133,154 @@
 		singleClick : true,
 		step : 1
 	});
+	
+	$("#djtFirstSelect").change(function(){
+		var firstSelect=$("#djtFirstSelect option:selected").val();
+		/* 一级不为空 找二级 */
+		if(firstSelect != ""){
+			$.ajax({
+	    		type:"POST",
+				url:"queryLocate/secondSelect.do",
+				data:{"firstSelect":firstSelect},
+				dataType:"json",
+				success:function(result){
+				console.log(result);
+			var str = "";
+			for(var i = 0; i < result.length; i++) {
+					str+="<option value='"+result[i].secondKindId+"'>"+result[i].secondKindName+"</option>";
+			}
+			$("#djtSecondSelect").append(str);
+		}
+	});
+	}
+	/* 如果一级为空  全部清空 */
+	if(firstSelect == ""){
+		$("#djtSecondSelect").empty();
+		$("#djtThirdSelect").empty();
+	}
+	
+	var str = `
+				<option>&nbsp;</option>
+			`;
+			$("#djtSecondSelect").append(str);
+			
+			var str1 = `
+				<option>&nbsp;</option>
+			`;
+			$("#djtThirdSelect").append(str1);
+	
+})
+
+	$("#djtSecondSelect").change(function(){
+		
+		var val = $('#djtSecondSelect option:selected').val();
+		
+		/* 二级不为空 找三级 */
+		 if(val != ""){
+			$("#djtThirdSelect").empty();
+			$.ajax({
+				type:"POST",
+				url:"queryLocate/thirdSelect.do",
+				data:{"secondSelect":val},
+				dataType:"json",
+				success : function(result){
+					var str = "<option></option>";
+					for(var i = 0; i < result.length; i++){
+						str+="<option value='"+result[i].thirdKindId+"'>"+result[i].thirdKindName+"</option>";
+					}
+					$("#djtThirdSelect").append(str);
+				}
+			})
+		} 
+		
+		/* 如果二级为空  三级清空 */
+		if(val == ""){
+			$("#djtSecondSelect").empty();
+			var str1 = `
+				<option>&nbsp;</option>
+			`;
+			$("#djtThirdSelect").append(str1);
+		}
+	 });
+	
+	
+	//工作选择
+	(function(){
+		$.ajax({
+				type:"POST",
+				url:"queryLocate/djtJobClassSelect.do",
+				dataType:"json",
+				success : function(result){
+					var str = "<option></option>";
+					for(var i = 0; i < result.length; i++){
+						str+="<option value='"+result[i].majorKindId+"'>"+result[i].majorKindName+"</option>";
+					}
+					$("#djtJobClassSelect").append(str);
+				}
+			})
+	})()
+	
+	$("#djtJobClassSelect").change(function(){
+		$("#djtJobSelect").empty();
+		var djtJobClassSelect=$("#djtJobClassSelect option:selected").val();
+		/* 一级不为空 找二级 */
+		if(djtJobClassSelect != ""){
+			$.ajax({
+	    		type:"POST",
+				url:"queryLocate/djtJobSelect.do",
+				data:{"majorKindId":djtJobClassSelect},
+				dataType:"json",
+				success:function(result){
+				var str="";
+				for(var i = 0; i < result.length; i++) {
+					str+="<option value='"+result[i].majorId+"'>"+result[i].majorName+"</option>";
+				}
+				$("#djtJobSelect").append(str);
+			}
+		});
+	}
+		/* 如果一级为空  全部清空 */
+		if(djtJobClassSelect == ""){
+			$("#djtJobClassSelect").empty();
+			$("#djtJobSelect").empty();
+		}
+			
+			var str1 = `
+				<option>&nbsp;</option>
+			`;
+			$("#djtJobSelect").append(str1);
+	
+	})
+	
+	
+	/*查询*/
+	$("#djtQlSearch").click(function(){
+		var firstSelect=$("#djtFirstSelect option:selected").val();
+		var secondSelect=$("#djtSecondSelect option:selected").val();
+		var thirdSelect=$("#djtThirdSelect option:selected").val();
+		var djtJobClassSelect=$("#djtJobClassSelect option:selected").val();
+		var djtJobSelect=$("#djtJobSelect option:selected").val();
+		var dateStart=$("#dateStart").val();
+		var dateEnd=$("#dateEnd").val();
+		
+		$.ajax({
+	    		type:"POST",
+				url:"djtQueryPage/djtSearch.do",
+				data:{
+					"djtJobClassSelect":djtJobClassSelect,
+					"firstSelect":firstSelect,
+					"secondSelect":secondSelect,
+					"thirdSelect":thirdSelect,
+					"djtJobSelect":djtJobSelect,
+					"dateStart":dateStart,
+					"dateEnd":dateEnd
+				},
+				dataType:"json",
+				success:function(result){
+			}
+		});
+	})
+	
 </script>
 </html>
 

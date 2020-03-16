@@ -57,4 +57,10 @@ public class ConfigProfessionDesignServiceImpl implements ConfigProfessionDesign
 		cpfdm.deleteConfigProfessionDesignById(id);
 	}
 
+	@Override
+	public int findConfigProfessionDesignMaxNum() {
+		// TODO Auto-generated method stub
+		return cpfdm.selectConfigProfessionDesignMaxNum();
+	}
+
 }

@@ -39,7 +39,8 @@ public class ConfigfilethirdkindController {
 		switch(operate){
 			case "doDelete":
 				cftks.removeConfigFileThirdKindById(Integer.parseInt(request.getParameter("id")));
-				return "redirect:/pyl/configfilethirdkind.do?operate=list";
+				String dpage=request.getParameter("pageNo");
+				return "redirect:/pyl/configfilethirdkind.do?operate=list&page="+dpage;
 			case "toAdd":
 				//查询所有的II级机构给III添加的时候提供选择，如果没有则跳到II机构添加
 				List<ConfigFileSecondKind> list =cfsks.findConfigFileSecondKindAll(new HashMap<String, Object>());

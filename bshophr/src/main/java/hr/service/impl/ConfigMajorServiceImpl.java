@@ -1,6 +1,7 @@
 package hr.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,11 @@ public class ConfigMajorServiceImpl implements ConfigMajorService{
 	}
 
 	@Override
+	public List<ConfigMajor> findConfigMajorSelect(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return configMajorMapper.selectConfigMajorSelect(map);
+	}
+
 	public List<ConfigMajor> findConfigMajorAllByMajorKindName(String name) {
 		// TODO Auto-generated method stub
 		return configMajorMapper.selectConfigMajorAllByMajorKindName(name);
@@ -56,5 +62,17 @@ public class ConfigMajorServiceImpl implements ConfigMajorService{
 	public ConfigMajor findConfigMajorByMajorKindNameAndMajorName(String majorKindName, String majorName) {
 		// TODO Auto-generated method stub
 		return configMajorMapper.selectConfigMajorByMajorKindNameAndMajorName(majorKindName, majorName);
+	}
+
+	@Override
+	public int findConfigMajorMaxNum() {
+		// TODO Auto-generated method stub
+		return configMajorMapper.selectConfigMajorMaxNum();
+	}
+
+	@Override
+	public String findConfigMajorIdMax(String mkid) {
+		// TODO Auto-generated method stub
+		return configMajorMapper.selectConfigMajorIdMax(mkid);
 	}
 }
