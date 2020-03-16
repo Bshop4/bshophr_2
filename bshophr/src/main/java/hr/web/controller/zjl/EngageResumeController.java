@@ -193,8 +193,8 @@ public class EngageResumeController {
 	}
 	
 	
-	@RequestMapping("/queryMajorKindName.do")
-	public String queryMajorKindName(Model model){
+	@RequestMapping("/queryMajorKindNameToChoose.do")
+	public String queryMajorKindNameToChoose(Model model){
 		
 		System.out.println("laile");
 		

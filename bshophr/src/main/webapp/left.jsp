@@ -497,7 +497,7 @@ a {
 										<tr>
 											<td><img src="images/jt0.gif"></td>
 											<td><a
-												href="zjlEngageResume/queryMajorKindName.do"
+												href="zjlEngageResume/queryMajorKindNameToChoose.do"
 												target="mainFrame">简历筛选</a></td>
 										</tr>
 										<tr>

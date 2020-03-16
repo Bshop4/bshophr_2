@@ -21,10 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 	<link rel="stylesheet" type="text/css" href="css/table.css"/>
   </head>
- <form name="resumeChooseForm" method="post">
-   <!--  <input type="hidden" name="engageResume.checkStatus" value="false" />
-    <input type="hidden"  id="humanMajorKindId" name="humanmajorkindname" />
-    <input type="hidden"  name="checkstatus" value="0" /> -->
+ <form  method="post">
     <table width="100%">
         <tr>
             <td>
@@ -33,8 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
             <td align="right">
-                <input type="submit" value="开始" class="BUTTON_STYLE1"
-                        >
+                <input type="submit" value="开始" class="BUTTON_STYLE1">
             </td>
         </tr>
     </table>
@@ -44,15 +40,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 请选择职位分类
             </td>
             <td class="TD_STYLE2" width="30%">
-                <select onchange="queryMajor()" multiple="multiple" id="humanMajorKind"
+                <select  multiple="multiple" id="humanMajorKind"
                         style="width: 290;height: 100" class="SELECT_STYLE2">
                     <option value="0">--请选择--</option>
                     <option value="0">--请选择--</option>
                     <option value="0">--请选择--</option>
-
-                    <!--<c:forEach items="${mklist}" var="m">
-                        <option  value="${m.majorkindid }" id="humanMajorKind${m.majorkindid }">${m.majorkindname }</option>
-                    </c:forEach>-->
                 </select>
                 <select name="humanmajorname" multiple="multiple" id="humanMajorId"
                         style="width: 290;height: 100" size="5" class="SELECT_STYLE2">
