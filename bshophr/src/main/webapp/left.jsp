@@ -156,7 +156,7 @@ a {
 									<table width="100%" border="0">
 										<tr>
 											<td width="2%"><img src="images/jt0.gif"></td>
-											<td width="98%">薪酬项目设置</td>
+											<td width="98%"><a href="pyl/configpubliccharsalarystandard.do?operate=list" target="mainFrame">薪酬项目设置</a></td>
 										</tr>
 										<tr>
 											<td><img src="images/jt0.gif"></td>
