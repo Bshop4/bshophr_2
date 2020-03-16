@@ -249,6 +249,7 @@ public class EngageResumeController {
 				if(strStart.compareTo(time) < 0 && strEnd.compareTo(time) > 0){
 					erList.add(e);
 				}
+				
 				model.addAttribute("erList", erList);
 			}
 		}else {

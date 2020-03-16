@@ -91,7 +91,7 @@
 			<tr>
 				<td class="TD_STYLE1">请选择职位分类</td>
 				<td width="84%" class="TD_STYLE2"><select
-					 size="5"
+					 size="5" name="item.humanMajorKindName"
 					class="SELECT_STYLE2" id="djtJobClassSelect">
 					</select>
 					</td>
@@ -99,7 +99,7 @@
 			<tr class="TR_STYLE1">
 				<td width="16%" class="TD_STYLE1">请选择职位名称</td>
 				<td width="84%" class="TD_STYLE2"><select
-					 size="5" class="SELECT_STYLE2" id="djtJobSelect">
+					 size="5" class="SELECT_STYLE2" name="item.humanMajorName" id="djtJobSelect">
 					
 					</select>
 				</td>
@@ -231,6 +231,7 @@
 				data:{"majorKindId":djtJobClassSelect},
 				dataType:"json",
 				success:function(result){
+				var str="";
 				for(var i = 0; i < result.length; i++) {
 					str+="<option value='"+result[i].majorId+"'>"+result[i].majorName+"</option>";
 				}

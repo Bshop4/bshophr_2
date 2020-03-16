@@ -33,7 +33,7 @@
 </script>
 </head>
 
-<body onload="load()">
+<body>
 	<form name="humanfileForm" method="post" action="/hr/humanfile.do">
 		<input type="hidden" id="djtList" value="${humanFile}"/>
 		<table width="100%">
@@ -44,7 +44,7 @@
 			<tr>
 				<td align="right"><input type="button" value="提交"
 					class="BUTTON_STYLE1"
-					onclick="window.location.href='register_choose_picture.jsp'">
+					id="djtRegisterChoosePicture">
 					<input type="reset" value="清除" class="BUTTON_STYLE1"></td>
 			</tr>
 		</table>
@@ -480,7 +480,86 @@
 	}
 	
 	
+	$("#djtRegisterChoosePicture").click(function(){
+		var firstKindId= $('#djtFirstSelect option:selected').val();
+		var secondKindId= $('#djtSecondSelect option:selected').val();
+		var thirdKindId= $('#djtThirdSelect option:selected').val();
+		var humanMajorKindId= $('#djtJobClassSelect option:selected').val();
+		var humanMajorId= $('#djtJobSelect option:selected').val();
 	
+		var humanProDesignation=$("select[name='item.humanProDesignation'] option:selected").val();
+
+		
+		var humanName=$("input[name='item.humanName']").val();
+		var humanSex=$("select[name='item.humanSex'] option:selected").val();
+		var humanBirthplace=$("input[name='item.humanBirthplace']").val();
+		var humanBirthday=$("input[name='item.str_humanBirthday']").val();
+		var humanNationality=$("select[name='item.humanNationality'] option:selected").val();
+		var humanRace=$("select[name='item.humanRace'] option:selected").val();
+		
+		var humanReligion=$("select[name='item.humanReligion'] option:selected").val();
+		var humanParty=$("select[name='item.humanParty'] option:selected").val();
+		var humanIdCard=$("input[name='item.humanIdCard']").val();
+		var humanSocietySecurityId=$("input[name='item.humanSocietySecurityId']").val();
+		var humanAge=$("input[name='item.humanAge']").val();
+		
+		var humanEducatedDegree=$("select[name='item.humanEducatedDegree'] option:selected").val();
+		var humanEducatedYears=$("select[name='item.humanEducatedYears'] option:selected").val();
+		var humanEducatedMajor=$("select[name='item.humanEducatedMajor'] option:selected").val();
+		var salaryStandardName=$("select[name='item.salaryStandardName'] option:selected").val();
+		var humanBank=$("input[name='item.humanBank']").val();
+		var humanAccount=$("input[name='item.humanAccount']").val();
+		var register=$("input[name='item.register']").val();
+		var registTime=$("input[name='item.registTime']").val();
+		
+		var humanSpeciality=$("select[name='item.humanSpeciality'] option:selected").val();
+		var humanHobby=$("select[name='item.humanHobby'] option:selected").val();
+		
+		var humanHistroyRecords=$("input[name='item.humanHistroyRecords']").val();
+		var humanFamilyMembership=$("input[name='item.humanFamilyMembership']").val();
+		var remark=$("input[name='item.remark']").val();
+		
+		$.ajax({
+			type:"POST",
+			url:"registerChoosePicture/pageJump.do",
+			data:{"firstKindId":firstKindId,
+				"secondKindId":secondKindId,
+				"thirdKindId":thirdKindId,
+				"humanMajorKindId":humanMajorKindId,
+				"humanProDesignation":humanProDesignation,
+				"humanMajorId":humanMajorId,
+				"humanName":humanName,
+				"humanSex":humanSex,
+				"humanBirthplace":humanBirthplace,
+				"humanBirthday":humanBirthday,
+				"humanNationality":humanNationality,
+				"humanRace":humanRace,
+				"humanReligion":humanReligion,
+				"humanParty":humanParty,
+				"humanIdCard":humanIdCard,
+				"humanSocietySecurityId":humanSocietySecurityId,
+				"humanAge":humanAge,
+				"humanEducatedDegree":humanEducatedDegree,
+				"humanEducatedYears":humanEducatedYears,
+				"humanEducatedMajor":humanEducatedMajor,
+				"salaryStandardName":salaryStandardName,
+				"humanBank":humanBank,
+				"humanAccount":humanAccount,
+				"register":register,
+				"registTime":registTime,
+				"humanSpeciality":humanSpeciality,
+				"humanHobby":humanHobby,
+				"humanHistroyRecords":humanHistroyRecords,
+				"humanFamilyMembership":humanFamilyMembership,
+				"remark":remark,	
+			},
+			dataType:"json",
+			success : function(result){
+				console.log(result)
+			}		
+		})
+		
+	})
 	
 	
 	
