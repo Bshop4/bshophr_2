@@ -193,6 +193,15 @@ public class EngageResumeController {
 	}
 	
 	
+	@RequestMapping("/queryMajorKindName.do")
+	public String queryMajorKindName(Model model){
+		
+		System.out.println("laile");
+		
+		return "forward:/engage_resume_choose.jsp";
+	}
+	
+	
 	
 	
 }
