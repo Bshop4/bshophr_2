@@ -24,13 +24,17 @@
 	<select id="selectSalaryGrantDetailsById" parameterType="_int" resultMap="SalaryGrantDetailsMap">
 		select * from salary_grant_details where grd_id=#{id}
 	</select>
+	<!-- ByHumanid -->
+	<select id="selectSalaryGrantDetailsByHumanid" parameterType="_int" resultMap="SalaryGrantDetailsMap">
+		select * from salary_grant_details where human_id=#{humanId}
+	</select>
 	
 	<delete id="deleteSalaryGrantDetailsById" parameterType="_int">
 		delete from salary_grant_details where grd_id=#{id}
 	</delete>
 	<insert id="insertSalaryGrantDetails" parameterType="SalaryGrantDetails">
-		insert into salary_grant_details(salary_grant_id,human_id,human_name,bouns_sum,sale_sum,deduct_sum,salary_standard_sum,salary_paid_sum) 
-		values(#{salaryGrantId},#{humanId},#{humanName},#{bounsSum},#{saleSum},#{deductSum},#{salaryStandardSum},#{salaryPaidSum}) 
+		insert into salary_grant_details(human_id,human_name,bouns_sum,sale_sum,deduct_sum,salary_standard_sum,salary_paid_sum) 
+		values(#{humanId},#{humanName},#{bounsSum},#{saleSum},#{deductSum},#{salaryStandardSum},#{salaryPaidSum}) 
 	</insert>
 	
 	<update id="updateSalaryGrantDetails" parameterType="SalaryGrantDetails">

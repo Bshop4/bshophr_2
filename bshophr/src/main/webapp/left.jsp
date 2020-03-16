@@ -342,7 +342,9 @@ a {
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td>薪酬发放登记复核</td>
+							<td>
+								<a href="toSalarygrantAll.do" target="mainFrame" style="color:black;">薪酬发放登记复核</a>
+							</td>
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>

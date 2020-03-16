@@ -13,6 +13,9 @@ public interface SalaryStandardDetailsMapper {
 	// 向思宇改的把返回SalaryStandardDetails改为List<SalaryStandardDetails>
 	public List<SalaryStandardDetails> selectSalaryStandardDetailsById(int id);
 
+	// 向思宇改的把返回SalaryStandardDetails改为List<SalaryStandardDetails>
+	public SalaryStandardDetails selectSalaryStandardDetailsByItName(SalaryStandardDetails ssd);
+
 	public boolean deleteSalaryStandardDetailsById(int id);
 
 	public boolean insertSalaryStandardDetails(SalaryStandardDetails ssd);

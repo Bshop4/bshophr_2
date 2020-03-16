@@ -33,6 +33,15 @@
 	<select id="selectSalaryGrantById" parameterType="_int" resultMap="SalaryGrantMap">
 		select * from salary_grant where sgr_id=#{id}
 	</select>
+	<!-- 根据状态值查询 -->
+	<select id="selectSalaryGrantByStatus" parameterType="_int" resultMap="SalaryGrantMap">
+		select * from salary_grant where check_status=#{checkStatus}
+	</select>
+	
+	<!-- 向思宇加的查询基本薪酬和派发的薪酬 -->
+	<select id="selectSalaryGrantSalarySumById" parameterType="_int" resultMap="SalaryGrantMap">
+		select salary_standard_sum,salary_paid_sum,register,human_amount,checker from salary_grant where salary_standard_id=#{id}
+	</select>
 	
 	<delete id="deleteSalaryGrantById" parameterType="_int">
 		delete from salary_grant where sgr_id=#{id}
@@ -44,5 +53,9 @@
 	
 	<update id="updateSalaryGrant" parameterType="SalaryGrant">
 		update salary_grant set salary_grant_id=#{salaryGrantId},salary_standard_id=#{salaryStandardId},first_kind_id=#{firstKindId},first_kind_name=#{firstKindName},second_kind_id=#{secondKindId},second_kind_name=#{secondKindName},third_kind_id=#{thirdKindId},third_kind_name=#{thirdKindName},human_amount=#{humanAmount},salary_standard_sum=#{salaryStandardSum},salary_paid_sum=#{salaryPaidSum},register=#{register},regist_time=#{registTime},checker=#{checker},check_time=#{checkTime},check_status=#{checkStatus} where sgr_id=#{sgrId}
+	</update>
+	<!-- 更新状态 -->
+	<update id="updateSalaryGrantStatus" parameterType="SalaryGrant">
+		update salary_grant set check_status=2 where check_status=#{checkStatus}
 	</update>
 </mapper>
