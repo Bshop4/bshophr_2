@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  <tr>
 		<td width="49%"> 您确认删除 
 		${param.message} 这条记录吗? </td>
-		<td width="51%" align="right"><input type="button" value="删除" class="BUTTON_STYLE1" onclick="javascript:doDel('${param.id }')">
+		<td width="51%" align="right"><input type="button" value="删除" class="BUTTON_STYLE1" onclick="javascript:doDel('${param.id }&pageNo=${param.pageNo }')">
 		  <input type="button" value="返回" class="BUTTON_STYLE1" onclick="history.back();"></td>
 	  </tr>
 	  </table>

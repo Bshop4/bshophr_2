@@ -35,6 +35,30 @@
 	</update>
 	<insert id="insertConfigPublicChar" parameterType="ConfigPublicChar">
 		insert into config_public_char(attribute_kind,attribute_name) 
-		values(#{pbcId},#{attributeKind},#{attributeName}) 
+		values(#{attributeKind},#{attributeName}) 
 	</insert>
+	
+	<!-- 根据条件参数查询数据列表 -->
+    <select id="selectConfigPublicCharByConditionPlus" resultMap="configPublicCharMap" parameterType="hashmap">
+        SELECT
+       	 *
+        FROM config_public_char WHERE 1 = 1
+        
+        <if test="attributeKind != null and attributeKind != ''">
+            AND attribute_kind LIKE CONCAT('%', #{attributeKind}, '%')
+        </if>
+        <if test="attributeName != null and attributeName != ''">
+            AND attribute_name LIKE CONCAT('%', #{attributeName}, '%')
+        </if>
+        <if test="currentPage!=null and pageSize!=null">
+			limit #{currentPage},#{pageSize}
+		</if>
+    </select>
+    
+     <!--查询总数据值 -->
+  	<select id="selectConfigPublicCharMaxNum" resultType="_int">
+  		select count(*) from config_public_char
+  	</select>
+	
+	
 </mapper>

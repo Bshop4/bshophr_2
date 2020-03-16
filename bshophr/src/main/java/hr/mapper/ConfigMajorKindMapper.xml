@@ -31,10 +31,7 @@
 		values(#{majorKindId},#{majorKindName}) 
 	</insert>
 	
-	 <!--查询总数据值 -->
-  	<select id="selectConfigMajorKindMaxNum" resultType="_int">
-  		select count(*) from config_major_kind
-  	</select>
+
   	
   	<!-- 根据条件参数查询数据列表 -->
     <select id="selectConfigMajorKindByCondition" resultMap="configMajorKindMap" parameterType="hashmap">
@@ -52,6 +49,11 @@
 			limit #{currentPage},#{pageSize}
 		</if>
     </select>
+    
+     <!--查询总数据值 -->
+  	<select id="selectConfigMajorKindMaxNum" resultType="_int">
+  		select count(*) from config_major_kind
+  	</select>
     
     
     <!-- 查询MAX(major_kind_id)-->

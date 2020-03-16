@@ -4,24 +4,33 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import hr.pojo.ConfigFileFirstKind;
 import hr.pojo.ConfigFileThirdKind;
 import hr.pojo.ConfigMajor;
+import hr.pojo.HumanFile;
 import hr.service.ConfigFileFirstKindService;
 import hr.service.ConfigFileThirdKindService;
 import hr.service.ConfigMajorService;
 import hr.service.EngageResumeService;
+import hr.service.HumanFileService;
 import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/humanRegister")
 public class DjtHumanRegister {
+	
+	@Autowired
+	private ConfigFileFirstKindService configFileFirstKindService=null;
+	
 	@Autowired
 	private ConfigFileThirdKindService configFileThirdKindService=null;
 	
@@ -29,35 +38,26 @@ public class DjtHumanRegister {
 	private ConfigMajorService configMajorService=null;
 	
 	@Autowired
-	private EngageResumeService engageResumeService=null;
+	private HumanFileService humanFileService=null;
 	
 	//页面跳转
 	@RequestMapping("/jump.do")
 	public String pageJump(Model model){
-		Map<String, Object> myselect=new HashMap<String, Object>();
-		List<ConfigFileThirdKind> listCftk=configFileThirdKindService.findConfigFileThirdKindAll(new HashMap<String, Object>());
-		myselect.put("listCftk", listCftk);
-		
-		List<ConfigMajor> listCm=configMajorService.findConfigMajorAll();
-		myselect.put("listCm", listCm);
-		model.addAttribute("map", myselect);
+		List<ConfigFileFirstKind> list1=configFileFirstKindService.findConfigFileFirstKindAll(new ConcurrentHashMap<String, Object>());
+		model.addAttribute("firstSelect", list1);
 		
 		return "forward:/human_register.jsp";
 	}
 	
-	//获取3级选择框的值
-	@ResponseBody
-	@RequestMapping("/thereJump.do")
-	public String selectOptions(){
-		Map<String, Object> myselect=new HashMap<String, Object>();
-		List<ConfigFileThirdKind> listCftk=configFileThirdKindService.findConfigFileThirdKindAll(new HashMap<String, Object>());
-		myselect.put("listCftk", listCftk);
+	@RequestMapping("/jumpToId.do")
+	public String pageJumpToId(@RequestParam int hufId, Model model){
+		List<ConfigFileFirstKind> list1=configFileFirstKindService.findConfigFileFirstKindAll(new ConcurrentHashMap<String, Object>());
+		hufId=1;
+		HumanFile humanFile=humanFileService.findHumanFileById(hufId);
 		
-		List<ConfigMajor> listCm=configMajorService.findConfigMajorAll();
-		myselect.put("listCm", listCm);
+		model.addAttribute("firstSelect", list1);
+		model.addAttribute("humanFile", humanFile);
 		
-		JSONObject json=JSONObject.fromObject(myselect);
-		
-		return json.toString();
+		return "forward:/human_register.jsp";
 	}
 }

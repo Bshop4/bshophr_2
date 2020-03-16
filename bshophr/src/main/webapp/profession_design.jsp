@@ -47,7 +47,7 @@
 				<tr>
 					<td class="TD_STYLE2">${pd.professionDesignName}</td>
 					<td class="TD_STYLE2" align="center"><a
-					href="profession_design_delete.jsp?id=${pd.pdId }&message=${pd.professionDesignName}">删除</a></td>
+					href="profession_design_delete.jsp?id=${pd.pdId }&message=${pd.professionDesignName}&pageNo=${pageNo}">删除</a></td>
 				</tr>
 			</c:forEach>
 			

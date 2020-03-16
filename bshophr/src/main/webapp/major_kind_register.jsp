@@ -27,7 +27,7 @@
 		action="pyl/configmajorkind/save.do?">
 		<table width="100%">
 			<tr>
-				<td><font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--I级机构设置
+				<td><font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--职位分类设置
 				</font></td>
 			</tr>
 			<tr>

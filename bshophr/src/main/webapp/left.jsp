@@ -131,12 +131,12 @@ a {
 											</td>
 										</tr>
 										<tr>
-											<td><img src="images/jt0.gif"></td>
-											<td><a href="major.jsp" target="mainFrame">职位设置</a></td>
+											<td><img src="images/jt0.gif"></td><!-- major.jsp -->
+											<td><a href="pyl/configmajor.do?operate=list" target="mainFrame">职位设置</a></td>
 										</tr>
 										<tr>
 											<td><img src="images/jt0.gif"></td>
-											<td><a href="public_char.jsp" target="mainFrame">公共属性设置</a>
+											<td><a href="pyl/configpublicchar.do?operate=list" target="mainFrame">公共属性设置</a>
 											</td>
 										</tr>
 									</table>

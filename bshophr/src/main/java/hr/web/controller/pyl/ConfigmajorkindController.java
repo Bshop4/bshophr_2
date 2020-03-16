@@ -30,7 +30,8 @@ public class ConfigmajorkindController {
 				return "forward:/major_kind_register.jsp";
 			case "doDelete":
 				cmks.removeConfigMajorKindById(Integer.parseInt(request.getParameter("id")));
-				return "redirect:/pyl/configmajorkind.do?operate=list";
+				String dpage=request.getParameter("pageNo");
+				return "redirect:/pyl/configmajorkind.do?operate=list&page="+dpage;
 			case "list":
 				selectPage(request, model, cmks);
 				return "forward:/major_kind.jsp";
