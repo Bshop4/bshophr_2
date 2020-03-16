@@ -78,6 +78,11 @@
 		select * from human_file where huf_id=#{id}
 	</select>
 	
+	<!-- 向思宇加的用salary_standard_id查名字 -->
+	<select id="selectHumanNameFileById" parameterType="_int" resultMap="HumanFileMap">
+		select human_name from human_file where salary_standard_id=#{id}
+	</select>
+	
 	<delete id="deleteHumanFileById" parameterType="_int">
 		delete from human_file where huf_id=#{id}
 	</delete>
