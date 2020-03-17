@@ -24,7 +24,7 @@ td {
 </head>
 
 <body>
-	<form method="post" action="tocheck">
+	<form method="post" action="tocheck.do">
 		<table width="100%">
 			<tr>
 				<td style="text-align: left;"><font color="black">您正在做的业务是:人力资源管理--薪酬发放管理--薪酬发放复核</font>
@@ -33,7 +33,7 @@ td {
 			<tr>
 				<td colspan="2" style="text-align: right"><input
 					type="submit" value="复核通过" class="BUTTON_STYLE1"> <input
-					type="button" value="返 回" onclick="location.href='check_list'"
+					type="button" value="返 回" onclick="location.href='salarygrant_check_list.jsp'"
 					class="BUTTON_STYLE1"></td>
 			</tr>
 			<tr>

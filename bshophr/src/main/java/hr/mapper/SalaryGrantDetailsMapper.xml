@@ -40,4 +40,8 @@
 	<update id="updateSalaryGrantDetails" parameterType="SalaryGrantDetails">
 		update salary_grant_details set salary_grant_id=#{salaryGrantId},human_id=#{humanId},human_name=#{humanName},bouns_sum=#{bounsSum},sale_sum=#{saleSum},deduct_sum=#{deductSum},salary_standard_sum=#{salaryStandardSum},salary_paid_sum=#{salaryPaidSum} where grd_id=#{grdId}
 	</update>
+	<!-- 修改一部分 -->
+	<update id="updateSalaryGrantDetailsSome" parameterType="SalaryGrantDetails">
+		update salary_grant_details set bouns_sum=#(bouns_sum),sale_sum=#{saleSum},deduct_sum=#{deductSum},salary_standard_sum=#{salaryStandardSum},salary_paid_sum=#{salaryPaidSum} where human_id=#{humanId}
+	</update>
 </mapper>
