@@ -82,6 +82,11 @@ public class EngageResumeServiceImpl implements EngageResumeService{
 		return erm.selectAllByConditionTow(map);
 	}
 	
+	@Override
+	public List<EngageResume> findAllByConditionThree(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return erm.selectAllByConditionThree(map);
+	}
 	
 	
 	

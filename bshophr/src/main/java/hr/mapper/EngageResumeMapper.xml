@@ -86,6 +86,23 @@ or human_idcard like '%18888888888%'
 		 or human_idcard like #{idcard}
 	</select>
 	
+	 <select id="selectAllByConditionThree" parameterType="hashmap" resultMap="er">
+		select * from (select * from ENGAGE_RESUME where
+		 human_major_kind_name=#{majorKindName}
+		 and human_major_name=#{majorName} 
+		 and check_status=#{checkStatus}
+		 and INTERVIEW_STATUS=#{is}) as er
+		 where
+		 <bind name="phone" value="'%' + keyWord + '%'"/>
+		 human_mobilephone like #{phone}
+		 <bind name="name" value="'%' + keyWord + '%'"/>
+		 or human_name like #{name}
+		 <bind name="idcard" value="'%' + keyWord + '%'"/>
+		 or human_idcard like #{idcard}
+	</select>
+	
+	
+	
 	<insert id="insertEngageResume" parameterType="EngageResume">
 		    INSERT INTO ENGAGE_RESUME (
             HUMAN_NAME, ENGAGE_TYPE, HUMAN_ADDRESS, HUMAN_POSTCODE, HUMAN_MAJOR_KIND_ID, HUMAN_MAJOR_KIND_NAME, HUMAN_MAJOR_ID, 

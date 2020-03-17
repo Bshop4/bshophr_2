@@ -300,7 +300,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE2">
 						<input type="text" name="checker"
-							value="${user }" readonly="readonly"
+							value="${user}" readonly="readonly" id="checker"
 							class="INPUT_STYLE2" />
 
 					</td>

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.pojo.ConfigPublicChar;
+import hr.pojo.EngageInterview;
 import hr.pojo.EngageMajorRelease;
 import hr.pojo.EngageResume;
 import hr.service.ConfigMajorService;
@@ -187,6 +188,8 @@ public class EngageResumeController {
 		er.setHumanMajorKindId(emr.getMajorKindId());
 		er.setHumanMajorId(emr.getMajorId());
 		er.setCheckStatus(0);
+		er.setInterviewStatus(0);
+		er.setTestAmount(0);
 		
 		boolean f = ers.saveEngageResume(er);
 		List<String> list = new ArrayList<String>();
@@ -341,8 +344,8 @@ public class EngageResumeController {
 	public List<String> updateResume(EngageResume er){
 		
 		er.setCheckStatus(1);
+		er.setInterviewStatus(1);
 		boolean f = ers.updateEngageResume(er);
-		
 		List<String> list = new ArrayList<String>();
 		if(f){
 			list.add("推荐成功！");
@@ -419,10 +422,108 @@ public class EngageResumeController {
 	}
 	
 	
+	@RequestMapping("/queryInterviewChoose.do")
+	public String queryInterviewChoose(Model model){
+		List<EngageMajorRelease> emr = emrs.findEngageMajorReleaseAll();
+		Set<String> set = new HashSet<String>();
+		for (EngageMajorRelease e : emr) {
+			set.add(e.getMajorKindName());
+		}
+		List<String> list = new ArrayList<String>(set);
+		model.addAttribute("list", list);
+		
+		
+		return "forward:/interview_choose.jsp";
+	}
 	
 	
+	@RequestMapping("/{hiddenMajorKindName}/{humanMajorName}/{keyWord}/{startdate}/{enddate}/queryChooseInterviewList.do")
+	public String queryChooseInterviewList(@PathVariable("hiddenMajorKindName") String majorKindName,
+			@PathVariable("humanMajorName") String majorName,
+			@PathVariable("keyWord") String keyWord,
+			@PathVariable("startdate") Timestamp sd,
+			@PathVariable("enddate") Timestamp ed,
+			Model model,
+			HttpServletRequest request){
+		
+		Timestamp start = null;
+		Timestamp end = null;
+		
+		String strsd = sd+"";
+		String stred = ed+"";
+		
+		if(strsd.compareTo(stred) > 0){
+			start = ed;
+			end = sd;
+		}else{
+			start = sd;
+			end = ed;
+		}	
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("majorKindName", majorKindName);
+		map.put("majorName", majorName);
+		map.put("keyWord", keyWord);
+		map.put("checkStatus", 1);
+		//map.put("is", 1);
+		
+		
+		List<EngageResume> list = ers.findAllByConditionTow(map);
+		
+		List<EngageResume> erList = new ArrayList<EngageResume>();
+		if(list.size()>0){
+			for (EngageResume e : list) {
+				String time = e.getRegistTime()+"";
+				String strStart = start+"";
+				String strEnd = end + "";
+				
+				if(strStart.compareTo(time) < 0 && strEnd.compareTo(time) > 0){
+					erList.add(e);
+				}
+				model.addAttribute("erList", erList);
+			}
+		}else {
+			model.addAttribute("erList", "0");
+		}
+		
+		return "forward:/interview_choose_list.jsp";
+	}
 	
 	
+	@RequestMapping("/{id}/interviewRegist.do")
+	public String interviewRegist(Model model,@PathVariable("id") int id){
+		
+		EngageResume er = ers.findEngageResumeById(id);
+		model.addAttribute("re", er);
+		
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		model.addAttribute("t", t);
+		
+		model.addAttribute("user", "adm");
+		return "forward:/interview_regist.jsp";
+	}
+	
+	@RequestMapping("/saveInterview.do")
+	@ResponseBody
+	public List<String> saveInterview(EngageInterview ei){
+		
+		EngageResume er = ers.findEngageResumeById(ei.getResumeId());
+		int amount = er.getTestAmount();
+		amount += 1;
+		er.setTestAmount(amount);
+		er.setInterviewStatus(2);
+		ers.updateEngageResume(er);
+		
+		short s = 1;
+		ei.setInterviewStatus(s);
+		
+		boolean f = eis.saveEngageInterview(ei);
+		List<String> list = new ArrayList<String>();
+		if(f){
+			list.add("简历结果登记成功！");
+		}
+		return list;
+	}
 	
 	
 	

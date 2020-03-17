@@ -33,7 +33,8 @@ public interface EngageResumeService {
 	public List<EngageMajorRelease> findSplit(Map<String,Object> map);
 	
 	
-	
 	public List<EngageResume> findAllByConditionTow(Map<String, Object> map);
+	public List<EngageResume> findAllByConditionThree(Map<String, Object> map);
+	
 	
 }

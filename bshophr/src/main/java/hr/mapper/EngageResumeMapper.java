@@ -29,6 +29,7 @@ public interface EngageResumeMapper {
 			@Param("keyWord") String keyWord);
 	
 	public List<EngageResume> selectAllByConditionTow(Map<String, Object> map);
+	public List<EngageResume> selectAllByConditionThree(Map<String, Object> map);
 	
 	
 	

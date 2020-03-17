@@ -528,7 +528,7 @@ a {
 										<tr>
 											<td width="2%"><img src="images/jt0.gif"></td>
 											<td width="98%"><a
-												href="zjlEngageResume/queryNeed.do"
+												href="zjlEngageResume/queryInterviewChoose.do"
 												target="mainFrame">面试结果登记</a></td>
 										</tr>
 										<tr>
