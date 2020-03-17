@@ -61,7 +61,7 @@ public class SalarygrantController {
 		return "forward:/salarygrant_query_locate.jsp";
 	}
 
-	// 模糊查询
+	// 模糊查询。
 	@RequestMapping("queryBySgrant.do")
 	public String queryBySgrant(String salary_grant_id, String register, Map map) {
 		System.out.println(salary_grant_id);
