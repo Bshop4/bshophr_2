@@ -1,6 +1,7 @@
 package hr.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +17,9 @@ public class HumanFileServiceImpl implements HumanFileService{
 	private HumanFileMapper hfm=null;
 	
 	@Override
-	public List<HumanFile> findHumanFileAll() {
+	public List<HumanFile> findHumanFileAll(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		List<HumanFile> list=hfm.selectHumanFileAll();
+		List<HumanFile> list=hfm.selectHumanFileAll(map);
 		return list;
 	}
 

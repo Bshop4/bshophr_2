@@ -107,9 +107,9 @@
 			<tr>
 				<td class="TD_STYLE1">请输入建档时间</td>
 				<td width="84%" class="TD_STYLE2">
-				<input type="text"
+				<input type="date"
 					 value="" style="width: 14%"
-					 id="dateStart">至<input type="text"
+					 id="dateStart">至<input type="date"
 					value="" style="width: 14%"
 					 id="dateEnd"> （YYYY-MM-DD）</td>
 			</tr>
@@ -263,22 +263,11 @@
 		var dateStart=$("#dateStart").val();
 		var dateEnd=$("#dateEnd").val();
 		
-		$.ajax({
-	    		type:"POST",
-				url:"djtQueryPage/djtSearch.do",
-				data:{
-					"djtJobClassSelect":djtJobClassSelect,
-					"firstSelect":firstSelect,
-					"secondSelect":secondSelect,
-					"thirdSelect":thirdSelect,
-					"djtJobSelect":djtJobSelect,
-					"dateStart":dateStart,
-					"dateEnd":dateEnd
-				},
-				dataType:"json",
-				success:function(result){
-			}
-		});
+		
+		window.location.href="/bshophr/djtQueryPage/djtSearch.do?firstKindId="+firstSelect
+					+"&secondKindId="+secondSelect+"&thirdKindId="+thirdSelect+"&humanMajorKindId="
+					+djtJobClassSelect+"&humanMajorId="+djtJobSelect+"&dateStart="+dateStart
+					+"&dateEnd="+dateEnd;
 	})
 	
 </script>
