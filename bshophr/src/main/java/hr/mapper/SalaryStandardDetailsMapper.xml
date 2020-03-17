@@ -23,6 +23,11 @@
 		select * from salary_standard_details where standard_id=#{id}
 	</select>
 	
+	<!-- 向思宇加的用item_name查询 -->
+	<select id="selectSalaryStandardDetailsByItName" parameterType="SalaryStandardDetails" resultMap="SalaryStandardDetailsMap">
+		select salary from salary_standard_details where item_name=#{itemName} and standard_id=#{standardId}
+	</select>
+	
 	<delete id="deleteSalaryStandardDetailsById" parameterType="_int">
 		delete from salary_standard_details where sdt_id=#{id}
 	</delete>

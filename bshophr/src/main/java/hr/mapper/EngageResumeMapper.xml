@@ -5,6 +5,75 @@
 
 <mapper namespace="hr.mapper.EngageResumeMapper">
 	
+	<!-- 
+		SELECT * from engage_resume 
+WHERE human_major_kind_name='生产部' 
+and human_major_name='主任' 
+or human_mobilephone like '%18888888888%'
+or human_name like '%18888888888%'
+or human_idcard like '%18888888888%'
+	 -->
+	
+	<!-- 查询最大总数-->
+	<select id="selectCnt"  resultType="_int" parameterType="hashmap">
+        select count(*) from (select * from (select * from ENGAGE_RESUME where
+		 human_major_kind_name=#{humanMajorKindName}
+		 and human_major_name=#{humanMajorName} ) as er
+		 where
+		 <bind name="phone" value="'%' + keyWord + '%'"/>
+		 human_mobilephone like #{phone}
+		 <bind name="name" value="'%' + keyWord + '%'"/>
+		 or human_name like #{name}
+		 <bind name="idcard" value="'%' + keyWord + '%'"/>
+		 or human_idcard like #{idcard}) as ers
+	</select>
+	
+	<select id="selectSplit" resultMap="er" parameterType="hashmap">
+		select * from ENGAGE_RESUME
+		<if test="currentPage!=null and pageSize!=null">
+			limit #{currentPage},#{pageSize}
+		</if>
+	</select>
+	
+	
+	<!-- 
+		select * from (SELECT * from engage_resume 
+WHERE human_major_kind_name='生产部' 
+and human_major_name='主任' and (unix_timestamp(regist_time) between unix_timestamp('2020-02-02 00:00:00') and unix_timestamp('2020-12-10 00:00:00') )) as s
+where
+human_mobilephone like '%18888888888%'
+or human_name like '%18888888888%'
+or human_idcard like '%18888888888%'
+	 -->
+	<!--  <select id="selectAllByCondition" parameterType="hashmap" resultMap="er">
+		select * from (select * from ENGAGE_RESUME where
+		 human_major_kind_name=#{majorKindName}
+		 and human_major_name=#{majorName} 
+		 and (unix_timestamp(regist_time) between unix_timestamp('#{start}') and unix_timestamp('#{end}')) as er
+		 where
+		 <bind name="phone" value="'%' + keyWord + '%'"/>
+		 human_mobilephone like #{phone}
+		 <bind name="name" value="'%' + keyWord + '%'"/>
+		 or human_name like #{name}
+		 <bind name="idcard" value="'%' + keyWord + '%'"/>
+		 or human_idcard like #{idcard}
+	</select> -->
+	
+	<select id="selectAllByCondition" parameterType="string" resultMap="er">
+		select * from (select * from ENGAGE_RESUME where
+		 human_major_kind_name=#{humanMajorKindName}
+		 and human_major_name=#{humanMajorName} 
+		 ) as er
+		 where
+		 <bind name="phone" value="'%' + keyWord + '%'"/>
+		 human_mobilephone like #{phone}
+		 <bind name="name" value="'%' + keyWord + '%'"/>
+		 or human_name like #{name}
+		 <bind name="idcard" value="'%' + keyWord + '%'"/>
+		 or human_idcard like #{idcard}
+	</select>
+	
+	
 	<insert id="insertEngageResume" parameterType="EngageResume">
 		    INSERT INTO ENGAGE_RESUME (
             HUMAN_NAME, ENGAGE_TYPE, HUMAN_ADDRESS, HUMAN_POSTCODE, HUMAN_MAJOR_KIND_ID, HUMAN_MAJOR_KIND_NAME, HUMAN_MAJOR_ID, 
@@ -250,7 +319,7 @@
 	
 		 <!-- 字段映射 -->
     <resultMap id="er" type="EngageResume">
-         <id column="RES_ID" property="resId" jdbcType="VARCHAR" />
+         <id column="RES_ID" property="resId" jdbcType="SMALLINT" />
         <result column="HUMAN_NAME" property="humanName" jdbcType="VARCHAR" />
         <result column="ENGAGE_TYPE" property="engageType" jdbcType="VARCHAR" />
         <result column="HUMAN_ADDRESS" property="humanAddress" jdbcType="VARCHAR" />

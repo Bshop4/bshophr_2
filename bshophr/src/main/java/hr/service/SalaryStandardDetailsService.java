@@ -10,6 +10,8 @@ public interface SalaryStandardDetailsService {
 	// 向思宇改的
 	public List<SalaryStandardDetails> findSalaryStandardDetailsById(int id);
 
+	public SalaryStandardDetails findSalaryStandardDetailsByItName(SalaryStandardDetails ssd);
+
 	public boolean removeSalaryStandardDetailsById(int id);
 
 	public boolean saveSalaryStandardDetails(SalaryStandardDetails salaryStandardDetails);

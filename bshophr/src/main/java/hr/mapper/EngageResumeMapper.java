@@ -1,7 +1,11 @@
 package hr.mapper;
 
+import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import hr.pojo.EngageMajorRelease;
@@ -20,6 +24,21 @@ public interface EngageResumeMapper {
 	
 	public List<EngageResume> selectEngageResumeAll();
 
+	public List<EngageResume> selectAllByCondition(@Param("humanMajorKindName") String humanMajorKindName,
+			@Param("humanMajorName") String humanMajorName,
+			@Param("keyWord") String keyWord);
+	/*public List<EngageResume> selectAllByCondition(@Param("humanMajorKindName") String humanMajorKindName,
+			@Param("humanMajorName") String humanMajorName,
+			@Param("keyWord") String keyWord,
+			@Param("start") Timestamp start,
+			@Param("end") Timestamp end);*/
+	
+	//public List<EngageResume> selectAllByCondition(Map<String, Object> map);
+	
+	public int selectCnt(Map<String,Object> map);
+	
+	public List<EngageMajorRelease> selectSplit(Map<String,Object> map);
+	
 	
 
 }

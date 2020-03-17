@@ -42,4 +42,18 @@ public class SalarygrantController {
 		return "forward:/salarygrant_register_list.jsp";
 	}
 
+	@RequestMapping("/toSalarygrantAll.do")
+	public String toSalarygrantAll() {
+		return "redirect:/SalarygrantAll.do";
+	}
+
+	@RequestMapping("/SalarygrantAll.do")
+	public String SalarygrantAll(Map map) {
+		System.out.println(555);
+		SalaryGrant sgpojo = new SalaryGrant();
+		List<SalaryGrant> list = sgservice.findSalaryGrantAll();
+		map.put("sglist", list);
+		return "forward:/salarygrant_check_list.jsp";
+	}
+
 }

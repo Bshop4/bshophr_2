@@ -10,45 +10,51 @@ import hr.pojo.SalaryGrantDetails;
 import hr.service.SalaryGrantDetailsService;
 
 @Service
-public class SalaryGrantDetailsServiceImpl implements SalaryGrantDetailsService{
-	
+public class SalaryGrantDetailsServiceImpl implements SalaryGrantDetailsService {
+
 	@Autowired
-	private SalaryGrantDetailsMapper salaryGrantDetailsMapper=null;
-	
+	private SalaryGrantDetailsMapper salaryGrantDetailsMapper = null;
+
 	@Override
 	public List<SalaryGrantDetails> findSalaryGrantDetailsAll() {
 		// TODO Auto-generated method stub
-		List<SalaryGrantDetails> list=salaryGrantDetailsMapper.selectSalaryGrantDetailsAll();
+		List<SalaryGrantDetails> list = salaryGrantDetailsMapper.selectSalaryGrantDetailsAll();
 		return list;
 	}
 
 	@Override
 	public SalaryGrantDetails findSalaryGrantDetailsById(int id) {
 		// TODO Auto-generated method stub
-		SalaryGrantDetails SalaryGrantDetails=salaryGrantDetailsMapper.selectSalaryGrantDetailsById(id);
+		SalaryGrantDetails SalaryGrantDetails = salaryGrantDetailsMapper.selectSalaryGrantDetailsById(id);
 		return SalaryGrantDetails;
 	}
 
 	@Override
 	public boolean removeSalaryGrantDetailsById(int id) {
 		// TODO Auto-generated method stub
-		boolean flag=salaryGrantDetailsMapper.deleteSalaryGrantDetailsById(id);
-		
+		boolean flag = salaryGrantDetailsMapper.deleteSalaryGrantDetailsById(id);
+
 		return flag;
 	}
 
 	@Override
 	public boolean saveSalaryGrantDetails(SalaryGrantDetails salaryGrantDetails) {
 		// TODO Auto-generated method stub
-		boolean flag=salaryGrantDetailsMapper.insertSalaryGrantDetails(salaryGrantDetails);
+		boolean flag = salaryGrantDetailsMapper.insertSalaryGrantDetails(salaryGrantDetails);
 		return flag;
 	}
 
 	@Override
 	public boolean updateSalaryGrantDetails(SalaryGrantDetails salaryGrantDetails) {
 		// TODO Auto-generated method stub
-		boolean flag=salaryGrantDetailsMapper.updateSalaryGrantDetails(salaryGrantDetails);
+		boolean flag = salaryGrantDetailsMapper.updateSalaryGrantDetails(salaryGrantDetails);
 		return flag;
+	}
+
+	@Override
+	public SalaryGrantDetails findSalaryGrantDetailsByHumanid(int id) {
+		SalaryGrantDetails SalaryGrantDetails = salaryGrantDetailsMapper.selectSalaryGrantDetailsByHumanid(id);
+		return SalaryGrantDetails;
 	}
 
 }

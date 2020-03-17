@@ -49,4 +49,10 @@ public class SalaryStandardDetailsServiceImpl implements SalaryStandardDetailsSe
 		return flag;
 	}
 
+	@Override
+	public SalaryStandardDetails findSalaryStandardDetailsByItName(SalaryStandardDetails ssd) {
+		SalaryStandardDetails sd = salaryStandardDetailsMapper.selectSalaryStandardDetailsByItName(ssd);
+		return sd;
+	}
+
 }

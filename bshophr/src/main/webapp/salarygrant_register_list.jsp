@@ -66,13 +66,13 @@ td {
 				<td>${s.salaryStandardSum}</td>
 				<td>
 					<c:if test="${s.checkStatus == 1}">
-						<span><a href="toquery.do?sid=${s.checkStatus }">登 记</a></span>
+						<span><a href="toquery.do?sid=${s.checkStatus }&ssid=${s.salaryStandardId}">登 记</a></span>
 					</c:if> 
 					<c:if test="${s.checkStatus == 2}">
-						<span><a href="toquery.do?sid=${s.checkStatus }">登 记</a></span>
+						<span><a href="toquery.do?sid=${s.checkStatus }&ssid=${s.salaryStandardId}">登 记</a></span>
 					</c:if> 
 					<c:if test="${s.checkStatus == 3}">
-						<span><a href="toquery.do?sid=${s.checkStatus }">登 记</a></span>
+						<span><a href="toquery.do?sid=${s.checkStatus }&ssid=${s.salaryStandardId}">登 记</a></span>
 					</c:if>
 				</td>
 			</tr>

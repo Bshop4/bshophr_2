@@ -1,10 +1,12 @@
 package hr.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hr.dto.PrimaryKeyTable;
 import hr.mapper.ConfigPrimaryKeyMapper;
 import hr.pojo.ConfigPrimaryKey;
 import hr.service.ConfigPrimaryKeyService;
@@ -42,5 +44,23 @@ public class ConfigPrimaryKeyServiceImpl implements ConfigPrimaryKeyService{
 	public boolean updateConfigPrimaryKey(ConfigPrimaryKey configPrimaryKey) {
 		// TODO Auto-generated method stub
 		return configPrimaryKeyMapper.updateConfigPrimaryKey(configPrimaryKey);
+	}
+
+//	@Override
+//	public List<PrimaryKeyTable> findConfigPrimaryKeyOfTable() {
+//		// TODO Auto-generated method stub
+//		return configPrimaryKeyMapper.selectConfigPrimaryKeyOfTable();
+//	}
+
+	@Override
+	public void updateConfigPrimaryKeyStatus(List<Integer> list) {
+		// TODO Auto-generated method stub
+		configPrimaryKeyMapper.updateConfigPrimaryKeyStatus(list);
+	}
+
+	@Override
+	public List<ConfigPrimaryKey> findConfigPrimaryKeyAllPlus(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return configPrimaryKeyMapper.selectConfigPrimaryKeyAllPlus(map);
 	}
 }

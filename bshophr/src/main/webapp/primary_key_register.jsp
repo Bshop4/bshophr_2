@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -69,16 +70,21 @@
 					onclick="selAll(this.form)">
 				</td>
 			</tr>
-			<input type="hidden" name="item.primaryKeyTable" value="HumanFile">
-
-			<input type="hidden" name="list[0].prkId" value="1">
-			<input type="hidden" name="list[0].primaryKey" value="firstKindName">
-			<input type="hidden" name="list[0].keyName" value="I机机构名称">
-			<tr>
+			<c:set var="num" value="0"></c:set>
+			<c:set var="num1" value="1"></c:set>
+			<c:forEach items="${list }" var="pk" varStatus="vs">
+			<input type="hidden" name="primaryKeyTable${vs.index }" value="${pk.primaryKeyTable}">
+			<input type="hidden" name="prkId${vs.index }" value="${pk.prkId}">
+			<input type="hidden" name="primaryKey${vs.index }" value="${pk.primaryKey}">
+			<input type="hidden" name="keyName${vs.index }" value="${pk.keyName}">
+			<c:if test="${vs.index mod 4 eq 0}">
+				<tr>
+			</c:if>
+			<c:set var="num" value="${num+num1 }"></c:set>
 				<td class="TD_STYLE2"><input type="checkbox"
-					name="list[0].checked" value="on" checked="checked">I机机构名称
+					name="checked${vs.index }" value="on" checked="checked">${pk.keyName}
 				</td>
-
+<%-- 
 
 				<input type="hidden" name="list[1].prkId" value="2">
 				<input type="hidden" name="list[1].primaryKey"
@@ -104,10 +110,12 @@
 				<input type="hidden" name="list[3].keyName" value="档案编号">
 
 				<td class="TD_STYLE2"><input type="checkbox"
-					name="list[3].checked" value="on" checked="checked">档案编号</td>
-			</tr>
-
-			<input type="hidden" name="list[4].prkId" value="5">
+					name="list[3].checked" value="on" checked="checked">档案编号</td> --%>
+			<c:if test="${num mod 4 eq 0 and num ne 0 or vs.last}">
+				</tr>
+			</c:if>
+			</c:forEach>
+			<%-- <input type="hidden" name="list[4].prkId" value="5">
 			<input type="hidden" name="list[4].primaryKey" value="humanName">
 			<input type="hidden" name="list[4].keyName" value="姓名">
 			<tr>
@@ -420,7 +428,7 @@
 
 				<td class="TD_STYLE2"><input type="checkbox"
 					name="list[39].checked" value="on" checked="checked">登记人</td>
-			</tr>
+			</tr> --%>
 
 		</table>
 	</form>

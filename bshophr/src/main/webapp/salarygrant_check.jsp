@@ -1,6 +1,5 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,7 +13,7 @@
 }
 
 td {
-	text-align: center
+	text-align: center;
 }
 -->
 </style>
@@ -22,25 +21,25 @@ td {
 	
 </script>
 <script type="text/javascript" src="javascript/jquery.messager.js"></script>
-
 </head>
 
 <body>
-	<form method="post" action="updateSalary.do">
+	<form method="post" action="tocheck">
 		<table width="100%">
 			<tr>
-				<td colspan="2" style="text-align: left"><font color="black">您正在做的业务是：人力资源--薪酬标准管理--薪酬发放登记
-				</font></td>
+				<td style="text-align: left;"><font color="black">您正在做的业务是:人力资源管理--薪酬发放管理--薪酬发放复核</font>
+				</td>
 			</tr>
 			<tr>
-				<td colspan="2" style="text-align: right;"><input type="submit"
-					value="提交" class="BUTTON_STYLE1"> <input type="button"
-					value="返回" onclick="javascript:window.history.back();"
+				<td colspan="2" style="text-align: right"><input
+					type="submit" value="复核通过" class="BUTTON_STYLE1"> <input
+					type="button" value="返 回" onclick="location.href='check_list'"
 					class="BUTTON_STYLE1"></td>
 			</tr>
 			<tr>
 				<td colspan="2" style="text-align: left">薪酬单编号：${sid} <input
-					type="hidden" name="salaryGrant.salaryGrantId" value="">
+					type="hidden" name="salaryGrant.salaryGrantId"
+					value="HS1353753198460">
 				</td>
 			</tr>
 			<tr>
@@ -57,24 +56,23 @@ td {
 			</tr>
 			<tr>
 				<td style="text-align: left">本机构总人数:${count } <input
-					type="hidden" name="salaryGrant.humanAmount" value="">
-					，基本薪酬总数:${salaryStandardSum }<input type="hidden"
+					type="hidden" name="salaryGrant.humanAmount" value="5">
+					基本薪酬总数:${salaryStandardSum }<input type="hidden"
 					name="salaryGrant.salaryStandardSum" value="" />
-					，实发总额:<span id="salarySum_sum" name="salarySum_sum">${salaryPaidSum }</span> <input
+					实发总额:<span id="salarySum_sum">${sps }</span> <input
 					type="hidden" id="salaryPaidSum" name="salaryGrant.salaryPaidSum"
-					value="" />
-
-
+					value="" /> <input type="hidden"
+					name="salaryGrant.register" value="better_admin" /> <input
+					type="hidden" name="salaryGrant.registTime"
+					value="2012-11-24 18:33:46.0" />
 				</td>
-				<td style="text-align: right;">登记人:<input type="text"
-					name="salaryGrant.register" value="${register }"
-					size="8" readonly="readonly"> 登记时间：<span id="Tdate"></span>
-					<input type="hidden" name="salaryGrant.registTime" id="Tdate2">
+				<td style="text-align: right">复核人:<input type="text"
+					name="salaryGrant.checker" value="${checker }"
+					size="8" readonly="readonly"> 复核时间：<span id="Tdate"></span>
+					<input type="hidden" name="salaryGrant.checkTime" id="Tdate2">
 				</td>
 			</tr>
 		</table>
-
-
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
 			bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
 			<tr>
@@ -91,9 +89,9 @@ td {
 				<td class="TD_STYLE1" width="7%">销售绩效总额</td>
 				<td class="TD_STYLE1" width="7%">应扣金额</td>
 				<td class="TD_STYLE1" width="7%">实发金额</td>
-			</tr>
 
-			<%-- <c:forEach items="${ssdlist}" var="s" varStatus="vs"> --%>
+			</tr>
+			<%-- <c:forEach items="${sgdlist}" var="s" varStatus="vs"> --%>
 				<input type="hidden" name="humanid"
 					value="${ssid }">
 				<input type="hidden" id="salaryStandardSum"
@@ -112,42 +110,53 @@ td {
 					<td><input type="text" name="bounsSum" maxlength="5"
 						id="bounsSum" οnkeyup="value=value.replace(/[^\d]/g,'')"
 						οnblur="value=value.replace(/[^\d]/g,'')"
-						class="INPUT_STYLE2" /></td>
+						class="INPUT_STYLE2" value="${bounsSum }" ></input></td>
 					<td><input type="text" name="saleSum" id="saleSum"
 						οnkeyup="value=value.replace(/[^\d]/g,'')" maxlength="5" 
-						οnblur="value=value.replace(/[^\d]/g,'')" class="INPUT_STYLE2" /></td>
+						οnblur="value=value.replace(/[^\d]/g,'')" class="INPUT_STYLE2" value="${saleSum }"></input></td>
 					<td><input type="text" name="deductSum" maxlength="5"
 						id="deductSum" οnkeyup="value=value.replace(/[^\d]/g,'')"
-						οnblur="value=value.replace(/[^\d]/g,'')" class="INPUT_STYLE2" /></td>
+						οnblur="value=value.replace(/[^\d]/g,'')" class="INPUT_STYLE2" value="${deductSum }"></input></td>
 					<td><input type="text" name="salaryPaidSum" id="salaryPaidSum"
-						value="" class="INPUT_STYLE2" /></td>
+						value="${sps }" class="INPUT_STYLE2"></input></td>
 				</tr>
 			<%-- </c:forEach> --%>
-
 		</table>
-
 	</form>
-	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 	<SCRIPT type="text/javascript">
-		/* $(function() {
-			var s1 = 0;
-			var s2 = 0;
-			$("#bounsSum").bind("input propertychange",function(){
-				var a = $("#bounsSum").val();
-				s1 = a ;
-			});
-			$("#saleSum").bind("input propertychange",function(){
-				var b = $("#saleSum").val();
-				s2 = b ;
-			});
-			$("#deductSum").bind("input propertychange",function(){
-				var c = $("#deductSum").val();
-				var d = $("#salarySum_sum").val();
-				console.log(s1);
-				var sum = Number(s1)+Number(s2)-Number(c)+Number(d);
-				$("#salaryPaidSum").val(sum);
-			});
-		}); */
+		function onKeyPress(i) {
+
+			var size = 4;
+			var bounsSum = document.getElementById("bounsSum" + i);
+			var saleSum = document.getElementById("saleSum" + i);
+			var deductSum = document.getElementById("deductSum" + i);
+			var salaryPaidSum = document.getElementById("salaryPaidSum" + i);
+			if (isNaN(bounsSum.value) || bounsSum.value < 0) {
+				$.messager.show("消息提示", "金额填写错误!", 2000);
+				bounsSum.value = "0.00";
+				return;
+			}
+			if (isNaN(saleSum.value) || saleSum.value < 0) {
+				$.messager.show("消息提示", "金额填写错误!", 2000);
+				saleSum.value = "0.00";
+				return;
+			}
+			if (isNaN(deductSum.value) || deductSum.value < 0) {
+				$.messager.show("消息提示", "金额填写错误!", 2000);
+				deductSum.value = "0.00";
+				return;
+			}
+			salaryPaidSum.value = Number(bounsSum.value) + Number(saleSum.value) - Number(deductSum.value) + Number(document.getElementById("salaryStandardSum" + i).value);
+
+			var sum = 0;
+			for (var j = 1; j <= size; j++) {
+				sum = Number(sum) + Number(document.getElementById("salaryPaidSum" + j).value);
+			}
+			document.getElementById("salarySum_sum").innerHTML = sum;
+			document.getElementById("salaryPaidSum").value = sum;
+
+		}
+
 		function time() {
 			var tdate = document.getElementById("Tdate");
 			var d = new Date();
@@ -193,3 +202,5 @@ td {
 	</SCRIPT>
 </body>
 </html>
+
+
