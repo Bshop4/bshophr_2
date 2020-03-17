@@ -27,6 +27,11 @@ public interface EngageResumeMapper {
 	public List<EngageResume> selectAllByCondition(@Param("humanMajorKindName") String humanMajorKindName,
 			@Param("humanMajorName") String humanMajorName,
 			@Param("keyWord") String keyWord);
+	
+	public List<EngageResume> selectAllByConditionTow(Map<String, Object> map);
+	
+	
+	
 	/*public List<EngageResume> selectAllByCondition(@Param("humanMajorKindName") String humanMajorKindName,
 			@Param("humanMajorName") String humanMajorName,
 			@Param("keyWord") String keyWord,

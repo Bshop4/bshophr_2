@@ -271,8 +271,6 @@ public class EngageResumeController {
 			model.addAttribute("erList", "0");
 		}
 		
-		
-		
 	/*	int maxPage =0;
 		int sumNumber =erList.size();//总个数
 		int pageSize =1;
@@ -354,6 +352,71 @@ public class EngageResumeController {
 	
 	
 	
+	@RequestMapping("/queryValidChoose.do")
+	public String queryValidChoose(Model model){
+		
+		List<EngageMajorRelease> emr = emrs.findEngageMajorReleaseAll();
+		Set<String> set = new HashSet<String>();
+		for (EngageMajorRelease e : emr) {
+			set.add(e.getMajorKindName());
+		}
+		List<String> list = new ArrayList<String>(set);
+		model.addAttribute("list", list);
+		
+		return "forward:/engage_resume_valid_choose.jsp";
+	}
+	
+	
+	@RequestMapping("/{hiddenMajorKindName}/{humanMajorName}/{keyWord}/{startdate}/{enddate}/queryChooseValid.do")
+	public String queryChooseValid(@PathVariable("hiddenMajorKindName") String majorKindName,
+			@PathVariable("humanMajorName") String majorName,
+			@PathVariable("keyWord") String keyWord,
+			@PathVariable("startdate") Timestamp sd,
+			@PathVariable("enddate") Timestamp ed,
+			Model model,
+			HttpServletRequest request){
+		
+		Timestamp start = null;
+		Timestamp end = null;
+		
+		String strsd = sd+"";
+		String stred = ed+"";
+		
+		if(strsd.compareTo(stred) > 0){
+			start = ed;
+			end = sd;
+		}else{
+			start = sd;
+			end = ed;
+		}	
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("majorKindName", majorKindName);
+		map.put("majorName", majorName);
+		map.put("keyWord", keyWord);
+		map.put("checkStatus", 1);
+		
+		
+		List<EngageResume> list = ers.findAllByConditionTow(map);
+		
+		List<EngageResume> erList = new ArrayList<EngageResume>();
+		if(list.size()>0){
+			for (EngageResume e : list) {
+				String time = e.getRegistTime()+"";
+				String strStart = start+"";
+				String strEnd = end + "";
+				
+				if(strStart.compareTo(time) < 0 && strEnd.compareTo(time) > 0){
+					erList.add(e);
+				}
+				model.addAttribute("erList", erList);
+			}
+		}else {
+			model.addAttribute("erList", "0");
+		}
+		
+		return "forward:/engage_resume_Valid_list.jsp";
+	}
 	
 	
 	
@@ -376,17 +439,13 @@ public class EngageResumeController {
 	
 	
 	
-	
-	
-	
-	
-	
-/*	@RequestMapping("/queryChooseSplit.do")
-	public String queryChooseSplit(@Param("hiddenMajorKindName") String majorKindName,
-			@Param("humanMajorName") String majorName,
-			@Param("keyWord") String keyWord,
-			@Param("startdate") Timestamp sd,
-			@Param("enddate") Timestamp ed,
+/*	
+	@RequestMapping("/{hiddenMajorKindName}/{humanMajorName}/{keyWord}/{startdate}/{enddate}/queryChooseSplit.do")
+	public String queryChooseSplit(@PathVariable("hiddenMajorKindName") String majorKindName,
+			@PathVariable("humanMajorName") String majorName,
+			@PathVariable("keyWord") String keyWord,
+			@PathVariable("startdate") Timestamp sd,
+			@PathVariable("enddate") Timestamp ed,
 			Model model,
 			HttpServletRequest request){
 		
@@ -404,70 +463,25 @@ public class EngageResumeController {
 			end = ed;
 		}
 		
-		List<EngageResume> list = ers.findAllByCondition(majorKindName, majorName, keyWord);
+		System.out.println(majorKindName);
+		System.out.println(majorName);
+		System.out.println(keyWord);
+		System.out.println(start);
+		System.out.println(end);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("majorKindName", majorKindName);
+		map.put("majorName", majorName);
+		map.put("keyWord", keyWord);
+		map.put("start", start);
+		map.put("end", end);
 		
-		List<EngageResume> erList = new ArrayList<EngageResume>();
-		if(list.size()>0){
-			for (EngageResume e : list) {
-				String time = e.getRegistTime()+"";
-				String strStart = start+"";
-				String strEnd = end + "";
-				
-				if(strStart.compareTo(time) < 0 && strEnd.compareTo(time) > 0){
-					erList.add(e);
-				}
-			}
+		List<EngageResume> list = ers.findAllByCondition(map);
+		for (EngageResume engageResume : list) {
+			System.out.println(engageResume);
 		}
 		
-		
-		
-		int maxPage =0;
-		int sumNumber =erList.size();//总个数
-		int pageSize =1;
-		int pageNo =1;
-		//最大页数
-		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
-		
-		String page=request.getParameter("page");
-		if(page!=null && !"".equals(page)){
-			try{
-				pageNo=Integer.parseInt(page);
-			}catch(NumberFormatException e){
-				pageNo=1;
-			}
-			if(pageNo>maxPage){
-				pageNo=maxPage;
-			}else if(pageNo<1){
-				pageNo=1;
-			}
-		}
-		
-		int currentPage=(pageNo-1)*pageSize;
-		
-		List<EngageResume> list1 = new ArrayList<EngageResume>();
-		if(erList.size() >0){
-			for (int i = currentPage; i < currentPage+pageSize; i++) {
-				list1.add(erList.get(i));
-			}
-			model.addAttribute("list1", list1);
-			model.addAttribute("maxPage", maxPage);
-			model.addAttribute("sumNumber", sumNumber);
-			model.addAttribute("pageSize", pageSize);
-			model.addAttribute("pageNo", pageNo);
-			
-			
-			model.addAttribute("hiddenMajorKindName", majorKindName);
-			model.addAttribute("humanMajorName", majorName);
-			model.addAttribute("keyWord", keyWord);
-			model.addAttribute("startdate", sd);
-			model.addAttribute("enddate", ed);
-			
-		}else {
-			model.addAttribute("list1", "0");
-		}
-		
-		return "forward:/engage_resume_list.jsp";
-	}*/
-	
+		return null;
+	}
+	*/
 	
 }
