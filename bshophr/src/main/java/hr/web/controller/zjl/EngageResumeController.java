@@ -321,6 +321,66 @@ public class EngageResumeController {
 		return "forward:/engage_resume_list.jsp";
 	}
 	
+	
+	@RequestMapping("/{id}/check.do")
+	public String check(Model model,@PathVariable("id") int id){
+		
+		EngageResume er = ers.findEngageResumeById(id);
+		
+		model.addAttribute("obj", er);
+		
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		model.addAttribute("t", t);
+		
+		model.addAttribute("user", "admin");
+		
+		return "forward:/engage_resume_list_detail.jsp";
+	}
+	
+	
+	@RequestMapping("/updateResume.do")
+	@ResponseBody
+	public List<String> updateResume(EngageResume er){
+		
+		er.setCheckStatus(1);
+		boolean f = ers.updateEngageResume(er);
+		
+		List<String> list = new ArrayList<String>();
+		if(f){
+			list.add("推荐成功！");
+		}
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 /*	@RequestMapping("/queryChooseSplit.do")
 	public String queryChooseSplit(@Param("hiddenMajorKindName") String majorKindName,
 			@Param("humanMajorName") String majorName,

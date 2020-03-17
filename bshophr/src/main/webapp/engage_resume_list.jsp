@@ -109,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td>
 						<td class="TD_STYLE2">
 							<c:if test="${er.checkStatus == 0}">
-								<a href="zjlEngageResume/"+${er.resId}+"/check.do">复核</a>
+								<a href="zjlEngageResume/${er.resId}/check.do">复核</a>
 							</c:if>
 							<c:if test="${er.checkStatus == 1}">
 								复核
