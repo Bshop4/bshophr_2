@@ -63,4 +63,10 @@ public class ConfigPrimaryKeyServiceImpl implements ConfigPrimaryKeyService{
 		// TODO Auto-generated method stub
 		return configPrimaryKeyMapper.selectConfigPrimaryKeyAllPlus(map);
 	}
+
+	@Override
+	public void updateConfigPrimaryKeyPlus(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		configPrimaryKeyMapper.updateConfigPrimaryKeyPlus(map);
+	}
 }

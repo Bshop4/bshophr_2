@@ -24,4 +24,7 @@ public interface ConfigPrimaryKeyMapper {
 	public void updateConfigPrimaryKeyStatus(List<Integer> list);
 	//条件查询所有
 	public List<ConfigPrimaryKey> selectConfigPrimaryKeyAllPlus(Map<String, Object> map);
+	
+	//条件查询所有
+	public void updateConfigPrimaryKeyPlus(Map<String, Object> map);
 }
