@@ -1,6 +1,7 @@
 package hr.web.controller.djt;
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -9,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,6 +41,7 @@ public class DjtHumanRegister {
 	
 	@Autowired
 	private HumanFileService humanFileService=null;
+
 	
 	//页面跳转
 	@RequestMapping("/jump.do")

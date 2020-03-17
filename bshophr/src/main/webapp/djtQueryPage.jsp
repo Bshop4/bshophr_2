@@ -1,62 +1,88 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet"
-			href="css/table.css" type="text/css">
-	</head>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 
-	<body>
-		<form action=".." method="post">
-			<table width="100%">
-				<tr>
-					<td>
-						<font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案查询 </font>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						符合条件的人力资源档案总数：${count }例
-					</td>
-				</tr>
-			</table>
-			<table width="100%" border="1" cellpadding=5 cellspacing=1
-				bordercolorlight=#848284 bordercolordark=#eeeeee
-				class="TABLE_STYLE1">
-				
-				<tr class="TR_STYLE1">
-					<td width="14%" class="TD_STYLE1">
-						档案编号
-					</td>
-					<td width="10%" class="TD_STYLE1">
-						姓名
-					</td>
-					<td width="6%" class="TD_STYLE1">
-						性别
-					</td>
-					<td width="14%" class="TD_STYLE1">
-						I级机构
-					</td>
-					<td width="14%" class="TD_STYLE1">
-						II级机构
-					</td>
-					<td width="14%" class="TD_STYLE1">
-						III级机构
-					</td>
-					<td width="14%" class="TD_STYLE1">
-						职位分类
-					</td>
-					<td width="14%" class="TD_STYLE1">
-						职位名称
-					</td>
-				</tr>
-				
-					
-			</table>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<base href="<%=basePath%>">
+
+<title>My JSP 'index.jsp' starting page</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+
+<link rel="stylesheet" href="table.css" type="text/css">
+<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
+<script type="text/javascript">
+	function toCheck(id) {
+		document.forms[0].action = document.forms[0].action + "?operate=toCheck&id=" + id;
+		document.forms[0].submit();
+	}
+</script>
+</head>
+
+<body>
+	<form name="humanfileForm" method="post" action="/hr/humanfile.do">
+		<table width="100%">
+			<tr>
+				<td><font color="#0000CC">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案查询
+				</font></td>
+			</tr>
+			<tr>
+				<td>当前人力资源档案总数</td>
+			</tr>
+		</table>
+		<table width="100%" border="1" cellpadding=0 cellspacing=1
+			bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
+			<tr class="TR_STYLE1">
+				<td width="13%" class="TD_STYLE1">档案编号</td>
+				<td width="13%" class="TD_STYLE1">姓名</td>
+				<td width="11%" class="TD_STYLE1">性别</td>
+				<td width="14%" class="TD_STYLE1">I级机构</td>
+				<td width="14%" class="TD_STYLE1">II级机构</td>
+				<td width="14%" class="TD_STYLE1">III级机构</td>
+				<td width="14%" class="TD_STYLE1">职称</td>
+				<td width="7%" class="TD_STYLE1">操作</td>
+			</tr>
 			
-		</form>
-	</body>
+			<c:if test="${!empty listPageNo}"></c:if>
+				<c:forEach items="${listPageNo }" var="lpn">
+				<tr>
+					<td class="TD_STYLE2">${lpn.hufId}</td>
+					<td class="TD_STYLE2">${lpn.humanName}</td>
+					<td class="TD_STYLE2">${lpn.humanSex}</td>
+					<td class="TD_STYLE2">${lpn.firstKindName}</td>
+					<td class="TD_STYLE2">${lpn.secondKindName}</td>
+					<td class="TD_STYLE2">${lpn.thirdKindName}</td>
+					<td class="TD_STYLE2">${lpn.humanProDesignation}</td>
+					<td class="TD_STYLE2">
+						<a href="humanRegister/jumpToId.do?hufId=${lpn.hufId}">查看</a>
+					</td>
+				</tr>
+				</c:forEach>
+		</table>
+		<p>
+			&nbsp;&nbsp;总数：1例 &nbsp;&nbsp;&nbsp;当前第 1 页 &nbsp;&nbsp;&nbsp;共 1 页
+			&nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1 id="djtCurrentPage">
+			页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18
+				border=0 id="djtJump">
+	</form>
+</body>
+<script type="text/javascript">
+	$("#djtJump").click(function(){
+		
+	})
+</script>
+
 </html>
+

@@ -509,7 +509,7 @@ a {
 										<tr>
 											<td><img src="images/jt0.gif"></td>
 											<td><a
-												href="engageresume.do?operate=locate&method=query"
+												href="zjlEngageResume/queryValidChoose.do"
 												target="mainFrame">有效简历查询</a></td>
 										</tr>
 									</table>

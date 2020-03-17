@@ -1,5 +1,6 @@
 package hr.web.controller.pyl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +35,18 @@ public class ConfigprimarykeyController {
 //			cpcs.removeConfigPublicCharById(Integer.parseInt(request.getParameter("id")));
 //			String dpage=request.getParameter("pageNo");
 //			return "redirect:/pyl/configpublicchar.do?operate=list&page="+dpage;
-			
+		case "doRegister":
+			String strid=request.getParameter("lists");
+			String[] strarrid=strid.split(",");
+			List<Integer> listid=new ArrayList<Integer>();
+			for (int i = 0; i < strarrid.length; i++) {
+				listid.add(Integer.valueOf(strarrid[i]));
+			}
+			Map<String,Object> map1=new HashMap<String, Object>();
+			map1.put("primaryKeyTable", request.getParameter("primaryKeyTable"));
+			cpks.updateConfigPrimaryKeyPlus(map1);
+			cpks.updateConfigPrimaryKeyStatus(listid);
+			return "redirect:/register_success.jsp";
 		case "list":
 			selectPage(request, model, cpks);
 			return "forward:/primary_key_register.jsp";
