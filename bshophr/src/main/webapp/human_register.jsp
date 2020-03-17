@@ -138,9 +138,9 @@
 					name="item.humanBirthplace" value="${humanFile.humanBirthplace}" class="INPUT_STYLE2">
 				</td>
 				<td class="TD_STYLE1">生日</td>
-				<td width="13%" class="TD_STYLE2"><input type="text"
-					name="item.str_humanBirthday" value="${humanFile.humanBirthday}" class="INPUT_STYLE2"
-					id="date_start"></td>
+				<td width="13%" class="TD_STYLE2"><input type="date"
+					name="item.humanBirthday" value="${humanFile.humanBirthday}" class="INPUT_STYLE2"
+					></td>
 				<td width="11%" class="TD_STYLE1">民族</td>
 				<td class="TD_STYLE2" width="14%"><select name="item.humanRace"
 					class="SELECT_STYLE1">
@@ -482,18 +482,32 @@
 	
 	$("#djtRegisterChoosePicture").click(function(){
 		var firstKindId= $('#djtFirstSelect option:selected').val();
+		var firstKindName= $('#djtFirstSelect option:selected').text();
 		var secondKindId= $('#djtSecondSelect option:selected').val();
+		var secondKindName= $('#djtSecondSelect option:selected').text();
 		var thirdKindId= $('#djtThirdSelect option:selected').val();
+		var thirdKindName= $('#djtThirdSelect option:selected').text();
 		var humanMajorKindId= $('#djtJobClassSelect option:selected').val();
+		var humanMajorKindName= $('#djtJobClassSelect option:selected').text();
 		var humanMajorId= $('#djtJobSelect option:selected').val();
+		var hunmaMajorName= $('#djtJobSelect option:selected').text();
 	
 		var humanProDesignation=$("select[name='item.humanProDesignation'] option:selected").val();
 
 		
 		var humanName=$("input[name='item.humanName']").val();
 		var humanSex=$("select[name='item.humanSex'] option:selected").val();
+		
+		var humanEmail=$("input[name='item.humanEmail']").val();
+		var humanTelephone=$("input[name='item.humanTelephone']").val();
+		var humanMobilephone=$("input[name='item.humanMobilephone']").val();
+		var humanQq=$("input[name='item.humanQq']").val();
+		
+		var humanAddress=$("input[name='item.humanAddress']").val();
+		var humanPostcode=$("input[name='item.humanPostcode']").val()
+		
 		var humanBirthplace=$("input[name='item.humanBirthplace']").val();
-		var humanBirthday=$("input[name='item.str_humanBirthday']").val();
+		var humanBirthday=$("input[name='item.humanBirthday']").val();
 		var humanNationality=$("select[name='item.humanNationality'] option:selected").val();
 		var humanRace=$("select[name='item.humanRace'] option:selected").val();
 		
@@ -515,21 +529,34 @@
 		var humanSpeciality=$("select[name='item.humanSpeciality'] option:selected").val();
 		var humanHobby=$("select[name='item.humanHobby'] option:selected").val();
 		
-		var humanHistroyRecords=$("input[name='item.humanHistroyRecords']").val();
-		var humanFamilyMembership=$("input[name='item.humanFamilyMembership']").val();
-		var remark=$("input[name='item.remark']").val();
+		var humanHistroyRecords=$("textarea[name='item.humanHistroyRecords']").val();
+		var humanFamilyMembership=$("textarea[name='item.humanFamilyMembership']").val();
+		var remark=$("textarea[name='item.remark']").val();
 		
 		$.ajax({
 			type:"POST",
 			url:"registerChoosePicture/pageJump.do",
 			data:{"firstKindId":firstKindId,
+				"firstKindName":firstKindName,
 				"secondKindId":secondKindId,
+				"secondKindName":secondKindName,
 				"thirdKindId":thirdKindId,
+				"thirdKindName":thirdKindName,
 				"humanMajorKindId":humanMajorKindId,
+				"humanMajorKindName":humanMajorKindName,
 				"humanProDesignation":humanProDesignation,
 				"humanMajorId":humanMajorId,
+				"hunmaMajorName":hunmaMajorName,
 				"humanName":humanName,
 				"humanSex":humanSex,
+				"humanEmail":humanEmail,
+				"humanTelephone":humanTelephone,
+				"humanMobilephone":humanMobilephone,
+				"humanQq":humanQq,
+				
+				"humanAddress":humanAddress,
+				"humanPostcode":humanPostcode,
+				
 				"humanBirthplace":humanBirthplace,
 				"humanBirthday":humanBirthday,
 				"humanNationality":humanNationality,

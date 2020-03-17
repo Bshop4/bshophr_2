@@ -21,4 +21,7 @@ public interface ConfigPrimaryKeyService {
 	
 	//条件查询所有
 	public List<ConfigPrimaryKey> findConfigPrimaryKeyAllPlus(Map<String, Object> map);
+	
+	//条件修改
+	public void updateConfigPrimaryKeyPlus(Map<String, Object> map);
 }
