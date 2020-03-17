@@ -54,5 +54,4 @@ public class SalaryStandardDetailsServiceImpl implements SalaryStandardDetailsSe
 		SalaryStandardDetails sd = salaryStandardDetailsMapper.selectSalaryStandardDetailsByItName(ssd);
 		return sd;
 	}
-
 }

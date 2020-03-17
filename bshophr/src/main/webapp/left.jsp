@@ -348,7 +348,9 @@ a {
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td>薪酬发放查询</td>
+							<td>
+								<a href="toqueryBySalary.do" target="mainFrame" style="color:black;">薪酬发放查询</a>
+							</td>
 						</tr>
 					</table>
 			</span></td>

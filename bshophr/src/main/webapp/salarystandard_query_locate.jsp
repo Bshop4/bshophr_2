@@ -29,7 +29,7 @@
 </head>
 
 <body>
-	<form method="post" action="queryBySalary.do">
+	<form method="post" action="queryBySalary.do" id="myf">
 		<table width="100%">
 			<tr>
 				<td><font color="#0000CC">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准查询</font>
@@ -38,7 +38,7 @@
 			<tr>
 				<td>
 					<div align="right">
-						<input type="submit" value="查询" class="BUTTON_STYLE1" onclick="query()">
+						<input type="button" value="查询" class="BUTTON_STYLE1" onclick="query()">
 					</div>
 				</td>
 			</tr>
@@ -92,6 +92,7 @@
 			alert("薪酬标准编号不可以为空！！！");
 			return;
 		}
+		$("#myf").submit();
 		/* $.ajax({
 			type:"POST",
 			url:"queryBySalary.do?str="+bh,

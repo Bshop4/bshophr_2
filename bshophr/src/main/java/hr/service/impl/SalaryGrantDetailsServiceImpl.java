@@ -57,4 +57,10 @@ public class SalaryGrantDetailsServiceImpl implements SalaryGrantDetailsService 
 		return SalaryGrantDetails;
 	}
 
+	@Override
+	public boolean updateSalaryGrantDetailsSome(SalaryGrantDetails salaryGrantDetails) {
+		boolean flag = salaryGrantDetailsMapper.updateSalaryGrantDetailsSome(salaryGrantDetails);
+		return flag;
+	}
+
 }

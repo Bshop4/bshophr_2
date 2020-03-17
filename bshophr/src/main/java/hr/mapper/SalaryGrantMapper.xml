@@ -29,12 +29,20 @@
 	<select id="selectSalaryGrantAll" resultMap="SalaryGrantMap">
 		select * from salary_grant
 	</select>
+	<!-- 条件查询 -->
+	<select id="selectSalaryGrantAllByCondition" resultMap="SalaryGrantMap">
+		select * from salary_grant where salary_grant_id like "%"#{salaryGrantId}"%" and register like "%"#{register}"%"
+	</select>
 	
 	<select id="selectSalaryGrantById" parameterType="_int" resultMap="SalaryGrantMap">
-		select * from salary_grant where sgr_id=#{id}
+		select * from salary_grant where salary_grant_id=#{salaryGrantId}
 	</select>
 	<!-- 根据状态值查询 -->
-	<select id="selectSalaryGrantByStatus" parameterType="_int" resultMap="SalaryGrantMap">
+	<select id="selectSalaryGrantByStatus" parameterType="SalaryGrant" resultMap="SalaryGrantMap">
+		select * from salary_grant where check_status=#{checkStatus}
+	</select>
+	<!-- 根据状态值2222查询 -->
+	<select id="selectSalaryGrantByStatus2222" parameterType="SalaryGrant" resultMap="SalaryGrantMap">
 		select * from salary_grant where check_status=#{checkStatus}
 	</select>
 	

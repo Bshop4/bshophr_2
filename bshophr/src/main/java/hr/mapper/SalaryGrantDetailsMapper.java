@@ -20,4 +20,6 @@ public interface SalaryGrantDetailsMapper {
 
 	public boolean updateSalaryGrantDetails(SalaryGrantDetails sgd);
 
+	// 修改一部分
+	public boolean updateSalaryGrantDetailsSome(SalaryGrantDetails sgd);
 }
