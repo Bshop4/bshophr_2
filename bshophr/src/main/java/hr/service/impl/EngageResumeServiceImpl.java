@@ -88,6 +88,10 @@ public class EngageResumeServiceImpl implements EngageResumeService{
 		return erm.selectAllByConditionThree(map);
 	}
 	
-	
+	@Override
+	public int findCntByCondition(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return erm.selectCntByCondition(map);
+	}
 	
 }

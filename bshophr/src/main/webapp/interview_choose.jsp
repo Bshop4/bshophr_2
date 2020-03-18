@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <table width="100%">
         <tr>
             <td>
-                <font color="black">您正在做的业务是：招聘管理--简历管理--简历筛选 </font>
+                <font color="black">您正在做的业务是：招聘管理--面试管理--面试结果登记 </font>
             </td>
         </tr>
         <tr>

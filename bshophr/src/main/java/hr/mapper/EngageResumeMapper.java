@@ -43,6 +43,8 @@ public interface EngageResumeMapper {
 	
 	public int selectCnt(Map<String,Object> map);
 	
+	public int selectCntByCondition(Map<String,Object> map);//
+	
 	public List<EngageMajorRelease> selectSplit(Map<String,Object> map);
 	
 	

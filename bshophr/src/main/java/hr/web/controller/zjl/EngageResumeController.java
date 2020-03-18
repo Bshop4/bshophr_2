@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import hr.pojo.ConfigFileFirstKind;
 import hr.pojo.ConfigPublicChar;
 import hr.pojo.EngageInterview;
 import hr.pojo.EngageMajorRelease;
@@ -463,29 +464,50 @@ public class EngageResumeController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("majorKindName", majorKindName);
 		map.put("majorName", majorName);
-		map.put("keyWord", keyWord);
 		map.put("checkStatus", 1);
 		//map.put("is", 1);
+		map.put("start", start);
+		map.put("end", end);
+		map.put("keyWord", keyWord);
 		
 		
-		List<EngageResume> list = ers.findAllByConditionTow(map);
+		int maxPage =0;
+		int sumNumber =ers.findCntByCondition(map);//总个数
+		System.out.println(sumNumber+"个");
+		int pageSize =1;
+		int pageNo =1;
+		//最大页数
+		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
 		
-		List<EngageResume> erList = new ArrayList<EngageResume>();
-		if(list.size()>0){
-			for (EngageResume e : list) {
-				String time = e.getRegistTime()+"";
-				String strStart = start+"";
-				String strEnd = end + "";
-				
-				if(strStart.compareTo(time) < 0 && strEnd.compareTo(time) > 0){
-					erList.add(e);
-				}
-				model.addAttribute("erList", erList);
+		String page=request.getParameter("page");
+		if(page!=null && !"".equals(page)){
+			try{
+				pageNo=Integer.parseInt(page);
+			}catch(NumberFormatException e){
+				pageNo=1;
 			}
-		}else {
-			model.addAttribute("erList", "0");
+			if(pageNo>maxPage){
+				pageNo=maxPage;
+			}else if(pageNo<1){
+				pageNo=1;
+			}
 		}
 		
+		int currentPage=(pageNo-1)*pageSize;
+		//Map<String, Object> map=new HashMap<String, Object>();
+		map.put("pageSize", pageSize);
+		map.put("currentPage", currentPage);
+		//分页查询
+		List<EngageResume> erList = ers.findAllByConditionTow(map);
+		System.out.println(erList.size());
+		model.addAttribute("erList", erList);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("sumNumber", sumNumber);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("pageNo", pageNo);
+		
+		
+		//model.addAttribute("erList", erList);
 		return "forward:/interview_choose_list.jsp";
 	}
 	
@@ -528,11 +550,43 @@ public class EngageResumeController {
 	
 	
 	@RequestMapping("/queryInterviewValidList.do")
-	public String queryInterviewValidList(Model model){
+	public String queryInterviewValidList(Model model,HttpServletRequest request){
 		
 		short is = 1;
-		List<EngageInterview> list = eis.findEngageInterviewAllByInterviewStatus(is);
+		int maxPage =0;
+		int sumNumber =eis.findCntByIS(is);//总个数
+		int pageSize =1;
+		int pageNo =1;
+		//最大页数
+		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
+		
+		String page=request.getParameter("page");
+		if(page!=null && !"".equals(page)){
+			try{
+				pageNo=Integer.parseInt(page);
+			}catch(NumberFormatException e){
+				pageNo=1;
+			}
+			if(pageNo>maxPage){
+				pageNo=maxPage;
+			}else if(pageNo<1){
+				pageNo=1;
+			}
+		}
+		
+		int currentPage=(pageNo-1)*pageSize;
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("pageSize", pageSize);
+		map.put("currentPage", currentPage);
+		map.put("is", is);
+		//分页查询
+		List<EngageInterview> list = eis.finSplit(map);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("sumNumber", sumNumber);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("pageNo", pageNo);
 		
 		return "forward:/interview_valid_list.jsp";
 	}

@@ -1,6 +1,7 @@
 package hr.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,18 @@ public class EngageInterviewServiceImpl implements EngageInterviewService{
 	public List<EngageInterview> findEngageInterviewAllByInterviewStatus(short is) {
 		// TODO Auto-generated method stub
 		return eim.selectEngageInterviewAllByInterviewStatus(is);
+	}
+
+	@Override
+	public int findCntByIS(short is) {
+		// TODO Auto-generated method stub
+		return eim.selectCntByIS(is);
+	}
+
+	@Override
+	public List<EngageInterview> finSplit(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return eim.selectSplit(map);
 	}
 	
 	

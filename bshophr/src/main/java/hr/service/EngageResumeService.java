@@ -37,4 +37,6 @@ public interface EngageResumeService {
 	public List<EngageResume> findAllByConditionThree(Map<String, Object> map);
 	
 	
+	public int findCntByCondition(Map<String,Object> map);
+	
 }
