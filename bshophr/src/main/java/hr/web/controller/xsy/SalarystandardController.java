@@ -2,11 +2,15 @@ package hr.web.controller.xsy;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -119,12 +123,60 @@ public class SalarystandardController {
 
 	// 薪酬标准复核登记
 	@RequestMapping("/toqueryfh.do")
-	public String toqueryfh(Map map) {
-		slist = ssservice.findSalaryStandardAll();// 查询
-		map.put("sslist", slist);// 设值
-		map.put("count", slist.size());// 设值
-		return "forward:/salarystandard_check_list.jsp";// 跳转
+	public String toqueryfh(Map map, @RequestParam String operate, HttpServletRequest request, Model model) {
+		switch (operate) {
+		case "list":
+			selectPage(request, model, ssservice);
+			return "forward:/salarystandard_check_list.jsp";
+		default:
+			break;
+		}
+		return "redirect:/toqueryfh.do?operate=list";// 重定向到原来的
 	}
+
+	private void selectPage(HttpServletRequest request, Model model, SalaryStandardService service) {
+		int maxPage = 0;
+		int sumNumber = service.findSalaryStandardAll().size();// 总个数
+		int pageSize = 2;
+		int pageNo = 1;
+		// 最大页数
+		maxPage = sumNumber % pageSize != 0 ? sumNumber / pageSize + 1 : sumNumber / pageSize;
+
+		String page = request.getParameter("page");
+		if (page != null && !"".equals(page)) {
+			try {
+				pageNo = Integer.parseInt(page);
+			} catch (NumberFormatException e) {
+				pageNo = 1;
+			}
+			if (pageNo > maxPage) {
+				pageNo = maxPage;
+			} else if (pageNo < 1) {
+				pageNo = 1;
+			}
+		}
+
+		int currentPage = (pageNo - 1) * pageSize;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("currentPage", currentPage);// 当前页
+		map.put("pageSize", pageSize);// 每页多少条
+		// 分页查询
+		List<SalaryStandard> list = service.findSalaryStandardAllByConditionPlus(map);
+		model.addAttribute("list", list);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("sumNumber", sumNumber);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("pageNo", pageNo);
+	}
+
+//	// 薪酬标准复核登记
+//	@RequestMapping("/toqueryfh.do")
+//	public String toqueryfh(Map map) {
+//		slist = ssservice.findSalaryStandardAll();// 查询
+//		map.put("sslist", slist);// 设值
+//		map.put("count", slist.size());// 设值
+//		return "forward:/salarystandard_check_list.jsp";// 跳转
+//	}
 
 	// 点击复核
 	@RequestMapping("/queryfh.do")

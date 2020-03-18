@@ -1,6 +1,7 @@
 package hr.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -18,7 +19,10 @@ public interface EngageInterviewMapper {
 	public EngageInterview selectEngageInterviewById(int id);
 	
 	public List<EngageInterview> selectEngageInterviewAll();
-
 	
+	public List<EngageInterview> selectEngageInterviewAllByInterviewStatus(short is);
+
+	public int selectCntByIS(short is);
+	public List<EngageInterview> selectSplit(Map<String, Object> map);
 
 }

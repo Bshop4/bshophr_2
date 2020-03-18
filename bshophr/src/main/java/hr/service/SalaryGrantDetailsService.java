@@ -16,4 +16,7 @@ public interface SalaryGrantDetailsService {
 	public boolean saveSalaryGrantDetails(SalaryGrantDetails salaryGrantDetails);
 
 	public boolean updateSalaryGrantDetails(SalaryGrantDetails salaryGrantDetails);
+
+	// 修改部分
+	public boolean updateSalaryGrantDetailsSome(SalaryGrantDetails salaryGrantDetails);
 }

@@ -24,12 +24,19 @@ public interface EngageResumeService {
 
 	public List<EngageResume> findAllByCondition(String humanMajorKindName,String humanMajorName,String keyWord);
 
-	//public List<EngageResume> findAllByCondition( String humanMajorKindName,String humanMajorName,String keyWord,Timestamp sd,Timestamp ed);
+	public List<EngageResume> findAllByCondition( String humanMajorKindName,String humanMajorName,String keyWord,Timestamp sd,Timestamp ed);
 	
 	//public List<EngageResume> findAllByCondition(Map<String, Object> map);
 	
 	public int findCnt(Map<String,Object> map);
 	
 	public List<EngageMajorRelease> findSplit(Map<String,Object> map);
+	
+	
+	public List<EngageResume> findAllByConditionTow(Map<String, Object> map);
+	public List<EngageResume> findAllByConditionThree(Map<String, Object> map);
+	
+	
+	public int findCntByCondition(Map<String,Object> map);
 	
 }

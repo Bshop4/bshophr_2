@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import hr.pojo.ConfigFileFirstKind;
 import hr.pojo.ConfigPublicChar;
+import hr.pojo.EngageInterview;
 import hr.pojo.EngageMajorRelease;
 import hr.pojo.EngageResume;
 import hr.service.ConfigMajorService;
@@ -187,6 +189,8 @@ public class EngageResumeController {
 		er.setHumanMajorKindId(emr.getMajorKindId());
 		er.setHumanMajorId(emr.getMajorId());
 		er.setCheckStatus(0);
+		er.setInterviewStatus(0);
+		er.setTestAmount(0);
 		
 		boolean f = ers.saveEngageResume(er);
 		List<String> list = new ArrayList<String>();
@@ -271,8 +275,6 @@ public class EngageResumeController {
 			model.addAttribute("erList", "0");
 		}
 		
-		
-		
 	/*	int maxPage =0;
 		int sumNumber =erList.size();//总个数
 		int pageSize =1;
@@ -321,12 +323,60 @@ public class EngageResumeController {
 		return "forward:/engage_resume_list.jsp";
 	}
 	
-/*	@RequestMapping("/queryChooseSplit.do")
-	public String queryChooseSplit(@Param("hiddenMajorKindName") String majorKindName,
-			@Param("humanMajorName") String majorName,
-			@Param("keyWord") String keyWord,
-			@Param("startdate") Timestamp sd,
-			@Param("enddate") Timestamp ed,
+	
+	@RequestMapping("/{id}/check.do")
+	public String check(Model model,@PathVariable("id") int id){
+		
+		EngageResume er = ers.findEngageResumeById(id);
+		
+		model.addAttribute("obj", er);
+		
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		model.addAttribute("t", t);
+		
+		model.addAttribute("user", "admin");
+		
+		return "forward:/engage_resume_list_detail.jsp";
+	}
+	
+	
+	@RequestMapping("/updateResume.do")
+	@ResponseBody
+	public List<String> updateResume(EngageResume er){
+		
+		er.setCheckStatus(1);
+		er.setInterviewStatus(1);
+		boolean f = ers.updateEngageResume(er);
+		List<String> list = new ArrayList<String>();
+		if(f){
+			list.add("推荐成功！");
+		}
+		return list;
+	}
+	
+	
+	
+	@RequestMapping("/queryValidChoose.do")
+	public String queryValidChoose(Model model){
+		
+		List<EngageMajorRelease> emr = emrs.findEngageMajorReleaseAll();
+		Set<String> set = new HashSet<String>();
+		for (EngageMajorRelease e : emr) {
+			set.add(e.getMajorKindName());
+		}
+		List<String> list = new ArrayList<String>(set);
+		model.addAttribute("list", list);
+		
+		return "forward:/engage_resume_valid_choose.jsp";
+	}
+	
+	
+	@RequestMapping("/{hiddenMajorKindName}/{humanMajorName}/{keyWord}/{startdate}/{enddate}/queryChooseValid.do")
+	public String queryChooseValid(@PathVariable("hiddenMajorKindName") String majorKindName,
+			@PathVariable("humanMajorName") String majorName,
+			@PathVariable("keyWord") String keyWord,
+			@PathVariable("startdate") Timestamp sd,
+			@PathVariable("enddate") Timestamp ed,
 			Model model,
 			HttpServletRequest request){
 		
@@ -342,9 +392,16 @@ public class EngageResumeController {
 		}else{
 			start = sd;
 			end = ed;
-		}
+		}	
 		
-		List<EngageResume> list = ers.findAllByCondition(majorKindName, majorName, keyWord);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("majorKindName", majorKindName);
+		map.put("majorName", majorName);
+		map.put("keyWord", keyWord);
+		map.put("checkStatus", 1);
+		
+		
+		List<EngageResume> list = ers.findAllByConditionTow(map);
 		
 		List<EngageResume> erList = new ArrayList<EngageResume>();
 		if(list.size()>0){
@@ -356,13 +413,67 @@ public class EngageResumeController {
 				if(strStart.compareTo(time) < 0 && strEnd.compareTo(time) > 0){
 					erList.add(e);
 				}
+				model.addAttribute("erList", erList);
 			}
+		}else {
+			model.addAttribute("erList", "0");
 		}
 		
+		return "forward:/engage_resume_Valid_list.jsp";
+	}
+	
+	
+	@RequestMapping("/queryInterviewChoose.do")
+	public String queryInterviewChoose(Model model){
+		List<EngageMajorRelease> emr = emrs.findEngageMajorReleaseAll();
+		Set<String> set = new HashSet<String>();
+		for (EngageMajorRelease e : emr) {
+			set.add(e.getMajorKindName());
+		}
+		List<String> list = new ArrayList<String>(set);
+		model.addAttribute("list", list);
+		
+		
+		return "forward:/interview_choose.jsp";
+	}
+	
+	
+	@RequestMapping("/{hiddenMajorKindName}/{humanMajorName}/{keyWord}/{startdate}/{enddate}/queryChooseInterviewList.do")
+	public String queryChooseInterviewList(@PathVariable("hiddenMajorKindName") String majorKindName,
+			@PathVariable("humanMajorName") String majorName,
+			@PathVariable("keyWord") String keyWord,
+			@PathVariable("startdate") Timestamp sd,
+			@PathVariable("enddate") Timestamp ed,
+			Model model,
+			HttpServletRequest request){
+		
+		Timestamp start = null;
+		Timestamp end = null;
+		
+		String strsd = sd+"";
+		String stred = ed+"";
+		
+		if(strsd.compareTo(stred) > 0){
+			start = ed;
+			end = sd;
+		}else{
+			start = sd;
+			end = ed;
+		}	
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("majorKindName", majorKindName);
+		map.put("majorName", majorName);
+		map.put("checkStatus", 1);
+		//map.put("is", 1);
+		map.put("start", start);
+		map.put("end", end);
+		map.put("keyWord", keyWord);
 		
 		
 		int maxPage =0;
-		int sumNumber =erList.size();//总个数
+		int sumNumber =ers.findCntByCondition(map);//总个数
+		System.out.println(sumNumber+"个");
 		int pageSize =1;
 		int pageNo =1;
 		//最大页数
@@ -383,31 +494,254 @@ public class EngageResumeController {
 		}
 		
 		int currentPage=(pageNo-1)*pageSize;
+		//Map<String, Object> map=new HashMap<String, Object>();
+		map.put("pageSize", pageSize);
+		map.put("currentPage", currentPage);
+		//分页查询
+		List<EngageResume> erList = ers.findAllByConditionTow(map);
+		System.out.println(erList.size());
+		model.addAttribute("erList", erList);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("sumNumber", sumNumber);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("pageNo", pageNo);
 		
-		List<EngageResume> list1 = new ArrayList<EngageResume>();
-		if(erList.size() >0){
-			for (int i = currentPage; i < currentPage+pageSize; i++) {
-				list1.add(erList.get(i));
+		
+		//model.addAttribute("erList", erList);
+		return "forward:/interview_choose_list.jsp";
+	}
+	
+	
+	@RequestMapping("/{id}/interviewRegist.do")
+	public String interviewRegist(Model model,@PathVariable("id") int id){
+		
+		EngageResume er = ers.findEngageResumeById(id);
+		model.addAttribute("re", er);
+		
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		model.addAttribute("t", t);
+		
+		model.addAttribute("user", "adm");
+		return "forward:/interview_regist.jsp";
+	}
+	
+	@RequestMapping("/saveInterview.do")
+	@ResponseBody
+	public List<String> saveInterview(EngageInterview ei){
+		
+		EngageResume er = ers.findEngageResumeById(ei.getResumeId());
+		int amount = er.getTestAmount();
+		amount += 1;
+		er.setTestAmount(amount);
+		er.setInterviewStatus(2);
+		ers.updateEngageResume(er);
+		
+		short s = 1;
+		ei.setInterviewStatus(s);
+		
+		boolean f = eis.saveEngageInterview(ei);
+		List<String> list = new ArrayList<String>();
+		if(f){
+			list.add("简历结果登记成功！");
+		}
+		return list;
+	}
+	
+	
+	
+	@RequestMapping("/queryInterviewValidList.do")
+	public String queryInterviewValidList(Model model,HttpServletRequest request){
+		
+		short is = 1;
+		int maxPage =0;
+		int sumNumber =eis.findCntByIS(is);//总个数
+		int pageSize =1;
+		int pageNo =1;
+		//最大页数
+		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
+		
+		String page=request.getParameter("page");
+		if(page!=null && !"".equals(page)){
+			try{
+				pageNo=Integer.parseInt(page);
+			}catch(NumberFormatException e){
+				pageNo=1;
 			}
-			model.addAttribute("list1", list1);
-			model.addAttribute("maxPage", maxPage);
-			model.addAttribute("sumNumber", sumNumber);
-			model.addAttribute("pageSize", pageSize);
-			model.addAttribute("pageNo", pageNo);
-			
-			
-			model.addAttribute("hiddenMajorKindName", majorKindName);
-			model.addAttribute("humanMajorName", majorName);
-			model.addAttribute("keyWord", keyWord);
-			model.addAttribute("startdate", sd);
-			model.addAttribute("enddate", ed);
-			
-		}else {
-			model.addAttribute("list1", "0");
+			if(pageNo>maxPage){
+				pageNo=maxPage;
+			}else if(pageNo<1){
+				pageNo=1;
+			}
 		}
 		
-		return "forward:/engage_resume_list.jsp";
-	}*/
+		int currentPage=(pageNo-1)*pageSize;
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("pageSize", pageSize);
+		map.put("currentPage", currentPage);
+		map.put("is", is);
+		//分页查询
+		List<EngageInterview> list = eis.finSplit(map);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("sumNumber", sumNumber);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("pageNo", pageNo);
+		
+		return "forward:/interview_valid_list.jsp";
+	}
 	
+	
+	@RequestMapping("/{einId}/{resumeId}/queryToValidResume.do")
+	public String queryToValidResume(Model model,
+			@PathVariable("einId") short einId,
+			@PathVariable("resumeId") short resumeId){
+		
+		EngageInterview ei = eis.findEngageInterviewById(einId);
+		
+		EngageResume er = ers.findEngageResumeById(resumeId);
+		
+		model.addAttribute("re", er);
+		model.addAttribute("ei", ei);
+		
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		model.addAttribute("passRegistTime", t);
+		
+		model.addAttribute("passRegister", "ad");
+		
+		
+		return "forward:/interview_valid_resume.jsp";
+	}
+	
+	
+	@RequestMapping("/updateInterviewResume.do")
+	@ResponseBody
+	public List<String> updateInterviewResume(@Param("passRegistTime") Timestamp passRegistTime,
+			@Param("passRegister") String passRegister,
+			@Param("resumeId") short resumeId,
+			@Param("einId") short einId,
+			@Param("passCheckcomment") String passCheckcomment){
+		
+		List<String> list = new ArrayList<String>();
+		
+		if("删除简历".equals(passCheckcomment)){
+			
+			boolean f = eis.removeEngageInterviewById(einId);
+			boolean f1 = ers.removeEngageResumeById(resumeId);
+			//boolean f = true;
+			if(f == true && f1 == true){
+				list.add("删除简历");
+			}
+		}
+		
+		if("建议面试".equals(passCheckcomment)){
+			
+			boolean f1 = eis.removeEngageInterviewById(einId);
+			EngageResume er = ers.findEngageResumeById(resumeId);
+			er.setInterviewStatus(1);
+			er.setPassChecker(passRegister);
+			er.setPassCheckTime(passRegistTime);
+			er.setPassCheckcomment(passCheckcomment);
+			boolean f2 = ers.updateEngageResume(er);
+			if(f1 == true && f2 == true){
+				list.add("建议面试");
+			}
+		}
+		
+		if("建议笔试".equals(passCheckcomment)){
+			
+			EngageInterview ei = eis.findEngageInterviewById(einId);
+			short s = 2;
+			ei.setInterviewStatus(s);
+			ei.setCheckComment(passCheckcomment);
+			ei.setChecker(passRegister);
+			ei.setCheckTime(passRegistTime);
+			boolean f1 = eis.updateEngageInterview(ei);
+			EngageResume er = ers.findEngageResumeById(resumeId);
+			er.setInterviewStatus(2);//已面试
+			er.setPassChecker(passRegister);
+			er.setPassCheckTime(passRegistTime);
+			er.setPassCheckcomment(passCheckcomment);
+			boolean f2 = ers.updateEngageResume(er);
+			if(f1 == true && f2 == true){
+				list.add("建议笔试");
+			}
+			
+		}
+		
+		if("建议录用".equals(passCheckcomment)){
+			
+			EngageInterview ei = eis.findEngageInterviewById(einId);
+			short s = 3;
+			ei.setInterviewStatus(s);
+			ei.setCheckComment(passCheckcomment);
+			ei.setChecker(passRegister);
+			ei.setCheckTime(passRegistTime);
+			boolean f1 = eis.updateEngageInterview(ei);
+			EngageResume er = ers.findEngageResumeById(resumeId);
+			er.setInterviewStatus(2);//已面试
+			er.setPassChecker(passRegister);
+			er.setPassCheckTime(passRegistTime);
+			er.setPassCheckcomment(passCheckcomment);
+			boolean f2 = ers.updateEngageResume(er);
+			if(f1 == true && f2 == true){
+				list.add("建议录用");
+			}
+			
+		}
+		
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+/*	
+	@RequestMapping("/{hiddenMajorKindName}/{humanMajorName}/{keyWord}/{startdate}/{enddate}/queryChooseSplit.do")
+	public String queryChooseSplit(@PathVariable("hiddenMajorKindName") String majorKindName,
+			@PathVariable("humanMajorName") String majorName,
+			@PathVariable("keyWord") String keyWord,
+			@PathVariable("startdate") Timestamp sd,
+			@PathVariable("enddate") Timestamp ed,
+			Model model,
+			HttpServletRequest request){
+		
+		Timestamp start = null;
+		Timestamp end = null;
+		
+		String strsd = sd+"";
+		String stred = ed+"";
+		
+		if(strsd.compareTo(stred) > 0){
+			start = ed;
+			end = sd;
+		}else{
+			start = sd;
+			end = ed;
+		}
+		
+		System.out.println(majorKindName);
+		System.out.println(majorName);
+		System.out.println(keyWord);
+		System.out.println(start);
+		System.out.println(end);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("majorKindName", majorKindName);
+		map.put("majorName", majorName);
+		map.put("keyWord", keyWord);
+		map.put("start", start);
+		map.put("end", end);
+		
+		List<EngageResume> list = ers.findAllByCondition(map);
+		for (EngageResume engageResume : list) {
+			System.out.println(engageResume);
+		}
+		
+		return null;
+	}
+	*/
 	
 }

@@ -378,4 +378,18 @@ public class EngageInterview implements java.io.Serializable {
 		return result;
 	}
 
+	@Override
+	public String toString() {
+		return "EngageInterview [einId=" + einId + ", humanName=" + humanName + ", interviewAmount=" + interviewAmount
+				+ ", humanMajorKindId=" + humanMajorKindId + ", humanMajorKindName=" + humanMajorKindName
+				+ ", humanMajorId=" + humanMajorId + ", humanMajorName=" + humanMajorName + ", imageDegree="
+				+ imageDegree + ", nativeLanguageDegree=" + nativeLanguageDegree + ", foreignLanguageDegree="
+				+ foreignLanguageDegree + ", responseSpeedDegree=" + responseSpeedDegree + ", eqDegree=" + eqDegree
+				+ ", iqDegree=" + iqDegree + ", multiQualityDegree=" + multiQualityDegree + ", register=" + register
+				+ ", checker=" + checker + ", registeTime=" + registeTime + ", checkTime=" + checkTime + ", resumeId="
+				+ resumeId + ", result=" + result + ", interviewComment=" + interviewComment + ", checkComment="
+				+ checkComment + ", interviewStatus=" + interviewStatus + ", checkStatus=" + checkStatus + "]";
+	}
+
+	
 }

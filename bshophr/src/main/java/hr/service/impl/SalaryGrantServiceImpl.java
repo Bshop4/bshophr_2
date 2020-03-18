@@ -69,4 +69,16 @@ public class SalaryGrantServiceImpl implements SalaryGrantService {
 		return SalaryGrant;
 	}
 
+	@Override
+	public List<SalaryGrant> findSalaryGrantAllByCondition(SalaryGrant salaryGrant) {
+		List<SalaryGrant> list = salaryGrantMapper.selectSalaryGrantAllByCondition(salaryGrant);
+		return list;
+	}
+
+	@Override
+	public SalaryGrant findSalaryGrantByStatus2222(short id) {
+		SalaryGrant SalaryGrant = salaryGrantMapper.selectSalaryGrantByStatus2222(id);
+		return SalaryGrant;
+	}
+
 }

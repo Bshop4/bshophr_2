@@ -1,6 +1,7 @@
 package hr.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,6 +68,11 @@ public class SalaryStandardServiceImpl implements SalaryStandardService {
 	public List<SalaryStandard> findSalaryStandardByCondition(SalaryStandard s) {
 		List<SalaryStandard> list = salaryStandardMapper.selectSalaryStandardByCondition(s);
 		return list;
+	}
+
+	@Override
+	public List<SalaryStandard> findSalaryStandardAllByConditionPlus(Map<String, Object> map) {
+		return salaryStandardMapper.selectSalaryStandardAllByConditionPlus(map);
 	}
 
 }

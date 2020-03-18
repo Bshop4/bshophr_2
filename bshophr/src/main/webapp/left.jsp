@@ -306,7 +306,7 @@ a {
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td><a href="toqueryfh.do"
+							<td><a href="toqueryfh.do?operate=list"
 								target="mainFrame">薪酬标准登记复核</a></td>
 						</tr>
 						<tr>
@@ -348,7 +348,9 @@ a {
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td>薪酬发放查询</td>
+							<td>
+								<a href="toqueryBySalary.do" target="mainFrame" style="color:black;">薪酬发放查询</a>
+							</td>
 						</tr>
 					</table>
 			</span></td>
@@ -507,7 +509,7 @@ a {
 										<tr>
 											<td><img src="images/jt0.gif"></td>
 											<td><a
-												href="engageresume.do?operate=locate&method=query"
+												href="zjlEngageResume/queryValidChoose.do"
 												target="mainFrame">有效简历查询</a></td>
 										</tr>
 									</table>
@@ -528,12 +530,12 @@ a {
 										<tr>
 											<td width="2%"><img src="images/jt0.gif"></td>
 											<td width="98%"><a
-												href="zjlEngageResume/queryNeed.do"
+												href="zjlEngageResume/queryInterviewChoose.do"
 												target="mainFrame">面试结果登记</a></td>
 										</tr>
 										<tr>
 											<td><img src="images/jt0.gif"></td>
-											<td><a href="engageinterview.do?operate=list"
+											<td><a href="zjlEngageResume/queryInterviewValidList.do"
 												target="mainFrame">面试筛选</a></td>
 										</tr>
 									</table>

@@ -68,7 +68,30 @@ public class EngageResumeServiceImpl implements EngageResumeService{
 		// TODO Auto-generated method stub
 		return erm.selectAllByCondition(humanMajorKindName, humanMajorName, keyWord);
 	}
+
+	@Override
+	public List<EngageResume> findAllByCondition(String humanMajorKindName, String humanMajorName, String keyWord,
+			Timestamp sd, Timestamp ed) {
+		// TODO Auto-generated method stub
+		return erm.selectAllByCondition(humanMajorKindName, humanMajorName, keyWord);
+	}
+
+	@Override
+	public List<EngageResume> findAllByConditionTow(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return erm.selectAllByConditionTow(map);
+	}
 	
+	@Override
+	public List<EngageResume> findAllByConditionThree(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return erm.selectAllByConditionThree(map);
+	}
 	
+	@Override
+	public int findCntByCondition(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return erm.selectCntByCondition(map);
+	}
 	
 }
