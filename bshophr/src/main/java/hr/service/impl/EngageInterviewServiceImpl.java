@@ -44,6 +44,12 @@ public class EngageInterviewServiceImpl implements EngageInterviewService{
 		// TODO Auto-generated method stub
 		return eim.selectEngageInterviewAll();
 	}
+
+	@Override
+	public List<EngageInterview> findEngageInterviewAllByInterviewStatus(short is) {
+		// TODO Auto-generated method stub
+		return eim.selectEngageInterviewAllByInterviewStatus(is);
+	}
 	
 	
 	

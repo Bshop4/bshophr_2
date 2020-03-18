@@ -18,7 +18,8 @@ public interface EngageInterviewMapper {
 	public EngageInterview selectEngageInterviewById(int id);
 	
 	public List<EngageInterview> selectEngageInterviewAll();
-
 	
+	public List<EngageInterview> selectEngageInterviewAllByInterviewStatus(short is);
+
 
 }
