@@ -535,7 +535,7 @@ a {
 										</tr>
 										<tr>
 											<td><img src="images/jt0.gif"></td>
-											<td><a href="engageinterview.do?operate=list"
+											<td><a href="zjlEngageResume/queryInterviewValidList.do"
 												target="mainFrame">面试筛选</a></td>
 										</tr>
 									</table>

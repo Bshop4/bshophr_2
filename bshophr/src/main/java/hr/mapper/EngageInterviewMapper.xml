@@ -45,8 +45,79 @@
 	
 	
 	<update id="updateEngageInterview" parameterType="EngageInterview">
-		update engage_interview set human_name=#{humanName},interview_amount=#{interviewAmount},human_major_kind_id=#{humanMajorKindId},human_major_kind_name=#{humanMajorKindName},human_major_id=#{humanMajorId},human_major_name=#{humanMajorName},image_degree=#{imageDegree},native_language_degree=#{nativeLanguageDegree},foreign_language_degree=#{foreignLanguageDegree},response_speed_degree=#{responseSpeedDegree},EQ_degree=#{EQDegree},IQ_degree=#{IQDegree},multi_quality_degree=#{multiQualityDegree},register=#{register},checker=#{checker},registe_time=#{registeTime},check_time=#{checkTime},resume_id=#{resumeId},result=#{result},interview_comment=#{interviewComment},check_comment=#{checkComment},interview_status=#{interviewStatus},check_status=#{checkStatus} where ein_id=#{einId}
-	</update>
+		 UPDATE ENGAGE_INTERVIEW
+        <set>
+            <if test="humanName != null">
+                HUMAN_NAME = #{humanName},
+            </if>
+            <if test="interviewAmount != null">
+                INTERVIEW_AMOUNT = #{interviewAmount},
+            </if>
+            <if test="humanMajorKindId != null">
+                HUMAN_MAJOR_KIND_ID = #{humanMajorKindId},
+            </if>
+            <if test="humanMajorKindName != null">
+                HUMAN_MAJOR_KIND_NAME = #{humanMajorKindName},
+            </if>
+            <if test="humanMajorId != null">
+                HUMAN_MAJOR_ID = #{humanMajorId},
+            </if>
+            <if test="humanMajorName != null">
+                HUMAN_MAJOR_NAME = #{humanMajorName},
+            </if>
+            <if test="imageDegree != null">
+                IMAGE_DEGREE = #{imageDegree},
+            </if>
+            <if test="nativeLanguageDegree != null">
+                NATIVE_LANGUAGE_DEGREE = #{nativeLanguageDegree},
+            </if>
+            <if test="foreignLanguageDegree != null">
+                FOREIGN_LANGUAGE_DEGREE = #{foreignLanguageDegree},
+            </if>
+            <if test="responseSpeedDegree != null">
+                RESPONSE_SPEED_DEGREE = #{responseSpeedDegree},
+            </if>
+            <if test="eqDegree != null">
+                EQ_DEGREE = #{eqDegree},
+            </if>
+            <if test="iqDegree != null">
+                IQ_DEGREE = #{iqDegree},
+            </if>
+            <if test="multiQualityDegree != null">
+                MULTI_QUALITY_DEGREE = #{multiQualityDegree},
+            </if>
+            <if test="register != null">
+                REGISTER = #{register},
+            </if>
+            <if test="checker != null">
+                CHECKER = #{checker},
+            </if>
+            <if test="registeTime != null">
+                REGISTE_TIME = #{registeTime},
+            </if>
+            <if test="checkTime != null">
+                CHECK_TIME = #{checkTime},
+            </if>
+            <if test="resumeId != null">
+                RESUME_ID = #{resumeId},
+            </if>
+            <if test="result != null">
+                RESULT = #{result},
+            </if>
+            <if test="interviewComment != null">
+                INTERVIEW_COMMENT = #{interviewComment},
+            </if>
+            <if test="checkComment != null">
+                CHECK_COMMENT = #{checkComment},
+            </if>
+            <if test="interviewStatus != null">
+                INTERVIEW_STATUS = #{interviewStatus},
+            </if>
+            <if test="checkStatus != null">
+                CHECK_STATUS = #{checkStatus}
+            </if>
+        </set>
+        WHERE EIN_ID = #{einId}	</update>
 	
 	
 	
@@ -57,6 +128,9 @@
 		select * from engage_interview
 	</select>
 	
+	<select id="selectEngageInterviewAllByInterviewStatus" parameterType="short" resultMap="ei">
+		select * from engage_interview where INTERVIEW_STATUS=#{is}
+	</select>
 	
 	
 	<select id="selectEngageInterviewById" parameterType="_int"  resultMap="ei">

@@ -16,6 +16,6 @@ public interface EngageInterviewService {
 	
 	public List<EngageInterview> findEngageInterviewAll();
 
-	
+	public List<EngageInterview> findEngageInterviewAllByInterviewStatus(short is);
 
 }

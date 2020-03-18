@@ -527,12 +527,117 @@ public class EngageResumeController {
 	
 	
 	
+	@RequestMapping("/queryInterviewValidList.do")
+	public String queryInterviewValidList(Model model){
+		
+		short is = 1;
+		List<EngageInterview> list = eis.findEngageInterviewAllByInterviewStatus(is);
+		model.addAttribute("list", list);
+		
+		return "forward:/interview_valid_list.jsp";
+	}
 	
 	
+	@RequestMapping("/{einId}/{resumeId}/queryToValidResume.do")
+	public String queryToValidResume(Model model,
+			@PathVariable("einId") short einId,
+			@PathVariable("resumeId") short resumeId){
+		
+		EngageInterview ei = eis.findEngageInterviewById(einId);
+		
+		EngageResume er = ers.findEngageResumeById(resumeId);
+		
+		model.addAttribute("re", er);
+		model.addAttribute("ei", ei);
+		
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		model.addAttribute("passRegistTime", t);
+		
+		model.addAttribute("passRegister", "ad");
+		
+		
+		return "forward:/interview_valid_resume.jsp";
+	}
 	
 	
-	
-	
+	@RequestMapping("/updateInterviewResume.do")
+	@ResponseBody
+	public List<String> updateInterviewResume(@Param("passRegistTime") Timestamp passRegistTime,
+			@Param("passRegister") String passRegister,
+			@Param("resumeId") short resumeId,
+			@Param("einId") short einId,
+			@Param("passCheckcomment") String passCheckcomment){
+		
+		List<String> list = new ArrayList<String>();
+		
+		if("删除简历".equals(passCheckcomment)){
+			
+			boolean f = eis.removeEngageInterviewById(einId);
+			boolean f1 = ers.removeEngageResumeById(resumeId);
+			//boolean f = true;
+			if(f == true && f1 == true){
+				list.add("删除简历");
+			}
+		}
+		
+		if("建议面试".equals(passCheckcomment)){
+			
+			boolean f1 = eis.removeEngageInterviewById(einId);
+			EngageResume er = ers.findEngageResumeById(resumeId);
+			er.setInterviewStatus(1);
+			er.setPassChecker(passRegister);
+			er.setPassCheckTime(passRegistTime);
+			er.setPassCheckcomment(passCheckcomment);
+			boolean f2 = ers.updateEngageResume(er);
+			if(f1 == true && f2 == true){
+				list.add("建议面试");
+			}
+		}
+		
+		if("建议笔试".equals(passCheckcomment)){
+			
+			EngageInterview ei = eis.findEngageInterviewById(einId);
+			short s = 2;
+			ei.setInterviewStatus(s);
+			ei.setCheckComment(passCheckcomment);
+			ei.setChecker(passRegister);
+			ei.setCheckTime(passRegistTime);
+			boolean f1 = eis.updateEngageInterview(ei);
+			EngageResume er = ers.findEngageResumeById(resumeId);
+			er.setInterviewStatus(2);//已面试
+			er.setPassChecker(passRegister);
+			er.setPassCheckTime(passRegistTime);
+			er.setPassCheckcomment(passCheckcomment);
+			boolean f2 = ers.updateEngageResume(er);
+			if(f1 == true && f2 == true){
+				list.add("建议笔试");
+			}
+			
+		}
+		
+		if("建议录用".equals(passCheckcomment)){
+			
+			EngageInterview ei = eis.findEngageInterviewById(einId);
+			short s = 3;
+			ei.setInterviewStatus(s);
+			ei.setCheckComment(passCheckcomment);
+			ei.setChecker(passRegister);
+			ei.setCheckTime(passRegistTime);
+			boolean f1 = eis.updateEngageInterview(ei);
+			EngageResume er = ers.findEngageResumeById(resumeId);
+			er.setInterviewStatus(2);//已面试
+			er.setPassChecker(passRegister);
+			er.setPassCheckTime(passRegistTime);
+			er.setPassCheckcomment(passCheckcomment);
+			boolean f2 = ers.updateEngageResume(er);
+			if(f1 == true && f2 == true){
+				list.add("建议录用");
+			}
+			
+		}
+		
+		return list;
+	}
 	
 	
 	
