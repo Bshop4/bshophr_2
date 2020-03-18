@@ -306,7 +306,7 @@ a {
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td><a href="toqueryfh.do"
+							<td><a href="toqueryfh.do?operate=list"
 								target="mainFrame">薪酬标准登记复核</a></td>
 						</tr>
 						<tr>

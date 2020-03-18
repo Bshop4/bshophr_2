@@ -1,6 +1,7 @@
 package hr.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +10,9 @@ import hr.pojo.SalaryStandard;
 @Repository
 public interface SalaryStandardMapper {
 	public List<SalaryStandard> selectSalaryStandardAll();
+
+	// 根据条件参数查询数据列表
+	public List<SalaryStandard> selectSalaryStandardAllByConditionPlus(Map<String, Object> map);
 
 	public SalaryStandard selectSalaryStandardById(int id);
 

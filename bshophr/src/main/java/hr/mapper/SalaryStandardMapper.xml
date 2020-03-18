@@ -27,7 +27,13 @@
 	<select id="selectSalaryStandardAll" resultMap="SalaryStandardMap">
 		select * from salary_standard
 	</select>
-	
+	<!-- 根据条件参数列表 -->
+	<select id="selectSalaryStandardAllByConditionPlus" resultMap="SalaryStandardMap" parameterType="hashmap">
+		select * from salary_standard where 1=1
+        <if test="currentPage!=null and pageSize!=null">
+			limit #{currentPage},#{pageSize}
+		</if>
+	</select>
 	<select id="selectSalaryStandardById" parameterType="_int" resultMap="SalaryStandardMap">
 		select * from salary_standard where standard_id=#{id}
 	</select>

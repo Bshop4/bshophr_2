@@ -1,11 +1,15 @@
 package hr.service;
 
 import java.util.List;
+import java.util.Map;
 
 import hr.pojo.SalaryStandard;
 
 public interface SalaryStandardService {
 	public List<SalaryStandard> findSalaryStandardAll();
+
+	// 根据条件参数查询数据列表
+	public List<SalaryStandard> findSalaryStandardAllByConditionPlus(Map<String, Object> map);
 
 	public SalaryStandard findSalaryStandardById(int id);
 
