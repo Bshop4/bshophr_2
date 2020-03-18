@@ -61,6 +61,6 @@ public class DjtHumanRegister {
 		model.addAttribute("firstSelect", list1);
 		model.addAttribute("humanFile", humanFile);
 		
-		return "forward:/human_register.jsp";
+		return "forward:/djtHumanView.jsp";
 	}
 }

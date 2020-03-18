@@ -239,7 +239,7 @@ a {
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td><a href="check_list.jsp" target="mainFrame">人力资源档案登记复核</a>
+							<td><a href="checkList/pageJump.do" target="mainFrame">人力资源档案登记复核</a>
 							</td>
 						</tr>
 						<tr>
@@ -249,7 +249,7 @@ a {
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td><a href="change_locate.jsp" target="mainFrame">人力资源档案变更</a>
+							<td><a href="changeLocate/jumpPage.do" target="mainFrame">人力资源档案变更</a>
 							</td>
 						</tr>
 						<tr>

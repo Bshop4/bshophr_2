@@ -38,11 +38,11 @@
 		<input type="hidden" id="djtList" value="${humanFile}"/>
 		<table width="100%">
 			<tr>
-				<td><font color="#0000CC">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案登记
+				<td><font color="#0000CC">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案复核页面
 				</font></td>
 			</tr>
 			<tr>
-				<td align="right"><input type="button" value="提交"
+				<td align="right"><input type="button" value="复核通过"
 					class="BUTTON_STYLE1"
 					id="djtRegisterChoosePicture">
 					<input type="reset" value="清除" class="BUTTON_STYLE1"></td>
@@ -55,21 +55,18 @@
 				<td width="14%" class="TD_STYLE2"><select
 					name="item.firstKindName"
 					class="SELECT_STYLE1" id="djtFirstSelect">
-					<option value="">&nbsp;</option>
-					<c:if test="${!empty firstSelect}">
-						<c:forEach items="${firstSelect }" var="fs">
-							<option value="${fs.firstKindId}">${fs.firstKindName }</option> 
-						</c:forEach>
-					</c:if>
+						<option value="${humanFile.firstKindId}">${humanFile.firstKindName }</option> 
 					</select></td>
 				<td width="11%" class="TD_STYLE1">II级机构</td>
 				<td width="14%" class="TD_STYLE2"><select
 					name="item.secondKindName"
 					class="SELECT_STYLE1" id="djtSecondSelect">
+					<option value="${humanFile.secondKindId}">${humanFile.secondKindName }</option>
 					</select></td>
 				<td width="11%" class="TD_STYLE1">III级机构</td>
 				<td class="TD_STYLE2" colspan="2"><select
 					name="item.thirdKindName" class="SELECT_STYLE1" id="djtThirdSelect">
+					<option value="${humanFile.thirdKindId}">${humanFile.thirdKindName }</option>
 					</select></td>
 				<td rowspan="5">&nbsp;</td>
 			</tr>
@@ -77,10 +74,12 @@
 				<td class="TD_STYLE1">职位分类</td>
 				<td class="TD_STYLE2"><select name="item.humanMajorKindName"
 					class="SELECT_STYLE1" id="djtJobClassSelect">
+					<option value="${humanFile.humanMajorKindId}">${humanFile.humanMajorKindName }</option>
 					</select></td>
 				<td class="TD_STYLE1">职位名称</td>
 				<td class="TD_STYLE2"><select name="item.hunmaMajorName"
 					class="SELECT_STYLE1" id="djtJobSelect">
+					<option value="${humanFile.humanMajorId}">${humanFile.hunmaMajorName }</option>
 					</select></td>
 				<td class="TD_STYLE1">职称</td>
 				<td colspan="2" class="TD_STYLE2"><select
@@ -265,134 +264,6 @@
 	
 	var humanFile='<%=request.getAttribute("humanFile")%>';
 	
-	$("#djtFirstSelect").change(function(){
-		var firstSelect=$("#djtFirstSelect option:selected").val();
-		/* 一级不为空 找二级 */
-		if(firstSelect != ""){
-			$("#djtSecondSelect").empty();
-			$.ajax({
-	    		type:"POST",
-				url:"queryLocate/secondSelect.do",
-				data:{"firstSelect":firstSelect},
-				dataType:"json",
-				success:function(result){
-				console.log(result);
-			var str = "";
-			for(var i = 0; i < result.length; i++) {
-					str+="<option value='"+result[i].secondKindId+"'>"+result[i].secondKindName+"</option>";
-			}
-			$("#djtSecondSelect").append(str);
-		}
-	});
-	}
-	/* 如果一级为空  全部清空 */
-	if(firstSelect == ""){
-		$("#djtSecondSelect").empty();
-		$("#djtThirdSelect").empty();
-	}
-	
-	var str = `
-				<option>&nbsp;</option>
-			`;
-			$("#djtSecondSelect").append(str);
-			
-			var str1 = `
-				<option>&nbsp;</option>
-			`;
-			$("#djtThirdSelect").append(str1);
-	
-})
-
-	$("#djtSecondSelect").change(function(){
-		
-		var val = $('#djtSecondSelect option:selected').val();
-		
-		/* 二级不为空 找三级 */
-		 if(val != ""){
-			$("#djtThirdSelect").empty();
-			$.ajax({
-				type:"POST",
-				url:"queryLocate/thirdSelect.do",
-				data:{"secondSelect":val},
-				dataType:"json",
-				success : function(result){
-					var str = "";
-					for(var i = 0; i < result.length; i++){
-						str+="<option value='"+result[i].thirdKindId+"'>"+result[i].thirdKindName+"</option>";
-					}
-					$("#djtThirdSelect").append(str);
-				}
-			})
-		} 
-		
-		/* 如果二级为空  三级清空 */
-		if(val == ""){
-			$("#djtSecondSelect").empty();
-			var str1 = `
-				
-			`;
-			$("#djtThirdSelect").append(str1);
-		}
-	 });
-	
-	
-	//工作选择
-	(function(){
-		$.ajax({
-				type:"POST",
-				url:"queryLocate/djtJobClassSelect.do",
-				dataType:"json",
-				success : function(result){
-					var str = "<option></option>";
-					for(var i = 0; i < result.length; i++){
-						str+="<option value='"+result[i].majorKindId+"'>"+result[i].majorKindName+"</option>";
-					}
-					$("#djtJobClassSelect").append(str);
-					
-					if(humanFile!=""){
-						$("#djtJobClassSelect>option").each(function(){
-						if($(this).val()=="${humanFile.humanMajorKindId}"){
-						$(this).attr("selected", true);
-							}	
-						})
-					}
-	
-				}
-			})
-	})();
-	
-	$("#djtJobClassSelect").change(function(){
-		$("#djtJobSelect").empty();
-		var djtJobClassSelect=$("#djtJobClassSelect option:selected").val();
-		/* 一级不为空 找二级 */
-		if(djtJobClassSelect != ""){
-			$.ajax({
-	    		type:"POST",
-				url:"queryLocate/djtJobSelect.do",
-				data:{"majorKindId":djtJobClassSelect},
-				dataType:"json",
-				success:function(result){
-				var str = "<option></option>";
-				for(var i = 0; i < result.length; i++) {
-					str+="<option value='"+result[i].majorId+"'>"+result[i].majorName+"</option>";
-				}
-				$("#djtJobSelect").append(str);
-			}
-			})			
-		}
-		/* 如果一级为空  全部清空 */
-		if(djtJobClassSelect == ""){
-			$("#djtJobClassSelect").empty();
-			$("#djtJobSelect").empty();
-		}
-			
-			var str1 = `
-				<option>&nbsp;</option>
-			`;
-			$("#djtJobSelect").append(str1);
-	
-	})
-	
 	if(humanFile!=""){
 		$("#djtFirstSelect>option").each(function(){
 			if($(this).val()=="${humanFile.firstKindId}"){
@@ -539,10 +410,13 @@
 		var humanFamilyMembership=$("textarea[name='item.humanFamilyMembership']").val();
 		var remark=$("textarea[name='item.remark']").val();
 		
+		var hufId=${humanFile.hufId};
 		$.ajax({
 			type:"POST",
-			url:"registerChoosePicture/pageJump.do",
-			data:{"firstKindId":firstKindId,
+			url:"registerChoosePicture/pageJumpToId.do",
+			data:{
+			"hufId":hufId,
+			"firstKindId":firstKindId,
 				"firstKindName":firstKindName,
 				"secondKindId":secondKindId,
 				"secondKindName":secondKindName,
@@ -588,7 +462,61 @@
 			},
 			dataType:"json",
 			success : function(result){
-				window.location.href="/bshophr/register_choose_picture.jsp?hufId="+result;
+				console.log(result)
+			}		
+		})
+		
+		$.ajax({
+			type:"POST",
+			url:"registerChoosePicture/pageJumpDigToId.do",
+			data:{
+			"firstKindId":firstKindId,
+				"firstKindName":firstKindName,
+				"secondKindId":secondKindId,
+				"secondKindName":secondKindName,
+				"thirdKindId":thirdKindId,
+				"thirdKindName":thirdKindName,
+				"humanMajorKindId":humanMajorKindId,
+				"humanMajorKindName":humanMajorKindName,
+				"humanProDesignation":humanProDesignation,
+				"humanMajorId":humanMajorId,
+				"hunmaMajorName":hunmaMajorName,
+				"humanName":humanName,
+				"humanSex":humanSex,
+				"humanEmail":humanEmail,
+				"humanTelephone":humanTelephone,
+				"humanMobilephone":humanMobilephone,
+				"humanQq":humanQq,
+				
+				"humanAddress":humanAddress,
+				"humanPostcode":humanPostcode,
+				
+				"humanBirthplace":humanBirthplace,
+				"humanBirthday":humanBirthday,
+				"humanNationality":humanNationality,
+				"humanRace":humanRace,
+				"humanReligion":humanReligion,
+				"humanParty":humanParty,
+				"humanIdCard":humanIdCard,
+				"humanSocietySecurityId":humanSocietySecurityId,
+				"humanAge":humanAge,
+				"humanEducatedDegree":humanEducatedDegree,
+				"humanEducatedYears":humanEducatedYears,
+				"humanEducatedMajor":humanEducatedMajor,
+				"salaryStandardName":salaryStandardName,
+				"humanBank":humanBank,
+				"humanAccount":humanAccount,
+				"register":register,
+				"registTime":registTime,
+				"humanSpeciality":humanSpeciality,
+				"humanHobby":humanHobby,
+				"humanHistroyRecords":humanHistroyRecords,
+				"humanFamilyMembership":humanFamilyMembership,
+				"remark":remark,	
+			},
+			dataType:"json",
+			success : function(result){
+				console.log(result)
 			}		
 		})
 		

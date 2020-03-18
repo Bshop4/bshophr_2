@@ -11,7 +11,10 @@ public class HumanFile implements java.io.Serializable {
 
 	// Fields
 
-	private Short hfdId;
+	private int hufId;
+	public void setHufId(int hufId) {
+		this.hufId = hufId;
+	}
 	private String humanId;
 	private String firstKindId;
 	private String firstKindName;
@@ -73,8 +76,9 @@ public class HumanFile implements java.io.Serializable {
 	private Date deleteTime;
 	private Date recoveryTime;
 	private Short humanFileStatus;
-	public Short getHfdId() {
-		return hfdId;
+
+	public int getHufId() {
+		return hufId;
 	}
 	public String getHumanId() {
 		return humanId;
@@ -259,8 +263,8 @@ public class HumanFile implements java.io.Serializable {
 	public Short getHumanFileStatus() {
 		return humanFileStatus;
 	}
-	public void setHfdId(Short hfdId) {
-		this.hfdId = hfdId;
+	public void setHufId(Short hufId) {
+		this.hufId = hufId;
 	}
 	public void setHumanId(String humanId) {
 		this.humanId = humanId;

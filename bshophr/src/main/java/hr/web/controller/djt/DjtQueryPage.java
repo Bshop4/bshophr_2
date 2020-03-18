@@ -28,11 +28,35 @@ public class DjtQueryPage {
 	public String queryNeedThing(@RequestParam String firstKindId,
 			@RequestParam String secondKindId,@RequestParam String thirdKindId,
 			@RequestParam String humanMajorKindId,@RequestParam String humanMajorId,
-			@RequestParam Date dateStart,@RequestParam Date dateEnd,Model model
+			@RequestParam String dateStart,@RequestParam String dateEnd,Model model
 	)
 	{	
 		int pageSize=8;
 		Map<String, Object> map=new HashMap<String, Object>();
+		if(firstKindId.equals("undefined")){
+			firstKindId=null;
+		}
+		if(secondKindId.equals("undefined")){
+			secondKindId=null;
+		}
+		if(thirdKindId.equals("undefined")){
+			thirdKindId=null;
+		}
+		if(humanMajorKindId.equals("undefined")){
+			humanMajorKindId=null;
+		}
+		if(humanMajorId.equals("undefined")){
+			humanMajorId=null;
+		}
+		if(dateStart==""){
+			dateStart=null;
+		}
+		if(dateEnd==""){
+			dateEnd=null;
+		}
+		//查看已经复核的人的信息
+		map.put("checkStatus", 1);
+		
 		map.put("firstKindId", firstKindId);
 		map.put("secondKindId", secondKindId);
 		map.put("thirdKindId", thirdKindId);
