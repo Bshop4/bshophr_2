@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -53,16 +54,22 @@
 				<td width="7%" class="TD_STYLE1">复核</td>
 			</tr>
 
-			<tr>
-				<td class="TD_STYLE2">bt0101010001</td>
-				<td class="TD_STYLE2">fantia</td>
-				<td class="TD_STYLE2">女</td>
-				<td class="TD_STYLE2">Better集团</td>
-				<td class="TD_STYLE2">Better软件公司</td>
-				<td class="TD_STYLE2">外包组</td>
-				<td class="TD_STYLE2">经理</td>
-				<td class="TD_STYLE2"><a href="human_check.jsp">复核</a></td>
-			</tr>
+			<c:if test="${!empty list}">
+				<c:forEach items="${list}" var="lpn">
+				<tr>
+					<td class="TD_STYLE2">${lpn.hufId}</td>
+					<td class="TD_STYLE2">${lpn.humanName}</td>
+					<td class="TD_STYLE2">${lpn.humanSex}</td>
+					<td class="TD_STYLE2">${lpn.firstKindName}</td>
+					<td class="TD_STYLE2">${lpn.secondKindName}</td>
+					<td class="TD_STYLE2">${lpn.thirdKindName}</td>
+					<td class="TD_STYLE2">${lpn.humanProDesignation}</td>
+					<td class="TD_STYLE2">
+						<a href="humanRegister/jumpToId.do?hufId=${lpn.hufId}">复核</a>
+					</td>
+				</tr>
+				</c:forEach>
+			</c:if>	
 
 		</table>
 		<p>

@@ -55,7 +55,7 @@
 				<td width="7%" class="TD_STYLE1">操作</td>
 			</tr>
 			
-			<c:if test="${!empty listPageNo}"></c:if>
+			<c:if test="${!empty listPageNo}">
 				<c:forEach items="${listPageNo }" var="lpn">
 				<tr>
 					<td class="TD_STYLE2">${lpn.hufId}</td>
@@ -70,6 +70,7 @@
 					</td>
 				</tr>
 				</c:forEach>
+			</c:if>	
 		</table>
 		<p>
 			&nbsp;&nbsp;总数：1例 &nbsp;&nbsp;&nbsp;当前第 1 页 &nbsp;&nbsp;&nbsp;共 1 页

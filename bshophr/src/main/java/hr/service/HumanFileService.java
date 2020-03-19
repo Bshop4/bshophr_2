@@ -18,7 +18,7 @@ public interface HumanFileService {
 
 	public boolean removeHumanFileById(int id);
 
-	public boolean saveHumanFile(HumanFile hf);
+	public int saveHumanFile(HumanFile hf);
 
 	public boolean updateHumanFile(HumanFile hf);
 }

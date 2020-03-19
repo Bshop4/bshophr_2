@@ -53,9 +53,8 @@
 				</font></td>
 			</tr>
 			<tr>
-				<td align="right"><input type="button" value="EXCEL列表"
-					class="BUTTON_STYLE1" onclick="javascript:doExport('excel');">
-					<input type="button" value="查询" class="BUTTON_STYLE1" id="djtQlSearch"> 
+				<td align="right">
+					<input type="button" value="开始" class="BUTTON_STYLE1" id="djtQlSearch"> 
 					<input type="button"
 					value="搜索" class="BUTTON_STYLE1" onclick="search();"></td>
 			</tr>
@@ -263,6 +262,8 @@
 		var dateStart=$("#dateStart").val();
 		var dateEnd=$("#dateEnd").val();
 		
+		console.log(djtJobClassSelect);
+		console.log(djtJobSelect);
 		
 		window.location.href="/bshophr/djtQueryPage/djtSearch.do?firstKindId="+firstSelect
 					+"&secondKindId="+secondSelect+"&thirdKindId="+thirdSelect+"&humanMajorKindId="

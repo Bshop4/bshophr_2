@@ -41,10 +41,10 @@ public class HumanFileServiceImpl implements HumanFileService {
 	}
 
 	@Override
-	public boolean saveHumanFile(HumanFile hf) {
+	public int saveHumanFile(HumanFile hf) {
 		// TODO Auto-generated method stub
-		boolean flag = hfm.insertHumanFile(hf);
-		return flag;
+		int hufId = hfm.insertHumanFile(hf);
+		return hufId;
 	}
 
 	@Override

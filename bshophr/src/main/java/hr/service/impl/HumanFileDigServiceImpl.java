@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hr.mapper.HumanFileDigMapper;
+import hr.pojo.HumanFile;
 import hr.pojo.HumanFileDig;
 import hr.service.HumanFileDigService;
 

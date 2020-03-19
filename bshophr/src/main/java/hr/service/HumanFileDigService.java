@@ -2,6 +2,7 @@ package hr.service;
 
 import java.util.List;
 
+import hr.pojo.HumanFile;
 import hr.pojo.HumanFileDig;
 
 

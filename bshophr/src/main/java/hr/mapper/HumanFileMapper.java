@@ -22,7 +22,7 @@ public interface HumanFileMapper {
 
 	public boolean deleteHumanFileById(int id);
 
-	public boolean insertHumanFile(HumanFile hf);
+	public int insertHumanFile(HumanFile hf);
 
 	public boolean updateHumanFile(HumanFile hf);
 
