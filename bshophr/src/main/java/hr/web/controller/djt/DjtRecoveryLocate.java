@@ -1,7 +1,5 @@
 package hr.web.controller.djt;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,14 +13,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import hr.pojo.ConfigFileFirstKind;
 import hr.pojo.HumanFile;
+import hr.service.ConfigFileFirstKindService;
+import hr.service.ConfigFileSecondKindService;
+import hr.service.ConfigFileThirdKindService;
+import hr.service.ConfigMajorKindService;
+import hr.service.ConfigMajorService;
 import hr.service.HumanFileService;
 
 @Controller
-@RequestMapping("/djtQueryPage")
-public class DjtQueryPage {
-
+@RequestMapping("/recoveryLocate")
+public class DjtRecoveryLocate {
+	
+	@Autowired
+	private ConfigFileFirstKindService configFileFirstKindService=null;
+	
+	@Autowired
+	private ConfigFileSecondKindService configFileSecondKindService=null;
+	
+	@Autowired
+	private ConfigFileThirdKindService configFileThirdKindService=null;
+	
+	@Autowired
+	private ConfigMajorService configMajorService=null;
+	
+	@Autowired
+	private ConfigMajorKindService configMajorKindService=null;
+	
 	@Autowired
 	private HumanFileService humanFileService=null;
+	
+	
+	@RequestMapping("/jumpPage.do")
+	public String queryPageLocate(Model model){
+		List<ConfigFileFirstKind> list1=configFileFirstKindService.findConfigFileFirstKindAll(new ConcurrentHashMap<String, Object>());
+		model.addAttribute("firstSelect", list1);
+		return "forward:/recovery_locate.jsp";
+	}
 	
 	@RequestMapping("/djtSearch.do")
 	public String queryNeedThing(@RequestParam String firstKindId,
@@ -55,8 +81,7 @@ public class DjtQueryPage {
 			dateEnd=null;
 		}
 		//查看已经复核的人的信息
-		map.put("checkStatus", 1);
-		map.put("humanFileStatus", 1);
+		map.put("humanFileStatus", 0);
 		
 		map.put("firstKindId", firstKindId);
 		map.put("secondKindId", secondKindId);
@@ -70,6 +95,7 @@ public class DjtQueryPage {
 		System.out.println(dateStart+"======"+dateEnd);
 		List<HumanFile> list=humanFileService.findHumanFileAll(map);
 		model.addAttribute("listPageNo", list);
-		return "forward:/djtQueryPage.jsp";
+		model.addAttribute("condition", map);
+		return "forward:/djtRecoveryPage.jsp";
 	}
 }

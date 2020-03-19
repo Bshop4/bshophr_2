@@ -63,6 +63,18 @@ public class EngageInterviewServiceImpl implements EngageInterviewService{
 		// TODO Auto-generated method stub
 		return eim.selectSplit(map);
 	}
+
+	@Override
+	public int findCntByCS(short cs) {
+		// TODO Auto-generated method stub
+		return eim.selectCntByCS(cs);
+	}
+
+	@Override
+	public List<EngageInterview> findSplitTwo(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return eim.selectSplitTwo(map);
+	}
 	
 	
 	

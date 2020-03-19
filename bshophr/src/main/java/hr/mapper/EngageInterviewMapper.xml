@@ -5,6 +5,16 @@
 
 <mapper namespace="hr.mapper.EngageInterviewMapper">
 
+<select id="selectCntByCS" parameterType="short" resultType="_int">
+	select count(*) from (select * from ENGAGE_INTERVIEW where CHECK_STATUS=#{cs}) as ei
+</select>
+
+<select id="selectSplitTwo" parameterType="hashmap" resultMap="ei">
+	select * from (select * from ENGAGE_INTERVIEW where CHECK_STATUS=#{cs}) as ei 
+	<if test="currentPage!=null and pageSize!=null">
+			limit #{currentPage},#{pageSize}
+	</if>
+</select>
 
 	
 

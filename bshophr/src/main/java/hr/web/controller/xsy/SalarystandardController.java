@@ -31,7 +31,7 @@ public class SalarystandardController {
 	@Autowired
 	private ConfigPublicCharService cfservice = null;
 
-	// 从左边的薪酬标准登记进来到这里
+	// 从左边的薪酬标准登记进来到这里。
 	@RequestMapping("/ssregister.do")
 	public String tossregister(Map map) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");// 时间格式化

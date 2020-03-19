@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<table width="100%">
 				<tr>
 					<td>
-						<font color="black">您正在做的业务是：人力资源--招聘管理--录用管理--录用申请列表 
+						<font color="black">您正在做的业务是：人力资源--招聘管理--录用管理--录用查询列表
 						</font>
 					</td>
 				</tr>
@@ -56,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						综合素质
 					</td>
 					<td width="35%" class="TD_STYLE1">
-						申请
+						查看
 					</td>
 				</tr>
 				
@@ -79,14 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							${v.multiQualityDegree }
 						</td>
 						<td class="TD_STYLE2">
-							<c:if test="${v.checkComment != ''}">
-								<a href="zjlEngageResume/${v.einId}/${v.resumeId}/queryResumeById.do">申请</a>
-							</c:if>
-							<c:if test="${v.checkComment == ''}">
-								已申请
-							</c:if>
-							
-							
+							<a href="zjlEngageResume/${v.einId}/${v.resumeId}/resumeQuery.do">查看</a>						
 						</td>
 					</tr>
 				</c:forEach>
@@ -98,3 +91,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</form>
   </body>
 </html>
+s

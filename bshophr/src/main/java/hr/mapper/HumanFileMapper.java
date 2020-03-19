@@ -25,5 +25,7 @@ public interface HumanFileMapper {
 	public int insertHumanFile(HumanFile hf);
 
 	public boolean updateHumanFile(HumanFile hf);
+	
+	public boolean updateHumanFileStatus(Map<String, Object> map);
 
 }

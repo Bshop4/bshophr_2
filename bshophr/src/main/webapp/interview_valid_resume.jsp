@@ -399,8 +399,7 @@
  				data : {"passRegistTime":passRegistTime,"passRegister":passRegister,"einId":einId,
  				"resumeId":resumeId,"passCheckcomment":passCheckcomment},
  				success : function(re){
- 						console.log(re)
- 					for(var i = 0; i<re.length;i++){
+ 					/* for(var i = 0; i<re.length;i++){
  						if(re[i] == "删除简历"){
  							alert("消息提示：删除简历成功！");
  						}
@@ -414,10 +413,11 @@
  							alert("消息提示：建议录用成功！")
  						}
  						
- 					}
+ 					} */
+ 					var str = re[0];
+			 		location.href="interview_valid_resume_success.jsp?str="+str;
  				}
  			})
-	 		location.href="zjlEngageResume/queryInterviewValidList.do";
  		} 
  		
  	});

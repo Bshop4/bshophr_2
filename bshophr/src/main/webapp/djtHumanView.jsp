@@ -27,10 +27,13 @@
 <script type="text/javascript" src="javascript/comm/comm.js"></script>
 <script type="text/javascript" src="javascript/comm/select.js"></script>
 <script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
-<script type="text/javascript">
-//获取想要的数据
-
-</script>
+<style type="text/css">
+	#djtViewPhoto{
+		width:150px;
+		height:170px;
+		border: 1px solid red;
+	}
+</style>
 </head>
 
 <body>
@@ -68,7 +71,7 @@
 					name="item.thirdKindName" class="SELECT_STYLE1" id="djtThirdSelect">
 					<option value="${humanFile.thirdKindId}">${humanFile.thirdKindName }</option>
 					</select></td>
-				<td rowspan="5">&nbsp;</td>
+				<td align="center" rowspan="5"><img src="${humanFile.humanPicture}" id="djtViewPhoto"/></td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">职位分类</td>
@@ -264,6 +267,8 @@
 	
 	var humanFile='<%=request.getAttribute("humanFile")%>';
 	
+	console.log("${humanFile.firstKindId}");
+	
 	if(humanFile!=""){
 		$("#djtFirstSelect>option").each(function(){
 			if($(this).val()=="${humanFile.firstKindId}"){
@@ -413,7 +418,7 @@
 		var hufId=${humanFile.hufId};
 		$.ajax({
 			type:"POST",
-			url:"registerChoosePicture/pageJumpToId.do",
+			url:"registerChoosePicture/updateToId.do",
 			data:{
 			"hufId":hufId,
 			"firstKindId":firstKindId,
@@ -462,9 +467,13 @@
 			},
 			dataType:"json",
 			success : function(result){
-				console.log(result)
+				if(result==true){
+					alert("修改成功");
+				}
+				window.location.href="/bshophr/checkList/pageJump.do";
 			}		
 		})
+	
 		
 		$.ajax({
 			type:"POST",
@@ -522,6 +531,8 @@
 		
 		
 	})
+	
+	
 	
 	
 	

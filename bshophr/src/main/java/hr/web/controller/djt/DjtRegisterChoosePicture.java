@@ -1,11 +1,16 @@
 package hr.web.controller.djt;
 
 import java.io.File;
+
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,6 +39,7 @@ public class DjtRegisterChoosePicture {
 	@RequestMapping("/pageJump.do")
 	public int pageJump(@ModelAttribute HumanFile humanFile){
 		humanFile.setCheckStatus((short)0);
+		humanFile.setHumanFileStatus((short)1);
 		humanFileService.saveHumanFile(humanFile);
 //		System.out.println("返回的主键=="+humanFile.getHufId());
 		return humanFile.getHufId();
@@ -43,6 +49,7 @@ public class DjtRegisterChoosePicture {
 	@RequestMapping("/pageJumpToId.do")
 	public String pageJumpToId(@ModelAttribute HumanFile humanFile){
 		humanFile.setCheckStatus((short)1);
+		humanFile.setHumanFileStatus((short)1);
 		boolean flag=humanFileService.updateHumanFile(humanFile);
 		//主键
 		int hufId=humanFile.getHufId();
@@ -53,6 +60,19 @@ public class DjtRegisterChoosePicture {
 	}
 	
 	@ResponseBody
+	@RequestMapping("/updateToId.do")
+	public boolean updateToId(@ModelAttribute HumanFile humanFile){
+		humanFile.setCheckStatus((short)1);
+		humanFile.setHumanFileStatus((short)1);
+		boolean flag=humanFileService.updateHumanFile(humanFile);
+		
+		return flag;
+	}
+	
+	
+	
+	
+	@ResponseBody
 	@RequestMapping("/pageJumpDigToId.do")
 	public String pageJumpDigToId(@ModelAttribute HumanFileDig humanFileDig){
 		boolean flag=humanFileDigService.saveHumanFileDig(humanFileDig);
@@ -60,25 +80,42 @@ public class DjtRegisterChoosePicture {
 		JSONObject json=JSONObject.fromObject(flag);
 		return json.toString();
 	}
+	
 
 	@ResponseBody
 	@RequestMapping("/addHumanFilePhoto.do")
-	public String fileUplod(@RequestParam String hufId,@RequestParam("djtFile") MultipartFile humanPhoto,HttpSession session){
-		System.out.println("进来了");
-		String path=session.getServletContext().getRealPath("/");
-		System.out.println("文件类型:"+humanPhoto.getContentType());
-		path="/registerPhoto/"+hufId+"."+humanPhoto.getContentType();
-		String fileName=humanPhoto.getOriginalFilename();
+	public boolean fileUplod(@RequestParam("djtZhujian") int djtZhujian,@RequestParam("djtFile") MultipartFile humanPhoto,HttpSession session){
+
+		//获取文件的扩展名
+		String ext = FilenameUtils.getExtension(humanPhoto.getOriginalFilename());
+		String path=session.getServletContext().getRealPath("/registerPhoto");
+		System.out.println("文件类型:"+ext);
+		path=path+"\\"+djtZhujian+"."+ext;
 		System.out.println(path);
 		
-		File dirFile = new File(path,fileName);
+		File dirFile = new File(path);
 		try {
 			humanPhoto.transferTo(dirFile);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return null;
+		//插入到数据库中
+		HumanFile hf=humanFileService.findHumanFileById(djtZhujian);
+		String savePath="registerPhoto/"+djtZhujian+"."+ext;
+		hf.setHumanPicture(savePath);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		String date=df.format(new Date());
+		Date d=null;
+		try {
+			d=df.parse(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		hf.setRegistTime(new java.sql.Date(d.getTime()));
+		boolean m=humanFileService.updateHumanFile(hf);
+		return m;
 	}
 	
 }

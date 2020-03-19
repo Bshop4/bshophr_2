@@ -437,7 +437,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			"eqDegree":EQdegree,"iqDegree":IQdegree,"multiQualityDegree":multiqualitydegree,
 			"register":register,"registeTime":registetime,"humanMajorName":humanmajorname,"humanMajorKindName":humanmajorkindname,"interviewComment":interviewcomment},
 			success : function(re){
-				alert(re)
+				location.href="interview_register_success.jsp";
 			}
 		});
 			

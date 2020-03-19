@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <form action="zjlEngageResume/resumeRecommend.do" name="fm" method="post"  enctype="multipart/form-data">
+    <form action="zjlEngageResume/resumeRecommendCheck.do" name="fm" method="post"  enctype="multipart/form-data">
     	<input type="hidden" name="resId" value="${er.resId }">
     	<input type="hidden" name="einId" value="${ei.einId }">
 			<table width="100%">
@@ -35,7 +35,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 				<tr>
 					<td align="right">
-						<input type="radio"  name="luyong" value="申请录用">申请录用
+						<input type="radio"  name="pass" value="通过"  >通过
+						<input type="radio"  name="pass" value="不通过"  >不通过
 						<input type="button" value="确认" class="BUTTON_STYLE1" id="mybtn">
 						<input type="button" value="返回" class="BUTTON_STYLE1" 
 							onclick="history.back();">
@@ -386,6 +387,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							rows="4" readonly="readonly" id="passCheckcomment">建议录用</textarea>
 					</td>
 				</tr>
+				<tr>
+					<td class="TD_STYLE1">
+						录用申请审批意见
+					</td>
+					<td class="TD_STYLE2" colspan="7">
+						<textarea
+							 name="passpasscomment"  id="passPasscomment" class="TEXTAREA_STYLE1"
+							rows="4"></textarea>
+					</td>
+				</tr>
 			</table>
 		</form>
 	</body>
@@ -395,17 +406,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 <script>
 	
-	$("#mybtn").click(function(){
-		var cds = $("input[name='luyong']:checked").val();
+	 $("#mybtn").click(function(){
+		var cds = $("input[name='pass']:checked").val();
 		if(cds == undefined){
-			alert("请选择录用！");
+			alert("请选择是否通过！");
 			return;
-		}else{
-			
-			$("form[name='fm']").submit();
-			
 		}
-	});
+		
+		var passPasscomment = $("#passPasscomment").val();
+		if(passPasscomment == ""){
+			alert("请填写录用申请审批意见！")
+			return;
+		}
+		
+		$("form[name='fm']").submit();
+	}); 
 	
 
 </script>

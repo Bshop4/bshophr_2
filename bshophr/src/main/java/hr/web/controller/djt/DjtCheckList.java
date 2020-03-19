@@ -23,6 +23,7 @@ public class DjtCheckList {
 	public String pageJump(Model model){
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("checkStatus", 0);
+		map.put("humanFileStatus", 1);
 		map.put("currentPage", 0);
 		map.put("pageSize", 8);
 		List<HumanFile> list=humanFileService.findHumanFileAll(map);
