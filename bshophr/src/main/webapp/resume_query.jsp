@@ -24,19 +24,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <form action="zjlEngageResume/resumeRecommend.do" name="fm" method="post"  enctype="multipart/form-data">
+    <form action="zjlEngageResume/resumeRecommendCheck.do" name="fm" method="post"  enctype="multipart/form-data">
     	<input type="hidden" name="resId" value="${er.resId }">
     	<input type="hidden" name="einId" value="${ei.einId }">
 			<table width="100%">
 				<tr>
 					<td>
-						<font color="black">您正在做的业务是：人力资源--招聘管理--录用管理--录用申请  </font>
+						<font color="black">您正在做的业务是：人力资源--招聘管理--录用管理--录用查询详情  </font>
 					</td>
 				</tr>
 				<tr>
 					<td align="right">
-						<input type="radio"  name="luyong" value="申请录用">申请录用
-						<input type="button" value="确认" class="BUTTON_STYLE1" id="mybtn">
 						<input type="button" value="返回" class="BUTTON_STYLE1" 
 							onclick="history.back();">
 							
@@ -366,14 +364,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						筛选人
 					</td>
 					<td class="TD_STYLE2">
-					 <input type="text" name="passChecker" value="${passChecker}" class="INPUT_STYLE2" readonly="readonly"/>
+					 <input type="text" name="passChecker" value="${er.passChecker}" class="INPUT_STYLE2" readonly="readonly"/>
 				 
 					</td>
 					<td class="TD_STYLE1">
 						筛选时间
 					</td>
 					<td class="TD_STYLE2"> 
-				  	<input type="text" name="passCheckTime" value="${passCheckTime }" readonly="readonly"
+				  	<input type="text" name="passCheckTime" value="${er.passCheckTime }" readonly="readonly"
 							class="INPUT_STYLE2">
 					</td>
 				</tr>
@@ -386,26 +384,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							rows="4" readonly="readonly" id="passCheckcomment">建议录用</textarea>
 					</td>
 				</tr>
+				<tr>
+					<td class="TD_STYLE1">
+						录用申请审批意见
+					</td>
+					<td class="TD_STYLE2" colspan="7">
+						<textarea
+							 name="passpasscomment"  id="passPasscomment" class="TEXTAREA_STYLE1"
+							rows="4">${er.passPasscomment}</textarea>
+					</td>
+				</tr>
 			</table>
 		</form>
 	</body>
   </body>
 </html>
-<script src="js/jquery-1.8.3.min.js">
-</script>
-<script>
-	
-	$("#mybtn").click(function(){
-		var cds = $("input[name='luyong']:checked").val();
-		if(cds == undefined){
-			alert("请选择录用！");
-			return;
-		}else{
-			
-			$("form[name='fm']").submit();
-			
-		}
-	});
-	
 
-</script>
