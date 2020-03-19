@@ -21,4 +21,6 @@ public interface HumanFileService {
 	public int saveHumanFile(HumanFile hf);
 
 	public boolean updateHumanFile(HumanFile hf);
+	
+	public boolean updateHumanFileStatus(Map<String, Object> map);
 }

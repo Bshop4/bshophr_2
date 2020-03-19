@@ -35,7 +35,7 @@
 	<form name="humanfileForm" method="post" action="/hr/humanfile.do">
 		<table width="100%">
 			<tr>
-				<td><font color="#0000CC">您正在做的业务是：人力资源--人力资源档案删除管理--人力资源档案永久删除
+				<td><font color="#0000CC">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案删除
 				</font></td>
 			</tr>
 			<tr>
@@ -52,7 +52,7 @@
 				<td width="14%" class="TD_STYLE1">II级机构</td>
 				<td width="14%" class="TD_STYLE1">III级机构</td>
 				<td width="14%" class="TD_STYLE1">职称</td>
-				<td width="7%" class="TD_STYLE1">永久删除</td>
+				<td width="7%" class="TD_STYLE1">操作</td>
 			</tr>
 			
 			<c:if test="${!empty listPageNo}">
@@ -66,7 +66,7 @@
 					<td class="TD_STYLE2">${lpn.thirdKindName}</td>
 					<td class="TD_STYLE2">${lpn.humanProDesignation}</td>
 					<td class="TD_STYLE2">
-						<a class="djtDeleteButton" djtTarget="${lpn.hufId}">永久删除</a>
+						<a class="djtDeleteButton" djtTarget="${lpn.hufId}">删除</a>
 					</td>
 				</tr>
 				</c:forEach>
@@ -91,11 +91,11 @@
  
 	$(".djtDeleteButton").each(function(){
 		$(this).click(function(){
-			 if(confirm("确认要永久删除？")){
+			 if(confirm("确认要删除？")){
 			 	var hufId=$(this).attr("djtTarget");
 			 	$.ajax({
 	    		type:"POST",
-				url:"deleteForeverList/foreverDeleteById.do",
+				url:"humanFileOperate/deleteById.do",
 				data:{
 					"hufId":hufId,
 					},
@@ -104,7 +104,10 @@
 					if(result==true){
 						alert("删除成功");
 					}
-					window.location.href="deleteForeverList/jumpPage.do";
+					window.location.href="deleteLocate/djtSearch.do?firstKindId="+firstKindId
+					+"&secondKindId="+secondKindId+"&thirdKindId="+thirdKindId+"&humanMajorKindId="
+					+humanMajorKindId+"&humanMajorId="+humanMajorId+"&dateStart="+dateStart
+					+"&dateEnd="+dateEnd;
 				}
 			});
 		 }

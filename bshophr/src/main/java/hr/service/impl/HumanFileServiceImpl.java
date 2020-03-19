@@ -67,4 +67,10 @@ public class HumanFileServiceImpl implements HumanFileService {
 		return list;
 	}
 
+	@Override
+	public boolean updateHumanFileStatus(Map<String, Object> map) {
+		boolean flag=hfm.updateHumanFileStatus(map);
+		return flag;
+	}
+
 }

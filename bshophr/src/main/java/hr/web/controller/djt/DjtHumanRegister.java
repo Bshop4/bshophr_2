@@ -55,9 +55,9 @@ public class DjtHumanRegister {
 	@RequestMapping("/jumpToId.do")
 	public String pageJumpToId(@RequestParam int hufId, Model model){
 		List<ConfigFileFirstKind> list1=configFileFirstKindService.findConfigFileFirstKindAll(new ConcurrentHashMap<String, Object>());
-		hufId=1;
 		HumanFile humanFile=humanFileService.findHumanFileById(hufId);
 		
+		System.out.println("获取的路径=="+humanFile.getHumanPicture());
 		model.addAttribute("firstSelect", list1);
 		model.addAttribute("humanFile", humanFile);
 		

@@ -39,6 +39,7 @@ public class DjtRegisterChoosePicture {
 	@RequestMapping("/pageJump.do")
 	public int pageJump(@ModelAttribute HumanFile humanFile){
 		humanFile.setCheckStatus((short)0);
+		humanFile.setHumanFileStatus((short)1);
 		humanFileService.saveHumanFile(humanFile);
 //		System.out.println("返回的主键=="+humanFile.getHufId());
 		return humanFile.getHufId();
@@ -48,6 +49,7 @@ public class DjtRegisterChoosePicture {
 	@RequestMapping("/pageJumpToId.do")
 	public String pageJumpToId(@ModelAttribute HumanFile humanFile){
 		humanFile.setCheckStatus((short)1);
+		humanFile.setHumanFileStatus((short)1);
 		boolean flag=humanFileService.updateHumanFile(humanFile);
 		//主键
 		int hufId=humanFile.getHufId();
@@ -58,6 +60,19 @@ public class DjtRegisterChoosePicture {
 	}
 	
 	@ResponseBody
+	@RequestMapping("/updateToId.do")
+	public boolean updateToId(@ModelAttribute HumanFile humanFile){
+		humanFile.setCheckStatus((short)1);
+		humanFile.setHumanFileStatus((short)1);
+		boolean flag=humanFileService.updateHumanFile(humanFile);
+		
+		return flag;
+	}
+	
+	
+	
+	
+	@ResponseBody
 	@RequestMapping("/pageJumpDigToId.do")
 	public String pageJumpDigToId(@ModelAttribute HumanFileDig humanFileDig){
 		boolean flag=humanFileDigService.saveHumanFileDig(humanFileDig);
@@ -65,6 +80,7 @@ public class DjtRegisterChoosePicture {
 		JSONObject json=JSONObject.fromObject(flag);
 		return json.toString();
 	}
+	
 
 	@ResponseBody
 	@RequestMapping("/addHumanFilePhoto.do")
@@ -86,7 +102,8 @@ public class DjtRegisterChoosePicture {
 		
 		//插入到数据库中
 		HumanFile hf=humanFileService.findHumanFileById(djtZhujian);
-		hf.setHumanPicture(path);
+		String savePath="registerPhoto/"+djtZhujian+"."+ext;
+		hf.setHumanPicture(savePath);
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		String date=df.format(new Date());
 		Date d=null;

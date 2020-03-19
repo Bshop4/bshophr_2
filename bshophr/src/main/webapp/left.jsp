@@ -266,17 +266,17 @@ a {
 									<table width="100%" border="0">
 										<tr>
 											<td width="2%"><img src="images/jt0.gif"></td>
-											<td width="98%"><a href="delete_locate.jsp"
+											<td width="98%"><a href="deleteLocate/jumpPage.do"
 												target="mainFrame">人力资源档案删除</a></td>
 										</tr>
 										<tr>
 											<td width="2%"><img src="images/jt0.gif"></td>
-											<td width="98%"><a href="recovery_locate.jsp"
+											<td width="98%"><a href="recoveryLocate/jumpPage.do"
 												target="mainFrame">档案删除恢复</a></td>
 										</tr>
 										<tr>
 											<td width="2%"><img src="images/jt0.gif"></td>
-											<td width="98%"><a href="delete_forever_list.jsp"
+											<td width="98%"><a href="deleteForeverList/jumpPage.do"
 												target="mainFrame">人力资源档案永久删除</a></td>
 										</tr>
 									</table>
