@@ -305,17 +305,15 @@ public class EngageResumeController {
 	
 	
 	@RequestMapping("/updateResume.do")
-	@ResponseBody
-	public List<String> updateResume(EngageResume er){
-		
+	//@ResponseBody
+	public String updateResume(EngageResume er,Model model){
 		er.setCheckStatus(1);
 		er.setInterviewStatus(1);
 		boolean f = ers.updateEngageResume(er);
-		List<String> list = new ArrayList<String>();
 		if(f){
-			list.add("推荐成功！");
+			model.addAttribute("msg", "推荐简历成功！");
 		}
-		return list;
+		return "forward:/engage_resume_list_detail_success.jsp";
 	}
 	
 	
