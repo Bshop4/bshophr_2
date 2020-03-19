@@ -20,7 +20,7 @@ public interface SalaryStandardMapper {
 	public List<SalaryStandard> selectSalaryStandardByIdDim(int id);
 
 	// 向思宇加的由ID和name进行的模糊查询
-	public List<SalaryStandard> selectSalaryStandardByCondition(SalaryStandard s);
+	public List<SalaryStandard> selectSalaryStandardByCondition(Map<String, Object> map);
 
 	public boolean deleteSalaryStandardById(int id);
 

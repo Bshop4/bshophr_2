@@ -29,7 +29,7 @@
 </head>
 
 <body>
-	<form method="post" action="queryBySalary.do" id="myf">
+	<form method="post" action="queryBySalary.do?operate=list" id="myf">
 		<table width="100%">
 			<tr>
 				<td><font color="#0000CC">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准查询</font>
@@ -47,7 +47,7 @@
 			bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
 			<tr>
 				<td width="20%" class="TD_STYLE1">请输入薪酬标准编号</td>
-				<td class="TD_STYLE2"><input type="text" name="item.standardId"
+				<td class="TD_STYLE2"><input type="text" name="standardId"
 					value="" class="INPUT_STYLE1" id="bh"></td>
 			</tr>
 			<tr>
@@ -58,9 +58,9 @@
 			<tr>
 				<td class="TD_STYLE1">请输入登记时间</td>
 				<td class="TD_STYLE2"><input type="text"
-					name="item.str_startTime" value="" class="INPUT_STYLE1"
+					name="startTime" value="" class="INPUT_STYLE1"
 					id="date_start"> 至 <input type="text"
-					name="item.str_endTime" value="" class="INPUT_STYLE1" id="date_end">
+					name="endTime" value="" class="INPUT_STYLE1" id="date_end">
 					(YYYY-MM-DD)</td>
 			</tr>
 		</table>
@@ -88,8 +88,10 @@
 	
 	function query() {
 		var bh = $("#bh").val();
-		if (bh.length<=0) {
-			alert("薪酬标准编号不可以为空！！！");
+		var st = $("#date_start").val();
+		var et = $("#date_end").val();
+		if (bh.length<=0||st.length<=0||et.length<=0) {
+			alert("薪酬标准编号和时间不可以为空！！！");
 			return;
 		}
 		$("#myf").submit();

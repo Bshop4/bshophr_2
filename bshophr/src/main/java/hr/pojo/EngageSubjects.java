@@ -1,7 +1,5 @@
 package hr.pojo;
 
-import java.sql.Timestamp;
-
 /**
  * EngageSubjectsId entity. @author MyEclipse Persistence Tools
  */
@@ -16,7 +14,7 @@ public class EngageSubjects implements java.io.Serializable {
 	private String secondKindId;
 	private String secondKindName;
 	private String register;
-	private Timestamp registTime;
+	private String registTime;
 	private String derivation;
 	private String content;
 	private String keyA;
@@ -26,7 +24,7 @@ public class EngageSubjects implements java.io.Serializable {
 	private String keyE;
 	private String correctKey;
 	private String changer;
-	private Timestamp changeTime;
+	private String changeTime;
 
 	// Constructors
 
@@ -35,16 +33,15 @@ public class EngageSubjects implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public EngageSubjects(Timestamp registTime, Timestamp changeTime) {
+	public EngageSubjects(String registTime, String changeTime) {
 		this.registTime = registTime;
 		this.changeTime = changeTime;
 	}
 
 	/** full constructor */
 	public EngageSubjects(Short subId, String firstKindId, String firstKindName, String secondKindId,
-			String secondKindName, String register, Timestamp registTime, String derivation, String content,
-			String keyA, String keyB, String keyC, String keyD, String keyE, String correctKey, String changer,
-			Timestamp changeTime) {
+			String secondKindName, String register, String registTime, String derivation, String content, String keyA,
+			String keyB, String keyC, String keyD, String keyE, String correctKey, String changer, String changeTime) {
 		this.subId = subId;
 		this.firstKindId = firstKindId;
 		this.firstKindName = firstKindName;
@@ -114,11 +111,11 @@ public class EngageSubjects implements java.io.Serializable {
 		this.register = register;
 	}
 
-	public Timestamp getRegistTime() {
+	public String getRegistTime() {
 		return this.registTime;
 	}
 
-	public void setRegistTime(Timestamp registTime) {
+	public void setRegistTime(String registTime) {
 		this.registTime = registTime;
 	}
 
@@ -194,11 +191,11 @@ public class EngageSubjects implements java.io.Serializable {
 		this.changer = changer;
 	}
 
-	public Timestamp getChangeTime() {
+	public String getChangeTime() {
 		return this.changeTime;
 	}
 
-	public void setChangeTime(Timestamp changeTime) {
+	public void setChangeTime(String changeTime) {
 		this.changeTime = changeTime;
 	}
 

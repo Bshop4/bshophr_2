@@ -65,8 +65,8 @@ public class SalaryStandardServiceImpl implements SalaryStandardService {
 	}
 
 	@Override
-	public List<SalaryStandard> findSalaryStandardByCondition(SalaryStandard s) {
-		List<SalaryStandard> list = salaryStandardMapper.selectSalaryStandardByCondition(s);
+	public List<SalaryStandard> findSalaryStandardByCondition(Map<String, Object> map) {
+		List<SalaryStandard> list = salaryStandardMapper.selectSalaryStandardByCondition(map);
 		return list;
 	}
 
