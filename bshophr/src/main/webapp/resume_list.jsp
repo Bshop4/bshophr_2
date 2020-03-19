@@ -79,10 +79,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							${v.multiQualityDegree }
 						</td>
 						<td class="TD_STYLE2">
-							<c:if test="${v.checkComment != '' or v.checkComment != null}">
+							<c:if test="${v.checkComment != ''}">
 								<a href="zjlEngageResume/${v.einId}/${v.resumeId}/queryResumeById.do">申请</a>
 							</c:if>
-							<c:if test="${v.checkComment == '' and v.checkComment == null}">
+							<c:if test="${v.checkComment == ''}">
 								已申请
 							</c:if>
 							

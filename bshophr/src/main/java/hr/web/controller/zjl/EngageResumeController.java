@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.pojo.ConfigFileFirstKind;
@@ -730,7 +731,35 @@ public class EngageResumeController {
 		model.addAttribute("ei", ei);
 		model.addAttribute("er", er);
 		
+		model.addAttribute("passChecker", "a");
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		model.addAttribute("passCheckTime", t);
+		
 		return "forward:/resume_register.jsp";
+	}
+	
+	
+	@RequestMapping("/resumeRecommend.do")
+	public String resumeRecommend(@RequestParam("resId") short resId,@RequestParam("einId") short einId,
+			@RequestParam("passChecker") String passChecker,@RequestParam("passCheckTime") Timestamp passCheckTime){
+		
+		EngageResume er = ers.findEngageResumeById(resId);
+		er.setPassChecker(passChecker);
+		er.setPassCheckTime(passCheckTime);
+		er.setPassCheckStatus(0);;
+		boolean f = ers.updateEngageResume(er);
+		
+		EngageInterview ei = eis.findEngageInterviewById(einId);
+		ei.setCheckComment("");
+		short s = 0;
+		ei.setCheckStatus(s);
+		
+		boolean f1 = eis.updateEngageInterview(ei);
+		
+		if(f == true && f1 == true){
+			return "forward:/message.jsp";
+		}
+		return null;
 	}
 	
 	

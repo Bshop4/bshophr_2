@@ -24,7 +24,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <form action="registerOk" name="fm" method="post"  enctype="multipart/form-data">
+    <form action="zjlEngageResume/resumeRecommend.do" name="fm" method="post"  enctype="multipart/form-data">
+    	<input type="hidden" name="resId" value="${er.resId }">
+    	<input type="hidden" name="einId" value="${ei.einId }">
 			<table width="100%">
 				<tr>
 					<td>
@@ -34,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td align="right">
 						<input type="radio"  name="luyong" value="申请录用">申请录用
-						<input type="submit" value="确认" class="BUTTON_STYLE1">
+						<input type="button" value="确认" class="BUTTON_STYLE1" id="mybtn">
 						<input type="button" value="返回" class="BUTTON_STYLE1" 
 							onclick="history.back();">
 							
@@ -204,7 +206,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						教育年限
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humaneducatedyears"  value="${vi.resumeid.humaneducatedyears }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humaneducatedyears"  value="${er.humanEducatedYears }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						学历专业
@@ -249,7 +251,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						推荐时间
 					</td>
 					<td class="TD_STYLE2"> 
-						<input type="text" name="checktime" value="${ercheckTime }" readonly="readonly" class="INPUT_STYLE2">	 
+						<input type="text" name="checktime" value="${er.checkTime }" readonly="readonly" class="INPUT_STYLE2">	 
 					</td>
 				</tr>
 			<tr>
@@ -288,14 +290,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						面试次数
 					</td>
 					<td class="TD_STYLE2">
-					 	<input type="text"   name="interviewamount" value="${vi.interviewamount }" class="INPUT_STYLE2" readonly="readonly"/>
+					 	<input type="text"   name="interviewAmount" value="${ei.interviewAmount }" class="INPUT_STYLE2" readonly="readonly"/>
 					</td>
 					<td class="TD_STYLE1">
 						形象评价
 					</td>
 					<td class="TD_STYLE2">
 						 
-				 <input type="text"  name="imagedegree" value="${vi.imagedegree }" class="INPUT_STYLE2" readonly="readonly"/>
+				 <input type="text"  name="imageDegree" value="${ei.imageDegree }" class="INPUT_STYLE2" readonly="readonly"/>
 				
 					</td>
 					<td class="TD_STYLE1">
@@ -303,7 +305,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE2">
 					 
-						 <input type="text"  name="nativelanguagedegree" value="${vi.nativelanguagedegree }" class="INPUT_STYLE2" readonly="readonly"/>
+						 <input type="text"  name="nativeLanguageDegree" value="${ei.nativeLanguageDegree }" class="INPUT_STYLE2" readonly="readonly"/>
 				
 					</td>
 					<td class="TD_STYLE1">
@@ -311,7 +313,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE1">
 					 
-						 <input type="text"  name="foreignlanguagedegree" value="${vi.foreignlanguagedegree }" class="INPUT_STYLE2" readonly="readonly"/>
+						 <input type="text"  name="foreignLanguageDegree" value="${ei.foreignLanguageDegree }" class="INPUT_STYLE2" readonly="readonly"/>
 				
 					</td>
 				</tr>
@@ -321,28 +323,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE2">
 					 
-						<input type="text"  name="responsespeeddegree" value="${vi.responsespeeddegree }" class="INPUT_STYLE2" readonly="readonly"/>
+						<input type="text"  name="responseSpeedDegree" value="${ei.responseSpeedDegree }" class="INPUT_STYLE2" readonly="readonly"/>
 				
 					</td>
 					<td class="TD_STYLE1">
 						EQ
 					</td>
 					<td class="TD_STYLE2"> 
-						<input type="text"  name="EQdegree" value="${vi.EQdegree }" class="INPUT_STYLE2" readonly="readonly"/>
+						<input type="text"  name="eqDegree" value="${ei.eqDegree }" class="INPUT_STYLE2" readonly="readonly"/>
 				
 					</td>
 					<td class="TD_STYLE1">
 						IQ
 					</td>
 					<td class="TD_STYLE2"> 
-						 <input type="text"  name="IQdegree" value="${vi.IQdegree }" class="INPUT_STYLE2" readonly="readonly"/>
+						 <input type="text"  name="iqDegree" value="${ei.iqDegree }" class="INPUT_STYLE2" readonly="readonly"/>
 				
 					</td>
 					<td class="TD_STYLE1">
 						综合素质
 					</td>
 					<td class="TD_STYLE1">
-					 <input type="text"  name="multiqualitydegree" value="${vi.multiqualitydegree }" class="INPUT_STYLE2" readonly="readonly"/>
+					 <input type="text"  name="multiQualityDegree" value="${ei.multiQualityDegree }" class="INPUT_STYLE2" readonly="readonly"/>
 				
 					</td>
 				</tr>
@@ -351,28 +353,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						面试人
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="register" value="${vi.register }" class="INPUT_STYLE2"/>
+						<input type="text" name="register" value="${ei.register }" class="INPUT_STYLE2" readonly="readonly"/>
 					</td>
 					<td class="TD_STYLE1">
 						面试时间
 					</td>
 					<td class="TD_STYLE2"> 
-					<input type="text" name="registetime" value="${vi.registetime }" class="INPUT_STYLE2"/>
+					<input type="text" name="registeTime" value="${ei.registeTime }" class="INPUT_STYLE2"/>
 						  
 					</td>
 					<td class="TD_STYLE1">
 						筛选人
 					</td>
 					<td class="TD_STYLE2">
-					 <input type="text" name="passchecker" value="${userlogin.user_true_name }" class="INPUT_STYLE2"/>
+					 <input type="text" name="passChecker" value="${passChecker}" class="INPUT_STYLE2" readonly="readonly"/>
 				 
 					</td>
 					<td class="TD_STYLE1">
 						筛选时间
 					</td>
 					<td class="TD_STYLE2"> 
-				  	<input type="text" name="checktime"
-							  id="nowTime" readonly="readonly"
+				  	<input type="text" name="passCheckTime" value="${passCheckTime }" readonly="readonly"
 							class="INPUT_STYLE2">
 					</td>
 				</tr>
@@ -390,3 +391,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</body>
   </body>
 </html>
+<script src="js/jquery-1.8.3.min.js">
+</script>
+<script>
+	
+	$("#mybtn").click(function(){
+		var cds = $("input[name='luyong']:checked").val();
+		if(cds == undefined){
+			alert("请选择录用！");
+		}else{
+			
+			$("form[name='fm']").submit();
+			
+		}
+	});
+	
+
+</script>
