@@ -389,7 +389,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  		var einId = $("#einId").val();
  		var resumeId = $("#resumeId").val();
  		var passCheckcomment = $("input[name='result']:checked").val();
- 		alert(passCheckcomment)
  	    if(passCheckcomment == undefined){
  			alert("请选择建议！")
  		}else{

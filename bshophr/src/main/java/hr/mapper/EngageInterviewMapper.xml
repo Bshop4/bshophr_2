@@ -5,6 +5,9 @@
 
 <mapper namespace="hr.mapper.EngageInterviewMapper">
 
+
+	
+
 <!-- max -->
 	<select id="selectCntByIS" parameterType="short" resultType="_int">
 		 select count(*) from ENGAGE_INTERVIEW where INTERVIEW_STATUS=#{is}

@@ -620,7 +620,7 @@ a {
 										<tr>
 											<td width="2%"><img src="images/jt0.gif"></td>
 											<td width="98%"><a
-												href="engageresume.do?operate=passList&method=register&passStatus=0"
+												href="zjlEngageResume/resumeChooseToList.do"
 												target="mainFrame">录用申请</a></td>
 										</tr>
 										<tr>

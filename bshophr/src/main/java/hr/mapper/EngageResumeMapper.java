@@ -24,9 +24,7 @@ public interface EngageResumeMapper {
 	
 	public List<EngageResume> selectEngageResumeAll();
 
-	public List<EngageResume> selectAllByCondition(@Param("humanMajorKindName") String humanMajorKindName,
-			@Param("humanMajorName") String humanMajorName,
-			@Param("keyWord") String keyWord);
+	public List<EngageResume> selectAllByCondition(Map<String, Object> map);
 	
 	public List<EngageResume> selectAllByConditionTow(Map<String, Object> map);
 	public List<EngageResume> selectAllByConditionThree(Map<String, Object> map);
@@ -44,8 +42,11 @@ public interface EngageResumeMapper {
 	public int selectCnt(Map<String,Object> map);
 	
 	public int selectCntByCondition(Map<String,Object> map);//
+	public int selectAllByConditionCnt(Map<String,Object> map);//
 	
 	public List<EngageMajorRelease> selectSplit(Map<String,Object> map);
+	
+	
 	
 	
 
