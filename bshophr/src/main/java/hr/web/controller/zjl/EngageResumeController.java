@@ -190,7 +190,7 @@ public class EngageResumeController {
 		er.setHumanMajorId(emr.getMajorId());
 		er.setCheckStatus(0);
 		er.setInterviewStatus(0);
-		er.setTestAmount(0);
+		er.setAmount(0);
 		
 		boolean f = ers.saveEngageResume(er);
 		List<String> list = new ArrayList<String>();
@@ -241,42 +241,16 @@ public class EngageResumeController {
 			end = ed;
 		}
 		
-		/*Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("majorKindName", majorKindName);
 		map.put("majorName", majorName);
 		map.put("keyWord", keyWord);
 		map.put("start", start);
 		map.put("end", end);
 		
-		List<EngageResume> list = ers.findAllByCondition(map);
 		
-		for (EngageResume e : list) {
-			System.out.println(e);
-		}
-		
-		return null;*/
-		
-		
-		List<EngageResume> list = ers.findAllByCondition(majorKindName, majorName, keyWord);
-		
-		List<EngageResume> erList = new ArrayList<EngageResume>();
-		if(list.size()>0){
-			for (EngageResume e : list) {
-				String time = e.getRegistTime()+"";
-				String strStart = start+"";
-				String strEnd = end + "";
-				
-				if(strStart.compareTo(time) < 0 && strEnd.compareTo(time) > 0){
-					erList.add(e);
-				}
-				model.addAttribute("erList", erList);
-			}
-		}else {
-			model.addAttribute("erList", "0");
-		}
-		
-	/*	int maxPage =0;
-		int sumNumber =erList.size();//总个数
+		int maxPage =0;
+		int sumNumber =ers.findAllByConditionCnt(map);//总个数
 		int pageSize =1;
 		int pageNo =1;
 		//最大页数
@@ -297,28 +271,17 @@ public class EngageResumeController {
 		}
 		
 		int currentPage=(pageNo-1)*pageSize;
+		map.put("pageSize", pageSize);
+		map.put("currentPage", currentPage);
+		//分页查询
+		List<EngageResume> erList = ers.findAllByCondition(map);
+		model.addAttribute("erList", erList);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("sumNumber", sumNumber);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("pageNo", pageNo);
 		
-		List<EngageResume> list1 = new ArrayList<EngageResume>();
-		if(erList.size() >0){
-			for (int i = currentPage; i < currentPage+pageSize; i++) {
-				list1.add(erList.get(i));
-			}
-			model.addAttribute("list1", list1);
-			model.addAttribute("maxPage", maxPage);
-			model.addAttribute("sumNumber", sumNumber);
-			model.addAttribute("pageSize", pageSize);
-			model.addAttribute("pageNo", pageNo);
-			
-			
-			model.addAttribute("hiddenMajorKindName", majorKindName);
-			model.addAttribute("humanMajorName", majorName);
-			model.addAttribute("keyWord", keyWord);
-			model.addAttribute("startdate", sd);
-			model.addAttribute("enddate", ed);
-				
-		}else {
-			model.addAttribute("list1", "0");
-		}*/
+		
 		
 		return "forward:/engage_resume_list.jsp";
 	}
@@ -397,27 +360,45 @@ public class EngageResumeController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("majorKindName", majorKindName);
 		map.put("majorName", majorName);
-		map.put("keyWord", keyWord);
 		map.put("checkStatus", 1);
+		//map.put("is", 1);
+		map.put("start", start);
+		map.put("end", end);
+		map.put("keyWord", keyWord);
 		
 		
-		List<EngageResume> list = ers.findAllByConditionTow(map);
+		int maxPage =0;
+		int sumNumber =ers.findCntByCondition(map);//总个数
+		int pageSize =1;
+		int pageNo =1;
+		//最大页数
+		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
 		
-		List<EngageResume> erList = new ArrayList<EngageResume>();
-		if(list.size()>0){
-			for (EngageResume e : list) {
-				String time = e.getRegistTime()+"";
-				String strStart = start+"";
-				String strEnd = end + "";
-				
-				if(strStart.compareTo(time) < 0 && strEnd.compareTo(time) > 0){
-					erList.add(e);
-				}
-				model.addAttribute("erList", erList);
+		String page=request.getParameter("page");
+		if(page!=null && !"".equals(page)){
+			try{
+				pageNo=Integer.parseInt(page);
+			}catch(NumberFormatException e){
+				pageNo=1;
 			}
-		}else {
-			model.addAttribute("erList", "0");
+			if(pageNo>maxPage){
+				pageNo=maxPage;
+			}else if(pageNo<1){
+				pageNo=1;
+			}
 		}
+		
+		int currentPage=(pageNo-1)*pageSize;
+		//Map<String, Object> map=new HashMap<String, Object>();
+		map.put("pageSize", pageSize);
+		map.put("currentPage", currentPage);
+		//分页查询
+		List<EngageResume> erList = ers.findAllByConditionTow(map);
+		model.addAttribute("erList", erList);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("sumNumber", sumNumber);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("pageNo", pageNo);
 		
 		return "forward:/engage_resume_Valid_list.jsp";
 	}
@@ -473,7 +454,6 @@ public class EngageResumeController {
 		
 		int maxPage =0;
 		int sumNumber =ers.findCntByCondition(map);//总个数
-		System.out.println(sumNumber+"个");
 		int pageSize =1;
 		int pageNo =1;
 		//最大页数
@@ -499,7 +479,6 @@ public class EngageResumeController {
 		map.put("currentPage", currentPage);
 		//分页查询
 		List<EngageResume> erList = ers.findAllByConditionTow(map);
-		System.out.println(erList.size());
 		model.addAttribute("erList", erList);
 		model.addAttribute("maxPage", maxPage);
 		model.addAttribute("sumNumber", sumNumber);
@@ -530,9 +509,9 @@ public class EngageResumeController {
 	public List<String> saveInterview(EngageInterview ei){
 		
 		EngageResume er = ers.findEngageResumeById(ei.getResumeId());
-		int amount = er.getTestAmount();
+		int amount = er.getAmount();
 		amount += 1;
-		er.setTestAmount(amount);
+		er.setAmount(amount);
 		er.setInterviewStatus(2);
 		ers.updateEngageResume(er);
 		
@@ -695,53 +674,64 @@ public class EngageResumeController {
 	
 	
 	
-	
-	
-	
-	
-/*	
-	@RequestMapping("/{hiddenMajorKindName}/{humanMajorName}/{keyWord}/{startdate}/{enddate}/queryChooseSplit.do")
-	public String queryChooseSplit(@PathVariable("hiddenMajorKindName") String majorKindName,
-			@PathVariable("humanMajorName") String majorName,
-			@PathVariable("keyWord") String keyWord,
-			@PathVariable("startdate") Timestamp sd,
-			@PathVariable("enddate") Timestamp ed,
-			Model model,
-			HttpServletRequest request){
+	//录用管理
+	@RequestMapping("/resumeChooseToList.do")
+	public String resumeChooseToList(Model model,HttpServletRequest request){
 		
-		Timestamp start = null;
-		Timestamp end = null;
+		short is = 3;
+		int maxPage =0;
+		int sumNumber =eis.findCntByIS(is);//总个数
+		int pageSize =1;
+		int pageNo =1;
+		//最大页数
+		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
 		
-		String strsd = sd+"";
-		String stred = ed+"";
-		
-		if(strsd.compareTo(stred) > 0){
-			start = ed;
-			end = sd;
-		}else{
-			start = sd;
-			end = ed;
+		String page=request.getParameter("page");
+		if(page!=null && !"".equals(page)){
+			try{
+				pageNo=Integer.parseInt(page);
+			}catch(NumberFormatException e){
+				pageNo=1;
+			}
+			if(pageNo>maxPage){
+				pageNo=maxPage;
+			}else if(pageNo<1){
+				pageNo=1;
+			}
 		}
 		
-		System.out.println(majorKindName);
-		System.out.println(majorName);
-		System.out.println(keyWord);
-		System.out.println(start);
-		System.out.println(end);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("majorKindName", majorKindName);
-		map.put("majorName", majorName);
-		map.put("keyWord", keyWord);
-		map.put("start", start);
-		map.put("end", end);
+		int currentPage=(pageNo-1)*pageSize;
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("pageSize", pageSize);
+		map.put("currentPage", currentPage);
+		map.put("is", is);
+		//分页查询
+		List<EngageInterview> list = eis.finSplit(map);
 		
-		List<EngageResume> list = ers.findAllByCondition(map);
-		for (EngageResume engageResume : list) {
-			System.out.println(engageResume);
-		}
+		model.addAttribute("list", list);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("sumNumber", sumNumber);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("pageNo", pageNo);
 		
-		return null;
+		
+		return "forward:/resume_list.jsp";
 	}
-	*/
+	
+	
+	@RequestMapping("/{einId}/{resumeId}/queryResumeById.do")
+	public String queryResumeById(@PathVariable("einId") short einId,
+								@PathVariable("resumeId") short resumeId,
+								Model model){
+		
+		EngageInterview ei = eis.findEngageInterviewById(einId);
+		EngageResume er = ers.findEngageResumeById(resumeId);
+		
+		model.addAttribute("ei", ei);
+		model.addAttribute("er", er);
+		
+		return "forward:/resume_register.jsp";
+	}
+	
 	
 }

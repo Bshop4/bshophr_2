@@ -22,9 +22,9 @@ public interface EngageResumeService {
 	
 	public List<EngageResume> findEngageResumeAll();
 
-	public List<EngageResume> findAllByCondition(String humanMajorKindName,String humanMajorName,String keyWord);
+	public List<EngageResume> findAllByCondition(Map<String, Object> map);
 
-	public List<EngageResume> findAllByCondition( String humanMajorKindName,String humanMajorName,String keyWord,Timestamp sd,Timestamp ed);
+	//public List<EngageResume> findAllByCondition( String humanMajorKindName,String humanMajorName,String keyWord,Timestamp sd,Timestamp ed);
 	
 	//public List<EngageResume> findAllByCondition(Map<String, Object> map);
 	
@@ -38,5 +38,5 @@ public interface EngageResumeService {
 	
 	
 	public int findCntByCondition(Map<String,Object> map);
-	
+	public int findAllByConditionCnt(Map<String,Object> map);
 }

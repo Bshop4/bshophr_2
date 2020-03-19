@@ -287,8 +287,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						面试次数
 					</td>
 					<td class="TD_STYLE2">
-					<input type="hidden" value="${re.testAmount+1 }" id="interviewamount" name="interviewamount"/>
-						<input type="text"   value="第${re.testAmount+1 }次面试" class="INPUT_STYLE2" readonly="readonly"/>
+					<input type="hidden" value="${re.amount+1 }" id="interviewamount" name="interviewamount"/>
+						<input type="text"   value="第${re.amount+1 }次面试" class="INPUT_STYLE2" readonly="readonly"/>
 					</td>
 					<td class="TD_STYLE1">
 						形象评价

@@ -36,41 +36,34 @@ or human_idcard like '%18888888888%'
 	</select>
 	
 	
-	<!-- 
-			select * from (SELECT * from engage_resume 
-	WHERE human_major_kind_name='生产部' 
-	and human_major_name='主任' and (unix_timestamp(regist_time) between unix_timestamp('2020-02-02 00:00:00') and unix_timestamp('2020-12-10 00:00:00') )) as s
-	where
-	human_mobilephone like '%18888888888%'
-	or human_name like '%18888888888%'
-	or human_idcard like '%18888888888%'
-	 -->
-	 <!-- <select id="selectAllByCondition" parameterType="hashmap" resultMap="er">
-		select * from (SELECT * from engage_resume 
-		WHERE human_major_kind_name=#{majorKindName} 
-		and human_major_name=#{majorName} and (unix_timestamp(regist_time) between unix_timestamp('#{start}') and unix_timestamp('#{end}') )) as s
-		where
-		 <bind name="phone" value="'%' + keyWord + '%'"/>
-		 human_mobilephone like #{phone}
-		 <bind name="name" value="'%' + keyWord + '%'"/>
-		 or human_name like #{name}
-		 <bind name="idcard" value="'%' + keyWord + '%'"/>
-		 or human_idcard like #{idcard}
-	</select> -->
-	
-	 <select id="selectAllByCondition" parameterType="string" resultMap="er">
-		select * from (select * from ENGAGE_RESUME where
-		 human_major_kind_name=#{humanMajorKindName}
-		 and human_major_name=#{humanMajorName} 
-		 ) as er
+	 <select id="selectAllByCondition" parameterType="hashmap" resultMap="er">
+		select * from (select * from (select * from ENGAGE_RESUME where
+		 human_major_kind_name=#{majorKindName}
+		 and human_major_name=#{majorName} 
+		 and (unix_timestamp(regist_time) between unix_timestamp(#{start}) and unix_timestamp(#{end}))) as er
 		 where
-		 <bind name="phone" value="'%' + keyWord + '%'"/>
-		 human_mobilephone like #{phone}
-		 <bind name="name" value="'%' + keyWord + '%'"/>
-		 or human_name like #{name}
-		 <bind name="idcard" value="'%' + keyWord + '%'"/>
-		 or human_idcard like #{idcard}
+		  human_mobilephone like '%${keyWord}%'
+		  or human_name like '%${keyWord}%'
+		  or human_idcard like '%${keyWord}%') as erss
+		  <if test="currentPage!=null and pageSize!=null">
+			limit #{currentPage},#{pageSize}
+		</if>
 	</select>
+	 <select id="selectAllByConditionCnt" parameterType="hashmap" resultType="_int">
+		select count(*) from (select * from (select * from ENGAGE_RESUME where
+		 human_major_kind_name=#{majorKindName}
+		 and human_major_name=#{majorName} 
+		 and (unix_timestamp(regist_time) between unix_timestamp(#{start}) and unix_timestamp(#{end}))) as er
+		 where
+		  human_mobilephone like '%${keyWord}%'
+		  or human_name like '%${keyWord}%'
+		  or human_idcard like '%${keyWord}%') as ers
+		  
+	</select>
+	
+	
+	
+	
 	
 	 <select id="selectAllByConditionTow" parameterType="hashmap" resultMap="er">
 		select * from (select * from (select * from ENGAGE_RESUME where
@@ -98,6 +91,9 @@ or human_idcard like '%18888888888%'
 		  or human_name like '%${keyWord}%'
 		  or human_idcard like '%${keyWord}%') as ers
 	</select>
+	
+	
+	
 	
 	
 	
@@ -131,7 +127,7 @@ or human_idcard like '%18888888888%'
             HUMAN_MAJOR_NAME, HUMAN_TELEPHONE, HUMAN_HOMEPHONE, HUMAN_MOBILEPHONE, HUMAN_EMAIL, HUMAN_HOBBY, HUMAN_SPECILITY, HUMAN_SEX, 
             HUMAN_RELIGION, HUMAN_PARTY, HUMAN_NATIONALITY, HUMAN_BIRTHDAY, HUMAN_AGE, HUMAN_EDUCATED_DEGREE, HUMAN_EDUCATED_YEARS, HUMAN_EDUCATED_MAJOR, 
             HUMAN_COLLEGE, HUMAN_IDCARD, HUMAN_BIRTHPLACE, DEMAND_SALARY_STANDARD, HUMAN_HISTORY_RECORDS, REMARK, RECOMANDATION, HUMAN_PICTURE, 
-            ATTACHMENT_NAME, CHECK_STATUS, REGISTER, REGIST_TIME, CHECKER, CHECK_TIME, INTERVIEW_STATUS, TEST_AMOUNT, 
+            ATTACHMENT_NAME, CHECK_STATUS, REGISTER, REGIST_TIME, CHECKER, CHECK_TIME, INTERVIEW_STATUS, AMOUNT,TEST_AMOUNT, 
             TEST_CHECKER, TEST_CHECK_TIME, PASS_REGISTER, PASS_REGIST_TIME, PASS_CHECKER, PASS_CHECK_TIME, PASS_CHECK_STATUS, PASS_CHECKCOMMENT, 
             PASS_PASSCOMMENT, HUMAN_RACE, TOTAL_POINTS
         ) VALUES (
@@ -173,6 +169,7 @@ or human_idcard like '%18888888888%'
             #{checker},
             #{checkTime},
             #{interviewStatus},
+            #{amount},
             #{testAmount},
             #{testChecker},
             #{testCheckTime},
@@ -312,6 +309,9 @@ or human_idcard like '%18888888888%'
             <if test="interviewStatus != null">
                 INTERVIEW_STATUS = #{interviewStatus},
             </if>
+            <if test="amount != null">
+                AMOUNT = #{amount},
+            </if>
             <if test="testAmount != null">
                 TEST_AMOUNT = #{testAmount},
             </if>
@@ -409,6 +409,7 @@ or human_idcard like '%18888888888%'
         <result column="CHECKER" property="checker" jdbcType="VARCHAR" />
         <result column="CHECK_TIME" property="checkTime" jdbcType="TIMESTAMP" />
         <result column="INTERVIEW_STATUS" property="interviewStatus" jdbcType="VARCHAR" />
+        <result column="AMOUNT" property="amount" jdbcType="VARCHAR" />
         <result column="TEST_AMOUNT" property="testAmount" jdbcType="VARCHAR" />
         <result column="TEST_CHECKER" property="testChecker" jdbcType="VARCHAR" />
         <result column="TEST_CHECK_TIME" property="testCheckTime" jdbcType="TIMESTAMP" />
