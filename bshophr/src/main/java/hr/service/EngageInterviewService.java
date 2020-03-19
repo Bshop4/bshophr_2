@@ -21,5 +21,8 @@ public interface EngageInterviewService {
 	
 	public int findCntByIS(short is);
 	public List<EngageInterview> finSplit(Map<String, Object> map);
+	
+	public int findCntByCS(short cs);
+	public List<EngageInterview> findSplitTwo(Map<String, Object> map);
 
 }

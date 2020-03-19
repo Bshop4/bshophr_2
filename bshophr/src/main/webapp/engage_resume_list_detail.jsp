@@ -26,8 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
  <body>
-		<form name="humanfileForm">
-			<input type="hidden" value="${obj.resId}" id="resId"/>
+		<form name="humanfileForm" action="zjlEngageResume/updateResume.do" method="post">
+			<input type="hidden" value="${obj.resId}" name="resId" id="resId"/>
 			<table width="100%">
 				<tr>
 					<td>
@@ -52,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE2">
 
-						<select name="humanmajorkindname" class="SELECT_STYLE1">
+						<select name="humanMajorKindName" class="SELECT_STYLE1">
 								<option>${obj.humanMajorKindName }</option>
 						</select>
 					</td>
@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						职位名称
 					</td>
 					<td class="TD_STYLE2" width="20%">
-						<select name="humanmajorname" class="SELECT_STYLE1">
+						<select name="humanMajorName" class="SELECT_STYLE1">
 							<option>${obj.humanMajorName }</option>
 						</select>
 					</td>
@@ -68,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						招聘类型
 					</td>
 					<td class="TD_STYLE2" colspan="2">
-						<select name="engagetype" class="SELECT_STYLE1">
+						<select name="engageType" class="SELECT_STYLE1">
 							<option value="${obj.engageType }">${obj.engageType }</option>
 						</select>
 					</td>
@@ -83,13 +83,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td class="TD_STYLE2">
 						<input type="text"
 							value="${obj.humanName }"
-							name="humanname" class="INPUT_STYLE2" readonly="readonly"/>
+							name="humanName" class="INPUT_STYLE2" readonly="readonly"/>
 					</td>
 					<td class="TD_STYLE1">
 						性别
 					</td>
 					<td class="TD_STYLE2">
-						<select name="humansex" class="SELECT_STYLE1">
+						<select name="humanSex" class="SELECT_STYLE1">
 							<option value="${obj.humanSex }">${obj.humanSex }</option>
 						</select>
 					</td>
@@ -97,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						EMAIL
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<input type="text" name="humanemail"
+						<input type="text" name="humanEmail"
 							value="${obj.humanEmail }" readonly="readonly"
 							class="INPUT_STYLE2">
 					</td>
@@ -107,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						电话
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humantelephone"
+						<input type="text" name="humanTelephone"
 							value="${obj.humanTelephone }" readonly="readonly"
 							class="INPUT_STYLE2">
 					</td>
@@ -115,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						家庭电话
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humanhomephone"
+						<input type="text" name="humanHomephone"
 							value="${obj.humanHomephone }" readonly="readonly"
 							class="INPUT_STYLE2">
 					</td>
@@ -123,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						手机
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<input type="text" name="humanmobilephone"
+						<input type="text" name="humanMobilephone"
 							value="${obj.humanMobilephone }" readonly="readonly"
 							class="INPUT_STYLE2">
 					</td>
@@ -133,7 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						住址
 					</td>
 					<td colspan="3" class="TD_STYLE2">
-						<input type="text" name="humanaddress"
+						<input type="text" name="humanAddress"
 							value="${obj.humanAddress }" readonly="readonly"
 							class="INPUT_STYLE2">
 					</td>
@@ -142,7 +142,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						邮编
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<input type="text" name="humanpostcode"
+						<input type="text" name="humanPostcode"
 							value="${obj.humanPostcode }" readonly="readonly"
 							class="INPUT_STYLE2">
 					</td>
@@ -153,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						国籍
 					</td>
 					<td class="TD_STYLE2">
-						<select name="humannationality" class="SELECT_STYLE1">
+						<select name="humanNationality" class="SELECT_STYLE1">
 							<option value="${obj.humanNationality }">${obj.humanNationality }</option>
 						</select>
 					</td>
@@ -161,7 +161,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						出生地
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humanbirthplace"
+						<input type="text" name="humanBirthplace"
 							value="${obj.humanBirthplace }" readonly="readonly"
 							class="INPUT_STYLE2">
 					</td>
@@ -169,7 +169,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						生日
 					</td>
 					<td width="13%" colspan="2" class="TD_STYLE2">
-						<input type="text" name="humanbirthday"
+						<input type="text" name="humanBirthday"
 							value="${obj.humanBirthday }" readonly="readonly"
 							class="INPUT_STYLE2" id="date_start">
 							
@@ -182,7 +182,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						民族
 					</td>
 					<td class="TD_STYLE2" width="14%">
-						<select name="humanrace" class="SELECT_STYLE1">
+						<select name="humanRace" class="SELECT_STYLE1">
 							<option value="${obj.humanRace }">${obj.humanRace }</option>
 						</select>
 					</td>
@@ -190,7 +190,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						宗教信仰
 					</td>
 					<td class="TD_STYLE2">
-						<select name="humanreligion" class="SELECT_STYLE1">
+						<select name="humanReligion" class="SELECT_STYLE1">
 							<option value="${obj.humanReligion }">${obj.humanReligion}</option>
 						</select>
 					</td>
@@ -198,7 +198,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						政治面貌
 					</td>
 					<td class="TD_STYLE2" colspan="2">
-						<select name="humanparty" class="SELECT_STYLE1">
+						<select name="humanParty" class="SELECT_STYLE1">
 							<option value="${obj.humanParty }">${obj.humanParty }</option>
 						</select>
 					</td>
@@ -210,7 +210,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						身份证号码
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humanidcard"
+						<input type="text" name="humanIdcard"
 							value="${obj.humanIdcard }" readonly="readonly"
 							class="INPUT_STYLE2">
 					</td>
@@ -218,7 +218,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						年龄
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humanage"
+						<input type="text" name="humanAge"
 							value="${obj.humanAge }" readonly="readonly"
 							class="INPUT_STYLE2">
 					</td>
@@ -226,7 +226,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						毕业院校
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humancollege"
+						<input type="text" name="humanCollege"
 							value="${obj.humanCollege }" readonly="readonly"
 							class="INPUT_STYLE2" />
 					</td>
@@ -235,7 +235,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						学历
 					</td>
 					<td class="TD_STYLE2">
-						<select name="humaneducateddegree "
+						<select name="humanEducatedDegree"
 							class="SELECT_STYLE1">
 							<option value="${obj.humanEducatedDegree }">${obj.humanEducatedDegree }</option>
 						</select>
@@ -247,7 +247,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						教育年限
 					</td>
 					<td class="TD_STYLE2">
-						<select name="humaneducatedyears"
+						<select name="humanEducatedYears"
 							class="SELECT_STYLE1">
 							<option value="${obj.humanEducatedYears }">${obj.humanEducatedYears }</option>
 						</select>
@@ -256,7 +256,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						学历专业
 					</td>
 					<td class="TD_STYLE2">
-						<select name="humaneducatedmajor"
+						<select name="humanEducatedMajor"
 							class="SELECT_STYLE1">
 							<option value="${obj.humanEducatedMajor }">${obj.humanEducatedMajor }
 					</td>
@@ -265,7 +265,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						薪酬要求
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="demandsalarystandard"
+						<input type="text" name="demandSalaryStandard"
 							value="${obj.demandSalaryStandard }" readonly="readonly"
 							class="INPUT_STYLE2" />
 					</td>
@@ -273,7 +273,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						注册时间
 					</td>
 					<td class="TD_STYLE2">
-						<input class="INPUT_STYLE2" value="${obj.registTime }" readonly="readonly" name="registtime">
+						<input class="INPUT_STYLE2" value="${obj.registTime }" readonly="readonly" name="registTime">
 					</td>
 
 				</tr>
@@ -283,7 +283,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						特长
 					</td>
 					<td class="TD_STYLE2">
-						<select name="humanspecility" class="SELECT_STYLE1">
+						<select name="humanSpecility" class="SELECT_STYLE1">
 							<option value="${obj.humanSpecility }">${obj.humanSpecility }</option>
 						</select>
 					</td>
@@ -291,7 +291,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						爱好
 					</td>
 					<td class="TD_STYLE2">
-						<select name="humanhobby" class="SELECT_STYLE1">
+						<select name="humanHobby" class="SELECT_STYLE1">
 							<option value="${obj.humanHobby }">${obj.humanHobby }</option>
 						</select>
 					</td>
@@ -308,7 +308,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						推荐时间
 					</td>
 					<td class="TD_STYLE2">
-					<input type="text" name="checktime"
+					<input type="text" name="checkTime"
 							  id="checkTime" readonly="readonly" value="${t }"
 							class="INPUT_STYLE2">
 						 
@@ -319,7 +319,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						个人履历
 					</td> 
 					<td colspan="7" class="TD_STYLE2">
-						<textarea name="humanhistoryrecords" rows="4" readonly="readonly"
+						<textarea name="humanHistoryRecords" rows="4" readonly="readonly"
 							class="TEXTAREA_STYLE1">${obj.humanHistoryRecords }
 						</textarea>
 					</td>
@@ -351,7 +351,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script>
 	
 	
-	$("#mysubmit").click(function(){
+	/* $("#mysubmit").click(function(){
 		var resId = $("#resId").val();
 		var recomandation = $("#recomandation").val();
 		var checkTime = $("#checkTime").val();
@@ -367,7 +367,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		});
 		
-	})
+	}) */
 	
 	
 </script>

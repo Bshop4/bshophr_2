@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-	<form id="recruitAction!saveEngageResume" name="fm" action="addResume" method="post">
+	<form name="fm" action="zjlEngageResume/saveEngageResume.do" method="post">
 			<table width="100%">
 				<tr>
 					<td>
@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*职位分类
 					</td>
 					<td class="TD_STYLE2">  
-					<select name="humanmajorkindname" class="SELECT_STYLE1" id="humanMajorKindName">
+					<select name="humanMajorKindName" class="SELECT_STYLE1" id="humanMajorKindName">
 						<option value="">&nbsp;</option>
 						<c:if test="${!empty emrList }">
 							<c:forEach items="${emrList }" var="i">
@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*职位名称
 					</td>
 					<td class="TD_STYLE2" width="20%"> 
-					<select name="humanmajorname" class="SELECT_STYLE1" id="humanMajorName">
+					<select name="humanMajorName" class="SELECT_STYLE1" id="humanMajorName">
 						<option value="">&nbsp;</option>
 					</select>
 					</td>
@@ -71,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*招聘类型
 					</td>
 					<td class="TD_STYLE2" colspan="2"> 
-					<select name="engagetype" class="SELECT_STYLE1" id="engageType">
+					<select name="engageType" class="SELECT_STYLE1" id="engageType">
 						<option value="">&nbsp;</option>
 					</select>
 					</td>
@@ -84,19 +84,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*姓名
 					</td>
 					<td class="TD_STYLE2">
-						 <input type="text"  name="humanname" id="name" class="INPUT_STYLE2"/>
+						 <input type="text"  name="humanName" id="name" class="INPUT_STYLE2"/>
 					</td>
 					<td class="TD_STYLE1">
 						*身份证号码
 					</td>
 					<td class="TD_STYLE1">
-						<input type="text" name="humanidcard"  id="cardid" class="INPUT_STYLE2">
+						<input type="text" name="humanIdcard"  id="cardid" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						*性别
 					</td>
 					<td class="TD_STYLE1"  colspan="2">
-						<select name="humansex" id="sex"  class="SELECT_STYLE1"><option value="男" id="man">男</option>
+						<select name="humanSex" id="sex"  class="SELECT_STYLE1"><option value="男" id="man">男</option>
 							<option value="女" id="woman">女</option></select>
 					</td>
 				</tr>
@@ -105,19 +105,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					电话
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humantelephone"  id="phone" class="INPUT_STYLE2">
+						<input type="text" name="humanTelephone"  id="phone" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						家庭电话
 					</td>
 					<td class="TD_STYLE2">
-					 <input type="text" name="humanhomephone" id="humanHomephone" class="INPUT_STYLE2">
+					 <input type="text" name="humanHomephone" id="humanHomephone" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						*手机
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<input type="text" name="humanmobilephone" id="humanMobilephone" class="INPUT_STYLE2">
+						<input type="text" name="humanMobilephone" id="humanMobilephone" class="INPUT_STYLE2">
 					</td>
 				</tr>
 				<tr>
@@ -125,14 +125,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*住址
 					</td>
 					<td colspan="3" class="TD_STYLE2">
-						<input type="text" name="humanaddress" id="address" class="INPUT_STYLE2">
+						<input type="text" name="humanAddress" id="address" class="INPUT_STYLE2">
 					</td>
 					 
 					<td class="TD_STYLE1">
 						邮编
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<input type="text" name="humanpostcode" id="postal" class="INPUT_STYLE2">
+						<input type="text" name="humanPostcode" id="postal" class="INPUT_STYLE2">
 					</td>
 				</tr>
 				 
@@ -141,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*国籍
 					</td>
 					<td class="TD_STYLE2">
-					 <select name="humannationality"  id="humannationality"  class="SELECT_STYLE1">
+					 <select name="humanNationality"  id="humannationality"  class="SELECT_STYLE1">
 					 	<option value="">&nbsp;</option>
 						<c:if test="${!empty guoList }">
 							<c:forEach items="${guoList }" var="i">
@@ -154,13 +154,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						出生地
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humanbirthplace" class="INPUT_STYLE2" id="humanbirthplace">
+						<input type="text" name="humanBirthplace" class="INPUT_STYLE2" id="humanbirthplace">
 					</td>
 					<td class="TD_STYLE1">
 						*生日
 					</td>
 					<td width="13%" colspan="2" class="TD_STYLE2">
-						<input type="text" name="humanbirthday" id="birthday" class="INPUT_STYLE2">
+						<input type="text" name="humanBirthday" id="birthday" class="INPUT_STYLE2">
 					</td>
 					
 				</tr>
@@ -169,7 +169,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*民族
 					</td>
 					<td class="TD_STYLE2" width="14%">
-				 	 <select name="humanrace" id="humanrace"  class="SELECT_STYLE1">
+				 	 <select name="humanRace" id="humanrace"  class="SELECT_STYLE1">
 							<option value="">&nbsp;</option>
 							<c:if test="${!empty minList }">
 								<c:forEach items="${minList }" var="i">
@@ -182,7 +182,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*宗教信仰
 					</td>
 					<td class="TD_STYLE2">
-					   <select name="humanreligion"  id="humanreligion"  class="SELECT_STYLE1"> 
+					   <select name="humanReligion"  id="humanreligion"  class="SELECT_STYLE1"> 
 							<option value="">&nbsp;</option>
 							<c:if test="${!empty zongList }">
 								<c:forEach items="${zongList }" var="i">
@@ -195,7 +195,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*政治面貌
 					</td>
 					<td class="TD_STYLE2" colspan="2">
-					   <select name="humanparty"  id="humanparty" class="SELECT_STYLE1">
+					   <select name="humanParty"  id="humanparty" class="SELECT_STYLE1">
 							<option value="">&nbsp;</option>
 							<c:if test="${!empty zhengList }">
 								<c:forEach items="${zhengList }" var="i">
@@ -210,26 +210,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*EMAIL
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humanemail" id="email" class="INPUT_STYLE2">
+						<input type="text" name="humanEmail" id="email" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						*年龄
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humanage" id="humanage" class="INPUT_STYLE2">
+						<input type="text" name="humanAge" id="humanage" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						*毕业院校
 					</td>
 					<td class="TD_STYLE2">
-						 <input type="text" name="humancollege" id="humancollege" class="INPUT_STYLE2"/>
+						 <input type="text" name="humanCollege" id="humancollege" class="INPUT_STYLE2"/>
 					</td>
 					
 					<td class="TD_STYLE1">
 						*学历
 					</td>
 					<td class="TD_STYLE2">
-					  <select name="humaneducateddegree" id="humaneducateddegree"  class="SELECT_STYLE1">
+					  <select name="humanEducatedDegree" id="humaneducateddegree"  class="SELECT_STYLE1">
 							<option value="">&nbsp;</option>
 							<c:if test="${!empty xueList }">
 								<c:forEach items="${xueList }" var="i">
@@ -245,7 +245,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*教育年限
 					</td>
 					<td class="TD_STYLE2">
-					   <select name="humaneducatedyears" id="humaneducatedyears"  class="SELECT_STYLE1">
+					   <select name="humanEducatedYears" id="humaneducatedyears"  class="SELECT_STYLE1">
 							<option value="">&nbsp;</option>
 							<c:if test="${!empty jiaoList }">
 								<c:forEach items="${jiaoList }" var="i">
@@ -258,7 +258,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*学历专业
 					</td>
 					<td class="TD_STYLE2">
-					   <select name="humaneducatedmajor" id="humaneducatedmajor"   class="SELECT_STYLE1">
+					   <select name="humanEducatedMajor" id="humaneducatedmajor"   class="SELECT_STYLE1">
 							<option value="">&nbsp;</option>
 							<c:if test="${!empty zhuanList }">
 								<c:forEach items="${zhuanList }" var="i">
@@ -272,13 +272,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*薪酬要求
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="demandsalarystandard" id="demandSalaryStandard" class="INPUT_STYLE2" />
+						<input type="text" name="demandSalaryStandard" id="demandSalaryStandard" class="INPUT_STYLE2" />
 					</td>
 					<td class="TD_STYLE1">
 						注册时间
 					</td>
 					<td class="TD_STYLE2">
-						 <input type="text" name="registtime"
+						 <input type="text" name="registTime"
 							  id="nowTime" readonly="readonly" value="${t}"
 							class="INPUT_STYLE2">
 					</td>
@@ -290,7 +290,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*特长
 					</td>
 					<td class="TD_STYLE2">
-					   <select name="humanspecility" id="humanspecility"   class="SELECT_STYLE1">
+					   <select name="humanSpecility" id="humanspecility"   class="SELECT_STYLE1">
 							<option value="">&nbsp;</option>
 							<c:if test="${!empty teList }">
 								<c:forEach items="${teList }" var="i">
@@ -304,7 +304,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*爱好
 					</td>
 					<td class="TD_STYLE2">
-				     <select name="humanhobby" id="humanhobby"   class="SELECT_STYLE1">
+				     <select name="humanHobby" id="humanhobby"   class="SELECT_STYLE1">
 							<option value="">&nbsp;</option>
 							<c:if test="${!empty aiList }">
 								<c:forEach items="${aiList }" var="i">
@@ -332,7 +332,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						*个人履历
 					</td>
 					<td colspan="7" class="TD_STYLE2">
-						<textarea name="humanhistoryrecords" id="humanhistoryrecords" rows="4" class="TEXTAREA_STYLE1"></textarea>
+						<textarea name="humanHistoryRecords" id="humanhistoryrecords" rows="4" class="TEXTAREA_STYLE1"></textarea>
 					</td>
 				</tr>
 				 
@@ -504,7 +504,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		
 		
-		$.ajax({
+		/* $.ajax({
 			
 			type : "post",
 			url : "zjlEngageResume/saveEngageResume.do",
@@ -518,7 +518,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			success : function(re){
 				alert(re)			
 			}
-		});
+		}); */
+		
+		$("form[name='fm']").submit();
 	});
 	 
 	 

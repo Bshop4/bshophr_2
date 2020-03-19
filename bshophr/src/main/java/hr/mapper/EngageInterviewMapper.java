@@ -24,5 +24,9 @@ public interface EngageInterviewMapper {
 
 	public int selectCntByIS(short is);
 	public List<EngageInterview> selectSplit(Map<String, Object> map);
+	
+	public int selectCntByCS(short cs);
+	public List<EngageInterview> selectSplitTwo(Map<String, Object> map);
+	
 
 }

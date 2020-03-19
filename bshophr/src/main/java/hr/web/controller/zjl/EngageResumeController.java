@@ -14,8 +14,10 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.pojo.ConfigFileFirstKind;
@@ -177,9 +179,9 @@ public class EngageResumeController {
 	
 	
 	@RequestMapping("/saveEngageResume.do")
-	@ResponseBody
-	public List<String> saveEngageResume(EngageResume er){
-
+	//@ResponseBody
+	public String saveEngageResume(EngageResume er,Model model){
+		System.out.println(er);
 		String engageType = er.getEngageType();
 		String majorKindName = er.getHumanMajorKindName();
 		String majorName = er.getHumanMajorName();
@@ -193,12 +195,11 @@ public class EngageResumeController {
 		er.setAmount(0);
 		
 		boolean f = ers.saveEngageResume(er);
-		List<String> list = new ArrayList<String>();
 		if(f){
-			list.add("简历提交成功！");
+			model.addAttribute("msg", "简历登记成功！");
 		}
 		
-		return list;
+		return "forward:/engage_resume_success.jsp";
 	}
 	
 	
@@ -304,17 +305,15 @@ public class EngageResumeController {
 	
 	
 	@RequestMapping("/updateResume.do")
-	@ResponseBody
-	public List<String> updateResume(EngageResume er){
-		
+	//@ResponseBody
+	public String updateResume(EngageResume er,Model model){
 		er.setCheckStatus(1);
 		er.setInterviewStatus(1);
 		boolean f = ers.updateEngageResume(er);
-		List<String> list = new ArrayList<String>();
 		if(f){
-			list.add("推荐成功！");
+			model.addAttribute("msg", "推荐简历成功！");
 		}
-		return list;
+		return "forward:/engage_resume_list_detail_success.jsp";
 	}
 	
 	
@@ -730,8 +729,215 @@ public class EngageResumeController {
 		model.addAttribute("ei", ei);
 		model.addAttribute("er", er);
 		
+		model.addAttribute("passChecker", "a");
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		model.addAttribute("passCheckTime", t);
+		
 		return "forward:/resume_register.jsp";
 	}
+	
+	
+	@RequestMapping("/resumeRecommend.do")
+	public String resumeRecommend(@RequestParam("resId") short resId,@RequestParam("einId") short einId,
+			@RequestParam("passChecker") String passChecker,@RequestParam("passCheckTime") Timestamp passCheckTime){
+		
+		EngageResume er = ers.findEngageResumeById(resId);
+		er.setPassChecker(passChecker);
+		er.setPassCheckTime(passCheckTime);
+		er.setPassCheckStatus(0);
+		boolean f = ers.updateEngageResume(er);
+		
+		EngageInterview ei = eis.findEngageInterviewById(einId);
+		ei.setCheckComment("");
+		short s = 0;
+		ei.setCheckStatus(s);
+		
+		boolean f1 = eis.updateEngageInterview(ei);
+		
+		if(f == true && f1 == true){
+			return "forward:/message.jsp";
+		}
+		return null;
+	}
+	
+	
+	
+	
+	@RequestMapping("/resumeCheckToList.do")
+	public String resumeCheckToList(Model model,HttpServletRequest request){
+		
+		
+		short cs = 0;
+		int maxPage =0;
+		int sumNumber =eis.findCntByCS(cs);//总个数
+		int pageSize =1;
+		int pageNo =1;
+		//最大页数
+		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
+		
+		String page=request.getParameter("page");
+		if(page!=null && !"".equals(page)){
+			try{
+				pageNo=Integer.parseInt(page);
+			}catch(NumberFormatException e){
+				pageNo=1;
+			}
+			if(pageNo>maxPage){
+				pageNo=maxPage;
+			}else if(pageNo<1){
+				pageNo=1;
+			}
+		}
+		
+		int currentPage=(pageNo-1)*pageSize;
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("pageSize", pageSize);
+		map.put("currentPage", currentPage);
+		map.put("cs", cs);
+		//分页查询
+		List<EngageInterview> list = eis.findSplitTwo(map);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("sumNumber", sumNumber);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("pageNo", pageNo);
+		
+		return "forward:/resume_check_list.jsp";
+	}
+	
+	
+	@RequestMapping("/{einId}/{resumeId}/resumeCheck.do")
+	public String resumeCheck(Model model,
+							@PathVariable("einId") short einId,
+							@PathVariable("resumeId") short resumeId){
+		
+		EngageInterview ei = eis.findEngageInterviewById(einId);
+		EngageResume er = ers.findEngageResumeById(resumeId);
+		
+		model.addAttribute("ei", ei);
+		model.addAttribute("er", er);
+		
+		model.addAttribute("passChecker", "a");
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		model.addAttribute("passCheckTime", t);
+		
+		
+		return "forward:/resume_check.jsp";
+	}
+	
+	
+	@RequestMapping("/resumeRecommendCheck.do")
+	public String resumeRecommendCheck(@RequestParam("pass") String pass,
+										@RequestParam("resId") short resId,
+										@RequestParam("einId") short einId,
+										@RequestParam("passChecker") String passChecker,
+										@RequestParam("passCheckTime") Timestamp passCheckTime,
+										@RequestParam("passpasscomment") String passpasscomment,
+										Model model){
+		if("通过".equals(pass)){
+			EngageResume er = ers.findEngageResumeById(resId);
+			er.setPassChecker(passChecker);
+			er.setPassCheckTime(passCheckTime);
+			er.setPassPasscomment(passpasscomment);
+			er.setPassCheckStatus(1);//
+			boolean f1 = ers.updateEngageResume(er);
+			
+			EngageInterview ei = eis.findEngageInterviewById(einId);
+			short s = 1;
+			ei.setCheckStatus(s);
+			boolean f2 = eis.updateEngageInterview(ei);
+			if(f1 == true && f2 == true){
+				model.addAttribute("msg", "审核通过成功！");
+				return "forward:/resume_check_message.jsp";
+			}
+		}
+		
+		if("不通过".equals(pass)){
+			EngageResume er = ers.findEngageResumeById(resId);
+			er.setPassChecker(passChecker);
+			er.setPassCheckTime(passCheckTime);
+			er.setPassPasscomment(passpasscomment);
+			er.setPassCheckStatus(2);//
+			boolean f1 = ers.updateEngageResume(er);
+			
+			EngageInterview ei = eis.findEngageInterviewById(einId);
+			short s = 2;
+			ei.setCheckStatus(s);
+			boolean f2 = eis.updateEngageInterview(ei);
+			if(f1 == true && f2 == true){
+				model.addAttribute("msg", "审核不通过成功！");
+				return "forward:/resume_check_message.jsp";
+			}
+		}
+		
+		
+		return null;
+	}
+	
+	
+	
+	@RequestMapping("/resumequeryToList.do")
+	public String resumequeryToList(Model model,HttpServletRequest request){
+		
+		
+		short cs = 1;
+		int maxPage =0;
+		int sumNumber =eis.findCntByCS(cs);//总个数
+		int pageSize =1;
+		int pageNo =1;
+		//最大页数
+		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
+		
+		String page=request.getParameter("page");
+		if(page!=null && !"".equals(page)){
+			try{
+				pageNo=Integer.parseInt(page);
+			}catch(NumberFormatException e){
+				pageNo=1;
+			}
+			if(pageNo>maxPage){
+				pageNo=maxPage;
+			}else if(pageNo<1){
+				pageNo=1;
+			}
+		}
+		
+		int currentPage=(pageNo-1)*pageSize;
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("pageSize", pageSize);
+		map.put("currentPage", currentPage);
+		map.put("cs", cs);
+		//分页查询
+		List<EngageInterview> list = eis.findSplitTwo(map);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("sumNumber", sumNumber);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("pageNo", pageNo);
+		
+		
+		return "forward:/resume_query_list.jsp";
+	}
+	
+	
+	
+	@RequestMapping("/{einId}/{resumeId}/resumeQuery.do")
+	public String resumeQuery(Model model,
+			@PathVariable("einId") short einId,
+			@PathVariable("resumeId") short resumeId){
+
+		EngageInterview ei = eis.findEngageInterviewById(einId);
+		EngageResume er = ers.findEngageResumeById(resumeId);
+		
+		model.addAttribute("ei", ei);
+		model.addAttribute("er", er);
+		
+		
+		return "forward:/resume_query.jsp";
+	}
+	
 	
 	
 }
