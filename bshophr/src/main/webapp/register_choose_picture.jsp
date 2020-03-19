@@ -25,7 +25,7 @@
 </head>
 <body>
 	<form method="post" action="humanfile.do" enctype="multipart/form-data" id="form">
-		<input type="hidden" value="${hufId}" id="djtZhujian">
+		<input type="hidden" name="djtZhujian" value="${param.hufId}" id="djtZhujian">
 		<table width="100%">
 			<tr>
 				<td colspan="2"><font color="#0000CC">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案登记</font></td>
@@ -49,6 +49,7 @@
 </body>
 	<script type="text/javascript">
 		$("#djtUpload").click(function(){
+			console.log($("#djtZhujian").val());
 			var humanPhoto = document.getElementById("djtFile").files[0];
 			if(typeof (humanPhoto) == "undefined" || humanPhoto.size <= 0){
             alert("请选择图片");
@@ -63,7 +64,10 @@
             processData: false,
             contentType: false,
             success:function(result){
-            
+            console.log(result);
+           	 	if(result==true){
+            		alert("上传成功");
+           	 	}
             } 
         });
 	})

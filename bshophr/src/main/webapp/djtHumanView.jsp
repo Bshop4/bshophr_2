@@ -70,6 +70,7 @@
 					</select></td>
 				<td rowspan="5">&nbsp;</td>
 			</tr>
+			<img  />
 			<tr>
 				<td class="TD_STYLE1">职位分类</td>
 				<td class="TD_STYLE2"><select name="item.humanMajorKindName"
