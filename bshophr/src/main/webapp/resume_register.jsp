@@ -50,22 +50,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td width="14%" class="TD_STYLE2"> 
 						<input type="hidden" name="humanMajorKindId" value="02"/>
-					   <input type="text" name="humanmajorkindname"
-						   value="${vi.resumeid.humanmajorkindname }" readonly="readonly" class="INPUT_STYLE2">
+					   <input type="text" name="humanMajorKindName"
+						   value="${er.humanMajorKindName }" readonly="readonly" class="INPUT_STYLE2">
 					
 					</td>
 					<td width="11%" class="TD_STYLE1">
 						职位名称
 					</td>
 					<td width="14%" class="TD_STYLE2">
-					<input type="hidden" name="humanMajorId" value=""/>
-					 <input type="text" name="humanmajorname" value="${vi.resumeid.humanmajorname }" readonly="readonly" class="INPUT_STYLE2">
+					 <input type="text" name="humanMajorName" value="${er.humanMajorName }" readonly="readonly" class="INPUT_STYLE2">
 				    </td>
 					<td width="11%" class="TD_STYLE1">
 						招聘类型
 					</td>
 					<td class="TD_STYLE2" >
-						<input type="text" name="engagetype" value="${vi.resumeid.engagetype }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="engageType" value="${er.engageType }" readonly="readonly" class="INPUT_STYLE2">
 					
 					</td>
 					
@@ -79,20 +78,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						姓名
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humanname" value="${vi.resumeid.humanname }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanName" value="${er.humanName }" readonly="readonly" class="INPUT_STYLE2">
 						
 					</td>
 					<td class="TD_STYLE1">
 						性别
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humansex" value="${vi.resumeid.humansex }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanSex" value="${er.humanSex }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						EMAIL
 					</td>
 					<td   class="TD_STYLE2">
-						<input type="text" name="humanemail" value="${vi.resumeid.humanemail }"  readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanEmail" value="${er.humanEmail }"  readonly="readonly" class="INPUT_STYLE2">
 					</td>
 				</tr>
 
@@ -101,19 +100,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						电话号码
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humantelephone" value="${vi.resumeid.humantelephone }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanTelephone" value="${er.humanTelephone }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						家庭电话
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humanhomephone" value="${vi.resumeid.humanhomephone }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanHomephone" value="${er.humanHomephone }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1" >
 						手机
 					</td>
 					<td  class="TD_STYLE2" >
-						<input type="text" name="humanmobilephone" value="${vi.resumeid.humanmobilephone }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanMobilephone" value="${er.humanMobilephone }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					
 				</tr>
@@ -122,13 +121,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						住址
 					</td>
 					<td colspan="3" class="TD_STYLE2">
-						<input type="text" name="humanaddress" value="${vi.resumeid.humanaddress }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanAddress" value="${er.humanAddress }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						邮编
 					</td>
 					<td   class="TD_STYLE2">
-						<input type="text" name="humanpostcode" value="${vi.resumeid.humanpostcode }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanPostcode" value="${er.humanPostcode }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 				</tr>
 
@@ -137,19 +136,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						国籍
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humannationality" value="${vi.resumeid.humannationality }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanNationality" value="${er.humanNationality }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						出生地
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humanbirthplace" value="${vi.resumeid.humanbirthplace }"  readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanBirthplace" value="${er.humanBirthplace }"  readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						生日
 					</td>
 					<td class="TD_STYLE2"  > 
-						<input type="text" name="humanbirthday" value="${vi.resumeid.humanbirthday }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanBirthday" value="${er.humanBirthday }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 				</tr>
 				
@@ -158,19 +157,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						民族
 					</td>
 					<td class="TD_STYLE2" width="14%">
-						<input type="text" name="humanrace" value="${vi.resumeid.humanrace }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanRace" value="${er.humanRace }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						宗教信仰
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humanreligion" value="${vi.resumeid.humanreligion }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanReligion" value="${er.humanReligion }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						政治面貌
 					</td>
 					<td class="TD_STYLE2" >
-						<input type="text" name="humanparty" value="${vi.resumeid.humanparty }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanParty" value="${er.humanParty }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 				</tr>
 				<tr>
@@ -179,25 +178,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						身份证号码
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humanidcard" value="${vi.resumeid.humanidcard }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanIdcard" value="${er.humanIdcard }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						年龄
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humanage" value="${vi.resumeid.humanage }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanAge" value="${er.humanAge }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						毕业学校
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humancollege" value="${vi.resumeid.humancollege }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanCollege" value="${er.humanCollege }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1" width="10%">
 						学历
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humaneducateddegree" value="${vi.resumeid.humaneducateddegree }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanEducatedDegree" value="${er.humanEducatedDegree }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 				</tr>
 				<tr>
@@ -211,19 +210,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						学历专业
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humaneducatedmajor" value="${vi.resumeid.humaneducatedmajor }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanEducatedYears" value="${er.humanEducatedYears }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						薪酬要求
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="demandsalarystandard" value="${vi.resumeid.demandsalarystandard }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="demandSalaryStandard" value="${er.demandSalaryStandard }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						注册时间
 					</td>
 					<td class="TD_STYLE2"> 
-						<input type="text" name="registtime" value="${vi.resumeid.registtime }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="registTime" value="${er.registTime }" readonly="readonly" class="INPUT_STYLE2">
 						
 					</td>
 				</tr>
@@ -232,25 +231,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						特长
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humanspecility" value="${vi.resumeid.humanspecility }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanSpecility" value="${er.humanSpecility }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						爱好
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="humanhobby" value="${vi.resumeid.humanhobby }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="humanHobby" value="${er.humanHobby }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1"><span style="font-size: 10.5pt; font-family: 宋体;"></span> 
 						推荐人
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="checker" value="${vi.resumeid.checker }" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="checker" value="${er.checker }" readonly="readonly" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1"><span style="font-size: 10.5pt; font-family: 宋体;"></span> 
 						推荐时间
 					</td>
 					<td class="TD_STYLE2"> 
-						<input type="text" name="checktime" value="${vi.resumeid.checktime }" readonly="readonly" class="INPUT_STYLE2">	 
+						<input type="text" name="checktime" value="${ercheckTime }" readonly="readonly" class="INPUT_STYLE2">	 
 					</td>
 				</tr>
 			<tr>
@@ -258,8 +257,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						个人履历
 					</td>
 					<td colspan="7" class="TD_STYLE2">
-						<textarea name="humanhistoryrecords" rows="4"  
-						class="TEXTAREA_STYLE1" readonly="readonly"> ${vi.resumeid.humanhistoryrecords }
+						<textarea name="humanHistoryRecords" rows="4"  
+						class="TEXTAREA_STYLE1" readonly="readonly"> ${er.humanHistoryRecords }
 						</textarea>
 					</td>
 				</tr>
@@ -268,7 +267,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						备注
 					</td>
 					<td colspan="7" class="TD_STYLE2">
-						<textarea name="remark" rows="4"   class="TEXTAREA_STYLE1"  readonly="readonly"> ${vi.resumeid.remark }
+						<textarea name="remark" rows="4"   class="TEXTAREA_STYLE1"  readonly="readonly"> ${er.remark }
 						</textarea>
 					</td>
 				</tr>
@@ -278,7 +277,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						筛选推荐意见
 					</td>
 					<td class="TD_STYLE2" colspan="7">
-						<textarea name="recomandation" rows="4"   class="TEXTAREA_STYLE1" readonly="readonly">${vi.resumeid.recomandation }</textarea>
+						<textarea name="recomandation" rows="4"   class="TEXTAREA_STYLE1" readonly="readonly">${er.recomandation }</textarea>
 					</td>
 				</tr>
 				

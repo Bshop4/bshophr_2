@@ -125,9 +125,19 @@ public class EngageResume implements java.io.Serializable {
 	    /** interviewStatus */
 	    private Integer interviewStatus;
 
-	    /** testAmount */
-	    private Integer testAmount;
+	    /** amount */
+	    private Integer amount;
 
+	    public Integer getAmount() {
+			return amount;
+		}
+
+		public void setAmount(Integer amount) {
+			this.amount = amount;
+		}
+
+		/** testAmount */
+	    private Integer testAmount;
 	    /** testChecker */
 	    private String testChecker;
 
@@ -1100,12 +1110,14 @@ public class EngageResume implements java.io.Serializable {
 					+ ", recomandation=" + recomandation + ", humanPicture=" + humanPicture + ", attachmentName="
 					+ attachmentName + ", checkStatus=" + checkStatus + ", register=" + register + ", registTime="
 					+ registTime + ", checker=" + checker + ", checkTime=" + checkTime + ", interviewStatus="
-					+ interviewStatus + ", testAmount=" + testAmount + ", testChecker=" + testChecker
-					+ ", testCheckTime=" + testCheckTime + ", passRegister=" + passRegister + ", passRegistTime="
-					+ passRegistTime + ", passChecker=" + passChecker + ", passCheckTime=" + passCheckTime
-					+ ", passCheckStatus=" + passCheckStatus + ", passCheckcomment=" + passCheckcomment
+					+ interviewStatus + ", amount=" + amount + ", testAmount=" + testAmount + ", testChecker="
+					+ testChecker + ", testCheckTime=" + testCheckTime + ", passRegister=" + passRegister
+					+ ", passRegistTime=" + passRegistTime + ", passChecker=" + passChecker + ", passCheckTime="
+					+ passCheckTime + ", passCheckStatus=" + passCheckStatus + ", passCheckcomment=" + passCheckcomment
 					+ ", passPasscomment=" + passPasscomment + ", humanRace=" + humanRace + ", totalPoints="
 					+ totalPoints + "]";
 		}
+
+
    
 }

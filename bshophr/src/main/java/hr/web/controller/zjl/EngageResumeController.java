@@ -190,7 +190,7 @@ public class EngageResumeController {
 		er.setHumanMajorId(emr.getMajorId());
 		er.setCheckStatus(0);
 		er.setInterviewStatus(0);
-		er.setTestAmount(0);
+		er.setAmount(0);
 		
 		boolean f = ers.saveEngageResume(er);
 		List<String> list = new ArrayList<String>();
@@ -509,9 +509,9 @@ public class EngageResumeController {
 	public List<String> saveInterview(EngageInterview ei){
 		
 		EngageResume er = ers.findEngageResumeById(ei.getResumeId());
-		int amount = er.getTestAmount();
+		int amount = er.getAmount();
 		amount += 1;
-		er.setTestAmount(amount);
+		er.setAmount(amount);
 		er.setInterviewStatus(2);
 		ers.updateEngageResume(er);
 		
@@ -721,11 +721,16 @@ public class EngageResumeController {
 	
 	@RequestMapping("/{einId}/{resumeId}/queryResumeById.do")
 	public String queryResumeById(@PathVariable("einId") short einId,
-								@PathVariable("resumeId") short resumeId){
+								@PathVariable("resumeId") short resumeId,
+								Model model){
 		
+		EngageInterview ei = eis.findEngageInterviewById(einId);
+		EngageResume er = ers.findEngageResumeById(resumeId);
 		
+		model.addAttribute("ei", ei);
+		model.addAttribute("er", er);
 		
-		return null;
+		return "forward:/resume_register.jsp";
 	}
 	
 	
