@@ -31,7 +31,7 @@ public class SalarystandardController {
 	@Autowired
 	private ConfigPublicCharService cfservice = null;
 
-	// 从左边的薪酬标准登记进来到这里
+	// 从左边的薪酬标准登记进来到这里。
 	@RequestMapping("/ssregister.do")
 	public String tossregister(Map map) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");// 时间格式化
@@ -121,7 +121,7 @@ public class SalarystandardController {
 		return "forward:/salarystandard_register_success.jsp";// 转发到成功页面
 	}
 
-	// 薪酬标准复核登记
+	// 薪酬标准登记复核
 	@RequestMapping("/toqueryfh.do")
 	public String toqueryfh(Map map, @RequestParam String operate, HttpServletRequest request, Model model) {
 		switch (operate) {
@@ -169,15 +169,6 @@ public class SalarystandardController {
 		model.addAttribute("pageNo", pageNo);
 	}
 
-//	// 薪酬标准复核登记
-//	@RequestMapping("/toqueryfh.do")
-//	public String toqueryfh(Map map) {
-//		slist = ssservice.findSalaryStandardAll();// 查询
-//		map.put("sslist", slist);// 设值
-//		map.put("count", slist.size());// 设值
-//		return "forward:/salarystandard_check_list.jsp";// 跳转
-//	}
-
 	// 点击复核
 	@RequestMapping("/queryfh.do")
 	public String queryfh(Map map, String standardId, SalaryStandard cstandardId, SalaryStandard cstandardName,
@@ -204,7 +195,7 @@ public class SalarystandardController {
 		return "forward:/salarystandard_check.jsp";
 	}
 
-	// 复核通过
+	// 薪酬标准复核通过
 	@RequestMapping("/recheckout.do")
 	public String recheckout(@RequestParam("stid") String stid, @RequestParam("item.checker") String checker,
 			@RequestParam("sctime") String sctime, @RequestParam("sfgcomment") String scomment) {
@@ -225,35 +216,82 @@ public class SalarystandardController {
 		return "forward:/salarystandard_query_locate.jsp";// 跳转
 	}
 
-	// 查询（没有实现多字段匹配）
+	// 薪酬标准查询
+//	@RequestMapping("/queryBySalary.do")
+//	public String queryBySalary(@RequestParam("standardId") String sid, @RequestParam("textfield3") String keyword,
+//			Map map, @RequestParam("startTime") String startTime, @RequestParam("endTime") String endTime) {
+//		map.put("standardId", sid);
+//		map.put("startTime", startTime);
+//		map.put("endTime", endTime);
+//		map.put("keyword", keyword);
+//		List<SalaryStandard> sslist = ssservice.findSalaryStandardByCondition(map);
+//		map.put("sslist", sslist);
+//		map.put("count", sslist.size());
+//		return "forward:/salarystandard_query_list.jsp";
+//	}
+
+	// 薪酬标准查询
 	@RequestMapping("/queryBySalary.do")
-	public String queryBySalary(@RequestParam("item.standardId") String sid, @RequestParam("textfield3") String keyword,
-			Map map) {
-		System.out.println(sid);
-		System.out.println(keyword);
-		List<SalaryStandard> sslist = ssservice.findSalaryStandardByIdDim(Integer.parseInt(sid));// ID的模糊查询
-		map.put("sslist", sslist);
-		map.put("count", sslist.size());
-		System.out.println(sslist.size());
-		// 构建薪酬标准编号和关键字支持模糊查询
-		// 关键字查询条件将在薪酬标准名称、制定人、变更人和复核人字段进行匹配
-//		SalaryStandard ss = new SalaryStandard();
-//		ss.setStandardId(sid);
-//		ss.setStandardName(keyword);
-//		ss.setDesigner(keyword);
-//		ss.setChanger(keyword);
-//		ss.setChecker(keyword);
-//		List<SalaryStandard> list = ssservice.findSalaryStandardByCondition(ss);
-//		for (SalaryStandard s : list) {
-//			System.out.println(s.getStandardId());
-//			System.out.println(s.getStandardName());
-//			System.out.println(s.getDesigner());
-//			System.out.println(s.getRegistTime());
-//			System.out.println(s.getSalarySum());
-//		}
-//		map.put("sslist", list);
-//		map.put("count", list.size());
-//		System.out.println(list.size());
-		return "forward:/salarystandard_query_list.jsp";
+	public String queryBySalary(@RequestParam String operate, HttpServletRequest request, Model model) {
+		switch (operate) {
+		case "list":
+			selectPage2(request, model, ssservice);
+			return "forward:/salarystandard_query_list.jsp";
+		default:
+			break;
+		}
+		return "redirect:/queryBySalary.do?operate=list";// 重定向到原来的
+	}
+
+	private void selectPage2(HttpServletRequest request, Model model, SalaryStandardService service) {
+		Map<String, Object> map = null;
+		String sid = request.getParameter("standardId");
+		String keyword = request.getParameter("textfield3");
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
+		System.out.println(sid + "page:过来的");
+		int maxPage = 0;
+		int sumNumber = 0;// 总个数
+		int pageSize = 1;
+		int pageNo = 1;
+		if (sid != null) {
+			map = new HashMap<String, Object>();
+			map.put("standardId", sid);
+			map.put("startTime", startTime);
+			map.put("endTime", endTime);
+			map.put("keyword", keyword);
+			sumNumber = service.findSalaryStandardByCondition(map).size();// 总个数
+			request.getSession().setAttribute("map", map);
+			request.getSession().setAttribute("sumNumber", sumNumber);
+		} else {
+			map = (Map<String, Object>) request.getSession().getAttribute("map");
+			sumNumber = (int) request.getSession().getAttribute("sumNumber");
+		}
+		// 最大页数
+		System.out.println(sumNumber + "````");
+		maxPage = sumNumber % pageSize != 0 ? sumNumber / pageSize + 1 : sumNumber / pageSize;
+		System.out.println("maxPage:" + maxPage);
+		String page = request.getParameter("page");
+		if (page != null && !"".equals(page)) {
+			try {
+				pageNo = Integer.parseInt(page);
+			} catch (NumberFormatException e) {
+				pageNo = 1;
+			}
+			if (pageNo >= maxPage) {
+				pageNo = maxPage;
+			} else if (pageNo < 1) {
+				pageNo = 1;
+			}
+		}
+		int currentPage = (pageNo - 1) * pageSize;
+		map.put("currentPage", currentPage);// 当前页
+		map.put("pageSize", pageSize);// 每页多少条
+		// 分页查询
+		List<SalaryStandard> list = service.findSalaryStandardByCondition(map);
+		model.addAttribute("sslist", list);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("sumNumber", sumNumber);
+		model.addAttribute("pageNo", pageNo);
 	}
 }

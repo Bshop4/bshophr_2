@@ -43,43 +43,31 @@
 		select * from salary_standard where standard_id like '%${_parameter}%'
 	</select>
 	
-	<!-- 向思宇加的id和name模糊查询 -->
-	<!-- 定义变量 -->
-	<sql id="byone">
-		select * from salary_standard where standard_id like '%1%'
-	</sql>
-	
-	<select id="selectSalaryStandardByCondition" resultType="SalaryStandard" parameterType="SalaryStandard">
-		select B.standard_id,B.standard_name,B.designer,B.regist_time,B.salary_sum 
-		from <include refid="byone"/> B where B.standard_name REGEXP '浩'
-		or B.designer REGEXP '浩'
-		or B.checker REGEXP '浩' or B.changer REGEXP '浩'
-		<!-- select standard_id,standard_name,designer,regist_time,salary_sum 
-		from salary_standard 
-		<trim prefix="where" prefixOverrides="and|or">
-			<if test="standardId!=null">
-				<bind name="sid" value="'%'+standardId+'%'"></bind>
-				and standard_id like #{sid}
-			</if>
-			<if test="standardName!=null">
-				<bind name="sname" value="'%'+standardName+'%'"></bind>
-				and standard_name like #{sname}
-			</if>
-			<if test="designer!=null">
-				<bind name="des" value="'%'+designer+'%'"></bind>
-				or designer like #{des}
-			</if>
-			<if test="checker!=null">
-				<bind name="che" value="'%'+checker+'%'"></bind>
-				or checker like #{che}
-			</if>
-			<if test="changer!=null">
-				<bind name="cha" value="'%'+changer+'%'"></bind>
-				or changer like #{cha}
-			</if>
-		</trim> -->
-		<!-- where standard_id like '%${_parameter}%' or standard_name like '%${_parameter}%'
-		or designer like '%${_parameter}%' or checker like '%${_parameter}%' or changer like '%${_parameter}%' -->
+	<!-- 向思宇加的薪酬标准查询 -->
+	<select id="selectSalaryStandardByCondition" resultMap="SalaryStandardMap" parameterType="hashmap">
+		select standard_id,standard_name,designer,regist_time,salary_sum 
+		from ((select * from salary_standard where standard_id like "%"#{standardId}"%"
+		and (regist_time between #{startTime} and #{endTime})) as a)
+		where
+		<if test="keyword!=null and keyword!=''">
+			<bind name="sname" value="'%'+keyword+'%'"></bind>
+			standard_name like #{sname}
+		</if>
+		<if test="keyword!=null and keyword!=''">
+			<bind name="des" value="'%'+keyword+'%'"></bind>
+			or designer like #{des}
+		</if>
+		<if test="keyword!=null and keyword!=''">
+			<bind name="che" value="'%'+keyword+'%'"></bind>
+			or checker like #{che}
+		</if>
+		<if test="keyword!=null and keyword!=''">
+			<bind name="cha" value="'%'+keyword+'%'"></bind>
+			or changer like #{cha}
+		</if>
+		<if test="currentPage!=null and pageSize!=null">
+			limit #{currentPage},#{pageSize}
+		</if>
 	</select>
 	
 	<delete id="deleteSalaryStandardById" parameterType="_int">

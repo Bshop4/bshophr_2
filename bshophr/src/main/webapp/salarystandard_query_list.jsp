@@ -33,7 +33,7 @@
 </head>
 
 <body>
-	<form method="post" action="salarystandard.do">
+	<form method="post" action="queryBySalary.do?operate=list">
 		<table width="100%">
 			<tr>
 				<td><font color="#0000CC">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记查询</font>
@@ -43,7 +43,7 @@
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td>符合条件的薪酬标准总数: ${count } 例</td>
+				<td>符合条件的薪酬标准总数:${sumNumber } 例</td>
 			</tr>
 		</table>
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
@@ -68,10 +68,8 @@
 
 		</table>
 		<p>
-			&nbsp;&nbsp;总数：1例 &nbsp;&nbsp;&nbsp;当前第 1 页 &nbsp;&nbsp;&nbsp;共 1 页
-			&nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1>
-			页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18
-				border=0>
+			&nbsp;&nbsp;总数：${sumNumber }例 &nbsp;&nbsp;&nbsp;当前第  ${pageNo } 页 &nbsp;&nbsp;&nbsp;共 ${maxPage } 页
+			&nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1 /> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0 />
 	</form>
 </body>
 </html>

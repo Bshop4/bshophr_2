@@ -16,8 +16,8 @@ public interface SalaryStandardService {
 	// 向思宇加的ID模糊查询
 	public List<SalaryStandard> findSalaryStandardByIdDim(int id);
 
-	// 向思宇加的name模糊查询
-	public List<SalaryStandard> findSalaryStandardByCondition(SalaryStandard s);
+	// 向思宇加的条件模糊查询
+	public List<SalaryStandard> findSalaryStandardByCondition(Map<String, Object> map);
 
 	public boolean removeSalaryStandardById(int id);
 
