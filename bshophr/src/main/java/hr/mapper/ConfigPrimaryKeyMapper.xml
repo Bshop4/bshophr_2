@@ -50,6 +50,9 @@
 		<if test="primaryKeyTable != null and primaryKeyTable !=''">
 			and primary_key_table=#{primaryKeyTable}
 		</if>
+		<if test="primaryKeyStatus != null and primaryKeyStatus !=''">
+			and primary_key_status=#{primaryKeyStatus}
+		</if>
 	</select>
 	
 	<update id="updateConfigPrimaryKeyPlus" parameterType="hashmap" >

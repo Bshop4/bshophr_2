@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -37,20 +38,31 @@
 			</tr>
 			<tr>
 				<td align="right"><input type="button" value="开始"
-					class="BUTTON_STYLE1" onclick="javascript:doStart();"> <input
-					type="button" value="返回" class="BUTTON_STYLE1"
-					onclick="history.back();"></td>
+					class="BUTTON_STYLE1" > <input
+					type="button" value="返回" class="BUTTON_STYLE1"></td>
 			</tr>
 		</table>
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
 			bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
 			<tr class="TR_STYLE1">
 				<td width="16%" class="TD_STYLE1">请输入关键字</td>
-				<td width="84%" class="TD_STYLE2"><input type="text"
-					name="keywords" value="" class="INPUT_STYLE1"></td>
+				<td width="84%" class="TD_STYLE2">
+				<select type="text" name="keywords" value="" class="INPUT_STYLE1">
+					<c:if test="${!empty keywordsList}">
+						<c:forEach items="${keywordsList }" var="kl">
+							<option value="${kl.primaryKey }">${kl.keyName}</option>
+						</c:forEach>
+					</c:if>
+				</select>
+				<input type="text" value="" class="INPUT_STYLE1" id="djtKeywordsContext">
+				</td>
+				
 			</tr>
 		</table>
 	</form>
 </body>
+<script type="text/javascript">
+	
+</script>
 </html>
 
