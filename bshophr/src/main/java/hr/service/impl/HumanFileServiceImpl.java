@@ -73,4 +73,10 @@ public class HumanFileServiceImpl implements HumanFileService {
 		return flag;
 	}
 
+	@Override
+	public int findCount(Map<String, Object> map) {
+		int count=hfm.selectCount(map);
+		return count;
+	}
+
 }

@@ -39,9 +39,8 @@
 					class="BUTTON_STYLE1" id="djtUpload">
 					
 					<input type="button" value="上传附件" class="BUTTON_STYLE1"
-					onclick="window.location.href='register_choose_attachment.jsp';">
-					<input type="button" value="完成" class="BUTTON_STYLE1"
-					onclick="javascript:finish();"></td>
+					onclick="window.location.href='register_choose_attachment.jsp?hufId=${param.hufId}';">
+					<input type="button" value="完成" class="BUTTON_STYLE1" id="djtFinished"></td>
 			</tr>
 		</table>
 

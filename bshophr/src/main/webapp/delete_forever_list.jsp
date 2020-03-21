@@ -32,14 +32,14 @@
 </head>
 
 <body>
-	<form name="humanfileForm" method="post" action="/hr/humanfile.do">
+	<form name="humanfileForm" method="post">
 		<table width="100%">
 			<tr>
 				<td><font color="#0000CC">您正在做的业务是：人力资源--人力资源档案删除管理--人力资源档案永久删除
 				</font></td>
 			</tr>
 			<tr>
-				<td>当前人力资源档案总数</td>
+				<td>当前人力资源档案总数:${count}</td>
 			</tr>
 		</table>
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
@@ -73,21 +73,24 @@
 			</c:if>	
 		</table>
 		<p>
-			&nbsp;&nbsp;总数：1例 &nbsp;&nbsp;&nbsp;当前第 1 页 &nbsp;&nbsp;&nbsp;共 1 页
-			&nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1 id="djtCurrentPage">
-			页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18
-				border=0 id="djtJump">
+			&nbsp;&nbsp;总数：${count}例 &nbsp;&nbsp;&nbsp;当前第 <span id="currentPage">${currentPage}</span>页 &nbsp;&nbsp;&nbsp;共 ${maxPage}页
+			&nbsp;&nbsp;&nbsp;跳到第 <input name="page" id="pageJump" type="text" class="input1" size="1"/>
+			页&nbsp;&nbsp;<input type="image" src="images/go.bmp" width="18" height="18" border="0" id="JumpToPage"/>
+				</p>
 	</form>
 </body>
 <script type="text/javascript">
 
-   var firstKindId="${condition.firstKindId}";
-   var secondKindId="${condition.secondKindId}";
-   var thirdKindId="${condition.thirdKindId}";
-   var humanMajorKindId="${condition.humanMajorKindId}";
-   var humanMajorId="${condition.humanMajorId}";
-   var dateStart="${condition.dateStart}";
-   var dateEnd="${condition.dateEnd}";
+var maxPage="${maxPage}";
+	var currentPage=$("#currentPage").text();
+	var pageJump=$("#pageJump").val();
+	$("#JumpToPage").click(function(){
+		if(pageJump>maxPage){
+			pageJump=currentPage;
+		}
+		$("#currentPage").text(pageJump);
+		window.location.href="deleteForeverList/jumpToPage.do?currentPage="+pageJump;
+	})
  
 	$(".djtDeleteButton").each(function(){
 		$(this).click(function(){
@@ -104,7 +107,7 @@
 					if(result==true){
 						alert("删除成功");
 					}
-					window.location.href="deleteForeverList/jumpPage.do";
+					window.location.href="deleteForeverList/jumpToPage.do?currentPage="+pageJump";
 				}
 			});
 		 }

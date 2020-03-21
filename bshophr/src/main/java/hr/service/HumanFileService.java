@@ -12,6 +12,8 @@ public interface HumanFileService {
 	public List<HumanFile> findHumanFileAll();
 
 	public HumanFile findHumanFileById(int id);
+	
+	public int findCount(Map<String, Object> map);
 
 	// 向思宇加的查humanName
 	public HumanFile findHumanNameFileById(int id);

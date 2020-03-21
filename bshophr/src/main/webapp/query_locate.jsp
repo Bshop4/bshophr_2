@@ -45,7 +45,7 @@
 </head>
 
 <body>
-	<form name="humanfileForm" method="post" action="/hr/humanfile.do">
+	<form name="humanfileForm" method="post">
 		<input type="hidden" class="djt_SelectN" value="${myselectmap}"/>
 		<table width="100%">
 			<tr>

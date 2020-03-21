@@ -50,5 +50,6 @@
 	</bean>	
 	
 	<mvc:resources location="/registerPhoto/" mapping="/registerPhoto/**"/>
+	<mvc:resources location="/registerFile/" mapping="/registerFile/**"/>
 	
 </beans>

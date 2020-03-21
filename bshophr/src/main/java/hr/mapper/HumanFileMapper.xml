@@ -75,91 +75,114 @@
 		select * from human_file
 		<trim prefix="where" prefixOverrides="and|or">
 			<if test="humanId!=null">
-				and human_id=#{humanId}
+				<bind name="humanId" value="'%' + humanId + '%'"/>
+				and human_id like #{humanId}
 			</if>
 			<if test="firstKindId!=null">
 				and first_kind_id=#{firstKindId}
 			</if>
 			<if test="firstKindName!=null">
-				and first_kind_name=#{firstKindName}
+				<bind name="firstKindName" value="'%' + firstKindName + '%'"/>
+				and first_kind_name like #{firstKindName}
 			</if>
 			<if test="secondKindId!=null">
 				and second_kind_id=#{secondKindId}
 			</if>
 			<if test="secondKindName!=null">
-				and second_kind_name=#{secondKindName}
+				<bind name="secondKindName" value="'%' + secondKindName + '%'"/>
+				and second_kind_name like #{secondKindName}
 			</if>
 			<if test="thirdKindId!=null">
 				and third_kind_id=#{thirdKindId}
 			</if>
 			<if test="thirdKindName!=null">
-				and third_kind_name=#{thirdKindName}
+				<bind name="thirdKindName" value="'%' + thirdKindName + '%'"/>
+				and third_kind_name like #{thirdKindName}
 			</if>
 			<if test="humanName!=null">
-				and human_name=#{humanName}
+				<bind name="humanName" value="'%' + humanName + '%'"/>
+				and human_name like #{humanName}
 			</if>
 			<if test="humanAddress!=null">
-				and human_address=#{humanAddress}
+				<bind name="humanAddress" value="'%' + humanAddress + '%'"/>
+				and human_address like #{humanAddress}
 			</if>
 			<if test="humanPostcode!=null">
-				and human_postcode=#{humanPostcode}
+				<bind name="humanPostcode" value="'%' + humanPostcode + '%'"/>
+				and human_postcode like #{humanPostcode}
 			</if>
 			<if test="humanProDesignation!=null">
-				and human_pro_designation=#{humanProDesignation}
+				<bind name="humanProDesignation" value="'%' + humanProDesignation + '%'"/>
+				and human_pro_designation like #{humanProDesignation}
 			</if>
 			<if test="humanMajorKindId!=null">
 				and human_major_kind_id=#{humanMajorKindId}
 			</if>
 			<if test="humanMajorKindName!=null">
-				and human_major_kind_name=#{humanMajorKindName}
+				<bind name="humanMajorKindName" value="'%' + humanMajorKindName + '%'"/>
+				and human_major_kind_name like #{humanMajorKindName}
 			</if>
 			<if test="humanMajorId!=null">
 				and human_major_id=#{humanMajorId}
 			</if>
 			<if test="humanMajorName!=null">
-				and hunma_major_name=#{humanMajorName}
+				<bind name="humanMajorName" value="'%' + humanMajorName + '%'"/>
+				and hunma_major_name like #{humanMajorName}
 			</if>
 			<if test="humanTelephone!=null">
-				and human_telephone=#{humanTelephone}
+				<bind name="humanTelephone" value="'%' + humanTelephone + '%'"/>
+				and human_telephone like #{humanTelephone}
 			</if>
 			<if test="humanMobilephone!=null">
-				and human_mobilephone=#{humanMobilephone}
+				<bind name="humanMobilephone" value="'%' + humanMobilephone + '%'"/>
+				and human_mobilephone like #{humanMobilephone}
 			</if>
 			<if test="humanBank!=null">
-				and human_bank=#{humanBank}
+				<bind name="humanBank" value="'%' + humanBank + '%'"/>
+				and human_bank like #{humanBank}
 			</if>
 			<if test="humanAccount!=null">
-				and human_account=#{humanAccount}
+				<bind name="humanAccount" value="'%' + humanAccount + '%'"/>
+				and human_account like #{humanAccount}
 			</if>
 			<if test="humanQq!=null">
 				and human_qq=#{humanQq}
 			</if>
 			<if test="humanEmail!=null">
-				and human_email=#{humanEmail}
+				<bind name="humanEmail" value="'%' + humanEmail + '%'"/>
+				and human_email like #{humanEmail}
 			</if>
 			<if test="humanHobby!=null">
-				and human_hobby=#{humanHobby}
+				<bind name="humanHobby" value="'%' + humanHobby + '%'"/>
+				and human_hobby like #{humanHobby}
 			</if>
 			<if test="humanSpeciality!=null">
-				and human_speciality=#{humanSpeciality}
+				<bind name="humanSpeciality" value="'%' + humanSpeciality + '%'"/>
+				and human_speciality like #{humanSpeciality}
 			</if>
 			<if test="humanSex!=null">
-				and human_sex=#{humanSex}
+				<bind name="humanSex" value="'%' + humanSex + '%'"/>
+				and human_sex like #{humanSex}
 			</if>
 			<if test="humanReligion!=null">
-				and human_religion=#{humanReligion}
+				<bind name="humanReligion" value="'%' + humanReligion + '%'"/>
+				and human_religion like #{humanReligion}
 			</if>
 			<if test="humanParty!=null">
-				and human_party=#{humanParty}
+				<bind name="humanParty" value="'%' + humanParty + '%'"/>
+				and human_party like #{humanParty}
 			</if>
 			<if test="humanNationality!=null">
-				and human_nationality=#{humanNationality}
+				<bind name="humanNationality" value="'%' + humanNationality + '%'"/>
+				and human_nationality like #{humanNationality}
 			</if>
 			<if test="humanRace!=null">
-				and human_race=#{humanRace}
+				<bind name="humanRace" value="'%' + humanRace + '%'"/>
+				and human_race like #{humanRace}
 			</if>
 			<if test="humanBirthday!=null">
-				and human_birthday=#{humanBirthday}
+				<bind name="humanBirthday" value="'%' + humanBirthday + '%'"/>
+				and human_birthday like #{humanBirthday}
 			</if>
 			<if test="humanAge!=null">
 				and human_age=#{humanAge}
@@ -174,19 +197,23 @@
 				and human_educated_years=#{humanEducatedYears}
 			</if>
 			<if test="humanSocietySecurityId!=null">
-				and human_society_security_id=#{humanSocietySecurityId}
+				<bind name="humanSocietySecurityId" value="'%' + humanSocietySecurityId + '%'"/>
+				and human_society_security_id like #{humanSocietySecurityId}
 			</if>
 			<if test="humanIdCard!=null">
-				and human_id_card=#{humanIdCard}
+				<bind name="humanIdCard" value="'%' + humanIdCard + '%'"/>
+				and human_id_card like #{humanIdCard}
 			</if>
 			<if test="remark!=null">
-				and remark=#{remark}
+				<bind name="remark" value="'%' + remark + '%'"/>
+				and remark like #{remark}
 			</if>
 			<if test="salaryStandardId!=null">
 				and salary_standard_id=#{salaryStandardId}
 			</if>
 			<if test="salaryStandardName!=null">
-				and salary_standard_name=#{salaryStandardName}
+				<bind name="salaryStandardName" value="'%' + salaryStandardName + '%'"/>
+				and salary_standard_name like #{salaryStandardName}
 			</if>
 			<if test="salarySum!=null">
 				and salary_sum=#{salarySum}
@@ -210,10 +237,12 @@
 				and file_chang_amount=#{fileChangAmount}
 			</if>
 			<if test="humanHistroyRecords!=null">
-				and human_histroy_records=#{humanHistroyRecords}
+				<bind name="humanHistroyRecords" value="'%' + humanHistroyRecords + '%'"/>
+				and human_histroy_records like #{humanHistroyRecords}
 			</if>
 			<if test="humanFamilyMembership!=null">
-				and human_family_membership=#{humanFamilyMembership}
+				<bind name="humanFamilyMembership" value="'%' + humanFamilyMembership + '%'"/>
+				and human_family_membership like #{humanFamilyMembership}
 			</if>
 			<if test="humanPicture!=null">
 				and human_picture=#{humanPicture}
@@ -225,7 +254,8 @@
 				and check_status=#{checkStatus}
 			</if>
 			<if test="register!=null">
-				and register=#{register}
+				<bind name="register" value="'%' + register + '%'"/>
+				and register like #{register}
 			</if>
 			<if test="checker!=null">
 				and checker=#{checker}
@@ -264,6 +294,231 @@
 			limit #{currentPage},#{pageSize}
 		</if>
 	</select>
+	
+	
+	
+	<!-- 查询满足条件的条数 -->
+	<select id="selectCount" parameterType="hashmap" resultType="int">
+		select count(*) from human_file
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="humanId!=null">
+				<bind name="humanId" value="'%' + humanId + '%'"/>
+				and human_id like #{humanId}
+			</if>
+			<if test="firstKindId!=null">
+				and first_kind_id=#{firstKindId}
+			</if>
+			<if test="firstKindName!=null">
+				<bind name="firstKindName" value="'%' + firstKindName + '%'"/>
+				and first_kind_name like #{firstKindName}
+			</if>
+			<if test="secondKindId!=null">
+				and second_kind_id=#{secondKindId}
+			</if>
+			<if test="secondKindName!=null">
+				<bind name="secondKindName" value="'%' + secondKindName + '%'"/>
+				and second_kind_name like #{secondKindName}
+			</if>
+			<if test="thirdKindId!=null">
+				and third_kind_id=#{thirdKindId}
+			</if>
+			<if test="thirdKindName!=null">
+				<bind name="thirdKindName" value="'%' + thirdKindName + '%'"/>
+				and third_kind_name like #{thirdKindName}
+			</if>
+			<if test="humanName!=null">
+				<bind name="humanName" value="'%' + humanName + '%'"/>
+				and human_name like #{humanName}
+			</if>
+			<if test="humanAddress!=null">
+				<bind name="humanAddress" value="'%' + humanAddress + '%'"/>
+				and human_address like #{humanAddress}
+			</if>
+			<if test="humanPostcode!=null">
+				<bind name="humanPostcode" value="'%' + humanPostcode + '%'"/>
+				and human_postcode like #{humanPostcode}
+			</if>
+			<if test="humanProDesignation!=null">
+				<bind name="humanProDesignation" value="'%' + humanProDesignation + '%'"/>
+				and human_pro_designation like #{humanProDesignation}
+			</if>
+			<if test="humanMajorKindId!=null">
+				and human_major_kind_id=#{humanMajorKindId}
+			</if>
+			<if test="humanMajorKindName!=null">
+				<bind name="humanMajorKindName" value="'%' + humanMajorKindName + '%'"/>
+				and human_major_kind_name like #{humanMajorKindName}
+			</if>
+			<if test="humanMajorId!=null">
+				and human_major_id=#{humanMajorId}
+			</if>
+			<if test="humanMajorName!=null">
+				<bind name="humanMajorName" value="'%' + humanMajorName + '%'"/>
+				and hunma_major_name like #{humanMajorName}
+			</if>
+			<if test="humanTelephone!=null">
+				<bind name="humanTelephone" value="'%' + humanTelephone + '%'"/>
+				and human_telephone like #{humanTelephone}
+			</if>
+			<if test="humanMobilephone!=null">
+				<bind name="humanMobilephone" value="'%' + humanMobilephone + '%'"/>
+				and human_mobilephone like #{humanMobilephone}
+			</if>
+			<if test="humanBank!=null">
+				<bind name="humanBank" value="'%' + humanBank + '%'"/>
+				and human_bank like #{humanBank}
+			</if>
+			<if test="humanAccount!=null">
+				<bind name="humanAccount" value="'%' + humanAccount + '%'"/>
+				and human_account like #{humanAccount}
+			</if>
+			<if test="humanQq!=null">
+				and human_qq=#{humanQq}
+			</if>
+			<if test="humanEmail!=null">
+				<bind name="humanEmail" value="'%' + humanEmail + '%'"/>
+				and human_email like #{humanEmail}
+			</if>
+			<if test="humanHobby!=null">
+				<bind name="humanHobby" value="'%' + humanHobby + '%'"/>
+				and human_hobby like #{humanHobby}
+			</if>
+			<if test="humanSpeciality!=null">
+				<bind name="humanSpeciality" value="'%' + humanSpeciality + '%'"/>
+				and human_speciality like #{humanSpeciality}
+			</if>
+			<if test="humanSex!=null">
+				<bind name="humanSex" value="'%' + humanSex + '%'"/>
+				and human_sex like #{humanSex}
+			</if>
+			<if test="humanReligion!=null">
+				<bind name="humanReligion" value="'%' + humanReligion + '%'"/>
+				and human_religion like #{humanReligion}
+			</if>
+			<if test="humanParty!=null">
+				<bind name="humanParty" value="'%' + humanParty + '%'"/>
+				and human_party like #{humanParty}
+			</if>
+			<if test="humanNationality!=null">
+				<bind name="humanNationality" value="'%' + humanNationality + '%'"/>
+				and human_nationality like #{humanNationality}
+			</if>
+			<if test="humanRace!=null">
+				<bind name="humanRace" value="'%' + humanRace + '%'"/>
+				and human_race like #{humanRace}
+			</if>
+			<if test="humanBirthday!=null">
+				<bind name="humanBirthday" value="'%' + humanBirthday + '%'"/>
+				and human_birthday like #{humanBirthday}
+			</if>
+			<if test="humanAge!=null">
+				and human_age=#{humanAge}
+			</if>
+			<if test="humanEducatedDegree!=null">
+				and human_educated_degree=#{humanEducatedDegree}
+			</if>
+			<if test="humanEducatedMajor!=null">
+				and human_educated_major=#{humanEducatedMajor}
+			</if>
+			<if test="humanEducatedYears!=null">
+				and human_educated_years=#{humanEducatedYears}
+			</if>
+			<if test="humanSocietySecurityId!=null">
+				<bind name="humanSocietySecurityId" value="'%' + humanSocietySecurityId + '%'"/>
+				and human_society_security_id like #{humanSocietySecurityId}
+			</if>
+			<if test="humanIdCard!=null">
+				<bind name="humanIdCard" value="'%' + humanIdCard + '%'"/>
+				and human_id_card like #{humanIdCard}
+			</if>
+			<if test="remark!=null">
+				<bind name="remark" value="'%' + remark + '%'"/>
+				and remark like #{remark}
+			</if>
+			<if test="salaryStandardId!=null">
+				and salary_standard_id=#{salaryStandardId}
+			</if>
+			<if test="salaryStandardName!=null">
+				<bind name="salaryStandardName" value="'%' + salaryStandardName + '%'"/>
+				and salary_standard_name like #{salaryStandardName}
+			</if>
+			<if test="salarySum!=null">
+				and salary_sum=#{salarySum}
+			</if>
+			<if test="demandSalaraySum!=null">
+				and demand_salaray_sum=#{demandSalaraySum}
+			</if>
+			<if test="paidSalarySum!=null">
+				and paid_salary_sum=#{paidSalarySum}
+			</if>
+			<if test="majorChangeAmount!=null">
+				and major_change_amount=#{majorChangeAmount}
+			</if>
+			<if test="bonusAmount!=null">
+				and bonus_amount=#{bonusAmount}
+			</if>
+			<if test="trainingAmount!=null">
+				and training_amount=#{trainingAmount}
+			</if>
+			<if test="fileChangAmount!=null">
+				and file_chang_amount=#{fileChangAmount}
+			</if>
+			<if test="humanHistroyRecords!=null">
+				<bind name="humanHistroyRecords" value="'%' + humanHistroyRecords + '%'"/>
+				and human_histroy_records like #{humanHistroyRecords}
+			</if>
+			<if test="humanFamilyMembership!=null">
+				<bind name="humanFamilyMembership" value="'%' + humanFamilyMembership + '%'"/>
+				and human_family_membership like #{humanFamilyMembership}
+			</if>
+			<if test="humanPicture!=null">
+				and human_picture=#{humanPicture}
+			</if>
+			<if test="attachmentName!=null">
+				and attachment_name=#{attachmentName}
+			</if>
+			<if test="checkStatus!=null">
+				and check_status=#{checkStatus}
+			</if>
+			<if test="register!=null">
+				<bind name="register" value="'%' + register + '%'"/>
+				and register like #{register}
+			</if>
+			<if test="checker!=null">
+				and checker=#{checker}
+			</if>
+			<if test="changer!=null">
+				and changer=#{changer}
+			</if>
+			<!-- 时间 -->
+			<if test="dateStart!=null">
+				and regist_time<![CDATA[ >= ]]> #{dateStart}
+			</if>
+			<if test="dateEnd!=null">
+				and regist_time<![CDATA[ <= ]]> #{dateEnd}
+			</if>
+			
+			<if test="checkTime!=null">
+				and check_time=#{checkTime}
+			</if>
+			<if test="changeTime!=null">
+				and change_time=#{changeTime}
+			</if>
+			<if test="lastlyChangeTime!=null">
+				and lastly_change_time=#{lastlyChangeTime}
+			</if>
+			<if test="deleteTime!=null">
+				and delete_time=#{deleteTime}
+			</if>
+			<if test="recoveryTime!=null">
+				and recovery_time=#{recoveryTime}
+			</if>
+			<if test="humanFileStatus!=null">
+				and human_file_status=#{humanFileStatus}
+			</if>	
+		</trim>
+	</select>
+	
 	
 	<select id="selectHumanFileById" parameterType="_int" resultMap="HumanFileMap">
 		select * from human_file where huf_id=#{id}

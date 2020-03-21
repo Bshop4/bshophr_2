@@ -32,14 +32,14 @@
 </head>
 
 <body>
-	<form name="humanfileForm" method="post" action="/hr/humanfile.do">
+	<form name="humanfileForm" method="post" >
 		<table width="100%">
 			<tr>
-				<td><font color="#0000CC">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案恢复
+				<td><font color="#0000CC">您正在做的业务是：人力资源--人力资源档案删除管理--人力资源档案恢复
 				</font></td>
 			</tr>
 			<tr>
-				<td>当前人力资源档案总数</td>
+				<td>当前人力资源档案总数:${count}</td>
 			</tr>
 		</table>
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
@@ -73,10 +73,10 @@
 			</c:if>	
 		</table>
 		<p>
-			&nbsp;&nbsp;总数：1例 &nbsp;&nbsp;&nbsp;当前第 1 页 &nbsp;&nbsp;&nbsp;共 1 页
-			&nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1 id="djtCurrentPage">
-			页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18
-				border=0 id="djtJump">
+			&&nbsp;&nbsp;总数：${count}例 &nbsp;&nbsp;&nbsp;当前第 <span id="currentPage">${currentPage}</span>页 &nbsp;&nbsp;&nbsp;共 ${maxPage}页
+			&nbsp;&nbsp;&nbsp;跳到第 <input name="page" id="pageJump" type="text" class="input1" size="1"/>
+			页&nbsp;&nbsp;<input type="image" src="images/go.bmp" width="18" height="18" border="0" id="JumpToPage"/>
+				</p>
 	</form>
 </body>
 <script type="text/javascript">
@@ -88,9 +88,37 @@
    var humanMajorId="${condition.humanMajorId}";
    var dateStart="${condition.dateStart}";
    var dateEnd="${condition.dateEnd}";
- 
+   
+   	var maxPage="${maxPage}";
+   	var selectKey="${selectKey}";
+   	var selectValue="${selectValue}";
+	var currentPage=$("#currentPage").text();
+	
+	$("#JumpToPage").click(function(){
+		var pageJump=$("#pageJump").val();
+		if(pageJump>maxPage){
+			pageJump=currentPage;
+		}
+		$("#currentPage").text(pageJump);
+		
+		if(selectKey!=""||selectValue!=""){
+			window.location.href="recoveryLocate/jumpToPageByCondition.do?currentPage="+pageJump+"&firstKindId="+firstKindId
+			+"&secondKindId="+secondKindId+"&thirdKindId="+thirdKindId+"&humanMajorKindId="
+			+humanMajorKindId+"&humanMajorId="+humanMajorId+"&dateStart="+dateStart
+			+"&dateEnd="+dateEnd+"&selectValue="+selectValue+"&selectKey="+selectKey;
+		}else{
+			window.location.href="recoveryLocate/jumpToPage.do?currentPage="+pageJump+"&firstKindId="+firstKindId
+			+"&secondKindId="+secondKindId+"&thirdKindId="+thirdKindId+"&humanMajorKindId="
+			+humanMajorKindId+"&humanMajorId="+humanMajorId+"&dateStart="+dateStart
+			+"&dateEnd="+dateEnd;
+		}
+		
+		
+	})
+ 	
 	$(".djtDeleteButton").each(function(){
 		$(this).click(function(){
+			 $(this).click(function(){
 			 if(confirm("确认要恢复？")){
 			 	var hufId=$(this).attr("djtTarget");
 			 	$.ajax({
@@ -104,15 +132,14 @@
 					if(result==true){
 						alert("恢复成功");
 					}
-					window.location.href="recoveryLocate/djtSearch.do?firstKindId="+firstKindId
-					+"&secondKindId="+secondKindId+"&thirdKindId="+thirdKindId+"&humanMajorKindId="
-					+humanMajorKindId+"&humanMajorId="+humanMajorId+"&dateStart="+dateStart
-					+"&dateEnd="+dateEnd;
+					window.location.reload();
 				}
 			});
 		 }
 		})
 	})
+   })
+
 </script>
 
 </html>

@@ -22,6 +22,7 @@
 	-->
 
 <link rel="stylesheet" href="table.css" type="text/css">
+<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 <script type="text/javascript">
 	function toCheck(id) {
 		document.forms[0].action = document.forms[0].action + "?operate=toCheck&id=" + id;
@@ -31,14 +32,14 @@
 </head>
 
 <body>
-	<form name="humanfileForm" method="post" action="/hr/humanfile.do">
+	<form name="humanfileForm" method="post">
 		<table width="100%">
 			<tr>
 				<td><font color="#0000CC">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案登记复核
 				</font></td>
 			</tr>
 			<tr>
-				<td>当前等待复核的人力资源档案总数： 1 例</td>
+				<td>当前等待复核的人力资源档案总数：${count}例</td>
 			</tr>
 		</table>
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
@@ -73,11 +74,23 @@
 
 		</table>
 		<p>
-			&nbsp;&nbsp;总数：1例 &nbsp;&nbsp;&nbsp;当前第 1 页 &nbsp;&nbsp;&nbsp;共 1 页
-			&nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1>
-			页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18
-				border=0>
+			&nbsp;&nbsp;总数：${count}例 &nbsp;&nbsp;&nbsp;当前第 <span id="currentPage">${currentPage}</span>页 &nbsp;&nbsp;&nbsp;共 ${maxPage}页
+			&nbsp;&nbsp;&nbsp;跳到第 <input name="page" id="pageJump" type="text" class="input1" size="1"/>
+			页&nbsp;&nbsp;<input type="image" src="images/go.bmp" width="18" height="18" border="0" id="JumpToPage"/>
+				</p>
 	</form>
 </body>
+<script type="text/javascript">
+	var maxPage="${maxPage}";
+	var currentPage=$("#currentPage").text();
+	$("#JumpToPage").click(function(){
+		var pageJump=$("#pageJump").val();
+		if(pageJump>maxPage){
+			pageJump=currentPage;
+		}
+		$("#currentPage").text(pageJump);
+		window.location.href="checkList/jumpToPage.do?currentPage="+pageJump;
+	})
+</script>
 </html>
 

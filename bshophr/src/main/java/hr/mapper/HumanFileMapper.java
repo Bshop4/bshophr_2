@@ -27,5 +27,7 @@ public interface HumanFileMapper {
 	public boolean updateHumanFile(HumanFile hf);
 	
 	public boolean updateHumanFileStatus(Map<String, Object> map);
+	
+	public int selectCount(Map<String, Object> map);
 
 }

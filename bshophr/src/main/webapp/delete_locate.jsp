@@ -37,14 +37,14 @@
 	<form name="humanfileForm" method="post" action="/hr/humanfile.do">
 		<table width="100%">
 			<tr>
-				<td><font color="#0000CC">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案删除
+				<td><font color="#0000CC">您正在做的业务是：人力资源--人力资源档案删除管理--人力资源档案删除
 				</font></td>
 			</tr>
 			<tr>
 				<td align="right">
 					<input type="button" value="开始" class="BUTTON_STYLE1" id="djtQlSearch"> 
 					<input type="button"
-					value="搜索" class="BUTTON_STYLE1" onclick="search();"></td>
+					value="搜索" class="BUTTON_STYLE1" id="djtQueryKeywords"></td>
 			</tr>
 		</table>
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
@@ -256,6 +256,21 @@
 		window.location.href="deleteLocate/djtSearch.do?firstKindId="+firstSelect
 					+"&secondKindId="+secondSelect+"&thirdKindId="+thirdSelect+"&humanMajorKindId="
 					+djtJobClassSelect+"&humanMajorId="+djtJobSelect+"&dateStart="+dateStart
+					+"&dateEnd="+dateEnd;
+	})
+	
+	$("#djtQueryKeywords").click(function(){
+		var firstKindId=$("#djtFirstSelect option:selected").val();
+		var secondKindId=$("#djtSecondSelect option:selected").val();
+		var thirdKindId=$("#djtThirdSelect option:selected").val();
+		var humanMajorKindId=$("#djtJobClassSelect option:selected").val();
+		var humanMajorId=$("#djtJobSelect option:selected").val();
+		var dateStart=$("#dateStart").val();
+		var dateEnd=$("#dateEnd").val();
+		
+		window.location.href="deleteKeywords/djtSearch.do?firstKindId="+firstKindId
+					+"&secondKindId="+secondKindId+"&thirdKindId="+thirdKindId+"&humanMajorKindId="
+					+humanMajorKindId+"&humanMajorId="+humanMajorId+"&dateStart="+dateStart
 					+"&dateEnd="+dateEnd;
 	})
 	
