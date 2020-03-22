@@ -546,4 +546,24 @@ public class MajorChange implements java.io.Serializable {
 		return result;
 	}
 
+	@Override
+	public String toString() {
+		return "MajorChange [mchId=" + mchId + ", firstKindId=" + firstKindId + ", firstKindName=" + firstKindName
+				+ ", secondKindId=" + secondKindId + ", secondKindName=" + secondKindName + ", thirdKindId="
+				+ thirdKindId + ", thirdKindName=" + thirdKindName + ", majorKindId=" + majorKindId + ", majorKindName="
+				+ majorKindName + ", majorId=" + majorId + ", majorName=" + majorName + ", newFirstKindId="
+				+ newFirstKindId + ", newFirstKindName=" + newFirstKindName + ", newSecondKindId=" + newSecondKindId
+				+ ", newSecondKindName=" + newSecondKindName + ", newThirdKindId=" + newThirdKindId
+				+ ", newThirdKindName=" + newThirdKindName + ", newMajorKindId=" + newMajorKindId
+				+ ", newMajorKindName=" + newMajorKindName + ", newMajorId=" + newMajorId + ", newMajorName="
+				+ newMajorName + ", humanId=" + humanId + ", humanName=" + humanName + ", salaryStandardId="
+				+ salaryStandardId + ", salaryStandardName=" + salaryStandardName + ", salarySum=" + salarySum
+				+ ", newSalaryStandardId=" + newSalaryStandardId + ", newSalaryStandardName=" + newSalaryStandardName
+				+ ", newSalarySum=" + newSalarySum + ", changeReason=" + changeReason + ", checkReason=" + checkReason
+				+ ", checkStatus=" + checkStatus + ", register=" + register + ", checker=" + checker + ", registTime="
+				+ registTime + ", checkTime=" + checkTime + "]";
+	}
+	
+	
+
 }

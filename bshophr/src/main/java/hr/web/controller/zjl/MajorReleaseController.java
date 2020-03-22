@@ -135,7 +135,6 @@ public class MajorReleaseController {
 		
 		ConfigFileThirdKind c = cftks.findConfigFileThirdKindByFirstSecondThirdKindName(firstKindName, secondKindName, thirdKindName);
 		String firstKindId = c.getFirstKindId();
-		System.out.println("f" + firstKindId);
 		String secondKindId = c.getSecondKindId();
 		String thirdKindId = c.getThirdKindId();
 		

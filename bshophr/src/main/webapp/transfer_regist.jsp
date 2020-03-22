@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
-		<form>
+		<form name="fm" action="zjlTransfer/saveMajorChange.do" method="post">
 			<table width="100%">
 				<tr>
 					<td>
@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td align="right">
 						<input type="button" value="提交" class="BUTTON_STYLE1"
-							onclick="mySubmit()">
+							id="mybtn">
 						<input type="button" class="BUTTON_STYLE1"
 							onclick="javascript:window.history.back();" value="返回">
 					</td>
@@ -51,16 +51,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						档案编号
 					</td>
 					<td class="TD_STYLE2" width="10%">
-						<input type="text" name="majorChange.humanId" readonly="readonly"
-							value="bt201211190619440428" class="INPUT_STYLE2">
+						<input type="text" name="humanId" readonly="readonly"
+							value="${obj.hufId }" class="INPUT_STYLE2">
 							
 					</td>
 					<td class="TD_STYLE1" width="8%">
 						姓名
 					</td>
 					<td class="TD_STYLE2" width="10%">
-						<input type="text" name="majorChange.humanName"
-							value="杨阳" readonly="readonly"
+						<input type="text" name="humanName"
+							value="${obj.humanName }" readonly="readonly"
 							class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1" width="8%">
@@ -78,28 +78,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						原一级机构
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="majorChange.firstKindName"
-							value="Ⅰ级结构" readonly="readonly" value=""
+						<input type="text" name="firstKindName"
+							readonly="readonly" value="${obj.firstKindName }"
 							class="INPUT_STYLE2">
-					<input type="hidden" name="majorChange.firstKindId" value="1353318953319">
+					<input type="hidden" name="firstKindId" value="${obj.firstKindId }">
 					</td>
 					<td class="TD_STYLE1" width="8%">
 						原二级机构
 					</td>
 					<td class="TD_STYLE2" width="10%">
-						<input type="text" name="majorChange.secondKindName"
-							value="Ⅱ级结构3" readonly="readonly" value=""
+						<input type="text" name="secondKindName"
+							 readonly="readonly" value="${obj.secondKindName }"
 							class="INPUT_STYLE2">
-							<input type="hidden" name="majorChange.secondKindId" value="1353318979558">
+							<input type="hidden" name="secondKindId" value="${obj.secondKindId }">
 					</td>
 					<td class="TD_STYLE1" width="8%">
 						原三级机构
 					</td>
 					<td class="TD_STYLE2" width="10%">
-						<input type="text" name="majorChange.thirdKindName"
-							value="" readonly="readonly" value=""
+						<input type="text" name="thirdKindName"
+							 readonly="readonly" value="${obj.thirdKindName }"
 							class="INPUT_STYLE2">
-							<input type="hidden" name="majorChange.thirdKindId" value="1353319077370">
+							<input type="hidden" name="thirdKindId" value="${obj.thirdKindId }">
 					</td>
 					<td class="TD_STYLE1" width="8%">
 					</td>
@@ -112,28 +112,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						原职位分类
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="majorChange.majorKindName"
-							value="软件开发" readonly="readonly"
-							value="" class="INPUT_STYLE2">
-						<input type="hidden" name="majorChange.majorKindId" value="02">
+						<input type="text" name="majorKindName"
+							 readonly="readonly"
+							value="${obj.humanMajorKindName }" class="INPUT_STYLE2">
+						<input type="hidden" name="majorKindId" value="${obj.humanMajorKindId}">
 					</td>
 					<td class="TD_STYLE1" width="12%">
 						原职位名称
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="majorChange.majorName"
-							value="程序员" readonly="readonly" 
+						<input type="text" name="majorName"
+							value="${obj.hunmaMajorName }" readonly="readonly" 
 							class="INPUT_STYLE2">
-						<input type="hidden" name="majorChange.majorId" value="02">
+						<input type="hidden" name="majorId" value="${obj.humanMajorId }">
 					</td>
 					<td class="TD_STYLE1">
 						原薪酬标准
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="majorChange.salaryStandardName"
-							value="经理级别"
+						<input type="text" name="salaryStandardName"
+							value="${obj.salaryStandardName }"
 							readonly="readonly"   class="INPUT_STYLE2">
-							<input type="hidden" name="majorChange.salaryStandardId" value="1353320082662">
+							<input type="hidden" name="salaryStandardId" value="${obj.salaryStandardName }">
 					</td>
 					<td class="TD_STYLE1">
 					</td>
@@ -146,35 +146,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						新一级机构名称
 					</td>
 					<td class="TD_STYLE2">
-   					<select style="width:160px" name="majorChange.newFirstKindId" id="firstKindId" size="1" class="SELECT_STYLE2">						
-								<option value="0">-----请选择-----</option>					
-					  			
-					  				<option  value="1353318953319">Ⅰ级结构</option>	
-					  			
-					  				<option  value="1353318929919">集团</option>	
-					  			
-					  				<option  value="1353318937391">总部</option>	
-					  			
-					  </select>
+   					<select style="width:160px" name="newFirstKindName" id="newFirstKindName" size="1" class="SELECT_STYLE2">						
+						<option value="">&nbsp;</option>
+						<c:if test="${!empty firstList}">
+							<c:forEach items="${firstList }" var="fl">
+								<option value="${fl}">${fl }</option> 
+							</c:forEach>
+						</c:if>						  			
+					</select>
 					</td>
 					<td class="TD_STYLE1" width="12%">
 						新二级机构名称
 					</td>
 					<td class="TD_STYLE2">
-   					<select style="width:160px" name="majorChange.newSecondKindId" id="secondKindId" size="1" class="SELECT_STYLE2">						
-								<option value="0">-----请选择-----</option>						
-					 		
+   					<select style="width:160px" name="newSecondKindName" id="newSecondKindName" size="1" class="SELECT_STYLE2">						
+							<option value="">&nbsp;</option>						
 					  </select>
-					  <input type="hidden" name="majorChange.newSecondKindName" id="newSecondKindName">
 					</td>
 					<td class="TD_STYLE1" width="12%">
 						新三级机构名称
 					</td>
 					<td class="TD_STYLE2">
-						 <select style="width:160px" name="majorChange.newThirdKindId" id="thirdKindId" size="1" class="SELECT_STYLE2">		
-								<option value="0">-----请选择-----</option>						
+						 <select style="width:160px" name="newThirdKindName" id="newThirdKindName" size="1" class="SELECT_STYLE2">		
+								<option value="">&nbsp;</option>						
 					   </select>
-					   <input type="hidden" name="majorChange.newThirdKindName" id="newThirdKindName">
 					</td>
 					<td class="TD_STYLE1" width="8%">
 					</td>
@@ -186,16 +181,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						新职位分类
 					</td>
 					<td class="TD_STYLE2">
-						 <select style="width:160px" name="majorChange.newMajorKindId" id="newMajorKindId" size="1" class="SELECT_STYLE2">						
-								<option value="0">-----请选择-----</option>					
-					  			
-					  				<option  value="01">销售</option>	
-					  			
-					  				<option  value="02">软件开发</option>	
-					  			
-					  				<option  value="03">人力资源</option>	
-					  			
-					  				<option  value="04">生产部</option>	
+						 <select style="width:160px" name="newMajorKindName" id="newMajorKindName" size="1" class="SELECT_STYLE2">						
+							<option value="">&nbsp;</option>
+							<c:if test="${!empty majorKindNameList}">
+								<c:forEach items="${majorKindNameList }" var="mknl">
+									<option value="${mknl}">${mknl }</option> 
+								</c:forEach>
+							</c:if>
 					  			
 					  </select>
 					</td>
@@ -203,26 +195,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						新职位名称
 					</td>
 					<td class="TD_STYLE2">
-						<select name="majorChange.newMajorId" id="newMajorId" class="INPUT_STYLE2">
-							<option value="0">-----请选择-----</option>	
+						<select name="newMajorName" id="newMajorName" class="INPUT_STYLE2">
+							<option value="">&nbsp;</option>	
 						</select>
-						 <input type="hidden" name="majorChange.newMajorName" id="newMajorName">
 					</td>
 					<td class="TD_STYLE1">
 						新薪酬标准
 					</td>
 					<td class="TD_STYLE2">
-						 <select style="width:160px" name="majorChange.newSalaryStandardId" id="newSalaryStandardId" size="1" class="SELECT_STYLE2">						
-								<option value="0">-----请选择-----</option>					
-					  			
-					  				<option  value="1353320063473">普通员工</option>	
-					  			
-					  				<option  value="1353320082662">经理级别</option>	
-					  			
-					  				<option  value="1353320112255">董事长</option>	
-					  			
-					  </select>
-					  <input type="hidden" name="majorChange.newSalaryStandardName" id="newSalaryStandardName">
+						 <select style="width:160px" name="newSalaryStandardName" id="newSalaryStandardName" size="1" class="SELECT_STYLE2">						
+							<option value="">&nbsp;</option>
+					  		<c:if test="${!empty listss}">
+								<c:forEach items="${listss }" var="listss">
+									<option value="${listss.standardName}">${listss.standardName }</option> 
+								</c:forEach>
+							</c:if>
+					 	 </select>
 					</td>
 					<td class="TD_STYLE1">
 					</td>
@@ -234,14 +222,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						登记人
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="majorChange.register" readonly="readonly" value="better_admin"
+						<input type="text" name="register" readonly="readonly" value="${register }"
 							class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						登记时间
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="majorChange.registTime" readonly="readonly"
+						<input type="text" name="registTime" readonly="readonly" value="${registTime }"
 							id="Tdate" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
@@ -261,10 +249,142 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						调动原因
 					</td>
 					<td colspan="7" class="TD_STYLE2">
-						<textarea name="majorChange.changeReason" rows="6" class="TEXTAREA_STYLE1"></textarea>
+						<textarea name="changeReason" id="changeReason" rows="6" class="TEXTAREA_STYLE1"></textarea>
 					</td>
 				</tr>
 			</table>
 		</form>
 </body>
 </html>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+	$("#newFirstKindName").change(function(){
+		
+		var val = $('#newFirstKindName option:selected').val();
+		/* 一级不为空 找二级 */
+		if(val != ""){
+			$("#newSecondKindName").empty();
+			$.ajax({
+				type : "post",
+				url : "zjlTransfer/querySecondKindName.do",
+				data : {"firstKindName" : val},
+				success : function(re){
+					var str = "<option></option>";
+					for(var i = 0; i < re.length; i++){
+						str += "<option value='"+re[i]+"'>"+re[i]+"</option>";
+					}
+					$("#newSecondKindName").append(str);
+				}
+			})
+		}
+		
+		/* 如果一级为空  全部清空 */
+		if(val == ""){
+			$("#newSecondKindName").empty();
+			$("#newThirdKindName").empty();
+			
+			var str = `
+				<option>&nbsp;</option>
+			`;
+			$("#newSecondKindName").append(str);
+			
+			var str1 = `
+				<option>&nbsp;</option>
+			`;
+			$("#newThirdKindName").append(str1);
+			
+		}
+		
+	 });
+	 
+	 
+	 $("#newSecondKindName").change(function(){
+		
+		var val = $('#newSecondKindName option:selected').val();
+		
+		/* 二级不为空 找三级 */
+		 if(val != ""){
+			$("#newThirdKindName").empty();
+			$.ajax({
+				type : "post",
+				url : "zjlTransfer/queryThirdKindName.do",
+				data : {"secondKindName" : val},
+				success : function(re){
+					
+					var str = "<option></option>";
+					for(var i = 0; i < re.length; i++){
+						str += "<option value='"+re[i]+"'>"+re[i]+"</option>";
+					}
+					$("#newThirdKindName").append(str);
+				}
+			})
+		} 
+		
+		/* 如果二级为空  三级清空 */
+		if(val == ""){
+			$("#newThirdKindName").empty();
+			var str1 = `
+				<option>&nbsp;</option>
+			`;
+			$("#newThirdKindName").append(str1);
+		}
+	 });
+	 
+	 
+	 /* 职位分类 */
+	$("#newMajorKindName").change(function(){
+		var val = $('#newMajorKindName option:selected').val();
+		/* 职位类型不为空 找职位名称 */
+		if(val != ""){
+			$("#newMajorName").empty();
+			$.ajax({
+				type : "post",
+				url : "zjlTransfer/queryMajorKindName.do",
+				data : {"majorName" : val},
+				success : function(re){
+					
+					var str = "<option></option>";
+					for(var i = 0; i < re.length; i++){
+						str += "<option value='"+re[i]+"'>"+re[i]+"</option>";
+					}
+					$("#newMajorName").append(str);
+				}
+			})
+		} 
+		
+		/* 如果职位类型为空  职位名称清空 */
+		if(val == ""){
+			$("#newMajorName").empty();
+			var str1 = `
+				<option>&nbsp;</option>
+			`;
+			$("#newMajorName").append(str1);
+		} 
+	 });
+	 
+	 
+	 
+	 $("#mybtn").click(function(){
+	 	
+	 	var newFirstKindName = $("#newFirstKindName option:selected").val();
+		var newSecondKindName = $("#newSecondKindName option:selected").val();
+		var newThirdKindName = $("#newThirdKindName option:selected").val();
+		var newMajorKindName = $("#newMajorKindName option:selected").val();
+		var newMajorName = $("#newMajorName option:selected").val();
+		var newSalaryStandardName = $("#newSalaryStandardName option:selected").val();
+		var changeReason = $("#changeReason").val();
+	 	
+	 	if(newFirstKindName == "" || newSecondKindName == "" || newThirdKindName == "" ||
+	 	newMajorKindName == "" || newMajorName == "" || newSalaryStandardName == "" || 
+	 	changeReason == ""){
+	 		alert("请填写必要信息！");
+	 		return;
+	 	}
+	 	
+	 	$("form[name='fm']").submit();
+	 
+	 })
+	 
+	 
+
+</script>

@@ -27,4 +27,9 @@ public interface SalaryStandardService {
 
 	// 向思宇加的
 	public boolean updateSalaryStandardfh(SalaryStandard ss);
+	
+	//
+	public List<SalaryStandard> findSalaryStandardAllByCS(String cs);
+	
+	public SalaryStandard findBySalaryStandardName(String ss);
 }

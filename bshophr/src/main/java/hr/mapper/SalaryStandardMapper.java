@@ -31,4 +31,9 @@ public interface SalaryStandardMapper {
 	// 向思宇加的复核时候更新
 	public boolean updateSalaryStandardfh(SalaryStandard ss);
 
+	
+	public List<SalaryStandard> selectSalaryStandardAllByCS(String cs);
+	
+	public SalaryStandard selectBySalaryStandardName(String ss);
+	
 }
