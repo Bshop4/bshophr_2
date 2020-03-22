@@ -34,4 +34,9 @@ public interface HumanFileMapper {
 	public int selectCnt(int cs);
 	public int selectCount(Map<String, Object> map);
 
+	public HumanFile selectByHumanName(String humanName);
+	
+	public boolean updateHumanFileTwo(HumanFile hf);
+	
+	public HumanFile selectByHumanId(String humanId);
 }

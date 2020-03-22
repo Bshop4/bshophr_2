@@ -248,4 +248,14 @@ public class SalaryStandard implements java.io.Serializable {
 		return result;
 	}
 
+	@Override
+	public String toString() {
+		return "SalaryStandard [ssdId=" + ssdId + ", standardId=" + standardId + ", standardName=" + standardName
+				+ ", designer=" + designer + ", register=" + register + ", checker=" + checker + ", changer=" + changer
+				+ ", registTime=" + registTime + ", checkTime=" + checkTime + ", changeTime=" + changeTime
+				+ ", salarySum=" + salarySum + ", checkStatus=" + checkStatus + ", changeStatus=" + changeStatus
+				+ ", checkComment=" + checkComment + ", remark=" + remark + "]";
+	}
+	
+
 }

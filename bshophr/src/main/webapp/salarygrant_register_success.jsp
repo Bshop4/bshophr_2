@@ -17,7 +17,7 @@
 				<td width="49%">提交成功，需要复核！</td>
 				<td width="51%" align="right"><input type="button"
 					class="BUTTON_STYLE1"
-					onclick="javascript:window.location='salarygrant_register_locate.jsp';" value="返回" />
+					onclick="javascript:history.back(-1);" value="返回" />
 				</td>
 			</tr>
 		</table>

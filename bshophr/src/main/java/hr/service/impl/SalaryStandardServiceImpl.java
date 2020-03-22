@@ -75,4 +75,16 @@ public class SalaryStandardServiceImpl implements SalaryStandardService {
 		return salaryStandardMapper.selectSalaryStandardAllByConditionPlus(map);
 	}
 
+	@Override
+	public List<SalaryStandard> findSalaryStandardAllByCS(String cs) {
+		// TODO Auto-generated method stub
+		return salaryStandardMapper.selectSalaryStandardAllByCS(cs);
+	}
+
+	@Override
+	public SalaryStandard findBySalaryStandardName(String ss) {
+		// TODO Auto-generated method stub
+		return salaryStandardMapper.selectBySalaryStandardName(ss);
+	}
+
 }

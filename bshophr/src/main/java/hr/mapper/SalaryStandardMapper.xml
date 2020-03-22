@@ -24,9 +24,19 @@
 	</resultMap>
 
 	
+	<select id="selectBySalaryStandardName" parameterType="string" resultMap="SalaryStandardMap">
+		select * from salary_standard where standard_name=#{ss}
+	</select>
+	
+	
 	<select id="selectSalaryStandardAll" resultMap="SalaryStandardMap">
 		select * from salary_standard
 	</select>
+	<select id="selectSalaryStandardAllByCS" resultMap="SalaryStandardMap">
+		select * from salary_standard where check_status=#{cs}
+	</select>
+	
+	
 	<!-- 根据条件参数列表 -->
 	<select id="selectSalaryStandardAllByConditionPlus" resultMap="SalaryStandardMap" parameterType="hashmap">
 		select * from salary_standard where 1=1
@@ -35,7 +45,7 @@
 		</if>
 	</select>
 	<select id="selectSalaryStandardById" parameterType="_int" resultMap="SalaryStandardMap">
-		select * from salary_standard where standard_id=#{id}
+		select * from salary_standard where standard_id=#{standardId}
 	</select>
 	
 	<!-- 向思宇加的id模糊查询 -->

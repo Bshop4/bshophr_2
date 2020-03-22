@@ -374,7 +374,7 @@ a {
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td>调动审核</td>
+							<td><a target="mainFrame" href="zjlTransfer/queryCheckList.do">调动审核</a></td>
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>

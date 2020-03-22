@@ -1,6 +1,7 @@
 package hr.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +15,6 @@ public interface MajorChangeMapper {
 	public boolean insertMajorChange(MajorChange mc);
 	public boolean updateMajorChange(MajorChange mc);
 	
+	public List<MajorChange> selectSplit(Map<String, Object> map);
+	public int selectCnt(short cs);
 }

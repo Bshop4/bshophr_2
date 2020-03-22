@@ -28,7 +28,7 @@
     <td width="51%" align="right">
 			<input type="button" 
 			class="BUTTON_STYLE1" 
-			onclick="javascript:window.location='check_list';" 
+			onclick="javascript:history.back(-1);" 
 			value="返回" />
 		</td>
 		
