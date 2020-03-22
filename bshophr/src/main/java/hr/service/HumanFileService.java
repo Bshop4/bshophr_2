@@ -25,4 +25,10 @@ public interface HumanFileService {
 	public boolean updateHumanFile(HumanFile hf);
 	
 	public boolean updateHumanFileStatus(Map<String, Object> map);
+	
+	
+	
+	//
+	public List<HumanFile>  findSplitByCS(Map<String, Object> map);
+	public int findtCnt(int cs);
 }

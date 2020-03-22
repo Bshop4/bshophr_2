@@ -557,4 +557,23 @@
 			</if>
 		check_time=#{checkTime},change_time=#{changeTime},lastly_change_time=#{lastlyChangeTime},delete_time=#{deleteTime},recovery_time=#{recoveryTime},human_file_status=#{humanFileStatus} where huf_id=#{hufId}
 	</update>
+	
+	
+	
+	<!--  -->
+	<select id="selectSplitByCS" parameterType="hashmap" resultMap="HumanFileMap">
+		select * from (select * from human_file where check_status=#{cs}) as hf
+		<if test="currentPage!=null and pageSize!=null">
+			limit #{currentPage},#{pageSize}
+		</if>
+	</select>
+	
+	<select id="selectCnt" parameterType="_int" resultType="_int">
+		select count(*) from (select * from human_file where check_status=#{cs}) as hf
+	</select>
+	
+	
+	
+	
+	
 </mapper>

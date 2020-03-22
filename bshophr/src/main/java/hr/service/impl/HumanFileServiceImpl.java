@@ -74,6 +74,16 @@ public class HumanFileServiceImpl implements HumanFileService {
 	}
 
 	@Override
+	public List<HumanFile> findSplitByCS(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return hfm.selectSplitByCS(map);
+	}
+
+	@Override
+	public int findtCnt(int cs) {
+		// TODO Auto-generated method stub
+		return hfm.selectCnt(cs);
+	}
 	public int findCount(Map<String, Object> map) {
 		int count=hfm.selectCount(map);
 		return count;
