@@ -578,6 +578,25 @@
 		select * from human_file where human_name=#{humanName}
 	</select>
 	
+	
+	<select id="selectByHumanId" parameterType="string" resultMap="HumanFileMap">
+		select * from human_file where human_id=#{humanId}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- 修改数据 -->
     <update id="updateHumanFileTwo" parameterType="HumanFile">
         UPDATE HUMAN_FILE

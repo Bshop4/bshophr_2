@@ -1,6 +1,7 @@
 package hr.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,18 @@ public class MajorChangeServiceImpl implements MajorChangeService{
 		// TODO Auto-generated method stub
 		boolean flag=majorChangeMapper.updateMajorChange(majorchange);
 		return flag;
+	}
+
+	@Override
+	public List<MajorChange> findSplit(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return majorChangeMapper.selectSplit(map);
+	}
+
+	@Override
+	public int findtCnt(short cs) {
+		// TODO Auto-generated method stub
+		return majorChangeMapper.selectCnt(cs);
 	}
 
 }

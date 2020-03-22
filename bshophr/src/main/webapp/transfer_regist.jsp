@@ -52,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="TD_STYLE2" width="10%">
 						<input type="text" name="humanId" readonly="readonly"
-							value="${obj.hufId }" class="INPUT_STYLE2">
+							value="${obj.humanId }" class="INPUT_STYLE2">
 							
 					</td>
 					<td class="TD_STYLE1" width="8%">

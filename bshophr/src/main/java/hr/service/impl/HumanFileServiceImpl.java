@@ -100,4 +100,10 @@ public class HumanFileServiceImpl implements HumanFileService {
 		return hfm.updateHumanFileTwo(hf);
 	}
 
+	@Override
+	public HumanFile findByHumanId(String humanId) {
+		// TODO Auto-generated method stub
+		return hfm.selectByHumanId(humanId);
+	}
+
 }

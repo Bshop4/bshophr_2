@@ -10,6 +10,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -208,5 +209,117 @@ public class TransferController {
 		
 		return null;
 	}
+	
+	
+	
+	@RequestMapping("/queryCheckList.do")
+	public String queryCheckList(Model model,HttpServletRequest request){
+		
+		short cs = 0;
+		int maxPage =0;
+		int sumNumber = mcs.findtCnt(cs);//总个数
+		int pageSize =1;
+		int pageNo =1;
+		//最大页数
+		maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
+		
+		String page=request.getParameter("page");
+		if(page!=null && !"".equals(page)){
+			try{
+				pageNo=Integer.parseInt(page);
+			}catch(NumberFormatException e){
+				pageNo=1;
+			}
+			if(pageNo>maxPage){
+				pageNo=maxPage;
+			}else if(pageNo<1){
+				pageNo=1;
+			}
+		}
+		
+		int currentPage=(pageNo-1)*pageSize;
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("pageSize", pageSize);
+		map.put("currentPage", currentPage);
+		map.put("cs", 0);
+		//分页查询
+		List<MajorChange> list = mcs.findSplit(map);
+		
+		
+		model.addAttribute("list", list);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("sumNumber", sumNumber);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("pageNo", pageNo);
+		
+		
+		return "forward:/transfer_check_list.jsp";
+	}
+	
+	
+	@RequestMapping("/{mchId}/queryOneMC.do")
+	public String queryOneMC(Model model,@PathVariable("mchId") int mchId){
+		
+		MajorChange mc = mcs.findMajorChangeById(mchId);
+		
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		
+		model.addAttribute("obj", mc);
+		model.addAttribute("checkTime", t);
+		model.addAttribute("checker", "adm");
+		
+		
+		return "forward:/transfer_check.jsp";
+	}
+	
+	
+	@RequestMapping("/updateMajorChange.do")
+	public String updateMajorChange(Model model,@Param("isPass") String isPass,MajorChange mc){
+		if("不通过".equals(isPass)){
+			
+			String humanId = mc.getHumanId();
+			HumanFile hf = hfs.findByHumanId(humanId);
+			short s = 1;
+			hf.setCheckStatus(s);//正常状态
+			boolean f = hfs.updateHumanFile(hf);
+			
+			short s1 = 1;
+			mc.setCheckStatus(s1);//1审核不通过
+			boolean f1 = mcs.updateMajorChange(mc);
+			if(f==true && f1 == true){
+				model.addAttribute("msg", "审核不通过！");
+			}
+		}
+		
+		if("通过".equals(isPass)){
+			String humanId = mc.getHumanId();
+			HumanFile hf = hfs.findByHumanId(humanId);
+			short s = 1;
+			hf.setCheckStatus(s);//正常状态
+			hf.setFirstKindId(mc.getFirstKindId());
+			hf.setFirstKindName(mc.getFirstKindName());
+			hf.setSecondKindId(mc.getSecondKindId());
+			hf.setSecondKindName(mc.getSecondKindName());
+			hf.setThirdKindId(mc.getThirdKindId());
+			hf.setThirdKindName(mc.getThirdKindName());
+			hf.setHumanMajorKindId(mc.getMajorKindId());
+			hf.setHumanMajorKindName(mc.getMajorKindName());
+			hf.setHumanMajorId(mc.getMajorId());
+			hf.setHunmaMajorName(mc.getMajorName());
+			hf.setSalaryStandardName(mc.getSalaryStandardName());
+			hf.setSalaryStandardId(mc.getSalaryStandardId());
+			boolean f = hfs.updateHumanFile(hf);
+			
+			short s1 = 2;//
+			mc.setCheckStatus(s1);//2审核通过
+			boolean f1 = mcs.updateMajorChange(mc);
+			if(f==true && f1 == true){
+				model.addAttribute("msg", "审核通过！");
+			}
+		}
+		return "forward:/transter_check_success.jsp";
+	}
+	
+	
 	
 }

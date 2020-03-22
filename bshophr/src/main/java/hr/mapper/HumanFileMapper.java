@@ -37,4 +37,6 @@ public interface HumanFileMapper {
 	public HumanFile selectByHumanName(String humanName);
 	
 	public boolean updateHumanFileTwo(HumanFile hf);
+	
+	public HumanFile selectByHumanId(String humanId);
 }
