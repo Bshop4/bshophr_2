@@ -31,4 +31,6 @@ public interface HumanFileService {
 	//
 	public List<HumanFile>  findSplitByCS(Map<String, Object> map);
 	public int findtCnt(int cs);
+	public HumanFile findByHumanName(String humanName);
+	public boolean updateHumanFileTwo(HumanFile hf);
 }

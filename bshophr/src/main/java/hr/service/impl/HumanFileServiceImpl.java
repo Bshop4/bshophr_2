@@ -89,4 +89,15 @@ public class HumanFileServiceImpl implements HumanFileService {
 		return count;
 	}
 
+	@Override
+	public HumanFile findByHumanName(String humanName) {
+		// TODO Auto-generated method stub
+		return hfm.selectByHumanName(humanName);
+	}
+	@Override
+	public boolean updateHumanFileTwo(HumanFile hf) {
+		// TODO Auto-generated method stub
+		return hfm.updateHumanFileTwo(hf);
+	}
+
 }

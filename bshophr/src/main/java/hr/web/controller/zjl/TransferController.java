@@ -79,8 +79,6 @@ public class TransferController {
 		//分页查询
 		List<HumanFile> list = hfs.findSplitByCS(map);
 		
-		System.out.println(sumNumber);
-		System.out.println(list.size());
 		
 		model.addAttribute("list", list);
 		model.addAttribute("maxPage", maxPage);
@@ -193,9 +191,20 @@ public class TransferController {
 		mc.setCheckStatus(s);
 		
 		SalaryStandard ss = sss.findBySalaryStandardName(mc.getNewSalaryStandardName());
-		System.out.println(ss);
 		
-		System.out.println(mc);
+		mc.setNewSalaryStandardId(ss.getStandardId());
+		
+		String humanName = mc.getHumanName();
+		HumanFile hf = hfs.findByHumanName(humanName);
+		System.out.println(hf);
+		short s1 = 3;
+		hf.setCheckStatus(s1);//待调动
+		boolean ff = hfs.updateHumanFileTwo(hf);
+		
+		boolean f = mcs.saveMajorChange(mc);
+		if(f==true && ff==true){
+			return "forward:/transter_regist_success.jsp";
+		}
 		
 		return null;
 	}

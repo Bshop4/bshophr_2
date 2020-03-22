@@ -70,6 +70,8 @@
 		<result property="humanFileStatus"    column="human_file_status"/>
 	</resultMap>
 	
+	
+	
 	<!-- 多条件查询 -->
 	<select id="selectHumanFileAll" resultMap="HumanFileMap" parameterType="hashmap">
 		select * from human_file
@@ -572,7 +574,200 @@
 		select count(*) from (select * from human_file where check_status=#{cs}) as hf
 	</select>
 	
+	<select id="selectByHumanName" parameterType="string" resultMap="HumanFileMap">
+		select * from human_file where human_name=#{humanName}
+	</select>
 	
+	<!-- 修改数据 -->
+    <update id="updateHumanFileTwo" parameterType="HumanFile">
+        UPDATE HUMAN_FILE
+        <set>
+            <if test="humanId != null">
+                HUMAN_ID = #{humanId},
+            </if>
+            <if test="firstKindId != null">
+                FIRST_KIND_ID = #{firstKindId},
+            </if>
+            <if test="firstKindName != null">
+                FIRST_KIND_NAME = #{firstKindName},
+            </if>
+            <if test="secondKindId != null">
+                SECOND_KIND_ID = #{secondKindId},
+            </if>
+            <if test="secondKindName != null">
+                SECOND_KIND_NAME = #{secondKindName},
+            </if>
+            <if test="thirdKindId != null">
+                THIRD_KIND_ID = #{thirdKindId},
+            </if>
+            <if test="thirdKindName != null">
+                THIRD_KIND_NAME = #{thirdKindName},
+            </if>
+            <if test="humanName != null">
+                HUMAN_NAME = #{humanName},
+            </if>
+            <if test="humanAddress != null">
+                HUMAN_ADDRESS = #{humanAddress},
+            </if>
+            <if test="humanPostcode != null">
+                HUMAN_POSTCODE = #{humanPostcode},
+            </if>
+            <if test="humanProDesignation != null">
+                HUMAN_PRO_DESIGNATION = #{humanProDesignation},
+            </if>
+            <if test="humanMajorKindId != null">
+                HUMAN_MAJOR_KIND_ID = #{humanMajorKindId},
+            </if>
+            <if test="humanMajorKindName != null">
+                HUMAN_MAJOR_KIND_NAME = #{humanMajorKindName},
+            </if>
+            <if test="humanMajorId != null">
+                HUMAN_MAJOR_ID = #{humanMajorId},
+            </if>
+            <if test="hunmaMajorName != null">
+                HUNMA_MAJOR_NAME = #{hunmaMajorName},
+            </if>
+            <if test="humanTelephone != null">
+                HUMAN_TELEPHONE = #{humanTelephone},
+            </if>
+            <if test="humanMobilephone != null">
+                HUMAN_MOBILEPHONE = #{humanMobilephone},
+            </if>
+            <if test="humanBank != null">
+                HUMAN_BANK = #{humanBank},
+            </if>
+            <if test="humanAccount != null">
+                HUMAN_ACCOUNT = #{humanAccount},
+            </if>
+            <if test="humanQq != null">
+                HUMAN_QQ = #{humanQq},
+            </if>
+            <if test="humanEmail != null">
+                HUMAN_EMAIL = #{humanEmail},
+            </if>
+            <if test="humanHobby != null">
+                HUMAN_HOBBY = #{humanHobby},
+            </if>
+            <if test="humanSpeciality != null">
+                HUMAN_SPECIALITY = #{humanSpeciality},
+            </if>
+            <if test="humanSex != null">
+                HUMAN_SEX = #{humanSex},
+            </if>
+            <if test="humanReligion != null">
+                HUMAN_RELIGION = #{humanReligion},
+            </if>
+            <if test="humanParty != null">
+                HUMAN_PARTY = #{humanParty},
+            </if>
+            <if test="humanNationality != null">
+                HUMAN_NATIONALITY = #{humanNationality},
+            </if>
+            <if test="humanRace != null">
+                HUMAN_RACE = #{humanRace},
+            </if>
+            <if test="humanBirthday != null">
+                HUMAN_BIRTHDAY = #{humanBirthday},
+            </if>
+            <if test="humanBirthplace != null">
+                HUMAN_BIRTHPLACE = #{humanBirthplace},
+            </if>
+            <if test="humanAge != null">
+                HUMAN_AGE = #{humanAge},
+            </if>
+            <if test="humanEducatedDegree != null">
+                HUMAN_EDUCATED_DEGREE = #{humanEducatedDegree},
+            </if>
+            <if test="humanEducatedYears != null">
+                HUMAN_EDUCATED_YEARS = #{humanEducatedYears},
+            </if>
+            <if test="humanEducatedMajor != null">
+                HUMAN_EDUCATED_MAJOR = #{humanEducatedMajor},
+            </if>
+            <if test="humanSocietySecurityId != null">
+                HUMAN_SOCIETY_SECURITY_ID = #{humanSocietySecurityId},
+            </if>
+            <if test="humanIdCard != null">
+                HUMAN_ID_CARD = #{humanIdCard},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark},
+            </if>
+            <if test="salaryStandardId != null">
+                SALARY_STANDARD_ID = #{salaryStandardId},
+            </if>
+            <if test="salaryStandardName != null">
+                SALARY_STANDARD_NAME = #{salaryStandardName},
+            </if>
+            <if test="salarySum != null">
+                SALARY_SUM = #{salarySum},
+            </if>
+            <if test="demandSalaraySum != null">
+                DEMAND_SALARAY_SUM = #{demandSalaraySum},
+            </if>
+            <if test="paidSalarySum != null">
+                PAID_SALARY_SUM = #{paidSalarySum},
+            </if>
+            <if test="majorChangeAmount != null">
+                MAJOR_CHANGE_AMOUNT = #{majorChangeAmount},
+            </if>
+            <if test="bonusAmount != null">
+                BONUS_AMOUNT = #{bonusAmount},
+            </if>
+            <if test="trainingAmount != null">
+                TRAINING_AMOUNT = #{trainingAmount},
+            </if>
+            <if test="fileChangAmount != null">
+                FILE_CHANG_AMOUNT = #{fileChangAmount},
+            </if>
+            <if test="humanHistroyRecords != null">
+                HUMAN_HISTROY_RECORDS = #{humanHistroyRecords},
+            </if>
+            <if test="humanFamilyMembership != null">
+                HUMAN_FAMILY_MEMBERSHIP = #{humanFamilyMembership},
+            </if>
+            <if test="humanPicture != null">
+                HUMAN_PICTURE = #{humanPicture},
+            </if>
+            <if test="attachmentName != null">
+                ATTACHMENT_NAME = #{attachmentName},
+            </if>
+            <if test="checkStatus != null">
+                CHECK_STATUS = #{checkStatus},
+            </if>
+            <if test="register != null">
+                REGISTER = #{register},
+            </if>
+            <if test="checker != null">
+                CHECKER = #{checker},
+            </if>
+            <if test="changer != null">
+                CHANGER = #{changer},
+            </if>
+            <if test="registTime != null">
+                REGIST_TIME = #{registTime},
+            </if>
+            <if test="checkTime != null">
+                CHECK_TIME = #{checkTime},
+            </if>
+            <if test="changeTime != null">
+                CHANGE_TIME = #{changeTime},
+            </if>
+            <if test="lastlyChangeTime != null">
+                LASTLY_CHANGE_TIME = #{lastlyChangeTime},
+            </if>
+            <if test="deleteTime != null">
+                DELETE_TIME = #{deleteTime},
+            </if>
+            <if test="recoveryTime != null">
+                RECOVERY_TIME = #{recoveryTime},
+            </if>
+            <if test="humanFileStatus != null">
+                HUMAN_FILE_STATUS = #{humanFileStatus}
+            </if>
+        </set>
+        WHERE HUF_ID = #{hufId}
+    </update>
 	
 	
 	
