@@ -275,6 +275,7 @@ public class TransferController {
 	
 	@RequestMapping("/updateMajorChange.do")
 	public String updateMajorChange(Model model,@Param("isPass") String isPass,MajorChange mc){
+		
 		if("不通过".equals(isPass)){
 			
 			String humanId = mc.getHumanId();
@@ -296,19 +297,19 @@ public class TransferController {
 			HumanFile hf = hfs.findByHumanId(humanId);
 			short s = 1;
 			hf.setCheckStatus(s);//正常状态
-			hf.setFirstKindId(mc.getFirstKindId());
-			hf.setFirstKindName(mc.getFirstKindName());
-			hf.setSecondKindId(mc.getSecondKindId());
-			hf.setSecondKindName(mc.getSecondKindName());
-			hf.setThirdKindId(mc.getThirdKindId());
-			hf.setThirdKindName(mc.getThirdKindName());
-			hf.setHumanMajorKindId(mc.getMajorKindId());
-			hf.setHumanMajorKindName(mc.getMajorKindName());
-			hf.setHumanMajorId(mc.getMajorId());
-			hf.setHunmaMajorName(mc.getMajorName());
-			hf.setSalaryStandardName(mc.getSalaryStandardName());
-			hf.setSalaryStandardId(mc.getSalaryStandardId());
-			boolean f = hfs.updateHumanFile(hf);
+			hf.setFirstKindId(mc.getNewFirstKindId());
+			hf.setFirstKindName(mc.getNewFirstKindName());
+			hf.setSecondKindId(mc.getNewSecondKindId());
+			hf.setSecondKindName(mc.getNewSecondKindName());
+			hf.setThirdKindId(mc.getNewThirdKindId());
+			hf.setThirdKindName(mc.getNewThirdKindName());
+			hf.setHumanMajorKindId(mc.getNewMajorKindId());
+			hf.setHumanMajorKindName(mc.getNewMajorKindName());
+			hf.setHumanMajorId(mc.getNewMajorId());
+			hf.setHunmaMajorName(mc.getNewMajorName());
+			hf.setSalaryStandardName(mc.getNewSalaryStandardName());
+			hf.setSalaryStandardId(mc.getNewSalaryStandardId());
+			boolean f = hfs.updateHumanFileTwo(hf);
 			
 			short s1 = 2;//
 			mc.setCheckStatus(s1);//2审核通过

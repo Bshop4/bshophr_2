@@ -117,6 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input type="text" name="majorKindName"
 							 readonly="readonly"
 							value="${obj.majorKindName }" class="INPUT_STYLE2">
+							<input type="hidden" name="majorKindId" value="${obj.majorKindId }">
 					</td>
 					<td class="TD_STYLE1" width="12%">
 						原职位名称
@@ -125,6 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input type="text" name="majorName"
 							value="${obj.majorName }" readonly="readonly" 
 							class="INPUT_STYLE2">
+							<input type="hidden" name="majorId" value="${obj.majorId }">
 					</td>
 					<td class="TD_STYLE1">
 						原薪酬标准
@@ -133,6 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input type="text" name="salaryStandardName"
 							value="${obj.salaryStandardName }"
 							readonly="readonly"   class="INPUT_STYLE2">
+							<input type="hidden" name="salaryStandardId" value="${obj.salaryStandardId }">
 					</td>
 					<td class="TD_STYLE1">
 					</td>
@@ -148,6 +151,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input type="text" name="newFirstKindName"
 							value="${obj.newFirstKindName }"
 							readonly="readonly"   class="INPUT_STYLE2">
+							<input type="hidden" name="newFirstKindId" value="${obj.newFirstKindId }">
 					</td>
 					<td class="TD_STYLE1" width="12%">
 						新二级机构名称
@@ -156,6 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input type="text" name="newSecondKindName"
 								value="${obj.newSecondKindName }"
 								readonly="readonly"   class="INPUT_STYLE2">
+								<input type="hidden" name="newSecondKindId" value="${obj.newSecondKindId }">
 					</td>
 					<td class="TD_STYLE1" width="12%">
 						新三级机构名称
@@ -164,6 +169,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input type="text" name="newThirdKindName"
 								value="${obj.newThirdKindName }"
 								readonly="readonly"   class="INPUT_STYLE2">
+								<input type="hidden" name="newThirdKindId" value="${obj.newThirdKindId }">
 					</td>
 					<td class="TD_STYLE1" width="8%">
 					</td>
@@ -178,6 +184,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input type="text" name="newMajorKindName"
 								value="${obj.newMajorKindName }"
 								readonly="readonly"   class="INPUT_STYLE2">
+								<input type="hidden" name="newMajorKindId" value="${obj.newMajorKindId }">
 					</td>
 					<td class="TD_STYLE1" width="12%">
 						新职位名称
@@ -186,6 +193,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input type="text" name="newMajorName"
 								value="${obj.newMajorName }"
 								readonly="readonly"   class="INPUT_STYLE2">
+								<input type="hidden" name="newMajorId" value="${obj.newMajorId }">
 					</td>
 					<td class="TD_STYLE1">
 						新薪酬标准
@@ -194,6 +202,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input type="text" name="newSalaryStandardName"
 								value="${obj.newSalaryStandardName }"
 								readonly="readonly"   class="INPUT_STYLE2">
+								<input type="hidden" name="newSalaryStandardId" value="${obj.newSalaryStandardId }">
 					</td>
 					<td class="TD_STYLE1">
 					</td>
