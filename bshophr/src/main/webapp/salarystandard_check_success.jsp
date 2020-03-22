@@ -36,7 +36,7 @@
 			<tr>
 				<td width="49%">复核成功，谢谢！</td>
 				<td width="51%" align="right"><input type="button" value="返回"
-					class="BUTTON_STYLE1" onclick="javascript:list();"></td>
+					class="BUTTON_STYLE1" onclick="javascript:history.back(-1);"></td>
 			</tr>
 		</table>
 
