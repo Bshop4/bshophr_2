@@ -32,5 +32,6 @@ public interface HumanFileMapper {
 	//
 	public List<HumanFile> selectSplitByCS(Map<String, Object> map);
 	public int selectCnt(int cs);
+	public int selectCount(Map<String, Object> map);
 
 }

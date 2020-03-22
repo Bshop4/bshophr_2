@@ -17,8 +17,8 @@ import hr.service.ConfigPrimaryKeyService;
 import hr.service.HumanFileService;
 
 @Controller
-@RequestMapping("/queryKeywords")
-public class DjtQueryKeywords {
+@RequestMapping("/deleteKeywords")
+public class DjtDeleteKeywords {
 	@Autowired
 	private ConfigPrimaryKeyService configPrimaryKeyService=null;
 	
@@ -62,7 +62,7 @@ public class DjtQueryKeywords {
 		
 		model.addAttribute("condition", map1);
 		
-		return "forward:/query_keywords.jsp";
+		return "forward:/djtDeletekeywords.jsp";
 	}
 	
 	@RequestMapping("/queryByConditions.do")
@@ -97,8 +97,7 @@ public class DjtQueryKeywords {
 		if(dateEnd==""){
 			dateEnd=null;
 		}
-		//查看已经复核的人的信息
-		map.put("checkStatus", 1);
+	
 		map.put("humanFileStatus", 1);
 		map.put(selectKey, selectValue);
 		map.put("firstKindId", firstKindId);
@@ -112,7 +111,6 @@ public class DjtQueryKeywords {
 		map.put("currentPage", 0);
 		System.out.println(dateStart+"======"+dateEnd+"======"+selectKey+"====="+selectValue);
 		List<HumanFile> list=humanFileService.findHumanFileAll(map);
-		model.addAttribute("listPageNo", list);
 		
 		int count=humanFileService.findCount(map);
 		
@@ -125,12 +123,14 @@ public class DjtQueryKeywords {
 		}
 		
 		model.addAttribute("listPageNo", list);
+		
 		model.addAttribute("count", count);
 		model.addAttribute("condition", map);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("maxPage", maxPage);
 		model.addAttribute("selectKey", selectKey);
 		model.addAttribute("selectValue", selectValue);
-		return "forward:/djtQueryPage.jsp";
+		
+		return "forward:/djtDeletePage.jsp";
 	}
 }

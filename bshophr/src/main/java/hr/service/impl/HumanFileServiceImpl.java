@@ -84,5 +84,9 @@ public class HumanFileServiceImpl implements HumanFileService {
 		// TODO Auto-generated method stub
 		return hfm.selectCnt(cs);
 	}
+	public int findCount(Map<String, Object> map) {
+		int count=hfm.selectCount(map);
+		return count;
+	}
 
 }

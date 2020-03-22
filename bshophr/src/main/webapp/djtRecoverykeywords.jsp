@@ -79,7 +79,7 @@
 		console.log(selectKey);
 		console.log(selectValue);
 
-		window.location.href="queryKeywords/queryByConditions.do?firstKindId="+firstKindId
+		window.location.href="recoveryKeywords/queryByConditions.do?firstKindId="+firstKindId
 					+"&secondKindId="+secondKindId+"&thirdKindId="+thirdKindId+"&humanMajorKindId="
 					+humanMajorKindId+"&humanMajorId="+humanMajorId+"&dateStart="+dateStart
 					+"&dateEnd="+dateEnd+"&selectKey="+selectKey+"&selectValue="+selectValue;

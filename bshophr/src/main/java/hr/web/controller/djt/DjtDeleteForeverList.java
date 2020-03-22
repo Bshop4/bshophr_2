@@ -26,10 +26,51 @@ public class DjtDeleteForeverList {
 	@RequestMapping("/jumpPage.do")
 	public String queryPageLocate(Model model){
 		Map<String, Object> map=new HashMap<String, Object>();
+		int pageSize=8;
+		int currentPage=1;
 		map.put("humanFileStatus", 0);
 		map.put("pageSize", 8);
 		map.put("currentPage", 0);
 		List<HumanFile> list=humanFileService.findHumanFileAll(map);
+		//总共多少条数据
+		int count=humanFileService.findCount(map);
+		//最大页数
+		int maxPage=0;
+		if(count%pageSize==0){
+			maxPage=count/pageSize;
+		}else{
+			maxPage=count/pageSize+1;
+		}
+		model.addAttribute("count", count);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("listPageNo", list);
+		return "forward:/delete_forever_list.jsp";
+	}
+	
+	@RequestMapping("/jumpToPage.do")
+	public String jumpToPage(@RequestParam String currentPage,Model model){
+		
+		int currentPage1= Integer.parseInt(currentPage);
+		
+		Map<String, Object> map=new HashMap<String, Object>();
+		int pageSize=8;
+		map.put("humanFileStatus", 0);
+		map.put("pageSize", pageSize);
+		map.put("currentPage", (currentPage1-1)*pageSize);
+		List<HumanFile> list=humanFileService.findHumanFileAll(map);
+		//总共多少条数据
+		int count=humanFileService.findCount(map);
+		//最大页数
+		int maxPage=0;
+		if(count%pageSize==0){
+			maxPage=count/pageSize;
+		}else{
+			maxPage=count/pageSize+1;
+		}
+		model.addAttribute("count", count);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("listPageNo", list);
 		return "forward:/delete_forever_list.jsp";
 	}

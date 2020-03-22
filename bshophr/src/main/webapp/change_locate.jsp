@@ -53,11 +53,10 @@
 				</font></td>
 			</tr>
 			<tr>
-				<td align="right"><input type="button" value="EXCEL列表"
-					class="BUTTON_STYLE1" onclick="javascript:doExport('excel');">
-					<input type="button" value="查询" class="BUTTON_STYLE1" id="djtQlSearch"> 
+				<td align="right">
+					<input type="button" value="开始" class="BUTTON_STYLE1" id="djtQlSearch"> 
 					<input type="button"
-					value="搜索" class="BUTTON_STYLE1" onclick="search();"></td>
+					value="搜索" class="BUTTON_STYLE1" id="djtQueryKeywords"></td>
 			</tr>
 		</table>
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
@@ -271,6 +270,22 @@
 					+djtJobClassSelect+"&humanMajorId="+djtJobSelect+"&dateStart="+dateStart
 					+"&dateEnd="+dateEnd;
 	})
+	
+	$("#djtQueryKeywords").click(function(){
+		var firstKindId=$("#djtFirstSelect option:selected").val();
+		var secondKindId=$("#djtSecondSelect option:selected").val();
+		var thirdKindId=$("#djtThirdSelect option:selected").val();
+		var humanMajorKindId=$("#djtJobClassSelect option:selected").val();
+		var humanMajorId=$("#djtJobSelect option:selected").val();
+		var dateStart=$("#dateStart").val();
+		var dateEnd=$("#dateEnd").val();
+		
+		window.location.href="queryKeywords/djtSearch.do?firstKindId="+firstKindId
+					+"&secondKindId="+secondKindId+"&thirdKindId="+thirdKindId+"&humanMajorKindId="
+					+humanMajorKindId+"&humanMajorId="+humanMajorId+"&dateStart="+dateStart
+					+"&dateEnd="+dateEnd;
+	})
+	
 	
 </script>
 </html>
