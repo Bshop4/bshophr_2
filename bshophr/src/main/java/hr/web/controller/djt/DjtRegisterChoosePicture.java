@@ -114,6 +114,10 @@ public class DjtRegisterChoosePicture {
 			e.printStackTrace();
 		}
 		hf.setRegistTime(new java.sql.Date(d.getTime()));
+		if(hf.getHumanId()==null){
+			hf.setHumanId(String.valueOf(djtZhujian));
+		}
+		
 		boolean m=humanFileService.updateHumanFile(hf);
 		return m;
 	}

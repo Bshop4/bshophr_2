@@ -85,11 +85,13 @@
 	var currentPage=$("#currentPage").text();
 	$("#JumpToPage").click(function(){
 		var pageJump=$("#pageJump").val();
+		console.log(maxPage);
 		if(pageJump>maxPage){
 			pageJump=currentPage;
 		}
 		$("#currentPage").text(pageJump);
-		window.location.href="checkList/jumpToPage.do?currentPage="+pageJump;
+		console.log(pageJump);
+		window.location.href="bshpohr/checkList/jumpToPage.do?currentPage="+pageJump;
 	})
 </script>
 </html>

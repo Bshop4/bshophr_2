@@ -52,6 +52,7 @@ public class DjtCheckList {
 		int pageSize=8;
 		
 		int currentPage1= Integer.parseInt(currentPage);
+		System.out.println("穿过老的当前页==="+currentPage1);
 		
 		map.put("checkStatus", 0);
 		map.put("humanFileStatus", 1);
