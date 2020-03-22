@@ -27,5 +27,10 @@ public interface HumanFileMapper {
 	public boolean updateHumanFile(HumanFile hf);
 	
 	public boolean updateHumanFileStatus(Map<String, Object> map);
+	
+	
+	//
+	public List<HumanFile> selectSplitByCS(Map<String, Object> map);
+	public int selectCnt(int cs);
 
 }
