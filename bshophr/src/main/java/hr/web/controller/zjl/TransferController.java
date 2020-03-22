@@ -188,7 +188,7 @@ public class TransferController {
 		mc.setNewThirdKindId(thirdKindId);
 		mc.setNewMajorKindId(majorKindId);
 		mc.setNewMajorId(majorId);
-		
+		  
 		short s = 0;
 		mc.setCheckStatus(s);
 		

@@ -32,7 +32,7 @@
 			<tr>
 				<td width="49%">提交成功，需要复核！</td>
 				<td width="51%" align="right"><input type="button" value="返回"
-					class="BUTTON_STYLE1" onclick="javascript:toAdd();"></td>
+					class="BUTTON_STYLE1" onclick="javascript:history.back(-1);"></td>
 			</tr>
 		</table>
 

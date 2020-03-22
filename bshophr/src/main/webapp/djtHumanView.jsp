@@ -54,6 +54,11 @@
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
 			bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
 			<tr>
+				<td class="TD_STYLE1" width="10%">档案编号</td>
+				<td colspan="6" class="TD_STYLE2">${humanFile.humanId}</td>
+				<td align="center" rowspan="6"><img src="${humanFile.humanPicture}" id="djtViewPhoto"/></td>
+			</tr>
+			<tr>
 				<td class="TD_STYLE1" width="11%">I级机构</td>
 				<td width="14%" class="TD_STYLE2"><select
 					name="item.firstKindName"
@@ -71,7 +76,6 @@
 					name="item.thirdKindName" class="SELECT_STYLE1" id="djtThirdSelect">
 					<option value="${humanFile.thirdKindId}">${humanFile.thirdKindName }</option>
 					</select></td>
-				<td align="center" rowspan="5"><img src="${humanFile.humanPicture}" id="djtViewPhoto"/></td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">职位分类</td>
@@ -202,9 +206,9 @@
 				<td class="TD_STYLE1">帐号</td>
 				<td class="TD_STYLE2"><input type="text"
 					name="item.humanAccount" value="${humanFile.humanAccount}" class="INPUT_STYLE2"></td>
-				<td class="TD_STYLE1">登记人</td>
-				<td class="TD_STYLE2"><input type="text" name="item.register"
-					value="${humanFile.register}" readonly="readonly" class="INPUT_STYLE2">
+				<td class="TD_STYLE1">复核人</td>
+				<td class="TD_STYLE2"><input type="text" name="item.checker"
+					value="${humanFile.checker}" readonly="readonly" class="INPUT_STYLE2">
 				</td>
 			</tr>
 			<tr>
@@ -226,6 +230,10 @@
 						<option value="舞蹈">舞蹈</option></select></td>
 				<td class="TD_STYLE1">&nbsp;</td>
 				<td class="TD_STYLE2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="TD_STYLE1">档案附件</td>
+				<td colspan="7" class="TD_STYLE2"><a>${humanFile.attachmentName}</a></td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">个人履历</td>
@@ -405,7 +413,7 @@
 		var salaryStandardName=$("select[name='item.salaryStandardName'] option:selected").val();
 		var humanBank=$("input[name='item.humanBank']").val();
 		var humanAccount=$("input[name='item.humanAccount']").val();
-		var register=$("input[name='item.register']").val();
+		var checker=$("input[name='item.checker']").val();
 		var registTime=$("input[name='item.registTime']").val();
 		
 		var humanSpeciality=$("select[name='item.humanSpeciality'] option:selected").val();
@@ -457,7 +465,7 @@
 				"salaryStandardName":salaryStandardName,
 				"humanBank":humanBank,
 				"humanAccount":humanAccount,
-				"register":register,
+				"checker":checker,
 				"registTime":registTime,
 				"humanSpeciality":humanSpeciality,
 				"humanHobby":humanHobby,
