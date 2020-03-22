@@ -40,10 +40,11 @@ public class DjtRegisterChooseFile {
 	public boolean fileUplod(@RequestParam int djtZhujian,@RequestParam MultipartFile djtFile,HttpSession session){
 
 		//获取文件的扩展名
+		String fileName=djtFile.getOriginalFilename();
 		String ext = FilenameUtils.getExtension(djtFile.getOriginalFilename());
 		String path=session.getServletContext().getRealPath("/registerFile");
 		System.out.println("文件类型:"+ext);
-		path=path+"\\"+djtZhujian+"File."+ext;
+		path=path+"\\"+fileName+djtZhujian+"File."+ext;
 		System.out.println(path);
 		
 		File dirFile = new File(path);
@@ -55,7 +56,7 @@ public class DjtRegisterChooseFile {
 		
 		//插入到数据库中
 		HumanFile hf=humanFileService.findHumanFileById(djtZhujian);
-		String savePath="registerFile/"+djtZhujian+"File."+ext;
+		String savePath="registerFile/"+fileName+djtZhujian+"File."+ext;
 		hf.setAttachmentName(savePath);
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		String date=df.format(new Date());
