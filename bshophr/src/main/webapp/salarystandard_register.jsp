@@ -174,7 +174,7 @@
 		var str5 = $("#td5").val();
 		var str6 = $("#td6").val();
 		if (my1.length<=0||my2.length<=0||my3.length<=0||my4.length<=0||my5.length<=0||str1.length<=0||str2.length<=0||str3.length<=0||str4.length<=0||str5.length<=0||str6.length<=0) {
-			alert("数据不能为空！！！");
+			alert("数据不能为空！");
 			return;
 		}
 		$("#myform").submit();
