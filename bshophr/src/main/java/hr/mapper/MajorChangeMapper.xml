@@ -48,12 +48,24 @@
 		select count(*) from (select * from major_change where check_status=#{cs}) as mc
 	</select>
 	
+	<select id="selectCntTwo" resultType="_int">
+		select count(*) from  major_change
+	</select>
+	
 	<select id="selectSplit" parameterType="hashmap" resultMap="MajorChangeMap">
 		select * from (select * from major_change where check_status=#{cs}) as mc
 		<if test="currentPage!=null and pageSize!=null">
 			limit #{currentPage},#{pageSize}
 		</if>
 	</select>
+	
+	<select id="selectSplitTwo" parameterType="hashmap" resultMap="MajorChangeMap">
+		select * from (select * from major_change) as mc
+		<if test="currentPage!=null and pageSize!=null">
+			limit #{currentPage},#{pageSize}
+		</if>
+	</select>
+	
 
 	
 	<select id="selectMajorChangeAll" resultMap="MajorChangeMap">

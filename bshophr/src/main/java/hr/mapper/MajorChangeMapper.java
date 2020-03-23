@@ -17,4 +17,6 @@ public interface MajorChangeMapper {
 	
 	public List<MajorChange> selectSplit(Map<String, Object> map);
 	public int selectCnt(short cs);
+	public List<MajorChange> selectSplitTwo(Map<String, Object> map);
+	public int selectCntTwo();
 }

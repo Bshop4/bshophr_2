@@ -378,7 +378,7 @@ a {
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td>调动查询</td>
+							<td><a target="mainFrame" href="zjlTransfer/queryList.do">调动查询</a></td>
 						</tr>
 					</table>
 			</span></td>
