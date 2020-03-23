@@ -322,5 +322,54 @@ public class TransferController {
 	}
 	
 	
+	@RequestMapping("/queryList.do")
+	public String queryList(Model model,HttpServletRequest request){
+		
+		int sumNumber = mcs.findCntTwo();//总个数
+		int pageSize =1;
+		int pageNo =1;
+		//最大页数
+		int maxPage=sumNumber%pageSize!=0?sumNumber/pageSize+1:sumNumber/pageSize;
+		
+		String page=request.getParameter("page");
+		if(page!=null && !"".equals(page)){
+			try{
+				pageNo=Integer.parseInt(page);
+			}catch(NumberFormatException e){
+				pageNo=1;
+			}
+			if(pageNo>maxPage){
+				pageNo=maxPage;
+			}else if(pageNo<1){
+				pageNo=1;
+			}
+		}
+		
+		int currentPage=(pageNo-1)*pageSize;
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("pageSize", pageSize);
+		map.put("currentPage", currentPage);
+		//分页查询
+		List<MajorChange> list = mcs.findSplitTwo(map);
+		
+		
+		model.addAttribute("list", list);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("sumNumber", sumNumber);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("pageNo", pageNo);
+		
+		return "forward:/transfer_query_list.jsp";
+	}
+	
+	
+	@RequestMapping("/{mchId}/queryById.do")
+	public String queryById(@PathVariable("mchId") short mchId,Model model){
+		
+		MajorChange mc = mcs.findMajorChangeById(mchId);
+		System.out.println(mc);
+		model.addAttribute("obj", mc);
+		return "forward:/transfer_query.jsp";
+	}
 	
 }

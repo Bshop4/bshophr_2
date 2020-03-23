@@ -63,5 +63,17 @@ public class MajorChangeServiceImpl implements MajorChangeService{
 		// TODO Auto-generated method stub
 		return majorChangeMapper.selectCnt(cs);
 	}
+	
+	@Override
+	public int findCntTwo() {
+		// TODO Auto-generated method stub
+		return majorChangeMapper.selectCntTwo();
+	}
+	
+	@Override
+	public List<MajorChange> findSplitTwo(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return majorChangeMapper.selectSplitTwo(map);
+	}
 
 }
