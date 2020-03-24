@@ -179,7 +179,7 @@ public class SalarygrantdetailsController {
 	}
 
 	// 复核通过
-	@RequestMapping("tocheck.do")
+	@RequestMapping("/tocheck.do")
 	public String tocheck(String humanid, String bounsSum, String saleSum, String deductSum, String salaryPaidSum) {
 		SalaryGrantDetails sgdpojo = new SalaryGrantDetails();
 		sgdpojo.setHumanId(humanid);

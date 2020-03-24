@@ -53,7 +53,7 @@
 			<tr>
 				<td class="TD_STYLE1">请输入关键字</td>
 				<td class="TD_STYLE2"><input type="text" name="textfield3"
-					class="INPUT_STYLE1"></td>
+					class="INPUT_STYLE1" placeholder="在薪酬标准名称、制定人、变更人和复核人匹配"></td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">请输入登记时间</td>
@@ -91,7 +91,7 @@
 		var st = $("#date_start").val();
 		var et = $("#date_end").val();
 		if (bh.length<=0||st.length<=0||et.length<=0) {
-			alert("薪酬标准编号和时间不可以为空！！！");
+			alert("薪酬标准编号,关键字,时间不可以为空！！！");
 			return;
 		}
 		$("#myf").submit();
