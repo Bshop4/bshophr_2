@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <table width="100%">
         <tr>
             <td>
-                <font color="#0000CC">您正在做的业务是：人力资源-调动管理-调动登记列表
+                <font color="#0000CC">您正在做的业务是：人力资源-调动管理-调动查询列表
                 </font>
             </td>
         </tr>
@@ -62,7 +62,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						职位名称
 					</td>
 					<td width="15%" class="TD_STYLE1">
-						登记
+						状态
+					</td>
+					<td width="15%" class="TD_STYLE1">
+						查看
 					</td>
 				</tr>
 				    <c:if test="${!empty list }">
@@ -71,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 	<c:forEach items="${list}" var="list"> 
 					<tr>
 						<td class="TD_STYLE2">
-							${list.hufId }
+							${list.mchId }
 						</td>
 						<td class="TD_STYLE2">
 							${list.humanName }
@@ -86,14 +89,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							${list.thirdKindName }
 						</td>
 						<td class="TD_STYLE2">
-							${list.humanMajorKindName }
+							${list.majorKindName }
 						</td>
 						<td class="TD_STYLE2">
-							${list.hunmaMajorName }
+							${list.majorName }
 						</td>
 						
 						<td class="TD_STYLE2">
-							<a href="zjlTransfer/${list.hufId}/queryOneHF.do">登记</a>
+							<c:if test="${list.checkStatus eq 1 }">
+								未通过
+							</c:if>
+							<c:if test="${list.checkStatus eq 2 }">
+								已通过
+							</c:if>
+						</td>
+						<td class="TD_STYLE2">
+							<c:if test="${list.checkStatus eq 1 }">
+								未通过
+							</c:if>
+							<c:if test="${list.checkStatus eq 2 }">
+								<a href="zjlTransfer/${list.mchId }/queryById.do">查看</a>
+							</c:if>
 						</td>
 					</tr>
 			      </c:forEach>

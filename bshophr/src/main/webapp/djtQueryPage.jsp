@@ -66,7 +66,7 @@
 					<td class="TD_STYLE2">${lpn.thirdKindName}</td>
 					<td class="TD_STYLE2">${lpn.humanProDesignation}</td>
 					<td class="TD_STYLE2">
-						<a href="humanRegister/jumpToId.do?hufId=${lpn.hufId}">查看</a>
+						<a href="humanRegister/jumpToChangeId.do?hufId=${lpn.hufId}">查看</a>
 					</td>
 				</tr>
 				</c:forEach>
@@ -75,7 +75,7 @@
 			<p>
 			&&nbsp;&nbsp;总数：${count}例 &nbsp;&nbsp;&nbsp;当前第 <span id="currentPage">${currentPage}</span>页 &nbsp;&nbsp;&nbsp;共 ${maxPage}页
 			&nbsp;&nbsp;&nbsp;跳到第 <input name="page" id="pageJump" type="text" class="input1" size="1"/>
-			页&nbsp;&nbsp;<input type="image" src="images/go.bmp" width="18" height="18" border="0" id="JumpToPage"/>
+			页&nbsp;&nbsp;<input type="button" id="JumpToPage" value="go"/>
 				</p>
 	</form>
 </body>

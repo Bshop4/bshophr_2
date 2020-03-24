@@ -30,17 +30,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<table width="100%">
 				<tr>
 					<td>
-						<font color="#0000CC">您正在做的业务是:人力资源--调动管理--调动审核</font>
+						<font color="#0000CC">您正在做的业务是:人力资源--调动管理--调动查询详情</font>
 					</td>
 				</tr>
-				
 				<tr>
 					<td align="right">
-						<input type="hidden" name="mchId" value="${obj.mchId }">
-						<input type="radio" name="isPass" value="通过">通过
-						<input type="radio" name="isPass" value="不通过">不通过
-						<input type="button" value="确认" class="BUTTON_STYLE1" id="mybtn">
-						<input type="button" class="BUTTON_STYLE1" onclick="javascript:window.history.back();" value="返回">
+						<input type="button" class="BUTTON_STYLE1"
+							onclick="javascript:window.history.back();" value="返回">
 					</td>
 				</tr>
 			</table>
@@ -228,14 +224,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						审核人
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="checker" readonly="readonly" value="${checker }"
+						<input type="text" name="checker" readonly="readonly" value="${obj.checker }"
 							id="checker" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						审核时间
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="checkTime" readonly="readonly" value="${checkTime }"
+						<input type="text" name="checkTime" readonly="readonly" value="${obj.checkTime }"
 							id="checker" class="INPUT_STYLE2">
 					</td>
 				</tr>
@@ -252,39 +248,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						审核意见
 					</td>
 					<td colspan="7" class="TD_STYLE2">
-						<textarea name="checkReason" id="checkReason" rows="6" class="TEXTAREA_STYLE1"></textarea>
+						<textarea name="checkReason" id="checkReason" rows="6" class="TEXTAREA_STYLE1">${obj.checkReason }</textarea>
 					</td>
 				</tr>
 			</table>
 		</form>
 </body>
 </html>
-<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript">
 
-	 
-	 
-	 
-	 $("#mybtn").click(function(){
-	 	
-	 	var isPass = $("input[name='isPass']:checked").val()
-	 	var checkReason = $("#checkReason").val();
-	 	
-	 	if(isPass == undefined){
-	 		alert("请选择是否通过！");
-	 		return;
-	 	}
-	 	if(checkReason == ""){
-	 		alert("请填写审核意见！");
-	 		return;
-	 	}
-	 	
-	 	
-	 	
-	 	$("form[name='fm']").submit();
-	 
-	 })
-	 
-	 
-
-</script>

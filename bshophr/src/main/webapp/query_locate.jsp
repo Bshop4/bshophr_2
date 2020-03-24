@@ -135,6 +135,8 @@
 	
 	$("#djtFirstSelect").change(function(){
 		var firstSelect=$("#djtFirstSelect option:selected").val();
+		$("#djtSecondSelect").empty();
+		$("#djtThirdSelect").empty();
 		/* 一级不为空 找二级 */
 		if(firstSelect != ""){
 			$.ajax({

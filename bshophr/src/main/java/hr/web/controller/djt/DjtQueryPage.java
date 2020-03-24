@@ -32,7 +32,7 @@ public class DjtQueryPage {
 	)
 	{	
 		int currentPage=1;
-		int pageSize=8;
+		int pageSize=2;
 		Map<String, Object> map=new HashMap<String, Object>();
 		if(firstKindId.equals("undefined")||firstKindId==""){
 			firstKindId=null;
@@ -96,7 +96,7 @@ public class DjtQueryPage {
 			@RequestParam String currentPage,Model model
 	)
 	{	
-		int pageSize=8;
+		int pageSize=2;
 		Map<String, Object> map=new HashMap<String, Object>();
 		if(firstKindId.equals("undefined")||firstKindId==""){
 			firstKindId=null;
@@ -163,7 +163,7 @@ public class DjtQueryPage {
 			@RequestParam String selectKey,@RequestParam String selectValue,Model model
 	)
 	{	
-		int pageSize=8;
+		int pageSize=2;
 		Map<String, Object> map=new HashMap<String, Object>();
 		if(firstKindId.equals("undefined")||firstKindId==""){
 			firstKindId=null;

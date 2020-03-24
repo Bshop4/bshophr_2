@@ -23,7 +23,7 @@ public class DjtCheckList {
 	@RequestMapping("/pageJump.do")
 	public String pageJump(Model model){
 		Map<String, Object> map=new HashMap<String, Object>();
-		int pageSize=8;
+		int pageSize=2;
 		int currentPage=1;
 		map.put("checkStatus", 0);
 		map.put("humanFileStatus", 1);
@@ -49,7 +49,7 @@ public class DjtCheckList {
 	@RequestMapping("/jumpToPage.do")
 	public String jumpToPage(@RequestParam String currentPage,Model model){
 		Map<String, Object> map=new HashMap<String, Object>();
-		int pageSize=8;
+		int pageSize=2;
 		
 		int currentPage1= Integer.parseInt(currentPage);
 		System.out.println("穿过老的当前页==="+currentPage1);

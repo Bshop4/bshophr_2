@@ -239,7 +239,7 @@ a {
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td><a href="checkList/jumpToPage.do?currentPage=1" target="mainFrame">人力资源档案登记复核</a>
+							<td><a href="checkList/pageJump.do" target="mainFrame">人力资源档案登记复核</a>
 							</td>
 						</tr>
 						<tr>
@@ -378,7 +378,7 @@ a {
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td>调动查询</td>
+							<td><a target="mainFrame" href="zjlTransfer/queryList.do">调动查询</a></td>
 						</tr>
 					</table>
 			</span></td>

@@ -48,6 +48,7 @@
 		select * from salary_standard where standard_id=#{standardId}
 	</select>
 	
+	
 	<!-- 向思宇加的id模糊查询 -->
 	<select id="selectSalaryStandardByIdDim" resultMap="SalaryStandardMap">
 		select * from salary_standard where standard_id like '%${_parameter}%'

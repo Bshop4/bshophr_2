@@ -14,4 +14,6 @@ public interface MajorChangeService {
 	
 	public List<MajorChange> findSplit(Map<String, Object> map);
 	public int findtCnt(short cs);
+	public List<MajorChange> findSplitTwo(Map<String, Object> map);
+	public int findCntTwo();
 }

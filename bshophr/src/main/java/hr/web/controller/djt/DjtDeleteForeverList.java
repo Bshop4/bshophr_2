@@ -26,7 +26,7 @@ public class DjtDeleteForeverList {
 	@RequestMapping("/jumpPage.do")
 	public String queryPageLocate(Model model){
 		Map<String, Object> map=new HashMap<String, Object>();
-		int pageSize=8;
+		int pageSize=2;
 		int currentPage=1;
 		map.put("humanFileStatus", 0);
 		map.put("pageSize", 8);
@@ -54,7 +54,7 @@ public class DjtDeleteForeverList {
 		int currentPage1= Integer.parseInt(currentPage);
 		
 		Map<String, Object> map=new HashMap<String, Object>();
-		int pageSize=8;
+		int pageSize=2;
 		map.put("humanFileStatus", 0);
 		map.put("pageSize", pageSize);
 		map.put("currentPage", (currentPage1-1)*pageSize);
