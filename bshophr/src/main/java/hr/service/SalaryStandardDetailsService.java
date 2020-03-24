@@ -17,4 +17,6 @@ public interface SalaryStandardDetailsService {
 	public boolean saveSalaryStandardDetails(SalaryStandardDetails salaryStandardDetails);
 
 	public boolean updateSalaryStandardDetails(SalaryStandardDetails salaryStandardDetails);
+
+	public boolean updateSalaryStandardDetailsbg(SalaryStandardDetails salaryStandardDetails);
 }

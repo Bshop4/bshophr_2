@@ -26,7 +26,7 @@
 </head>
 
 <body>
-	<form method="post" action="recheckout.do">
+	<form method="post" action="recheckout.do" id="myform">
 		<table width="100%">
 			<tr>
 				<td><font color="#0000CC">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记复核</font>
@@ -35,7 +35,7 @@
 			<tr>
 				<td>
 					<div align="right">
-						<input type="submit" value="复核通过" class="BUTTON_STYLE1"
+						<input type="button" value="复核通过" class="BUTTON_STYLE1"
 							onclick="check();"> <input type="button" value="返回"
 							onclick="history.back();" class="BUTTON_STYLE1">
 					</div>
@@ -47,7 +47,7 @@
 			<tr>
 				<td width="12%" class="TD_STYLE1">薪酬编号</td>
 				<td width="15%" class="TD_STYLE2">
-					<input type="text" name="stid" id="xcbh" value="${cstandardId}"/>
+					<input type="text" name="stid" id="xcbh" value="${cstandardId}" class="INPUT_STYLE2"/>
 				</td>
 				<td width="12%" class="TD_STYLE1">薪酬标准名称</td>
 				<td width="11%" class="TD_STYLE2">
@@ -113,43 +113,13 @@
 <script type="text/javascript">
 	function check() {
 		var recheck = $("#recheck").val();
-		var fhyj = $("#fhyj").val();
-		if (recheck.length<=0||fhyj.length<=0) {
-			alert("复核人或者复核意见不可以为空！！！");
+		if (recheck.length<=0) {
+			alert("复核人不可以为空！！！");
 			return;
 		}
-		/* var s1 = $("#recheck").val();//复核人
-		var s2 = $("#Tdate").val();//复核时间
-		var s3 = ($("#comment").val()==""?"null":$("#comment").val());//复核意见
-		var s4 = $("#xcbh").val();//薪酬编号
-		var obj = s1+","+s2+","+s3+","+s4;
-		alert(obj);
-		$.ajax({
-			type:"POST",
-			url:"recheckout.do?str="+obj,
-			dataType:"json",
-			contentType:"application/json; charset=utf-8",
-			data:obj,
-		});*/
-	} 
-	
-	/* function countMoney(obj,o) {
-		if (isNaN(document.getElementById(o).value) || document.getElementById(o).value < 0) {
-			$.messager.show("消息提示","金额填写错误!",2000);
-			document.getElementById(o).value="0.00";
-			return;
-		}
-		var sum=0;
-	 	for(var i=1;i<=obj;i++){
-	 		var salary=document.getElementById("salary"+i).value;
-	 		if(salary==""){
-	 		salary="0.00";
-	 		}
-	 		sum=Number(sum)+Number(salary);
-	 	}
-	 	document.getElementById("sumSalary").value=sum;
-	} */
-	
+		$("#myform").submit();
+	}
+		
 	function time(){
 		var tdate=document.getElementById("Tdate");					 
 		var d=new Date();

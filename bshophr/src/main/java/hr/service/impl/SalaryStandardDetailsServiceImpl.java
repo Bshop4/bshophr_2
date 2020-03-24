@@ -54,4 +54,11 @@ public class SalaryStandardDetailsServiceImpl implements SalaryStandardDetailsSe
 		SalaryStandardDetails sd = salaryStandardDetailsMapper.selectSalaryStandardDetailsByItName(ssd);
 		return sd;
 	}
+
+	@Override
+	public boolean updateSalaryStandardDetailsbg(SalaryStandardDetails salaryStandardDetails) {
+		// TODO Auto-generated method stub
+		boolean flag = salaryStandardDetailsMapper.updateSalaryStandardDetailsbg(salaryStandardDetails);
+		return flag;
+	}
 }
