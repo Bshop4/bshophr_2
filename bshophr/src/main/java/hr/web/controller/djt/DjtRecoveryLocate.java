@@ -58,7 +58,7 @@ public class DjtRecoveryLocate {
 	)
 	{	
 		int currentPage=1;
-		int pageSize=8;
+		int pageSize=2;
 		Map<String, Object> map=new HashMap<String, Object>();
 		if(firstKindId.equals("undefined")||firstKindId==""){
 			firstKindId=null;
@@ -122,7 +122,7 @@ public class DjtRecoveryLocate {
 			@RequestParam String currentPage,Model model
 	)
 	{	
-		int pageSize=8;
+		int pageSize=2;
 		Map<String, Object> map=new HashMap<String, Object>();
 		if(firstKindId.equals("undefined")||firstKindId==""){
 			firstKindId=null;
@@ -189,7 +189,7 @@ public class DjtRecoveryLocate {
 			@RequestParam String selectKey,@RequestParam String selectValue,Model model
 	)
 	{	
-		int pageSize=8;
+		int pageSize=2;
 		Map<String, Object> map=new HashMap<String, Object>();
 		if(firstKindId.equals("undefined")||firstKindId==""){
 			firstKindId=null;

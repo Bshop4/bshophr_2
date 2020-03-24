@@ -90,18 +90,11 @@
 					</select></td>
 				<td class="TD_STYLE1">职称</td>
 				<td colspan="2" class="TD_STYLE2"><select
-					name="item.humanProDesignation" class="SELECT_STYLE1"><option
-							value="工程师">工程师</option>
-
-						<option value="经理">经理</option>
-
-						<option value="助理">助理</option>
-
-						<option value="教授">教授</option>
-
-						<option value="讲师">讲师</option>
-
-						<option value="技术支持">技术支持</option></select></td>
+					name="item.humanProDesignation" class="SELECT_STYLE1"><c:if test="${!empty zc}">
+						<c:forEach items="${zc }" var="fs">
+							<option>${fs.attributeName }</option> 
+						</c:forEach>
+					</c:if></select></td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">姓名</td>
@@ -141,8 +134,11 @@
 				<td class="TD_STYLE1">国籍</td>
 				<td class="TD_STYLE2"><select name="item.humanNationality"
 					class="SELECT_STYLE1">
-						<option value="中国">中国</option>
-						<option value="美国">美国</option></select></td>
+						<c:if test="${!empty gj}">
+						<c:forEach items="${gj }" var="fs">
+							<option>${fs.attributeName }</option> 
+						</c:forEach>
+					</c:if></td>
 				<td class="TD_STYLE1">出生地</td>
 				<td class="TD_STYLE2"><input type="text"
 					name="item.humanBirthplace" value="${humanFile.humanBirthplace}" class="INPUT_STYLE2">
@@ -154,20 +150,29 @@
 				<td width="11%" class="TD_STYLE1">民族</td>
 				<td class="TD_STYLE2" width="14%"><select name="item.humanRace"
 					class="SELECT_STYLE1">
-						<option value="汉族">汉族</option>
-						<option value="回族">回族</option></select></td>
+						<c:if test="${!empty mz}">
+						<c:forEach items="${mz }" var="fs">
+							<option>${fs.attributeName }</option> 
+						</c:forEach>
+					</c:if></select></td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">宗教信仰</td>
 				<td class="TD_STYLE2"><select name="item.humanReligion"
 					class="SELECT_STYLE1">
-					<option value="无">无</option>
-					<option value="佛教">佛教</option></select></td>
+					<c:if test="${!empty zjxy}">
+						<c:forEach items="${zjxy }" var="fs">
+							<option>${fs.attributeName }</option> 
+						</c:forEach>
+					</c:if></select></td>
 				<td class="TD_STYLE1">政治面貌</td>
 				<td class="TD_STYLE2"><select name="item.humanParty"
 					class="SELECT_STYLE1">
-						<option value="党员">党员</option>
-						<option value="群众">群众</option>
+						<c:if test="${!empty zzmm}">
+						<c:forEach items="${zzmm }" var="fs">
+							<option>${fs.attributeName }</option> 
+						</c:forEach>
+					</c:if>
 					</select></td>
 				<td class="TD_STYLE1">身份证号码</td>
 				<td class="TD_STYLE2"><input type="text"
@@ -184,21 +189,34 @@
 				<td class="TD_STYLE1">学历</td>
 				<td class="TD_STYLE2"><select name="item.humanEducatedDegree"
 					class="SELECT_STYLE1">
-					<option value="本科">本科</option>
-						<option value="大专">大专</option></select></td>
+					<c:if test="${!empty xl}">
+						<c:forEach items="${xl }" var="fs">
+							<option>${fs.attributeName }</option> 
+						</c:forEach>
+					</c:if></select></td>
 				<td class="TD_STYLE1">教育年限</td>
 				<td class="TD_STYLE2"><select name="item.humanEducatedYears"
-					class="SELECT_STYLE1"><option value="12">12</option>
-						<option value="16">16</option></select></td>
+					class="SELECT_STYLE1"><c:if test="${!empty jynx}">
+						<c:forEach items="${jynx }" var="fs">
+							<option>${fs.attributeName }</option> 
+						</c:forEach>
+					</c:if></select></td>
 				<td class="TD_STYLE1">学历专业</td>
 				<td class="TD_STYLE2"><select name="item.humanEducatedMajor"
-					class="SELECT_STYLE1"><option value="生物工程">生物工程</option>
-						<option value="计算机">计算机</option></select></td>
+					class="SELECT_STYLE1"><c:if test="${!empty zy}">
+						<c:forEach items="${zy }" var="fs">
+							<option>${fs.attributeName }</option> 
+						</c:forEach>
+					</c:if></select></td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">薪酬标准</td>
 				<td class="TD_STYLE2"><select name="item.salaryStandardName"
-					class="SELECT_STYLE1"><option value="0/未定义">0/未定义</option></select>
+					class="SELECT_STYLE1"><c:if test="${!empty xcbz}">
+						<c:forEach items="${xcbz }" var="fs">
+							<option>${fs.standardName }</option> 
+						</c:forEach>
+					</c:if></select>
 				</td>
 				<td class="TD_STYLE1">开户行</td>
 				<td class="TD_STYLE2"><input type="text" name="item.humanBank"
@@ -219,15 +237,19 @@
 				<td class="TD_STYLE1">特长</td>
 				<td class="TD_STYLE2"><select name="item.humanSpeciality"
 					class="SELECT_STYLE1">
-					<option value="数据库">数据库</option>
-
-						<option value="java">java</option></select></td>
+					<c:if test="${!empty tz}">
+						<c:forEach items="${tz }" var="fs">
+							<option>${fs.attributeName }</option> 
+						</c:forEach>
+					</c:if></select></td>
 				<td class="TD_STYLE1">爱好</td>
 				<td class="TD_STYLE2"><select name="item.humanHobby"
 					class="SELECT_STYLE1">
-					<option value="篮球">篮球</option>
-
-						<option value="舞蹈">舞蹈</option></select></td>
+					<c:if test="${!empty ah}">
+						<c:forEach items="${ah }" var="fs">
+							<option>${fs.attributeName }</option> 
+						</c:forEach>
+					</c:if></select></td>
 				<td class="TD_STYLE1">&nbsp;</td>
 				<td class="TD_STYLE2">&nbsp;</td>
 			</tr>
@@ -476,7 +498,7 @@
 			dataType:"json",
 			success : function(result){
 				if(result==true){
-					alert("修改成功");
+					alert("复核成功");
 				}
 				window.location.href="/bshophr/checkList/pageJump.do";
 			}		

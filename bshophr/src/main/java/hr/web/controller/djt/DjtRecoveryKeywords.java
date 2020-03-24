@@ -75,7 +75,7 @@ public class DjtRecoveryKeywords {
 	)
 	{	
 		int currentPage=1;
-		int pageSize=8;
+		int pageSize=2;
 		Map<String, Object> map=new HashMap<String, Object>();
 		if(firstKindId.equals("undefined")||firstKindId==""){
 			firstKindId=null;
