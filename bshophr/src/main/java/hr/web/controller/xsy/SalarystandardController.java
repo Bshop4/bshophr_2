@@ -410,7 +410,7 @@ public class SalarystandardController {
 				: request.getParameter("startTime");
 		String endTime = (request.getParameter("endTime")).equals("") ? date : request.getParameter("endTime");
 		int maxPage = 0;
-		int sumNumber = 0;// 总个数
+		int sumNumber = 0;// 总个数。
 		int pageSize = 1;
 		int pageNo = 1;
 		if (sid != null) {
