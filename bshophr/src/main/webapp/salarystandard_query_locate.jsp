@@ -52,15 +52,15 @@
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">请输入关键字</td>
-				<td class="TD_STYLE2"><input type="text" name="textfield3"
+				<td class="TD_STYLE2"><input type="text" name="textfield3" id="gjz"
 					class="INPUT_STYLE1" placeholder="在薪酬标准名称、制定人、变更人和复核人匹配"></td>
 			</tr>
 			<tr>
 				<td class="TD_STYLE1">请输入登记时间</td>
 				<td class="TD_STYLE2"><input type="text"
 					name="startTime" value="" class="INPUT_STYLE1"
-					id="date_start"> 至 <input type="text"
-					name="endTime" value="" class="INPUT_STYLE1" id="date_end">
+					id="date_start" placeholder="格式：2000-01-01"> 至 <input type="text"
+					name="endTime" value="" class="INPUT_STYLE1" id="date_end"  placeholder="格式：2000-01-01">
 					(YYYY-MM-DD)</td>
 			</tr>
 		</table>
@@ -88,20 +88,11 @@
 	
 	function query() {
 		var bh = $("#bh").val();
-		var st = $("#date_start").val();
-		var et = $("#date_end").val();
-		if (bh.length<=0||st.length<=0||et.length<=0) {
-			alert("薪酬标准编号,关键字,时间不可以为空！！！");
+		if (bh.length<=0) {
+			alert("薪酬标准编号和关键字不可以为空！！！");
 			return;
 		}
 		$("#myf").submit();
-		/* $.ajax({
-			type:"POST",
-			url:"queryBySalary.do?str="+bh,
-			dataType:"json",
-			contentType:"application/json; charset=utf-8",
-			data:bh,
-		}); */
 	}
 </script>
 

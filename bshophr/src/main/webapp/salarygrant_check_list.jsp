@@ -43,7 +43,7 @@ td {
 			</tr>
 			<c:forEach items="${sglist}" var="s">
 				<tr class="TD_STYLE2">
-					<td name="sgid">${s.salaryGrantId }</td>
+					<td name="sgid">${s.sgrId }</td>
 					<td>${s.firstKindName }</td>
 					<td>${s.secondKindName }</td>
 					<td>${s.thirdKindName }</td>

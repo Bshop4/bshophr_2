@@ -28,6 +28,7 @@ public class SalarygrantController {
 		Double salaryStandardSum = 0.0;
 		Double salaryPaidSum = 0.0;
 		List<SalaryGrant> sglist = sgservice.findSalaryGrantAll();
+		System.out.println(sglist.size() + "=======================");
 		for (SalaryGrant s : sglist) {
 			humanAmount += s.getHumanAmount();
 			salaryStandardSum += s.getSalaryStandardSum();
@@ -49,7 +50,6 @@ public class SalarygrantController {
 
 	@RequestMapping("/SalarygrantAll.do")
 	public String SalarygrantAll(Map map) {
-		System.out.println(555);
 		SalaryGrant sgpojo = new SalaryGrant();
 		List<SalaryGrant> list = sgservice.findSalaryGrantAll();
 		map.put("sglist", list);

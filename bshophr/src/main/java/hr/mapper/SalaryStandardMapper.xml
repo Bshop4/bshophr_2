@@ -54,12 +54,12 @@
 		select * from salary_standard where standard_id like '%${_parameter}%'
 	</select>
 	
-	<!-- 向思宇加的薪酬标准查询 -->
+		<!-- 向思宇加的薪酬标准查询 -->
 	<select id="selectSalaryStandardByCondition" resultMap="SalaryStandardMap" parameterType="hashmap">
 		select standard_id,standard_name,designer,regist_time,salary_sum 
 		from ((select * from salary_standard where standard_id like "%"#{standardId}"%"
 		and (regist_time between #{startTime} and #{endTime})) as a)
-		where
+		where 1=1
 		<if test="keyword!=null and keyword!=''">
 			<bind name="sname" value="'%'+keyword+'%'"></bind>
 			standard_name like #{sname}
@@ -111,6 +111,23 @@
 			</if>
 		</trim>
 		where standard_id=#{standardId}
-		<!--  update salary_standard set checker=#{checker},check_time=#{checkTime},check_status=#{checkStatus},check_comment=#{checkComment} where standard_id=#{standard_id} -->
+	</update>
+	<update id="updateSalaryStandardbg" parameterType="SalaryStandard">
+		update salary_standard
+		<trim prefix="set" suffixOverrides=",">
+			<if test="changer!=null">
+				changer=#{changer},
+			</if>
+			<if test="changeTime!=null">
+				change_time=#{changeTime},
+			</if>
+			<if test="changeStatus!=null">
+				change_status=#{changeStatus},
+			</if>
+			<if test="remark!=null">
+				remark=#{remark},
+			</if>
+		</trim>
+		where standard_id=#{standardId}
 	</update>
 </mapper>

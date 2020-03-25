@@ -316,7 +316,7 @@ a {
 						</tr>
 						<tr>
 							<td><img src="images/jt0.gif"></td>
-							<td><a href="salarystandard_change_locate.jsp"
+							<td><a href="querybzbgto.do"
 								target="mainFrame">薪酬标准变更</a></td>
 						</tr>
 					</table>

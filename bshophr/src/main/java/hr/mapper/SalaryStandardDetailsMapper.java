@@ -22,4 +22,6 @@ public interface SalaryStandardDetailsMapper {
 
 	public boolean updateSalaryStandardDetails(SalaryStandardDetails ssd);
 
+	public boolean updateSalaryStandardDetailsbg(SalaryStandardDetails ssd);
+
 }

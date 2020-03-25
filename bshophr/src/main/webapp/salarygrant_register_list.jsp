@@ -50,7 +50,7 @@ td {
 
 		<c:forEach items="${sglist}" var="s">
 			<tr class="TD_STYLE2">
-				<td>${s.salaryGrantId }</td>
+				<td>${s.sgrId }</td>
 				<td>
 					<c:if test="${submitType == 1}">
 						<span>${s.firstKindName }</span>

@@ -32,9 +32,10 @@ public interface SalaryStandardMapper {
 	public boolean updateSalaryStandardfh(SalaryStandard ss);
 	
 
-	
+	public boolean updateSalaryStandardbg(SalaryStandard ss);
+
 	public List<SalaryStandard> selectSalaryStandardAllByCS(String cs);
-	
+
 	public SalaryStandard selectBySalaryStandardName(String ss);
-	
+
 }
