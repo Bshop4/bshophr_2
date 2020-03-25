@@ -287,7 +287,8 @@
 	var humanFile='<%=request.getAttribute("humanFile")%>';
 	
 	$("#djtFirstSelect").change(function(){
-		var firstSelect=$("#djtFirstSelect option:selected").val();
+		var firstSelect=$("#djtFirstSelect option:selected").text();
+		console.log(firstSelect);
 		/* 一级不为空 找二级 */
 		if(firstSelect != ""){
 			$("#djtSecondSelect").empty();
@@ -326,8 +327,8 @@
 
 	$("#djtSecondSelect").change(function(){
 		
-		var val = $('#djtSecondSelect option:selected').val();
-		
+		var val = $('#djtSecondSelect option:selected').text();
+		$("#djtThirdSelect").empty();
 		/* 二级不为空 找三级 */
 		 if(val != ""){
 			$("#djtThirdSelect").empty();

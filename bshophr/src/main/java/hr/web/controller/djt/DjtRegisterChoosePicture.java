@@ -53,7 +53,7 @@ public class DjtRegisterChoosePicture {
 		boolean flag=humanFileService.updateHumanFile(humanFile);
 		//主键
 		int hufId=humanFile.getHufId();
-
+		
 		JSONObject json=JSONObject.fromObject(hufId);
 		
 		return json.toString();
@@ -63,7 +63,14 @@ public class DjtRegisterChoosePicture {
 	@RequestMapping("/updateToId.do")
 	public boolean updateToId(@ModelAttribute HumanFile humanFile){
 		humanFile.setCheckStatus((short)1);
+		
 		humanFile.setHumanFileStatus((short)1);
+		
+		if(humanFile.getHumanId()==null){
+			humanFile.setHumanId(String.valueOf(humanFile.getHufId()));
+		}
+		
+		
 		boolean flag=humanFileService.updateHumanFile(humanFile);
 		
 		return flag;
@@ -85,6 +92,10 @@ public class DjtRegisterChoosePicture {
 			e.printStackTrace();
 		}
 		humanFile.setCheckTime(new java.sql.Date(d.getTime()));
+		
+		if(humanFile.getHumanId()==null){
+			humanFile.setHumanId(String.valueOf(humanFile.getHufId()));
+		}
 		
 		boolean flag=humanFileService.updateHumanFile(humanFile);
 		

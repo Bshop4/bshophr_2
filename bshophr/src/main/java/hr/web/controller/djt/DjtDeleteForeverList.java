@@ -29,7 +29,7 @@ public class DjtDeleteForeverList {
 		int pageSize=2;
 		int currentPage=1;
 		map.put("humanFileStatus", 0);
-		map.put("pageSize", 8);
+		map.put("pageSize", 2);
 		map.put("currentPage", 0);
 		List<HumanFile> list=humanFileService.findHumanFileAll(map);
 		//总共多少条数据

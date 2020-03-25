@@ -122,7 +122,7 @@
 	});
 	
 	$("#djtFirstSelect").change(function(){
-		var firstSelect=$("#djtFirstSelect option:selected").val();
+		var firstSelect=$("#djtFirstSelect option:selected").text();
 		$("#djtSecondSelect").empty();
 		$("#djtThirdSelect").empty();
 		/* 一级不为空 找二级 */
@@ -162,7 +162,7 @@
 
 	$("#djtSecondSelect").change(function(){
 		
-		var val = $('#djtSecondSelect option:selected').val();
+		var val = $('#djtSecondSelect option:selected').text();
 		
 		/* 二级不为空 找三级 */
 		 if(val != ""){
