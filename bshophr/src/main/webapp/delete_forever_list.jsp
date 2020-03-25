@@ -83,12 +83,13 @@
 
 var maxPage="${maxPage}";
 	var currentPage=$("#currentPage").text();
-	var pageJump=$("#pageJump").val();
 	$("#JumpToPage").click(function(){
+	var pageJump=$("#pageJump").val();
 		if(pageJump>maxPage){
 			pageJump=currentPage;
 		}
 		$("#currentPage").text(pageJump);
+		console.log(pageJump);
 		window.location.href="deleteForeverList/jumpToPage.do?currentPage="+pageJump;
 	})
  
@@ -107,7 +108,7 @@ var maxPage="${maxPage}";
 					if(result==true){
 						alert("删除成功");
 					}
-					window.location.href="deleteForeverList/jumpToPage.do?currentPage="+pageJump";
+					window.location.reload();
 				}
 			});
 		 }
