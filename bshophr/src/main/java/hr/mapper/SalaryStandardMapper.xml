@@ -49,7 +49,7 @@
 	</select>
 	
 	
-	<!-- 向思宇加的id模糊查询 -->
+	<!-- 向思宇加的id模糊查。询 -->
 	<select id="selectSalaryStandardByIdDim" resultMap="SalaryStandardMap">
 		select * from salary_standard where standard_id like '%${_parameter}%'
 	</select>
