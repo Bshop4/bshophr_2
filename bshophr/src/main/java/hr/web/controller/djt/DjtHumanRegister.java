@@ -68,7 +68,7 @@ public class DjtHumanRegister {
 		List<ConfigPublicChar> tz= configPublicCharService.findConfigPublicCharByAk("特长");
 		List<ConfigPublicChar> ah= configPublicCharService.findConfigPublicCharByAk("爱好");
 		List<ConfigPublicChar> zc= configPublicCharService.findConfigPublicCharByAk("职称");
-		List<SalaryStandard> xcbz=salaryStandardService.findSalaryStandardAll();
+		List<SalaryStandard> xcbz=salaryStandardService.findSalaryStandardAllByCS("1");
 		model.addAttribute("firstSelect", list1);
 		
 		model.addAttribute("gj", gj);
@@ -105,7 +105,7 @@ public class DjtHumanRegister {
 		List<ConfigPublicChar> tz= configPublicCharService.findConfigPublicCharByAk("特长");
 		List<ConfigPublicChar> ah= configPublicCharService.findConfigPublicCharByAk("爱好");
 		List<ConfigPublicChar> zc= configPublicCharService.findConfigPublicCharByAk("职称");
-		List<SalaryStandard> xcbz=salaryStandardService.findSalaryStandardAll();
+		List<SalaryStandard> xcbz=salaryStandardService.findSalaryStandardAllByCS("1");
 		
 		model.addAttribute("gj", gj);
 		model.addAttribute("mz", mz);
@@ -141,7 +141,7 @@ public class DjtHumanRegister {
 		List<ConfigPublicChar> tz= configPublicCharService.findConfigPublicCharByAk("特长");
 		List<ConfigPublicChar> ah= configPublicCharService.findConfigPublicCharByAk("爱好");
 		List<ConfigPublicChar> zc= configPublicCharService.findConfigPublicCharByAk("职称");
-		List<SalaryStandard> xcbz=salaryStandardService.findSalaryStandardAll();
+		List<SalaryStandard> xcbz=salaryStandardService.findSalaryStandardAllByCS("1");
 		
 		model.addAttribute("gj", gj);
 		model.addAttribute("mz", mz);
