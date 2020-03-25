@@ -487,7 +487,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			"humanAmount":personNum,"registTime":overTime,"register":loger,
 			"deadline":loginTime,"majorDescribe":descri,"engageRequired":info},
 			success : function(re){
-				alert(re)
+				location.href="major_release_success.jsp";
 			}
 		})
 		
