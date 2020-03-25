@@ -62,7 +62,7 @@
 		where 1=1
 		<if test="keyword!=null and keyword!=''">
 			<bind name="sname" value="'%'+keyword+'%'"></bind>
-			standard_name like #{sname}
+			and standard_name like #{sname}
 		</if>
 		<if test="keyword!=null and keyword!=''">
 			<bind name="des" value="'%'+keyword+'%'"></bind>
