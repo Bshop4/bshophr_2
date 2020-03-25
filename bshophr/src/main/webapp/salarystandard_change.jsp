@@ -67,7 +67,7 @@
 					<input type="text" name="sdesigner" id="designer" value="${cdesigner}" class="INPUT_STYLE2">
 				</td>
 				<td class="TD_STYLE1">变更人</td>
-				<td class="TD_STYLE2"><input type="text" name="bgr"
+				<td class="TD_STYLE2"><input type="text" name="bgrs"
 					id="bgr" value="" class="INPUT_STYLE2">
 				</td>
 				<td class="TD_STYLE1">变更时间</td>
@@ -91,8 +91,12 @@
 
 			<c:forEach items="${cflist}" var="s" varStatus="vs">
 				<tr class="TD_STYLE2">
-					<td align="center" name="xh${vs.count }">${vs.count }</td>
-					<td colspan="3" name="mc${vs.count }">${s.attributeName}</td>
+					<td align="center">
+						<input type="text" name="xh${vs.count }" readonly="readonly" value="${vs.count }" class="INPUT_STYLE2">
+					</td>
+					<td colspan="3" >
+						<input type="text" name="mc${vs.count }" readonly="readonly" value="${s.attributeName}" class="INPUT_STYLE2">
+					</td>
 					<%-- </c:forEach>
 					<c:forEach items="${ssdlist}" var="ssd" varStatus="vss"> --%>
 					<td>

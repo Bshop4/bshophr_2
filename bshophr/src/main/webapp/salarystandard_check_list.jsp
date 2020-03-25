@@ -64,7 +64,12 @@
 					<td>${ss.designer }</td>
 					<td>${ss.registTime}</td>
 					<td>&nbsp;${ss.salarySum }</td>
-					<td><a href="queryfh.do?standardId=${ss.standardId}">复 核</a></td>
+					<c:if test="${ss.checkStatus != 1}">
+						<td><a href="queryfh.do?standardId=${ss.standardId}">复 核</a></td>
+					</c:if>
+					<c:if test="${ss.checkStatus == 1}">
+						<td><a href="queryfh.do?standardId=${ss.standardId}">已复核</a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 

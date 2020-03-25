@@ -294,7 +294,7 @@ public class SalarystandardController {
 
 	// 变更重新提交
 	@RequestMapping("/qyerybgto.do")
-	public String qyerybgto(@RequestParam("stid") String stid, @RequestParam("bgr") String changer,
+	public String qyerybgto(@RequestParam("stid") String stid, @RequestParam("bgrs") String changer,
 			@RequestParam("bgsj") String sctime, @RequestParam("bz") String scomment, @RequestParam("xh1") String xh1,
 			@RequestParam("xh2") String xh2, @RequestParam("xh3") String xh3, @RequestParam("xh4") String xh4,
 			@RequestParam("xh5") String xh5, @RequestParam("xh6") String xh6, @RequestParam("mc1") String mc1,
@@ -310,7 +310,6 @@ public class SalarystandardController {
 		sspojo.setChangeStatus("1");
 		sspojo.setRemark(scomment);
 		ssservice.updateSalaryStandardbg(sspojo);
-
 		// SalaryStandardDetails的六个对象
 		SalaryStandardDetails ssdpojo1 = new SalaryStandardDetails();
 		ssdpojo1.setStandardId(stid);
@@ -319,28 +318,28 @@ public class SalarystandardController {
 
 		SalaryStandardDetails ssdpojo2 = new SalaryStandardDetails();
 		ssdpojo2.setStandardId(stid);
-		ssdpojo1.setItemName(mc2);
-		ssdpojo1.setSalary(Double.parseDouble(csum2));
+		ssdpojo2.setItemName(mc2);
+		ssdpojo2.setSalary(Double.parseDouble(csum2));
 
 		SalaryStandardDetails ssdpojo3 = new SalaryStandardDetails();
 		ssdpojo3.setStandardId(stid);
-		ssdpojo1.setItemName(mc3);
-		ssdpojo1.setSalary(Double.parseDouble(csum3));
+		ssdpojo3.setItemName(mc3);
+		ssdpojo3.setSalary(Double.parseDouble(csum3));
 
 		SalaryStandardDetails ssdpojo4 = new SalaryStandardDetails();
 		ssdpojo4.setStandardId(stid);
-		ssdpojo1.setItemName(mc4);
-		ssdpojo1.setSalary(Double.parseDouble(csum4));
+		ssdpojo4.setItemName(mc4);
+		ssdpojo4.setSalary(Double.parseDouble(csum4));
 
 		SalaryStandardDetails ssdpojo5 = new SalaryStandardDetails();
 		ssdpojo5.setStandardId(stid);
-		ssdpojo1.setItemName(mc5);
-		ssdpojo1.setSalary(Double.parseDouble(csum5));
+		ssdpojo5.setItemName(mc5);
+		ssdpojo5.setSalary(Double.parseDouble(csum5));
 
 		SalaryStandardDetails ssdpojo6 = new SalaryStandardDetails();
 		ssdpojo6.setStandardId(stid);
-		ssdpojo1.setItemName(mc6);
-		ssdpojo1.setSalary(Double.parseDouble(csum6));
+		ssdpojo6.setItemName(mc6);
+		ssdpojo6.setSalary(Double.parseDouble(csum6));
 
 		// 保存到SalaryStandardDetails表
 		ssdservice.updateSalaryStandardDetailsbg(ssdpojo1);
@@ -349,13 +348,12 @@ public class SalarystandardController {
 		ssdservice.updateSalaryStandardDetailsbg(ssdpojo4);
 		ssdservice.updateSalaryStandardDetailsbg(ssdpojo5);
 		ssdservice.updateSalaryStandardDetailsbg(ssdpojo6);
-
 		return "forward:/salarystandard_change_success.jsp";
 	}
 
 	private void selectPage3(HttpServletRequest request, Model model, SalaryStandardService service) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");// 时间格式化
-		String date = formatter.format(new Date(System.currentTimeMillis()));// 时间
+		String date = formatter.format(new Date().getTime() + 1 * 24 * 3600 * 1000);// 时间
 		Map<String, Object> map = null;
 		String sid = request.getParameter("sstid");
 		String keyword = (request.getParameter("sdesigner")).equals("") ? "" : request.getParameter("sdesigner");
@@ -372,6 +370,7 @@ public class SalarystandardController {
 		map.put("endTime", endTime);
 		map.put("keyword", keyword);
 		sumNumber = service.findSalaryStandardByCondition(map).size();// 总个数
+		System.out.println("selectPage3:===" + sumNumber);
 		map.put("count", sumNumber);
 		// 最大页数
 		maxPage = sumNumber % pageSize != 0 ? sumNumber / pageSize + 1 : sumNumber / pageSize;
@@ -405,15 +404,21 @@ public class SalarystandardController {
 		String date = formatter.format(new Date().getTime() + 1 * 24 * 3600 * 1000);// 时间
 		Map<String, Object> map = null;
 		String sid = request.getParameter("standardId");
-		String keyword = (request.getParameter("textfield3")).equals("") ? "" : request.getParameter("textfield3");
-		String startTime = (request.getParameter("startTime")).equals("") ? "2000-01-01"
-				: request.getParameter("startTime");
-		String endTime = (request.getParameter("endTime")).equals("") ? date : request.getParameter("endTime");
+//		String keyword = (request.getParameter("textfield3")).equals("") ? "" : request.getParameter("textfield3");
+//		String keyword = request.getParameter("textfield3");
+//		String startTime = (request.getParameter("startTime")).equals("") ? "2000-01-01"
+//				: request.getParameter("startTime");
+//		String endTime = (request.getParameter("endTime")).equals("") ? date : request.getParameter("endTime");
 		int maxPage = 0;
 		int sumNumber = 0;// 总个数。
 		int pageSize = 1;
 		int pageNo = 1;
 		if (sid != null) {
+//		String keyword = (request.getParameter("textfield3")).equals("") ? "" : request.getParameter("textfield3");
+			String keyword = request.getParameter("textfield3");
+			String startTime = (request.getParameter("startTime")).equals("") ? "2000-01-01"
+					: request.getParameter("startTime");
+			String endTime = (request.getParameter("endTime")).equals("") ? date : request.getParameter("endTime");
 			map = new HashMap<String, Object>();
 			map.put("standardId", sid);
 			map.put("startTime", startTime);
