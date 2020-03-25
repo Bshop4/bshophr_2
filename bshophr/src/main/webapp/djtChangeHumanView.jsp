@@ -45,7 +45,7 @@
 				</font></td>
 			</tr>
 			<tr>
-				<td align="right"><input type="button" value="复核通过"
+				<td align="right"><input type="button" value="修改"
 					class="BUTTON_STYLE1"
 					id="djtRegisterChoosePicture">
 					<input type="reset" value="清除" class="BUTTON_STYLE1"></td>
@@ -448,7 +448,7 @@
 		var hufId=${humanFile.hufId};
 		$.ajax({
 			type:"POST",
-			url:"registerChoosePicture/updateCheckToId.do",
+			url:"registerChoosePicture/updateToId.do",
 			data:{
 			"hufId":hufId,
 			"firstKindId":firstKindId,
@@ -498,9 +498,8 @@
 			dataType:"json",
 			success : function(result){
 				if(result==true){
-					alert("复核成功");
+					alert("修改成功");
 				}
-				window.location.href="/bshophr/checkList/pageJump.do";
 			}		
 		})
 	
