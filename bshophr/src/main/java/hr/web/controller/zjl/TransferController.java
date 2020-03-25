@@ -120,7 +120,7 @@ public class TransferController {
 		
 		model.addAttribute("register", "admin");
 		
-		List<SalaryStandard> listss = sss.findSalaryStandardAllByCS("2");
+		List<SalaryStandard> listss = sss.findSalaryStandardAllByCS("1");
 		model.addAttribute("listss", listss);
 		
 		
