@@ -234,7 +234,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			dataType:"json",
     			success : function(re){
     				
-    				alert(re)
+    				location.href="major_release_update_success.jsp";
     				
     			}		
     		})

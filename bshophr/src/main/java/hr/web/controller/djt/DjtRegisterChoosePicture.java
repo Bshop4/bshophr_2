@@ -53,7 +53,7 @@ public class DjtRegisterChoosePicture {
 		boolean flag=humanFileService.updateHumanFile(humanFile);
 		//主键
 		int hufId=humanFile.getHufId();
-
+		
 		JSONObject json=JSONObject.fromObject(hufId);
 		
 		return json.toString();
@@ -63,12 +63,44 @@ public class DjtRegisterChoosePicture {
 	@RequestMapping("/updateToId.do")
 	public boolean updateToId(@ModelAttribute HumanFile humanFile){
 		humanFile.setCheckStatus((short)1);
+		
 		humanFile.setHumanFileStatus((short)1);
+		
+		if(humanFile.getHumanId()==null){
+			humanFile.setHumanId(String.valueOf(humanFile.getHufId()));
+		}
+		
+		
 		boolean flag=humanFileService.updateHumanFile(humanFile);
 		
 		return flag;
 	}
 	
+	@ResponseBody
+	@RequestMapping("/updateCheckToId.do")
+	public boolean updateCheckToId(@ModelAttribute HumanFile humanFile){
+		humanFile.setCheckStatus((short)1);
+		humanFile.setHumanFileStatus((short)1);
+		
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		String date=df.format(new Date());
+		Date d=null;
+		try {
+			d=df.parse(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		humanFile.setCheckTime(new java.sql.Date(d.getTime()));
+		
+		if(humanFile.getHumanId()==null){
+			humanFile.setHumanId(String.valueOf(humanFile.getHufId()));
+		}
+		
+		boolean flag=humanFileService.updateHumanFile(humanFile);
+		
+		return flag;
+	}
 	
 	
 	

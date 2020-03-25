@@ -310,7 +310,7 @@ public class SalarystandardController {
 		sspojo.setChangeStatus("1");
 		sspojo.setRemark(scomment);
 		ssservice.updateSalaryStandardbg(sspojo);
-		// SalaryStandardDetails的六个对象
+		// SalaryStandardDetails的六个对象.
 		SalaryStandardDetails ssdpojo1 = new SalaryStandardDetails();
 		ssdpojo1.setStandardId(stid);
 		ssdpojo1.setItemName(mc1);

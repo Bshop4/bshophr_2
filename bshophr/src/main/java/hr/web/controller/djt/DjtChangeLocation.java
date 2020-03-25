@@ -61,9 +61,9 @@ public class DjtChangeLocation {
 	
 	@ResponseBody
 	@RequestMapping("/secondSelect.do")
-	public String selectOptions(@RequestParam int firstSelect){
+	public String selectOptions(@RequestParam String firstSelect){
 		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("firstKindId", firstSelect);
+		map.put("firstKindName", firstSelect);
 		List<ConfigFileSecondKind> list2=configFileSecondKindService.findConfigFileSecondKindAll(map);
 		
 		JSONArray json=JSONArray.fromObject(list2);
@@ -73,9 +73,9 @@ public class DjtChangeLocation {
 	
 	@ResponseBody
 	@RequestMapping("/thirdSelect.do")
-	public String selectThirdOptions(@RequestParam int secondSelect){
+	public String selectThirdOptions(@RequestParam String secondSelect){
 		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("secondKindId", secondSelect);
+		map.put("secondKindName", secondSelect);
 		List<ConfigFileThirdKind> list2=configFileThirdKindService.findConfigFileThirdKindAll(map);
 		
 		JSONArray json=JSONArray.fromObject(list2);
