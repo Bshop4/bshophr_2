@@ -41,6 +41,6 @@
 	</update>
 	
 	<update id="updateSalaryStandardDetailsbg" parameterType="SalaryStandardDetails">
-		update salary_standard_details set salary=#{salary} where standard_id=#{standardId} and item_id=#{itemId}
+		update salary_standard_details set salary=#{salary} where standard_id=#{standardId} and item_name=#{itemName}
 	</update>
 </mapper>

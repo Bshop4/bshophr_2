@@ -56,7 +56,7 @@
 	
 		<!-- 向思宇加的薪酬标准查询 -->
 	<select id="selectSalaryStandardByCondition" resultMap="SalaryStandardMap" parameterType="hashmap">
-		select standard_id,standard_name,designer,regist_time,salary_sum 
+		select * 
 		from ((select * from salary_standard where standard_id like "%"#{standardId}"%"
 		and (regist_time between #{startTime} and #{endTime})) as a)
 		where 1=1
